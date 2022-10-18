@@ -1,0 +1,88 @@
+.search {
+    background-image: url('../icons/search.svg'); 
+    background-repeat: no-repeat;
+    background-position-y: 50%;
+    background-position-x: 20px;
+    padding-left: 50px;
+
+   &::-webkit-input-placeholder {
+       color: rgba(51, 51, 51, 0.4);
+       font-weight: 600;
+   }
+
+    color: rgba(51, 51, 51, 0.4);
+    font-weight: 600;
+}
+
+
+/* Clearable text inputs */
+.clearable{
+  position: relative;
+  display: inline-block;
+  .DateInput {
+    margin: -7px;
+  }
+  .DateInput_input {
+    padding: 10px 2px 9px 2px;
+  }
+  
+  .DateRangePicker .DateRangePickerInput.DateRangePickerInput_1::after, .SingleDatePicker .DateRangePickerInput.DateRangePickerInput_1::after {
+      left: 50%;
+      top: 2px;
+      margin-left: -14px;
+    }
+  .DateRangePicker input, .SingleDatePicker input {
+    height: 33px;
+  }
+}
+.clearable input[type=text]{
+  padding-right: 24px;
+  width: 93%;
+  box-sizing: border-box;
+  text-align: center;
+}
+.clearable__clear{
+  position: absolute;
+  right: 10%;
+  top:0;
+  padding: 10px 12px;
+  font-style: normal;
+  font-size: 1.2em;
+  user-select: none;
+  cursor: pointer;
+}
+.clearable input::-ms-clear {  /* Remove IE default X */
+  display: none;
+}
+.TabClearable{
+  position: relative;
+  display: inline-block;
+}
+.TabClearable input[type=text]{
+//  padding-right: 14px;
+  width: 95%;
+  box-sizing: border-box;
+}
+.TabClearable input::-ms-clear {  /* Remove IE default X */
+  display: none;
+}
+.clear_date_seeker{
+  position: absolute;
+  right: 1%;
+  top:-44%;
+  padding: 10px 7px;
+  font-style: normal;
+  font-size: 1.2em;
+  user-select: none;
+  cursor: pointer;
+}
+.clear_date_provider{
+  position: absolute;
+  right: 1%;
+  top:-44%;
+  padding: 10px 7px;
+  font-style: normal;
+  font-size: 1.2em;
+  user-select: none;
+  cursor: pointer;
+}

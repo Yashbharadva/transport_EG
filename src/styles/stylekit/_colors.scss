@@ -1,0 +1,184 @@
+.theme-color {
+    color: #528aea;
+}
+.white-color {
+    color: #fff;
+}
+.header-dark-color {
+    color: #1a2734;
+}
+.blur-dark-color {
+    color: rgba(#1a2734, 0.3);
+}
+.label-color {
+    color: #5c5c7c;
+}
+.table-text-color {
+    color: #333333;
+}
+.header-medium-color {
+    color: #2b3e51;
+}
+.success-color {
+    color: #24a139;
+}
+.caption-color {
+    color: rgba(51, 51, 51, 0.6)
+}
+.challenge-color {
+    color: #55d564;
+}
+.error-color {
+    color: #cb0d38;
+}
+.bg-white {
+    background: #fff;
+}
+.bg-dark {
+    background: #1a2734;
+}
+.bg-success {
+    background: #34c632;
+}
+.bg-success-light {
+    background: rgba(52, 198, 50, 0.2);
+}
+.bg-error {
+    background: #e15f6f;
+}
+.bg-error-light {
+    background: rgba(225, 95, 111, 0.2);
+}
+.bg-counter {
+    background: #ffd58d;
+}
+.bg-accept {
+    background: #55d564;
+}
+.bg-reject {
+    background: rgba(#e15f6f, 0.8);
+}
+.bg-theme {
+    background: #528aea;
+}
+.bg-theme-light {
+    background: #e1ecff;
+}
+.bg-gray {
+    background: #f4f4f5
+}
+.bg-gray-table-header {
+    background: #e4e7ec;
+}
+.bg-approved {
+    background:#00ffff;
+}
+.box-shadow {
+    box-shadow: 0 0 27px 4px rgba(69, 68, 68, 0.07);
+}
+.highlighted-box-shadow {
+    box-shadow: 0 0 40px 5px rgba(69, 68, 68, 0.45)
+    /*box-shadow: 0 0 100px 45px rgba(69, 68, 68, 0.55);*/
+}
+.bg-selection-highlight {
+    background: rgb(225, 236, 254);
+}
+.hover-effect {
+    &:hover {
+        box-shadow: 0 4px 24px 0 rgba(37, 38, 94, 0.1);
+        top: -3px;
+    }
+}
+
+.bg-hover-theme {
+    &:hover {
+        background: rgba(#528aea, 0.4);
+    }
+}
+
+.bg-hover-light {
+    &:hover {
+        background: rgba(58, 132, 255, 0.05);
+    }
+
+    &.selected {
+    background: rgba(58, 132, 255, 0.05);
+    }
+}
+
+.section-header-color {
+    color: #1d1d1d;
+}
+
+.section-sub-header-color {
+    color: #203141;
+}
+
+.op-0 {
+    opacity: 0;
+}
+.op-1 {
+    opacity: 0.1;
+}
+.op-2 {
+    opacity: 0.2;
+}
+.op-3 {
+    opacity: 0.3;
+}
+
+.op-5 {
+    opacity: 0.5;
+}
+
+.op-79 {
+    opacity: 0.79;
+}
+
+.op-7 {
+    opacity: 0.7;
+}
+
+.op-full {
+    opacity: 1;
+}
+
+.danger-color {
+    color: #ed5555;
+}
+
+.danger-background {
+    background: #ed5555;
+}
+
+.blur-table-text-color {
+    color: rgba(26, 39, 52, 0.48);
+}
+
+.green-color {
+    color: #2dba2f;
+}
+
+.orange-color{
+    color: #FFA500
+}
+.orange-dark-color {
+    color: #ff8000
+}
+.bg-checkbox {
+    background: rgb(245, 198, 42);
+}
+
+.bg-loi-cancelled{
+    background: rgba(#f87e37, 0.8);
+}
+.bg-lOI-cancelled{
+    color:#f87e37;
+}
+
+.loi-cancelled-color {
+    color: #ee053c;
+}
+.bg-withdraw-bid{
+    background:rgb(255, 72, 0)
+}

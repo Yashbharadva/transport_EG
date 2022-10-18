@@ -1,0 +1,389 @@
+.courier-table {
+    .dateRangePicker {
+        td {
+            width: inherit;
+        }
+        table {
+            tbody {
+                td {
+                    tr {
+                        td {
+                        padding: none;
+                        width: none;
+                        height: none;
+                        border-left: 1px solid grey;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    &.cargo-tracking-table {
+        td {
+            padding: 5px 5px;
+        }
+    }
+    &.details-popUp {
+        td {
+            padding: 5px 5px;
+        }
+        th {
+            border-bottom : 1px solid grey;
+        }
+    }
+    table {
+        &.cargo-tracking-table {
+            td {
+                padding: 5px 5px;
+            }
+        }
+        &.details-popUp {
+            td {
+                padding: 5px 5px;
+            }
+            th {
+                border-bottom : 1px solid grey;
+            }
+        }
+        .input-container.no-transition-container {
+            margin-top: 2px;
+        }
+
+        .input-container, .input-container .ht-40 {
+            height: 20px;
+        }
+
+        thead {
+            th {
+                border-top : 1px solid black;
+                border-bottom : 1px solid black;
+                border-left: 1px solid black;
+                padding: 5px 0px;
+                background-color: #528aea;
+                color: white;
+                &.zone {
+                    width: 62px;
+                }
+            }
+            th.first-col:first-child {
+                min-width: 100px;
+            }
+            th:last-child {
+                border-right: 1px solid black;
+            }
+            td {
+                padding: 0px;
+                width: auto;
+                text-align: center;
+                tr{
+                    th {
+                        padding: 2px 0px;
+                        width: 91px;
+                        border-top: none;
+                        &.zone_status {
+                            width: 132px;
+                        }
+                    }
+                    :last-child {
+                        border-right: none;
+                    }
+                }
+            }
+        }
+        tbody {
+            tr {
+                    border-bottom: 1px solid grey;
+                th {
+                    border-bottom : 1px solid grey;
+                    border-left: 1px solid grey;
+                    padding: 5px 5px;
+                }
+            }
+            td {
+                &.text-data {
+                    border-bottom : 1px solid grey;
+                }
+                &.dropdown_td {
+                    padding: 0px;
+                }
+                &.zone {
+                    width: 60px;
+                }
+                &.zone_status {
+                    width:125px;
+                }
+                .seeker-checkBox {
+                    input[type='checkbox']{
+                        height: 12px;
+                    }
+                }
+                padding: 0px 5px;
+                text-align: center;
+                border-left: 1px solid grey;
+                height: 100%;
+                &.other_charge {
+                    padding: 5px 0px;
+                }
+                tr{
+                    height: 100%;
+                    td {
+                        padding: 5px 0px;
+                        width: 90px;
+                        height: 100%;
+                        &.courier-dropdown-container {
+                            padding: 0px;
+                        }
+                        &.status {
+                            width: auto;
+                            height: auto;
+                        }
+
+                        input {
+                            text-align: center;
+                            border: none;
+                            height: 30px;
+                            padding-left: 0px;
+                            font-size: 14px;
+                        }
+                    }
+                    :first-child{
+                        border-left: none;
+                    }
+                }
+                input {
+                    text-align: center;
+                    border: none;
+                    height: 30px;
+                    padding-left: 0px;
+                    font-size: 14px;
+                }
+                input[type="checkbox"] {
+                    height: auto;
+                }
+            }
+        }
+    }
+    .courier-header-zone {
+        background-color: white;
+        border-radius: 3px;
+        div:first-child{
+            height: 30px;
+        }
+    } 
+    .courier-header-delete {
+        path {
+            fill:white;
+        }
+    }
+}
+
+.slab-filter {
+    input {
+        border: none;
+    }
+}
+
+.zone-loi-timer {
+    span{
+        font-size: 12px;
+    }
+    svg {
+        height: 10px;
+        width: 10px;
+    }
+}
+
+
+.first{
+	position: sticky;
+    left: 0px;
+    z-index: 2;
+    background-color: white;
+	border-left: 1px solid grey;
+}
+
+.first_header {
+position: sticky;
+    left: 0px;
+    z-index: 4;
+background-color: chocolate;
+border-right: 1px solid black;
+width: 10px;
+}
+
+.second {
+	position: sticky;
+   left: 31px;
+   z-index: 2;
+	background-color: white;
+}
+.second_seeker {
+	position: sticky;
+   left: 31px;
+   z-index: 2;
+	background-color: white;
+	width: 80px
+
+}
+
+.second_inprogress {
+	position: sticky;
+   left: 100px;
+   z-index: 2;
+	background-color: white;
+}
+
+.second_inprogress_seeker {
+	position: sticky;
+   left: 62px;
+   z-index: 2;
+	background-color: white;
+	margin: 2px;
+	width: 90px !important;
+}
+
+.third {
+	position: sticky;
+   left: 131px;
+   z-index: 2;
+	background-color: white;
+}
+
+.third_inprogress {
+	position: sticky;
+   left: 200px;
+   z-index: 2;
+	background-color: white;
+
+}
+
+.third_seeker {
+	position: sticky;
+   left: 111px;
+   z-index: 2;
+	background-color: white;
+width: 80px;
+}
+
+.third_inprogress_seeker {
+	position: sticky;
+   left: 152px;
+   z-index: 2;
+	background-color: white;
+padding: 2px;
+width: 90px !important;
+
+}
+
+.fourth_seeker {
+	position: sticky;
+   left: 191px;
+   z-index: 2;
+	background-color: white;
+	width: 60px;
+}
+
+.fourth_inprogress_seeker {
+	position: sticky;
+   left: 242px;
+   z-index: 2;
+	background-color: white;
+	width: 90px !important;
+}
+
+.fifth_seeker {
+	position: sticky;
+   left: 256px;
+   z-index: 2;
+	background-color: white;
+	width: 80px;
+}
+
+.fifth_inprogress_seeker {
+	position: sticky;
+   left: 332px;
+   z-index: 2;
+	background-color: white;
+	width: 90px !important;
+
+}
+.sixth_seeker {
+	position: sticky;
+   left: 336px;
+   z-index: 2;
+	background-color: white;
+	width: 110px;
+}
+.sixth_inprogress_seeker {
+	position: sticky;
+   left: 422px;
+   z-index: 2;
+	background-color: white;
+	border-right: 1px solid grey;
+	th {
+		border-right: 1px solid grey;
+	}
+	width: 90px !important;
+
+}
+
+.seventh_seeker {
+	position: sticky;
+   left: 447px;
+   z-index: 2;
+	background-color: white;
+	border-right: 1px solid black;
+	width: 50px;
+	
+}
+
+.fourth-col {
+	position: sticky;
+   left: 231px;
+   z-index: 2;
+	background-color: white;
+}
+
+.fourth-progress {
+	position: sticky;
+   left: 275px;
+   z-index: 2;
+	background-color: white;
+	border-right: 1px solid grey;
+	th {
+		border-right: 1px solid black;
+	}
+}
+
+.fifth-col {
+	position: sticky;
+   left: 306px;
+   z-index: 2;
+	background-color: white;
+	border-right: 1px solid grey;
+	th {
+		border-right: 1px solid black;
+	}
+}
+
+.addtrip_second {
+	position: sticky;
+   left: 151px;
+   z-index: 2;
+	background-color: white;
+}
+
+.addtrip_third {
+	position: sticky;
+   left: 320px;
+   z-index: 2;
+	background-color: white;
+}
+
+.addtrip_fourth {
+	position: sticky;
+   left: 454px;
+   z-index: 2;
+	background-color: white;
+	border-right: 1px solid grey;
+}

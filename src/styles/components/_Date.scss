@@ -1,0 +1,136 @@
+.DateRangePickerInput_arrow {
+    width: 20px !important;
+}
+.DateRangePickerInput_arrow_svg {
+    width: 20px !important;
+}
+.DateRangePicker, .SingleDatePicker {
+    input {
+        height: 36px;
+        text-align: center;
+        font-size: 14px;
+        color: #528aea;
+        font-family: Proximanova-Semibold;
+        &:focus {
+            #startDate {
+                border: 1px solid #528aea;
+            }
+            #endDate { 
+                border: 1px solid #528aea;
+            }
+        }
+        &#startDate {
+            border-right: none;
+            border-top-right-radius: 0;
+            border-bottom-right-radius: 0;
+        }
+        &#endDate {
+            border-left: none;
+            border-top-left-radius: 0;
+            border-bottom-left-radius: 0;
+        }
+    }
+    .DateRangePickerInput.DateRangePickerInput_1::after {
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        margin-left: -8px;
+        font-family: Proximanova-Bold;
+        color: #528aea;
+        top: 12px;
+    }
+    .CalendarDay__selected, .CalendarDay__selected:active, .CalendarDay__selected:hover{
+        background: #528aea;
+        border: 1px double #528aea;
+        color: #fff;
+    }
+    .CalendarDay__selected_span, .CalendarDay__hovered_span, .CalendarDay__hovered_span:hover {
+        background: rgba(#528aea, 0.4);
+        border: 1px double rgba(#528aea, 0.3);
+        color: #fff;
+        &:hover {
+            background: #528aea;
+            border: 1px double #528aea;
+            color: #fff;
+        }
+    }
+}
+.SingleDatePicker {
+    width: 200px;
+    margin-right: 20px;
+    input {
+        height: 40px;
+        width: 200px;
+        border: 1px solid #a8b6cd;
+        border-radius: 5px;
+        font-size: 16px;
+        color: #528aea;
+        font-family: Proximanova-Semibold;
+        &:focus {
+            #startDate {
+                border: 1px solid #528aea;
+            }
+            #endDate { 
+                border: 1px solid #528aea;
+            }
+        }
+    }
+}
+.post-bid {
+    .SingleDatePicker {
+        width: 100px;
+        margin-right: 0px;
+        .DateInput {
+            width: 100px;
+        }
+        .DateInput_input {
+            padding: 11px 4px;
+        }
+       input {
+           width: 110px;
+           font-size: 14px;
+           text-align: center;
+       }
+    }
+    .rc-time-picker-input {
+        padding: 2px;
+        font-size: 14px;
+        text-align: center;
+    }
+}
+
+.awl_hc_date {
+    .DateInput {
+        width: 87px;
+    }
+    .DateInput_input {
+        padding: 0px;
+    }
+    .DateRangePicker input {
+        font-size: 12px;
+        text-align: center ;
+    }
+    .DateRangePicker .DateRangePickerInput.DateRangePickerInput_1::after {
+        margin-left: 1px;
+        top: 11px;
+    }
+    .DateRangePicker_picker {
+        z-index: 502;
+    }
+}
+
+.mm-contracts {
+    .DateRangePickerInput {
+        width: 260px;
+        .DateInput {
+            width: 115px;
+        }
+        .DateRangePickerInput_clearDates {
+            right: 10px;
+            top: 45%;
+        }
+    }
+    .DateRangePicker .DateRangePickerInput.DateRangePickerInput_1::after {
+        left: 47%;
+    }
+}

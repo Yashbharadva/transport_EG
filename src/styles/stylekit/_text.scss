@@ -1,0 +1,39 @@
+
+.tLeft {
+    text-align: left;
+}
+.tRight {
+    text-align: right;
+}
+.tCenter {
+    text-align: center;
+}
+
+.tJustify {
+    text-align: justify;
+}
+
+.light-font {
+    color:#9fa8da !important;
+}
+
+.text-uppercase {
+    text-transform: uppercase;
+}
+
+.tLeft {
+    text-align: left;
+}
+.fRight {
+	float: right;
+}
+
+.tSize-15 {
+   font-size: 15px;
+}
+
+.truncate-long-text {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}

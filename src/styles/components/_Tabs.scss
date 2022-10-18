@@ -1,0 +1,35 @@
+.tabs {
+    width: 100%;
+    .tab {
+        height: 33px;
+        border: solid 1px #528aea;
+        border-left: none;
+        background-color: #ffffff;
+        font-size: 16px;
+        color: #528aea;
+        &.active {
+            background-color: #528aea;
+            color: #ffffff;
+        }
+        &:first-child {
+            border-left: solid 1px #528aea;
+            border-top-left-radius: 5px;
+            border-bottom-left-radius: 5px;
+        }
+        &:last-child {
+            border-top-right-radius: 5px;
+            border-bottom-right-radius: 5px;
+        }
+    }
+    .subtab {
+        height: 33px;
+        border-bottom: solid 1px #9599a0;
+        font-size: 16px;
+        color: #9599a0;
+        &.active {
+            background-color: white;
+            color: #5289ea;
+            border-bottom: 4px solid;
+        }
+    }
+}

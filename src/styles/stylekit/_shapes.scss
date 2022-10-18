@@ -1,0 +1,10 @@
+.triangle {
+    width: 0;
+    height: 0;
+    border-left: 8px solid transparent;
+    border-right: 8px solid transparent;
+    border-bottom: 10px solid #203141;
+    // transform: rotate(180deg);
+    transition: 1s transform;
+    transform-origin: 50% 60%;
+}

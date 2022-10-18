@@ -1,0 +1,21 @@
+{
+    "compilerOptions": {
+      "target": "es2017",
+      "allowSyntheticDefaultImports": false,
+      "baseUrl": "./",
+      "paths": {
+        "Lib/*": ["src/lib/*"],
+        "Components/*": ["src/components/*"],
+        "Constants/*": ["src/constants/*"],
+        "Containers/*": ["src/containers/*"],
+        "Pages/*": ["src/pages/*"],
+        "Reducers/*": ["src/reducers/*"],
+        "Store/*": ["src/store/*"],
+        "Sagas/*": ["src/sagas/*"],
+        "Styles/*": ["src/styles/*"],
+        "Utils/*": ["src/utils/*"],
+        "Models/*": ["src/models/*"],
+      }
+    },
+    "exclude": ["node_modules", "build"]
+  }

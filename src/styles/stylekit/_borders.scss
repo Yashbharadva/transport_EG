@@ -1,0 +1,115 @@
+.border-none {
+    border: none;
+}
+.br-2 {
+    border-radius: 2px;
+}
+.br-4 {
+    border-radius: 4px;
+}
+.br-5 {
+    border-radius: 5px;
+}
+.br-10 {
+    border-radius: 20px;
+}
+.br-12 {
+    border-radius: 20px;
+}
+.br-15 {
+    border-radius: 20px;
+}
+.br-20 {
+    border-radius: 20px;
+}
+.br-50p {
+    border-radius: 50%;
+}
+.border-white {
+    border: 1px solid #fff;
+}
+.border-black-light {
+    border: 1px solid rgba(#000, 0.1);
+}
+.border-theme{
+    border: 1px solid #528aea;
+}
+.border-bottom-theme {
+    border-bottom: 1px solid #528aea;
+}
+.border-bottom-theme-2 {
+    border-bottom: 2px solid #528aea;
+}
+.border-bottom-theme-4 {
+    border-bottom: 4px solid #528aea;
+}
+.border-bottom-light {
+    border-bottom: 1px solid rgba(#979797, 0.2);
+}
+.border-right-light {
+    border-right: 1px solid rgba(#979797, 0.2);
+}
+.border-bottom-light-2 {
+    border-bottom: 2px solid rgba(#979797, 0.2);
+}
+.border-top-light {
+    border-top: 1px solid rgba(#979797, 0.2);
+}
+.border-top-dark-dashed {
+    border-top: 1px dashed #979797;
+}
+.border-light {
+    border: 1px solid rgba(#979797, 0.2);
+}
+.border-status-bar {
+    border: 1px solid #a8b6cd;
+}
+.border-error-color {
+    border: 2px solid #ed5555;
+}
+
+.switch{
+    position: relative;
+    display: inline-block;
+    vertical-align: top;
+}
+.switch label{
+    width: 40px;
+    height: 18px;
+    position: absolute;;
+    background-color: #f2f2f2;
+    top:0;
+    left: 0;
+    border-radius: 50px;
+    border: solid 1.5px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+}
+.switch input[type="checkbox"]{
+    visibility: hidden;
+}
+.switch label:after{
+    content: '';
+    width: 16px;
+    height: 16px;
+    background-color: #d4d4d4;
+    border-radius: 50px;
+    top:-2px;
+    left: 0px;
+    position: absolute;
+    transition:all 0.3s;
+    border: solid 0.5px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 3px 3px 0 rgba(0, 0, 0, 0.05), 0 2px 2px 0 rgba(0, 0, 0, 0.1), 0 3px 1px 0 rgba(0, 0, 0, 0.05);
+}
+.switch input[type="checkbox"]:checked + label:before {
+  color: white;
+  content: '' !important;
+  text-align: center;
+}
+.switch input[type="checkbox"]:checked + label:after{
+    left: 20px;
+    background-color: #00c251;
+}
+.switch input[type="checkbox"]:checked + label{
+    background-color: #e9f9f0;;
+}
+

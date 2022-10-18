@@ -1,0 +1,55 @@
+.input-container {
+    height: 52px;
+    &.no-transition-container {
+        margin-top: 12px;
+    }
+    .label {
+        display: block;
+        font-size: 13px;
+        position: relative;
+        top: 19px;
+        transition: 0.3s top;
+        z-index: -1;
+        &.input-focussed {
+            font-size: 10px;
+            top: 0;
+            transition: 0.3s top, 0.3s font-size;
+        }
+
+        &.no-transition {
+            font-size: 10px;
+            position: absolute;
+            top: -2px;
+        }
+    }
+    input {
+        border: none;
+        border-bottom:solid 1px #d8dbf0;
+        background: transparent;
+        font-size: 13px;
+        font-weight: 500;
+        color: #212224;
+        z-index: 1;
+        width: 100%;
+        display: inline-block;
+    }
+}
+
+.ResetPasswordForm {
+    .input-container {
+        height: 35px;
+    }
+}
+
+.postbid-label {
+    .label {
+        color: #10101d !important;
+        font-weight: bold;
+    }
+}
+
+.postBid-fields {
+    .input-container .label.no-transition {
+        font-size: 12px;
+    }
+}

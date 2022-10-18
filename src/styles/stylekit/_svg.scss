@@ -1,0 +1,64 @@
+.select-icon {
+    svg {
+        fill: #528aea
+    }
+    path {
+        fill: #528aea;
+    }
+    g {
+        fill: #528aea;
+    }
+}
+svg.theme-fill {
+    path {
+        fill: #528aea;
+        fill-opacity: 1;
+    }
+    g {
+        fill: #528aea;
+        fill-opacity: 1;
+    }
+}
+.fill-white {
+    path {
+        fill: #fff;
+    }
+}
+.fill-gray {
+    path {
+        fill: gray;
+    }
+}
+.fill-theme {
+    path {
+        fill: #528aea;
+        fill-opacity: 1;
+    }
+}
+
+.stroke-white {
+    path {
+        stroke: #fff;
+    }
+}
+.stroke-theme {
+    path {
+        stroke: #528aea;
+    }
+}
+.fill-op-1 {
+    path {
+        fill-opacity: 1
+    }
+}
+
+.stroke-rect-gray {
+    rect {
+        stroke: gray
+    }
+}
+.stroke-rect-theme {
+    rect {
+        stroke: #528aea;
+    }
+}
