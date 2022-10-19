@@ -721,6 +721,10 @@ input {
 }
 
 
+.table-bg-dark-red {
+    background-color: rgb(123, 9, 9);
+}
+
 // ------>>>>>>> NEW SCSS FOR THE CREATE NEW CONTRACTS <<<<<<------ //
 
 .main-div {
@@ -739,27 +743,56 @@ input {
     }
 
     .back-light-blue {
-        border: 1px solid black;
-        // background-color: #528aea;
-        height: 250px;
+        background-color: #528aea;
+        height: 320px;
         border-radius: 10px;
         z-index: -50000;
 
 
         .input-fields {
-            padding: 10px;
+            padding: 20px;
             z-index: 50000;
             display: flex;
+            gap: 50px;
             // background-color: red;
+
+            .bd-none {
+                background-color: white;
+                border: 1px solid rgb(255, 255, 255);
+            }
+
+            .bg-blue {
+                background-color: blue;
+            }
+
+            .wd {
+                width: 280px;
+            }
+
+            .wd-500 {
+                width: 400px;
+            }
+
+
         }
 
         .search-button {
-            padding: 12px 100px;
+            padding: 10px 25px;
+            height: 40px;
+            width: 100px;
             border-radius: 5px;
             background-color: blue;
             color: white;
             font-size: 15px;
             font-weight: 800;
         }
+    }
+
+    .svg-icon {
+        margin-right: 8px;
+    }
+
+    .space {
+        justify-content: space-between;
     }
 }

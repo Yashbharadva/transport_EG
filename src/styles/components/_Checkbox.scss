@@ -5,6 +5,7 @@
         border: solid 2px #528aea;
         border-radius: 50%;
         position: relative;
+
         .inner-circle {
             position: absolute;
             height: 12px;
@@ -15,7 +16,6 @@
             left: 3px
         }
     }
-    .label {
 
-    }
+    .label {}
 }

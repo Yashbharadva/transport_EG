@@ -146,7 +146,7 @@ class MultiModeGeneratedContracts extends Component {
                         </table>
                     </Fragment>
                 </div>
-             </Sticky> 
+            </Sticky>
         )
 
     }

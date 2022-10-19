@@ -94,7 +94,7 @@ class Dropdown extends Component {
         return (
             <ClickOutside handleClickOutside={this.hideDropdown}>
             <div className={"pr dropdown-container pr " + className}>
-                    <div onClick={this.showDropdown} className={classNames("flex flex-middle flex-between br-5 ht-40 theme-border-color", {
+                    <div onClick={this.showDropdown} className={classNames("flex flex-middle flex-between br-5 ht-40 theme-border-color bd-none wd", {
                     'border-light': !noBorder && !isError,
                     'border-error-color': isError && !noBorder
                 })}>
