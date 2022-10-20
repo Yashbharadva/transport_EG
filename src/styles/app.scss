@@ -744,7 +744,7 @@ input {
 
     .back-light-blue {
         background-color: #528aea;
-        height: 320px;
+        height: auto;
         border-radius: 10px;
         z-index: -50000;
 
@@ -799,4 +799,19 @@ input {
     .space {
         justify-content: space-between;
     }
+
+    .chcek-close-button {
+        display: flex;
+        justify-content: end;
+    }
+
+    .span {
+        font-weight: 300;
+    }
+
+    .scroll {
+        overflow: scroll;
+    }
+
+
 }

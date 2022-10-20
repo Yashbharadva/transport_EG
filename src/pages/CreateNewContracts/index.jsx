@@ -6,6 +6,8 @@ import Checkbox from "Components/Checkbox/index";
 import Popup from 'reactjs-popup';
 import 'reactjs-popup/dist/index.css';
 import { AiOutlineCloseCircle, AiOutlinePlusCircle } from "react-icons/ai";
+import { IoIosArrowDropdown } from "react-icons/io";
+import Input from "Components/FormInput/index";
 
 
 class CreateNewContracts extends Component {
@@ -16,16 +18,18 @@ class CreateNewContracts extends Component {
   render() {
 
     const contentStyle = {
-      maxWidth: "100%",
-      width: "90%",
-      height: "90%"
+      // maxWidth: "100%",
+      width: "auto",
+      height: "auto",
+      maxHeight: "80%",
+      overflow: "scroll"
     }
 
     const temp = [{ id: 1, name: "Option1" }, { id: 2, name: "Option2" }, { id: 3, name: "Option3" }];
 
     return (
       <Sticky>
-        <div className="main-div">
+        <div className="main-div" style={{ maxWidth: "2000px" }}>
 
 
           <div className="arrow-text" style={{ cursor: "pointer" }}>
@@ -184,22 +188,24 @@ class CreateNewContracts extends Component {
                 <div style={{ paddingBottom: "5px", color: "white" }}>
                   No. of Wagon
                 </div>
-                <Dropdown
+                <Input
                   label="42"
                   displayKey="name"
                   selectedItem={null}
                   className="mb-0 wt-250 ht-30 wd-100"
+                  style={{ width: "120px", height: "36px", background: "white", borderRadius: "5px" }}
                 />
               </div>
               <div className="fs-14 header-dark-color mr-10">
                 <div style={{ paddingBottom: "5px", color: "white" }}>
                   Wagon Wt.
                 </div>
-                <Dropdown
+                <Input
                   label="55"
                   displayKey="name"
                   selectedItem={null}
                   className="mb-0 wt-250 ht-30 wd-100"
+                  style={{ width: "120px", height: "36px", background: "white", borderRadius: "5px" }}
                 />
               </div>
 
@@ -216,9 +222,6 @@ class CreateNewContracts extends Component {
 
 
             </div>
-
-
-
 
             <div className="input-fields">
               <div className="fs-14 header-dark-color mr-10">
@@ -281,22 +284,24 @@ class CreateNewContracts extends Component {
                 <div style={{ paddingBottom: "5px", color: "white" }}>
                   No. of Wagon
                 </div>
-                <Dropdown
+                <Input
                   label="42"
                   displayKey="name"
                   selectedItem={null}
                   className="mb-0 wt-250 ht-30 wd-100"
+                  style={{ width: "120px", height: "36px", background: "white", borderRadius: "5px" }}
                 />
               </div>
               <div className="fs-14 header-dark-color mr-10">
                 <div style={{ paddingBottom: "5px", color: "white" }}>
                   Wagon Wt.
                 </div>
-                <Dropdown
+                <Input
                   label="55"
                   displayKey="name"
                   selectedItem={null}
                   className="mb-0 wt-250 ht-30 wd-100"
+                  style={{ width: "120px", height: "36px", background: "white", borderRadius: "5px" }}
                 />
               </div>
 
@@ -307,6 +312,7 @@ class CreateNewContracts extends Component {
               </div>
 
             </div>
+
 
           </div>
 
@@ -918,53 +924,152 @@ class CreateNewContracts extends Component {
               contentStyle={contentStyle}
             >
               {close => (
-                <div className="modal">
-                  <a className="close" onClick={close} style={{ border: "1px solid black", padding: "1px 5px", borderRadius: "999px" }}>
-                    &times;
-                  </a>
-                  <div className="header"> Modal Title </div>
-                  <div className="content">
-                    {" "}
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Atque, a
-                    nostrum. Dolorem, repellat quidem ut, minima sint vel eveniet
-                    quibusdam voluptates delectus doloremque, explicabo tempore dicta
-                    adipisci fugit amet dignissimos?
-                    <br />
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequatur
-                    sit commodi beatae optio voluptatum sed eius cumque, delectus saepe
-                    repudiandae explicabo nemo nam libero ad, doloribus, voluptas rem
-                    alias. Vitae?
+                <div className="modal scroll" style={{ padding: "10px", fontFamily: "Proximanova-Regular" }}>
+                  <div style={{ padding: "1px 5px", display: "flex", justifyContent: "end" }}>
+                    <a className="chcek-close-button" onClick={close} style={{ border: "5px solid white", padding: "1px 5px", borderRadius: "999px", transform: "translate(30px, -60px)", fontSize: "20px", color: "white" }}>
+                      &times;
+                    </a>
                   </div>
-                  <div className="actions">
-                    <Popup
-                      trigger={<button className="button"> Menu Demo </button>}
-                      position="top center"
-                      closeOnDocumentClick
-                      contentStyle={{ padding: "0px", border: "none" }}
-                    >
-                      <div className="menu">
-                        <div className="menu-item"> Menu item 1</div>
-                        <div className="menu-item"> Menu item 2</div>
-                        <div className="menu-item"> Menu item 3</div>
-                        <Popup
-                          trigger={<div className="menu-item"> sup Menu </div>}
-                          position="right top"
-                          on="hover"
-                          closeOnDocumentClick
-                          mouseLeaveDelay={300}
-                          mouseEnterDelay={0}
-                          contentStyle={{ padding: "0px", border: "none" }}
-                          arrow={false}
-                        >
-                          <div className="menu">
-                            <div className="menu-item"> item 1</div>
-                            <div className="menu-item"> item 2</div>
-                            <div className="menu-item"> item 3</div>
-                          </div>
-                        </Popup>
-                        <div className="menu-item"> Menu item 4</div>
+
+                  <div style={{ boxShadow: "0 0 27px 4px rgb(69 68 68 / 60%)", padding: "20px" }}>
+                    <div>
+                      <div style={{ display: "flex", justifyContent: "space-between" }}>
+                        Contract No : 23456666
+                        <span><IoIosArrowDropdown size="1.5em" color="#528aea" /></span>
                       </div>
-                    </Popup>
+                      <hr />
+                    </div>
+
+                    <div style={{ padding: "10px 0px", width: "50%" }}>
+                      <div style={{ display: "grid", gridTemplateColumns: "repeat(5, 1fr)" }}>
+
+                        <div>Route Code:</div>
+                        <div>From:</div>
+                        <div>To:</div>
+                        <div>Origin Yard:</div>
+                        <div>Destination Yard:</div>
+
+                        <span className="span">454567</span>
+                        <span className="span">Mundra</span>
+                        <span className="span">Lucknow</span>
+                        <span className="span">Dhrub</span>
+                        <span className="span">Surat</span>
+                      </div>
+                    </div>
+
+                    <div style={{ padding: "10px 0px", width: "110%" }}>
+                      <div style={{ display: "grid", gridTemplateColumns: "repeat(6, 1fr)" }}>
+
+                        <div>Rake:</div>
+                        <div>Commodity Category:</div>
+                        <div>Commodity Name:</div>
+                        <div>Type of Wagon:</div>
+                        <div>No of Wagon:</div>
+                        <div>Wagon Wt:</div>
+
+                        <span className="span">Full Rake</span>
+                        <span className="span">Hydrogeneted and other Edible Oil</span>
+                        <span className="span">All Refined and Non Refined Edible Oils</span>
+                        <span className="span">BCN</span>
+                        <span className="span">42</span>
+                        <span className="span">55 MT</span>
+                      </div>
+                    </div>
+
+                    <div style={{ padding: "20px 0" }}>
+
+
+                      <div style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gap: "30px", width: "50%" }}>
+
+                        <div style={{ display: "block", padding: "10px 10px", background: "blue", color: "white" }}>
+                          <p>Total Cost : $ 35,05,000</p>
+                          <p> Cost / PTPK : $ 1430 PTPK</p>
+                          <p>Cost / MT : $ 4500 per MT</p>
+                        </div>
+
+                        <div style={{ display: "block", padding: "10px 10px", background: "blue", color: "white" }}>
+                          <p>Total Cost : $ 35,05,000</p>
+                          <p> Cost / PTPK : $ 1430 PTPK</p>
+                          <p>Cost / MT : $ 4500 per MT</p>
+                        </div>
+
+                      </div>
+
+                    </div>
+                  </div>
+
+                  <div style={{ paddingTop: "20px" }}>
+                    <div style={{ boxShadow: "0 0 27px 4px rgb(69 68 68 / 60%)", padding: "20px" }}>
+                      <div>
+                        <div style={{ display: "flex", justifyContent: "space-between" }}>
+                          Contract No : 23456666
+                          <span><IoIosArrowDropdown size="1.5em" color="#528aea" /></span>
+                        </div>
+                        <hr />
+                      </div>
+
+                      <div style={{ padding: "10px 0px", width: "50%" }}>
+                        <div style={{ display: "grid", gridTemplateColumns: "repeat(5, 1fr)" }}>
+
+                          <div>Route Code:</div>
+                          <div>From:</div>
+                          <div>To:</div>
+                          <div>Origin Yard:</div>
+                          <div>Destination Yard:</div>
+
+                          <span className="span">454567</span>
+                          <span className="span">Mundra</span>
+                          <span className="span">Lucknow</span>
+                          <span className="span">Dhrub</span>
+                          <span className="span">Surat</span>
+                        </div>
+                      </div>
+
+                      <div style={{ padding: "10px 0px", width: "110%" }}>
+                        <div style={{ display: "grid", gridTemplateColumns: "repeat(6, 1fr)" }}>
+
+                          <div>Rake:</div>
+                          <div>Commodity Category:</div>
+                          <div>Commodity Name:</div>
+                          <div>Type of Wagon:</div>
+                          <div>No of Wagon:</div>
+                          <div>Wagon Wt:</div>
+
+                          <span className="span">Full Rake</span>
+                          <span className="span">Hydrogeneted and other Edible Oil</span>
+                          <span className="span">All Refined and Non Refined Edible Oils</span>
+                          <span className="span">BCN</span>
+                          <span className="span">42</span>
+                          <span className="span">55 MT</span>
+                        </div>
+                      </div>
+
+                      <div style={{ padding: "20px 0" }}>
+
+
+                        <div style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gap: "30px", width: "50%" }}>
+
+                          <div style={{ display: "block", padding: "10px 10px", background: "blue", color: "white" }}>
+                            <p>Total Cost : $ 35,05,000</p>
+                            <p> Cost / PTPK : $ 1430 PTPK</p>
+                            <p>Cost / MT : $ 4500 per MT</p>
+                          </div>
+
+                          <div style={{ display: "block", padding: "10px 10px", background: "blue", color: "white" }}>
+                            <p>Total Cost : $ 35,05,000</p>
+                            <p> Cost / PTPK : $ 1430 PTPK</p>
+                            <p>Cost / MT : $ 4500 per MT</p>
+                          </div>
+
+                        </div>
+
+                      </div>
+                    </div>
+                  </div>
+
+
+
+                  <div className="actions">
                     <button
                       className="button"
                       onClick={() => {
@@ -974,7 +1079,18 @@ class CreateNewContracts extends Component {
                     >
                       close modal
                     </button>
+                    <Popup
+                      trigger={<button className="button"> Menu Demo </button>}
+                      position="top center"
+                      closeOnDocumentClick
+                      contentStyle={{ padding: "0px", border: "none" }}
+                    >
+                    </Popup>
+
+
                   </div>
+
+
                 </div>
               )}
             </Popup>
@@ -983,7 +1099,7 @@ class CreateNewContracts extends Component {
           </div>
 
 
-        </div>
+        </div >
       </Sticky >
     )
   }
