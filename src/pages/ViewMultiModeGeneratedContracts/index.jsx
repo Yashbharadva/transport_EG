@@ -61,7 +61,7 @@ class MultiModeGeneratedContracts extends Component {
                                     label="From"
                                     displayKey="name"
                                     selectedItem={null}
-                                    // onSelect={this.selectBranchId}
+                                    onSelect={this.selectBranchId}
                                     className="mb-0 wt-250 ht-30"
                                     searchEnabled={true}
                                 />

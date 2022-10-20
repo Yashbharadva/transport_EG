@@ -5,6 +5,8 @@ import { ReactComponent as Back } from 'Icons/back.svg'
 import Checkbox from "Components/Checkbox/index";
 import Popup from 'reactjs-popup';
 import 'reactjs-popup/dist/index.css';
+import { AiOutlineCloseCircle, AiOutlinePlusCircle } from "react-icons/ai";
+
 
 class CreateNewContracts extends Component {
   constructor(props) {
@@ -16,15 +18,17 @@ class CreateNewContracts extends Component {
     const contentStyle = {
       maxWidth: "100%",
       width: "90%",
-      height: "80%"
+      height: "90%"
     }
+
+    const temp = [{ id: 1, name: "Option1" }, { id: 2, name: "Option2" }, { id: 3, name: "Option3" }];
 
     return (
       <Sticky>
         <div className="main-div">
 
 
-          <div className="arrow-text">
+          <div className="arrow-text" style={{ cursor: "pointer" }}>
             <div onClick={() => {
               this.props.history.push('/viewGeneratedContracts')
             }}>
@@ -43,10 +47,13 @@ class CreateNewContracts extends Component {
                   Route Code
                 </div>
                 <Dropdown
+                  items={temp}
                   label="Route Code"
                   displayKey="name"
                   selectedItem={null}
+                  onSelect={this.selectBranchId}
                   className="mb-0 wt-250 ht-30"
+                  searchEnabled={true}
                 />
               </div>
               <div className="fs-14 header-dark-color mr-10">
@@ -54,10 +61,13 @@ class CreateNewContracts extends Component {
                   From
                 </div>
                 <Dropdown
+                  items={temp}
                   label="From"
                   displayKey="name"
                   selectedItem={null}
+                  onSelect={this.selectBranchId}
                   className="mb-0 wt-250 ht-30"
+                  searchEnabled={true}
                 />
               </div>
               <div className="fs-14 header-dark-color mr-10">
@@ -65,10 +75,13 @@ class CreateNewContracts extends Component {
                   To
                 </div>
                 <Dropdown
+                  items={temp}
                   label="To"
                   displayKey="name"
                   selectedItem={null}
+                  onSelect={this.selectBranchId}
                   className="mb-0 wt-250 ht-30"
+                  searchEnabled={true}
                 />
               </div>
               <div className="fs-14 header-dark-color mr-10">
@@ -76,10 +89,13 @@ class CreateNewContracts extends Component {
                   Origin Yard
                 </div>
                 <Dropdown
+                  items={temp}
                   label="Origin Yard"
                   displayKey="name"
                   selectedItem={null}
+                  onSelect={this.selectBranchId}
                   className="mb-0 wt-250 ht-30"
+                  searchEnabled={true}
                 />
               </div>
               <div className="fs-14 header-dark-color mr-10">
@@ -87,10 +103,13 @@ class CreateNewContracts extends Component {
                   Destination Yard
                 </div>
                 <Dropdown
+                  items={temp}
                   label="Destination Yard"
                   displayKey="name"
                   selectedItem={null}
+                  onSelect={this.selectBranchId}
                   className="mb-0 wt-250 ht-30"
+                  searchEnabled={true}
                 />
               </div>
               {/* <div className="fs-14 header-dark-color mr-10">
@@ -110,10 +129,13 @@ class CreateNewContracts extends Component {
                   Rake
                 </div>
                 <Dropdown
-                  label="Full Rake"
+                  items={temp}
+                  label=" Full Rake"
                   displayKey="name"
                   selectedItem={null}
+                  onSelect={this.selectBranchId}
                   className="mb-0 wt-250 ht-30"
+                  searchEnabled={true}
                 />
               </div>
               <div className="fs-14 header-dark-color mr-10">
@@ -121,52 +143,82 @@ class CreateNewContracts extends Component {
                   Commodity Category
                 </div>
                 <Dropdown
+                  items={temp}
                   label="Commodity Category"
                   displayKey="name"
                   selectedItem={null}
-                  className="mb-0 wt-250 ht-30"
+                  onSelect={this.selectBranchId}
+                  className="mb-0 wt-250 ht-30 wd-500"
+                  searchEnabled={true}
                 />
               </div>
               <div className="fs-14 header-dark-color mr-10">
                 <div style={{ paddingBottom: "5px", color: "white" }}>
-                  To
+                  Commodity Name
                 </div>
                 <Dropdown
-                  label="To"
+                  items={temp}
+                  label="Commdity Name"
                   displayKey="name"
                   selectedItem={null}
-                  className="mb-0 wt-250 ht-30"
+                  onSelect={this.selectBranchId}
+                  className="mb-0 wt-250 ht-30 wd-500"
+                  searchEnabled={true}
                 />
               </div>
               <div className="fs-14 header-dark-color mr-10">
                 <div style={{ paddingBottom: "5px", color: "white" }}>
-                  Origin Yard
+                  Type of Wagon
                 </div>
                 <Dropdown
-                  label="Origin Yard"
+                  items={temp}
+                  label="BCN"
                   displayKey="name"
                   selectedItem={null}
-                  className="mb-0 wt-250 ht-30"
+                  onSelect={this.selectBranchId}
+                  className="mb-0 wt-250 ht-30 wd-100"
+                  searchEnabled={true}
                 />
               </div>
               <div className="fs-14 header-dark-color mr-10">
                 <div style={{ paddingBottom: "5px", color: "white" }}>
-                  Destination Yard
+                  No. of Wagon
                 </div>
                 <Dropdown
-                  label="Destination Yard"
+                  label="42"
                   displayKey="name"
                   selectedItem={null}
-                  className="mb-0 wt-250 ht-30"
+                  className="mb-0 wt-250 ht-30 wd-100"
                 />
               </div>
-              {/* <div className="fs-14 header-dark-color mr-10">
-                <div style={{ paddingBottom: "5px" }}>.</div>
-                <div className="search-button">
-                  Search
+              <div className="fs-14 header-dark-color mr-10">
+                <div style={{ paddingBottom: "5px", color: "white" }}>
+                  Wagon Wt.
                 </div>
-              </div> */}
+                <Dropdown
+                  label="55"
+                  displayKey="name"
+                  selectedItem={null}
+                  className="mb-0 wt-250 ht-30 wd-100"
+                />
+              </div>
+
+              <div className="fs-14 header-dark-color mr-10">
+                <br></br>
+                <br></br>
+                <AiOutlineCloseCircle style={{ width: "25px", height: "25px", color: "white" }} />
+              </div>
+
+
+
+
+
+
+
             </div>
+
+
+
 
             <div className="input-fields">
               <div className="fs-14 header-dark-color mr-10">
@@ -174,10 +226,13 @@ class CreateNewContracts extends Component {
                   Rake
                 </div>
                 <Dropdown
-                  label="Full Rake"
+                  items={temp}
+                  label=" Full Rake"
                   displayKey="name"
                   selectedItem={null}
+                  onSelect={this.selectBranchId}
                   className="mb-0 wt-250 ht-30"
+                  searchEnabled={true}
                 />
               </div>
               <div className="fs-14 header-dark-color mr-10">
@@ -185,51 +240,72 @@ class CreateNewContracts extends Component {
                   Commodity Category
                 </div>
                 <Dropdown
+                  items={temp}
                   label="Commodity Category"
                   displayKey="name"
                   selectedItem={null}
-                  className="mb-0 wt-250 ht-30"
+                  onSelect={this.selectBranchId}
+                  className="mb-0 wt-250 ht-30 wd-500"
+                  searchEnabled={true}
                 />
               </div>
               <div className="fs-14 header-dark-color mr-10">
                 <div style={{ paddingBottom: "5px", color: "white" }}>
-                  To
+                  Commodity Name
                 </div>
                 <Dropdown
-                  label="To"
+                  items={temp}
+                  label="Commdity Name"
                   displayKey="name"
                   selectedItem={null}
-                  className="mb-0 wt-250 ht-30"
+                  onSelect={this.selectBranchId}
+                  className="mb-0 wt-250 ht-30 wd-500"
+                  searchEnabled={true}
                 />
               </div>
               <div className="fs-14 header-dark-color mr-10">
                 <div style={{ paddingBottom: "5px", color: "white" }}>
-                  Origin Yard
+                  Type of Wagon
                 </div>
                 <Dropdown
-                  label="Origin Yard"
+                  items={temp}
+                  label="BCN"
                   displayKey="name"
                   selectedItem={null}
-                  className="mb-0 wt-250 ht-30"
+                  onSelect={this.selectBranchId}
+                  className="mb-0 wt-250 ht-30 wd-100"
+                  searchEnabled={true}
                 />
               </div>
               <div className="fs-14 header-dark-color mr-10">
                 <div style={{ paddingBottom: "5px", color: "white" }}>
-                  Destination Yard
+                  No. of Wagon
                 </div>
                 <Dropdown
-                  label="Destination Yard"
+                  label="42"
                   displayKey="name"
                   selectedItem={null}
-                  className="mb-0 wt-250 ht-30"
+                  className="mb-0 wt-250 ht-30 wd-100"
                 />
               </div>
-              {/* <div className="fs-14 header-dark-color mr-10">
-                <div style={{ paddingBottom: "5px" }}>.</div>
-                <div className="search-button">
-                  Search
+              <div className="fs-14 header-dark-color mr-10">
+                <div style={{ paddingBottom: "5px", color: "white" }}>
+                  Wagon Wt.
                 </div>
-              </div> */}
+                <Dropdown
+                  label="55"
+                  displayKey="name"
+                  selectedItem={null}
+                  className="mb-0 wt-250 ht-30 wd-100"
+                />
+              </div>
+
+              <div className="fs-14 header-dark-color mr-10">
+                <br></br>
+                <br></br>
+                <AiOutlinePlusCircle style={{ width: "25px", height: "25px", color: "white" }} />
+              </div>
+
             </div>
 
           </div>
@@ -549,27 +625,15 @@ class CreateNewContracts extends Component {
 
                     <div style={{ padding: "10px" }}>
                       <div style={{ border: "1px solid black" }}>
-                        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr 1fr", padding: "15px" }}>
-                          From:
+                        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", padding: "15px" }}>
+                          Commodity:
                           <span>
-                            To:
+                            Commodity Type:
                           </span>
-                          Origin Yard:
                           <div>
-                            Destination Yard:
+                            Oil
                           </div>
-                          <div>
-                            Vadodara
-                          </div>
-                          <div>
-                            Surat
-                          </div>
-                          <div>
-                            Vadodara
-                          </div>
-                          <div>
-                            Adajan
-                          </div>
+                          Oil
                         </div>
 
                       </div>
@@ -582,25 +646,25 @@ class CreateNewContracts extends Component {
                     <div style={{ padding: "10px" }}>
                       <div style={{ border: "1px solid black" }}>
                         <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr 1fr", padding: "15px" }}>
-                          From:
+                          Wagon Type:
                           <span>
-                            To:
+                            Rake Type:
                           </span>
-                          Origin Yard:
+                          No. of Wagon:
                           <div>
-                            Destination Yard:
+                            Loadable Weight:
                           </div>
                           <div>
-                            Vadodara
+                            BCN
                           </div>
                           <div>
-                            Surat
+                            Full
                           </div>
                           <div>
-                            Vadodara
+                            42
                           </div>
                           <div>
-                            Adajan
+                            55 MTper Wagon
                           </div>
                         </div>
 
@@ -609,27 +673,15 @@ class CreateNewContracts extends Component {
 
                     <div style={{ padding: "10px" }}>
                       <div style={{ border: "1px solid black" }}>
-                        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr 1fr", padding: "15px" }}>
-                          From:
+                        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", padding: "15px" }}>
+                          Total Cost:
                           <span>
-                            To:
+                            Cost / MT:
                           </span>
-                          Origin Yard:
                           <div>
-                            Destination Yard:
+                            $ 230880.00
                           </div>
-                          <div>
-                            Vadodara
-                          </div>
-                          <div>
-                            Surat
-                          </div>
-                          <div>
-                            Vadodara
-                          </div>
-                          <div>
-                            Adajan
-                          </div>
+                          $ 1470.00
                         </div>
 
                       </div>
@@ -648,148 +700,6 @@ class CreateNewContracts extends Component {
           {/* TABLE SUGAR */}
 
 
-          <div>
-            <table style={{ boxShadow: 'rgba(136, 165, 300, 0.6) 0px 0px 5px 0px, rgba(255, 255, 255, 0.7) 0px 0px 5px 0px', width: "98.5%", marginLeft: "30px", borderSpacing: '0px', marginTop: "30px" }}>
-              <thead className="ht-40 fs-14 fBold mr-5 mt-10 curP table-bg-dark-red white-color">
-                <tr className="br-10">
-                  <th className='col-3 pl-10 pr-10 tLeft'>Rail Freight For Commodity : Oil</th>
-                  <th></th>
-                  <th></th>
-                  <th></th>
-                </tr>
-              </thead>
-              <tbody className="ht-40 fs-14 fBold mr-5 mt-10 curP label-color">
-                {/* {(vehicleSchedulerDetails || []).map((details, index) => {
-                                    return ( */}
-
-                <div style={{ display: "flex", justifyContent: "space-between", width: "300%" }}>
-
-                  <div style={{ width: "50%" }}>
-
-                    <div style={{ padding: "10px" }}>
-                      <div style={{ border: "1px solid black" }}>
-                        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr 1fr", padding: "15px" }}>
-                          From:
-                          <span>
-                            To:
-                          </span>
-                          Origin Yard:
-                          <div>
-                            Destination Yard:
-                          </div>
-                          <div>
-                            Vadodara
-                          </div>
-                          <div>
-                            Surat
-                          </div>
-                          <div>
-                            Vadodara
-                          </div>
-                          <div>
-                            Adajan
-                          </div>
-                        </div>
-
-                      </div>
-                    </div>
-
-                    <div style={{ padding: "10px" }}>
-                      <div style={{ border: "1px solid black" }}>
-                        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr 1fr", padding: "15px" }}>
-                          From:
-                          <span>
-                            To:
-                          </span>
-                          Origin Yard:
-                          <div>
-                            Destination Yard:
-                          </div>
-                          <div>
-                            Vadodara
-                          </div>
-                          <div>
-                            Surat
-                          </div>
-                          <div>
-                            Vadodara
-                          </div>
-                          <div>
-                            Adajan
-                          </div>
-                        </div>
-
-                      </div>
-                    </div>
-
-                  </div>
-
-                  <div style={{ width: "50%" }}>
-
-                    <div style={{ padding: "10px" }}>
-                      <div style={{ border: "1px solid black" }}>
-                        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr 1fr", padding: "15px" }}>
-                          From:
-                          <span>
-                            To:
-                          </span>
-                          Origin Yard:
-                          <div>
-                            Destination Yard:
-                          </div>
-                          <div>
-                            Vadodara
-                          </div>
-                          <div>
-                            Surat
-                          </div>
-                          <div>
-                            Vadodara
-                          </div>
-                          <div>
-                            Adajan
-                          </div>
-                        </div>
-
-                      </div>
-                    </div>
-
-                    <div style={{ padding: "10px" }}>
-                      <div style={{ border: "1px solid black" }}>
-                        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr 1fr", padding: "15px" }}>
-                          From:
-                          <span>
-                            To:
-                          </span>
-                          Origin Yard:
-                          <div>
-                            Destination Yard:
-                          </div>
-                          <div>
-                            Vadodara
-                          </div>
-                          <div>
-                            Surat
-                          </div>
-                          <div>
-                            Vadodara
-                          </div>
-                          <div>
-                            Adajan
-                          </div>
-                        </div>
-
-                      </div>
-                    </div>
-
-
-                  </div>
-
-
-                </div>
-              </tbody>
-            </table>
-          </div>
 
 
 
@@ -1009,7 +919,7 @@ class CreateNewContracts extends Component {
             >
               {close => (
                 <div className="modal">
-                  <a className="close" onClick={close}>
+                  <a className="close" onClick={close} style={{ border: "1px solid black", padding: "1px 5px", borderRadius: "999px" }}>
                     &times;
                   </a>
                   <div className="header"> Modal Title </div>
@@ -1058,7 +968,7 @@ class CreateNewContracts extends Component {
                     <button
                       className="button"
                       onClick={() => {
-                        console.log("modal closed ");
+                        console.log("modal closed");
                         close();
                       }}
                     >
@@ -1074,7 +984,7 @@ class CreateNewContracts extends Component {
 
 
         </div>
-      </Sticky>
+      </Sticky >
     )
   }
 }
