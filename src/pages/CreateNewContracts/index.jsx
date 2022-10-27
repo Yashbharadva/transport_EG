@@ -17,11 +17,12 @@ class CreateNewContracts extends Component {
     this.state = {
       show: false,
       alterShow: false,
+      checkedAll: false,
+      checked: ({ ch1: false, ch2: false, ch3: false, ch4: false })
     }
   }
 
   render() {
-
 
     var Handlechange = e => {
       this.setState({ show: !this.state.show });
@@ -32,25 +33,38 @@ class CreateNewContracts extends Component {
     }
 
 
+    var toggleChecked = e => {
+      this.state.checked((prevState) => {
+        let newState = { ...prevState }
+        newState[e] = !prevState[e];
+        return newState;
+      });
+    };
+
+    // var selectAll = value => {
+    //   this.state.checked(value);
+    //   this.state
+    // }
+
+
 
     const contentStyle = {
-      // maxWidth: "100%",
       width: "auto",
       height: "auto",
       maxHeight: "80%",
-      overflow: "scroll"
+      overflowY: "scroll"
     }
 
-    const checkAll = document.querySelector("#L1All");
+    // const checkAll = document.querySelector("#L1All");
 
-    const checkOptions = document.querySelectorAll(".select-option");
+    // const checkOptions = document.querySelectorAll(".select-option");
 
-    var selectAllCheckbox = e => {
-      const isChecked = checkAll.checked;
-      for (let i = 0; i < checkOptions.length; i++) {
-        checkOptions[i].checked = isChecked;
-      }
-    }
+    // var selectAllCheckbox = e => {
+    //   const isChecked = checkAll.checked;
+    //   for (let i = 0; i < checkOptions.length; i++) {
+    //     checkOptions[i].checked = isChecked;
+    //   }
+    // }
 
     const temp = [{ id: 1, name: "Option1" }, { id: 2, name: "Option2" }, { id: 3, name: "Option3" }];
 
@@ -353,9 +367,10 @@ class CreateNewContracts extends Component {
 
                 <th className='col-4 tLeft'>
                   <label className="selectAll-option" for="checkAll">
-                    <input id="checkAll" onChange={() => {
+                    {/* <input id="checkAll" onChange={() => {
                       selectAllCheckbox()
-                    }} type="checkbox" />
+                    }} type="checkbox" /> */}
+                    <input type="checkbox" />
                     L1
                   </label>
                 </th>
@@ -375,7 +390,11 @@ class CreateNewContracts extends Component {
 
                 <td>
                   <label>
-                    <input type="checkbox" className="select-option" name="chk" /> Transporter 1
+                    <input type="checkbox" className="select-option" name="ch1" onChange={() => {
+                      toggleChecked("ch1")
+                    }}
+                      checked={checked["ch1"]}
+                    /> Transporter 1
                   </label>
                   <span style={{ paddingTop: "10px", paddingLeft: "20px", display: "flex", gap: "20px" }}>
                     <storng>Rate:</storng> $ 4500 Per MT
@@ -437,7 +456,10 @@ class CreateNewContracts extends Component {
 
                 <td>
                   <div>
-                    <input type="checkbox" name="chk" /> Transporter 1
+                    <input type="checkbox" name="ch2" onChange={() => {
+                      toggleChecked("ch2")
+                    }}
+                      checked={checked["ch2"]} /> Transporter 1
                   </div>
                   <span style={{ paddingTop: "10px", paddingLeft: "20px", display: "flex", gap: "20px" }}>
                     <storng>Rate:</storng> $ 4500 Per MT
@@ -499,7 +521,10 @@ class CreateNewContracts extends Component {
 
                 <td>
                   <div>
-                    <input type="checkbox" name="chk" /> Transporter 1
+                    <input type="checkbox" name="ch3" onChange={() => {
+                      toggleChecked("ch3")
+                    }}
+                      checked={checked["ch3"]} /> Transporter 1
                   </div>
                   <span style={{ paddingTop: "10px", paddingLeft: "20px", display: "flex", gap: "20px" }}>
                     <storng>Rate:</storng> $ 4500 Per MT
@@ -561,7 +586,10 @@ class CreateNewContracts extends Component {
 
                 <td>
                   <div>
-                    <input type="checkbox" name="chk" /> Transporter 1
+                    <input type="checkbox" name="ch4" onChange={() => {
+                      toggleChecked("ch4")
+                    }}
+                      checked={checked["ch4"]} /> Transporter 1
                   </div>
                   <span style={{ paddingTop: "10px", paddingLeft: "20px", display: "flex", gap: "20px" }}>
                     <storng>Rate:</storng> $ 4500 Per MT
@@ -960,7 +988,7 @@ class CreateNewContracts extends Component {
             >
               {close => (
                 <div className="modal scroll" style={{ padding: "10px", fontFamily: "Proximanova-Regular" }}>
-                  <div style={{ padding: "1px 5px", display: "flex", justifyContent: "end" }}>
+                  <div style={{ padding: "10px 5px", display: "flex", justifyContent: "end", transform: "translate(10px, -20px)" }}>
                     <a className="chcek-close-button" onClick={close} style={{ border: "5px solid black", padding: "1px 5px", borderRadius: "999px", fontSize: "20px", color: "black" }}>
                       &times;
                     </a>
@@ -992,7 +1020,7 @@ class CreateNewContracts extends Component {
                       </div>
                     </div>
 
-                    <div style={{ padding: "10px 0px", width: "110%" }}>
+                    <div style={{ padding: "10px 0px", width: "100%" }}>
                       <div style={{ display: "grid", gridTemplateColumns: "repeat(6, 1fr)" }}>
 
                         <div>Rake:</div>
@@ -1532,7 +1560,7 @@ class CreateNewContracts extends Component {
                         </div>
                       </div>
 
-                      <div style={{ padding: "10px 0px", width: "110%" }}>
+                      <div style={{ padding: "10px 0px", width: "100%" }}>
                         <div style={{ display: "grid", gridTemplateColumns: "repeat(6, 1fr)" }}>
 
                           <div>Rake:</div>
