@@ -15,11 +15,55 @@ class CreateNewContracts extends Component {
     super(props);
 
     this.state = {
-      show: false,
-      alterShow: false,
-      checkedAll: false,
-      checked: ({ ch1: false, ch2: false, ch3: false, ch4: false })
-    }
+      values: [
+        {
+          rake: "Rake",
+          ommodityCategory: "Commodity Category",
+          commodityName: "Commodity Name",
+          typeWagon: "Type of Wagon",
+          numberWagonn: "No. of Wagon",
+          weightWagon: "Wagon Wt."
+        }
+      ],
+      isCheckAll: "false",
+      checkedBlue: false,
+      transporter: [
+        { id: 1, value: "Transporter 1", isChecked: false },
+        { id: 2, value: "Transporter 2", isChecked: false },
+        { id: 3, value: "Transporter 3", isChecked: false },
+      ]
+    };
+  }
+
+  handleChange(i, e) {
+    let Values = this.state.values;
+    Values[i][e.target.name] = e.target.value;
+    this.setState({ values });
+  }
+
+  addFields() {
+    this.setState(({
+      values: [...this.state.values, {
+        rake: "Rake",
+        commodityCategory: "Commodity Category",
+        commodityName: "Commodity Name",
+        typeWagon: "Type of Wagon",
+        numberWagonn: "No. of Wagon",
+        weightWagon: "Wagon Wt."
+      }]
+    }))
+  }
+
+  unCheck(i) {
+    let ref = 'ref_' + i;
+    this.refs[ref].checked = !this.refs[ref].checked;
+  }
+
+  removeFields(i) {
+    console.log(i);
+    let Values = this.state.values;
+    Values.splice(i, 1);
+    this.setState({ Values });
   }
 
   render() {
@@ -46,6 +90,10 @@ class CreateNewContracts extends Component {
     //   this.state
     // }
 
+    const handleChecked = () => {
+      this.state.checkedBlue == true;
+    }
+
 
 
     const contentStyle = {
@@ -55,6 +103,26 @@ class CreateNewContracts extends Component {
       overflowY: "scroll"
     }
 
+    // let selectAllScheduleRecords = () => {
+    //   const { PreviewData } = this.state;
+    //   const { selectedArray } = this.state
+    //   let selectedSchedulesCopy = [...selectedArray]
+    //   const value = (selectedSchedulesCopy.length !== PreviewData.length);
+
+    //   if (value) {
+    //     (PreviewData || []).map((obj, index) => {
+    //       if (!selectedSchedulesCopy.includes(index)) {
+    //         selectedSchedulesCopy.push(index);
+    //       }
+    //     })
+    //   }
+    //   else {
+    //     selectedSchedulesCopy = [];
+    //   }
+    //   this.setState({ selectedArray: selectedSchedulesCopy });
+
+    // }
+
     // const checkAll = document.querySelector("#L1All");
 
     // const checkOptions = document.querySelectorAll(".select-option");
@@ -63,6 +131,18 @@ class CreateNewContracts extends Component {
     //   const isChecked = checkAll.checked;
     //   for (let i = 0; i < checkOptions.length; i++) {
     //     checkOptions[i].checked = isChecked;
+    //   }
+    // }
+
+
+    // checkedFullRow = (id) => {
+    //   const { selectedArray } = this.state
+    //   if (selectedArray.includes(id)) {
+    //     let schIndex = selectedArray.indexOf(id)
+    //     selectedArray.splice(schIndex, 1)
+    //     this.setState({ selectedArray: selectedArray })
+    //   } else {
+    //     this.setState({ selectedArray: [...selectedArray, id] })
     //   }
     // }
 
@@ -169,192 +249,105 @@ class CreateNewContracts extends Component {
               >Search</button>
             </div>
 
-            <div className="input-fields">
-              <div className="fs-14 header-dark-color mr-10">
-                <div style={{ paddingBottom: "5px", color: "white" }}>
-                  Rake
+            {this.state.values.map((element, index) => (
+              <div className="input-fields" key={index}>
+                <div className="fs-14 header-dark-color mr-10">
+                  <div style={{ paddingBottom: "5px", color: "white" }}>
+                    {element.rake}
+                  </div>
+                  <Dropdown
+                    items={temp}
+                    label=" Full Rake"
+                    displayKey="name"
+                    selectedItem={null}
+                    onSelect={this.selectBranchId}
+                    className="mb-0 wt-250 ht-30"
+                    searchEnabled={true}
+                  />
                 </div>
-                <Dropdown
-                  items={temp}
-                  label=" Full Rake"
-                  displayKey="name"
-                  selectedItem={null}
-                  onSelect={this.selectBranchId}
-                  className="mb-0 wt-250 ht-30"
-                  searchEnabled={true}
-                />
-              </div>
-              <div className="fs-14 header-dark-color mr-10">
-                <div style={{ paddingBottom: "5px", color: "white" }}>
-                  Commodity Category
+                <div className="fs-14 header-dark-color mr-10">
+                  <div style={{ paddingBottom: "5px", color: "white" }}>
+                    {element.commodityCategory}
+                  </div>
+                  <Dropdown
+                    items={temp}
+                    label="Commodity Category"
+                    displayKey="name"
+                    selectedItem={null}
+                    onSelect={this.selectBranchId}
+                    className="mb-0 wt-250 ht-30 wd-500"
+                    searchEnabled={true}
+                  />
                 </div>
-                <Dropdown
-                  items={temp}
-                  label="Commodity Category"
-                  displayKey="name"
-                  selectedItem={null}
-                  onSelect={this.selectBranchId}
-                  className="mb-0 wt-250 ht-30 wd-500"
-                  searchEnabled={true}
-                />
-              </div>
-              <div className="fs-14 header-dark-color mr-10">
-                <div style={{ paddingBottom: "5px", color: "white" }}>
-                  Commodity Name
+                <div className="fs-14 header-dark-color mr-10">
+                  <div style={{ paddingBottom: "5px", color: "white" }}>
+                    {element.commodityName}
+                  </div>
+                  <Dropdown
+                    items={temp}
+                    label="Commdity Name"
+                    displayKey="name"
+                    selectedItem={null}
+                    onSelect={this.selectBranchId}
+                    className="mb-0 wt-250 ht-30 wd-500"
+                    searchEnabled={true}
+                  />
                 </div>
-                <Dropdown
-                  items={temp}
-                  label="Commdity Name"
-                  displayKey="name"
-                  selectedItem={null}
-                  onSelect={this.selectBranchId}
-                  className="mb-0 wt-250 ht-30 wd-500"
-                  searchEnabled={true}
-                />
-              </div>
-              <div className="fs-14 header-dark-color mr-10">
-                <div style={{ paddingBottom: "5px", color: "white" }}>
-                  Type of Wagon
+                <div className="fs-14 header-dark-color mr-10">
+                  <div style={{ paddingBottom: "5px", color: "white" }}>
+                    {element.typeWagon}
+                  </div>
+                  <Dropdown
+                    items={temp}
+                    label="BCN"
+                    displayKey="name"
+                    selectedItem={null}
+                    onSelect={this.selectBranchId}
+                    className="mb-0 wt-250 ht-30 wd-100"
+                    searchEnabled={true}
+                  />
                 </div>
-                <Dropdown
-                  items={temp}
-                  label="BCN"
-                  displayKey="name"
-                  selectedItem={null}
-                  onSelect={this.selectBranchId}
-                  className="mb-0 wt-250 ht-30 wd-100"
-                  searchEnabled={true}
-                />
-              </div>
-              <div className="fs-14 header-dark-color mr-10">
-                <div style={{ paddingBottom: "5px", color: "white" }}>
-                  No. of Wagon
+                <div className="fs-14 header-dark-color mr-10">
+                  <div style={{ paddingBottom: "5px", color: "white" }}>
+                    {element.numberWagonn}
+                  </div>
+                  <Input
+                    label="55"
+                    displayKey="name"
+                    selectedItem={null}
+                    className="mb-0 wt-250 ht-30 wd-100"
+                    style={{ width: "120px", height: "36px", background: "white", borderRadius: "5px" }}
+                  />
                 </div>
-                <Input
-                  label="42"
-                  displayKey="name"
-                  selectedItem={null}
-                  className="mb-0 wt-250 ht-30 wd-100"
-                  style={{ width: "120px", height: "36px", background: "white", borderRadius: "5px" }}
-                />
-              </div>
-              <div className="fs-14 header-dark-color mr-10">
-                <div style={{ paddingBottom: "5px", color: "white" }}>
-                  Wagon Wt.
+                <div className="fs-14 header-dark-color mr-10">
+                  <div style={{ paddingBottom: "5px", color: "white" }}>
+                    {element.weightWagon}
+                  </div>
+                  <Input
+                    label="55"
+                    displayKey="name"
+                    selectedItem={null}
+                    className="mb-0 wt-250 ht-30 wd-100"
+                    style={{ width: "120px", height: "36px", background: "white", borderRadius: "5px" }}
+                  />
                 </div>
-                <Input
-                  label="55"
-                  displayKey="name"
-                  selectedItem={null}
-                  className="mb-0 wt-250 ht-30 wd-100"
-                  style={{ width: "120px", height: "36px", background: "white", borderRadius: "5px" }}
-                />
+                {
+                  index ?
+                    <div className="fs-14 header-dark-color mr-10 cursor-pointer">
+                      <br></br>
+                      <br></br>
+                      <AiOutlineCloseCircle style={{ width: "25px", height: "25px", color: "white" }} onClick={() => this.removeFields(index)} />
+                    </div>
+                    :
+                    <div className="fs-14 header-dark-color mr-10 cursor-pointer">
+                      <br></br>
+                      <br></br>
+                      <AiOutlinePlusCircle style={{ width: "25px", height: "25px", color: "white" }} onClick={() => this.addFields()} />
+                    </div>
+                }
+
               </div>
-
-              <div className="fs-14 header-dark-color mr-10">
-                <br></br>
-                <br></br>
-                <AiOutlineCloseCircle style={{ width: "25px", height: "25px", color: "white" }} />
-              </div>
-
-
-
-
-
-
-
-            </div>
-
-            <div className="input-fields">
-              <div className="fs-14 header-dark-color mr-10">
-                <div style={{ paddingBottom: "5px", color: "white" }}>
-                  Rake
-                </div>
-                <Dropdown
-                  items={temp}
-                  label=" Full Rake"
-                  displayKey="name"
-                  selectedItem={null}
-                  onSelect={this.selectBranchId}
-                  className="mb-0 wt-250 ht-30"
-                  searchEnabled={true}
-                />
-              </div>
-              <div className="fs-14 header-dark-color mr-10">
-                <div style={{ paddingBottom: "5px", color: "white" }}>
-                  Commodity Category
-                </div>
-                <Dropdown
-                  items={temp}
-                  label="Commodity Category"
-                  displayKey="name"
-                  selectedItem={null}
-                  onSelect={this.selectBranchId}
-                  className="mb-0 wt-250 ht-30 wd-500"
-                  searchEnabled={true}
-                />
-              </div>
-              <div className="fs-14 header-dark-color mr-10">
-                <div style={{ paddingBottom: "5px", color: "white" }}>
-                  Commodity Name
-                </div>
-                <Dropdown
-                  items={temp}
-                  label="Commdity Name"
-                  displayKey="name"
-                  selectedItem={null}
-                  onSelect={this.selectBranchId}
-                  className="mb-0 wt-250 ht-30 wd-500"
-                  searchEnabled={true}
-                />
-              </div>
-              <div className="fs-14 header-dark-color mr-10">
-                <div style={{ paddingBottom: "5px", color: "white" }}>
-                  Type of Wagon
-                </div>
-                <Dropdown
-                  items={temp}
-                  label="BCN"
-                  displayKey="name"
-                  selectedItem={null}
-                  onSelect={this.selectBranchId}
-                  className="mb-0 wt-250 ht-30 wd-100"
-                  searchEnabled={true}
-                />
-              </div>
-              <div className="fs-14 header-dark-color mr-10">
-                <div style={{ paddingBottom: "5px", color: "white" }}>
-                  No. of Wagon
-                </div>
-                <Input
-                  label="42"
-                  displayKey="name"
-                  selectedItem={null}
-                  className="mb-0 wt-250 ht-30 wd-100"
-                  style={{ width: "120px", height: "36px", background: "white", borderRadius: "5px" }}
-                />
-              </div>
-              <div className="fs-14 header-dark-color mr-10">
-                <div style={{ paddingBottom: "5px", color: "white" }}>
-                  Wagon Wt.
-                </div>
-                <Input
-                  label="55"
-                  displayKey="name"
-                  selectedItem={null}
-                  className="mb-0 wt-250 ht-30 wd-100"
-                  style={{ width: "120px", height: "36px", background: "white", borderRadius: "5px" }}
-                />
-              </div>
-
-              <div className="fs-14 header-dark-color mr-10">
-                <br></br>
-                <br></br>
-                <AiOutlinePlusCircle style={{ width: "25px", height: "25px", color: "white" }} />
-              </div>
-
-            </div>
-
+            ))}
 
           </div>
 
@@ -365,19 +358,13 @@ class CreateNewContracts extends Component {
               <tr className="br-10">
                 <th className='col-3 pl-10 pr-10 tLeft'>Dhrub</th>
 
-                <th className='col-4 tLeft'>
-                  <label className="selectAll-option" for="checkAll">
-                    {/* <input id="checkAll" onChange={() => {
-                      selectAllCheckbox()
-                    }} type="checkbox" /> */}
-                    <input type="checkbox" />
-                    L1
-                  </label>
-                </th>
-                <th className='col-4 tLeft'><input type="checkbox" />L2</th>
-                <th className='col-4 tLeft'><input type="checkbox" />L3</th>
+                <th className='col-4 tLeft'><Checkbox type="square" label="L1" /></th>
+                <th className='col-4 tLeft'><Checkbox type="square" label="L2" /></th>
+                <th className='col-4 tLeft'><Checkbox type="square" label="L3" /></th>
               </tr>
             </thead>
+
+
             <tbody className="ht-40 fs-14 fBold mr-5 mt-10 curP label-color">
               {/* {(vehicleSchedulerDetails || []).map((details, index) => {
                                     return ( */}
@@ -390,11 +377,7 @@ class CreateNewContracts extends Component {
 
                 <td>
                   <label>
-                    <input type="checkbox" className="select-option" name="ch1" onChange={() => {
-                      toggleChecked("ch1")
-                    }}
-                      checked={checked["ch1"]}
-                    /> Transporter 1
+                    <th className='col-4 tLeft'><Checkbox type="square" onCheck={() => { handleChecked }} label="Transporter 1" /></th>
                   </label>
                   <span style={{ paddingTop: "10px", paddingLeft: "20px", display: "flex", gap: "20px" }}>
                     <storng>Rate:</storng> $ 4500 Per MT
@@ -413,7 +396,7 @@ class CreateNewContracts extends Component {
 
                 <td>
                   <div style={{ paddingBottom: "10px" }}>
-                    <input type="checkbox" /> Transporter 2
+                    <th className='col-4 tLeft'><Checkbox type="square" label="Transporter 2" /></th>
                   </div>
                   <span style={{ paddingTop: "10px", paddingLeft: "20px", fontSize: "15px" }}>
                     <storng>Rate:</storng> $ 4300 Per MT
@@ -429,7 +412,7 @@ class CreateNewContracts extends Component {
 
                 <td>
                   <div style={{ paddingBottom: "10px" }}>
-                    <input type="checkbox" /> Transporter 3
+                    <th className='col-4 tLeft'><Checkbox type="square" label="Transporter 3" /></th>
                   </div>
                   <span style={{ paddingTop: "10px", paddingLeft: "20px", fontSize: "15px" }}>
                     <storng>Rate:</storng> $ 4250 Per MT
@@ -456,10 +439,7 @@ class CreateNewContracts extends Component {
 
                 <td>
                   <div>
-                    <input type="checkbox" name="ch2" onChange={() => {
-                      toggleChecked("ch2")
-                    }}
-                      checked={checked["ch2"]} /> Transporter 1
+                    <th className='col-4 tLeft'><Checkbox type="square" label="Transporter 1" /></th>
                   </div>
                   <span style={{ paddingTop: "10px", paddingLeft: "20px", display: "flex", gap: "20px" }}>
                     <storng>Rate:</storng> $ 4500 Per MT
@@ -478,7 +458,7 @@ class CreateNewContracts extends Component {
 
                 <td>
                   <div style={{ paddingBottom: "10px" }}>
-                    <input type="checkbox" /> Transporter 2
+                    <th className='col-4 tLeft'><Checkbox type="square" label="Transporter 2" /></th>
                   </div>
                   <span style={{ paddingTop: "10px", paddingLeft: "20px", fontSize: "15px" }}>
                     <storng>Rate:</storng> $ 4300 Per MT
@@ -494,7 +474,7 @@ class CreateNewContracts extends Component {
 
                 <td>
                   <div style={{ paddingBottom: "10px" }}>
-                    <input type="checkbox" /> Transporter 3
+                    <th className='col-4 tLeft'><Checkbox type="square" label="Transporter 3" /></th>
                   </div>
                   <span style={{ paddingTop: "10px", paddingLeft: "20px", fontSize: "15px" }}>
                     <storng>Rate:</storng> $ 4250 Per MT
@@ -521,10 +501,7 @@ class CreateNewContracts extends Component {
 
                 <td>
                   <div>
-                    <input type="checkbox" name="ch3" onChange={() => {
-                      toggleChecked("ch3")
-                    }}
-                      checked={checked["ch3"]} /> Transporter 1
+                    <th className='col-4 tLeft'><Checkbox type="square" label="Transporter 1" /></th>
                   </div>
                   <span style={{ paddingTop: "10px", paddingLeft: "20px", display: "flex", gap: "20px" }}>
                     <storng>Rate:</storng> $ 4500 Per MT
@@ -543,7 +520,7 @@ class CreateNewContracts extends Component {
 
                 <td>
                   <div style={{ paddingBottom: "10px" }}>
-                    <input type="checkbox" /> Transporter 2
+                    <th className='col-4 tLeft'><Checkbox type="square" label="Transporter 2" /></th>
                   </div>
                   <span style={{ paddingTop: "10px", paddingLeft: "20px", fontSize: "15px" }}>
                     <storng>Rate:</storng> $ 4300 Per MT
@@ -559,7 +536,7 @@ class CreateNewContracts extends Component {
 
                 <td>
                   <div style={{ paddingBottom: "10px" }}>
-                    <input type="checkbox" /> Transporter 3
+                    <th className='col-4 tLeft'><Checkbox type="square" label="Transporter 3" /></th>
                   </div>
                   <span style={{ paddingTop: "10px", paddingLeft: "20px", fontSize: "15px" }}>
                     <storng>Rate:</storng> $ 4250 Per MT
@@ -586,10 +563,7 @@ class CreateNewContracts extends Component {
 
                 <td>
                   <div>
-                    <input type="checkbox" name="ch4" onChange={() => {
-                      toggleChecked("ch4")
-                    }}
-                      checked={checked["ch4"]} /> Transporter 1
+                    <th className='col-4 tLeft'><Checkbox type="square" label="Transporter 1" /></th>
                   </div>
                   <span style={{ paddingTop: "10px", paddingLeft: "20px", display: "flex", gap: "20px" }}>
                     <storng>Rate:</storng> $ 4500 Per MT
@@ -608,7 +582,7 @@ class CreateNewContracts extends Component {
 
                 <td>
                   <div style={{ paddingBottom: "10px" }}>
-                    <input type="checkbox" /> Transporter 2
+                    <th className='col-4 tLeft'><Checkbox type="square" label="Transporter 2" /></th>
                   </div>
                   <span style={{ paddingTop: "10px", paddingLeft: "20px", fontSize: "15px" }}>
                     <storng>Rate:</storng> $ 4300 Per MT
@@ -624,7 +598,7 @@ class CreateNewContracts extends Component {
 
                 <td>
                   <div style={{ paddingBottom: "10px" }}>
-                    <input type="checkbox" /> Transporter 3
+                    <th className='col-4 tLeft'><Checkbox type="square" label="Transporter 3" /></th>
                   </div>
                   <span style={{ paddingTop: "10px", paddingLeft: "20px", fontSize: "15px" }}>
                     <storng>Rate:</storng> $ 4250 Per MT
@@ -646,131 +620,126 @@ class CreateNewContracts extends Component {
 
           {/* TABLE OIL */}
 
-          <div>
-            <table style={{ boxShadow: 'rgba(136, 165, 300, 0.6) 0px 0px 5px 0px, rgba(255, 255, 255, 0.7) 0px 0px 5px 0px', width: "98.5%", marginLeft: "30px", borderSpacing: '0px', marginTop: "30px" }}>
-              <thead className="ht-40 fs-14 fBold mr-5 mt-10 curP table-bg-dark-red white-color">
-                <tr className="br-10">
-                  <th className='col-3 pl-10 pr-10 tLeft'>Rail Freight For Commodity : Oil</th>
-                  <th></th>
-                  <th></th>
-                  <th></th>
-                </tr>
-              </thead>
-              <tbody className="ht-40 fs-14 fBold mr-5 mt-10 curP label-color">
-                {/* {(vehicleSchedulerDetails || []).map((details, index) => {
-                                    return ( */}
+          {this.state.values.map((element, index) => (
+            <div>
+              <table style={{ boxShadow: 'rgba(136, 165, 300, 0.6) 0px 0px 5px 0px, rgba(255, 255, 255, 0.7) 0px 0px 5px 0px', width: "98.5%", marginLeft: "30px", borderSpacing: '0px', marginTop: "30px" }}>
+                <thead className="ht-40 fs-14 fBold mr-5 mt-10 curP table-bg-dark-red white-color">
+                  <tr className="br-10">
+                    <th className='col-3 pl-10 pr-10 tLeft'>Rail Freight For Commodity : Oil</th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                  </tr>
+                </thead>
+                <tbody className="ht-40 fs-14 fBold mr-5 mt-10 curP label-color">
 
-                <div style={{ display: "flex", justifyContent: "space-between", width: "300%" }}>
+                  <div style={{ display: "flex", justifyContent: "space-between", width: "300%" }}>
 
-                  <div style={{ width: "50%" }}>
+                    <div style={{ width: "50%" }}>
 
-                    <div style={{ padding: "10px" }}>
-                      <div style={{ border: "1px solid black" }}>
-                        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr 1fr", padding: "15px" }}>
-                          From:
-                          <span>
-                            To:
-                          </span>
-                          Origin Yard:
-                          <div>
-                            Destination Yard:
+                      <div style={{ padding: "10px" }}>
+                        <div style={{ border: "1px solid black" }}>
+                          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr 1fr", padding: "15px" }}>
+                            From:
+                            <span>
+                              To:
+                            </span>
+                            Origin Yard:
+                            <div>
+                              Destination Yard:
+                            </div>
+                            <div>
+                              Vadodara
+                            </div>
+                            <div>
+                              Surat
+                            </div>
+                            <div>
+                              Vadodara
+                            </div>
+                            <div>
+                              Adajan
+                            </div>
                           </div>
-                          <div>
-                            Vadodara
-                          </div>
-                          <div>
-                            Surat
-                          </div>
-                          <div>
-                            Vadodara
-                          </div>
-                          <div>
-                            Adajan
-                          </div>
+
                         </div>
-
                       </div>
-                    </div>
 
-                    <div style={{ padding: "10px" }}>
-                      <div style={{ border: "1px solid black" }}>
-                        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", padding: "15px" }}>
-                          Commodity:
-                          <span>
-                            Commodity Type:
-                          </span>
-                          <div>
+                      <div style={{ padding: "10px" }}>
+                        <div style={{ border: "1px solid black" }}>
+                          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", padding: "15px" }}>
+                            Commodity:
+                            <span>
+                              Commodity Type:
+                            </span>
+                            <div>
+                              Oil
+                            </div>
                             Oil
                           </div>
-                          Oil
-                        </div>
 
+                        </div>
                       </div>
+
                     </div>
+
+                    {/* Half Component */}
+
+                    <div style={{ width: "50%" }}>
+
+                      <div style={{ padding: "10px" }}>
+                        <div style={{ border: "1px solid black" }}>
+                          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr 1fr", padding: "15px" }}>
+                            Wagon Type:
+                            <span>
+                              Rake Type:
+                            </span>
+                            No. of Wagon:
+                            <div>
+                              Loadable Weight:
+                            </div>
+                            <div>
+                              BCN
+                            </div>
+                            <div>
+                              Full
+                            </div>
+                            <div>
+                              42
+                            </div>
+                            <div>
+                              55 MTper Wagon
+                            </div>
+                          </div>
+
+                        </div>
+                      </div>
+
+                      <div style={{ padding: "10px" }}>
+                        <div style={{ border: "1px solid black" }}>
+                          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", padding: "15px" }}>
+                            Total Cost:
+                            <span>
+                              Cost / MT:
+                            </span>
+                            <div>
+                              $ 230880.00
+                            </div>
+                            $ 1470.00
+                          </div>
+
+                        </div>
+                      </div>
+
+
+                    </div>
+
 
                   </div>
-
-                  <div style={{ width: "50%" }}>
-
-                    <div style={{ padding: "10px" }}>
-                      <div style={{ border: "1px solid black" }}>
-                        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr 1fr", padding: "15px" }}>
-                          Wagon Type:
-                          <span>
-                            Rake Type:
-                          </span>
-                          No. of Wagon:
-                          <div>
-                            Loadable Weight:
-                          </div>
-                          <div>
-                            BCN
-                          </div>
-                          <div>
-                            Full
-                          </div>
-                          <div>
-                            42
-                          </div>
-                          <div>
-                            55 MTper Wagon
-                          </div>
-                        </div>
-
-                      </div>
-                    </div>
-
-                    <div style={{ padding: "10px" }}>
-                      <div style={{ border: "1px solid black" }}>
-                        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", padding: "15px" }}>
-                          Total Cost:
-                          <span>
-                            Cost / MT:
-                          </span>
-                          <div>
-                            $ 230880.00
-                          </div>
-                          $ 1470.00
-                        </div>
-
-                      </div>
-                    </div>
-
-
-                  </div>
-
-
-                </div>
-              </tbody>
-            </table>
-          </div>
-
-
-          {/* TABLE SUGAR */}
-
-
-
-
+                </tbody>
+              </table>
+            </div>
+          ))}
 
           {/* FINAL TABLE */}
 
@@ -779,9 +748,9 @@ class CreateNewContracts extends Component {
               <tr className="br-10">
                 <th className='col-3 pl-10 pr-10 tLeft'>Dhrub</th>
 
-                <th className='col-4 tLeft'><input type="checkbox" />L1</th>
-                <th className='col-4 tLeft'><input type="checkbox" />L2</th>
-                <th className='col-4 tLeft'><input type="checkbox" />L3</th>
+                <th className='col-4 tLeft'><Checkbox type="square" label="L1" /></th>
+                <th className='col-4 tLeft'><Checkbox type="square" label="L2" /></th>
+                <th className='col-4 tLeft'><Checkbox type="square" label="L3" /></th>
               </tr>
             </thead>
             <tbody className="ht-40 fs-14 fBold mr-5 mt-10 curP label-color">
@@ -796,7 +765,7 @@ class CreateNewContracts extends Component {
 
                 <td>
                   <div>
-                    <input type="checkbox" name="chk" /> Transporter 1
+                    <th className='col-4 tLeft'><Checkbox type="square" label="Transporter 1" /></th>
                   </div>
                   <span style={{ paddingTop: "10px", paddingLeft: "20px", display: "flex", gap: "20px" }}>
                     <storng>Rate:</storng> $ 4500 Per MT
@@ -815,7 +784,7 @@ class CreateNewContracts extends Component {
 
                 <td>
                   <div style={{ paddingBottom: "10px" }}>
-                    <input type="checkbox" /> Transporter 2
+                    <th className='col-4 tLeft'><Checkbox type="square" label="Transporter 2" /></th>
                   </div>
                   <span style={{ paddingTop: "10px", paddingLeft: "20px", fontSize: "15px" }}>
                     <storng>Rate:</storng> $ 4300 Per MT
@@ -831,7 +800,7 @@ class CreateNewContracts extends Component {
 
                 <td>
                   <div style={{ paddingBottom: "10px" }}>
-                    <input type="checkbox" /> Transporter 3
+                    <th className='col-4 tLeft'><Checkbox type="square" label="Transporter 3" /></th>
                   </div>
                   <span style={{ paddingTop: "10px", paddingLeft: "20px", fontSize: "15px" }}>
                     <storng>Rate:</storng> $ 4250 Per MT
@@ -859,7 +828,7 @@ class CreateNewContracts extends Component {
 
                 <td>
                   <div>
-                    <input type="checkbox" name="chk" /> Transporter 1
+                    <th className='col-4 tLeft'><Checkbox type="square" label="Transporter 1" /></th>
                   </div>
                   <span style={{ paddingTop: "10px", paddingLeft: "20px", display: "flex", gap: "20px" }}>
                     <storng>Rate:</storng> $ 4500 Per MT
@@ -878,7 +847,7 @@ class CreateNewContracts extends Component {
 
                 <td>
                   <div style={{ paddingBottom: "10px" }}>
-                    <input type="checkbox" /> Transporter 2
+                    <th className='col-4 tLeft'><Checkbox type="square" label="Transporter 2" /></th>
                   </div>
                   <span style={{ paddingTop: "10px", paddingLeft: "20px", fontSize: "15px" }}>
                     <storng>Rate:</storng> $ 4300 Per MT
@@ -894,7 +863,7 @@ class CreateNewContracts extends Component {
 
                 <td>
                   <div style={{ paddingBottom: "10px" }}>
-                    <input type="checkbox" /> Transporter 3
+                    <th className='col-4 tLeft'><Checkbox type="square" label="Transporter 3" /></th>
                   </div>
                   <span style={{ paddingTop: "10px", paddingLeft: "20px", fontSize: "15px" }}>
                     <storng>Rate:</storng> $ 4250 Per MT
@@ -921,7 +890,7 @@ class CreateNewContracts extends Component {
 
                 <td>
                   <div>
-                    <input type="checkbox" name="chk" /> Transporter 1
+                    <th className='col-4 tLeft'><Checkbox type="square" label="Transporter 1" /></th>
                   </div>
                   <span style={{ paddingTop: "10px", paddingLeft: "20px", display: "flex", gap: "20px" }}>
                     <storng>Rate:</storng> $ 4500 Per MT
@@ -940,7 +909,7 @@ class CreateNewContracts extends Component {
 
                 <td>
                   <div style={{ paddingBottom: "10px" }}>
-                    <input type="checkbox" /> Transporter 2
+                    <th className='col-4 tLeft'><Checkbox type="square" label="Transporter 2" /></th>
                   </div>
                   <span style={{ paddingTop: "10px", paddingLeft: "20px", fontSize: "15px" }}>
                     <storng>Rate:</storng> $ 4300 Per MT
@@ -956,7 +925,7 @@ class CreateNewContracts extends Component {
 
                 <td>
                   <div style={{ paddingBottom: "10px" }}>
-                    <input type="checkbox" /> Transporter 3
+                    <th className='col-4 tLeft'><Checkbox type="square" label="Transporter 3" /></th>
                   </div>
                   <span style={{ paddingTop: "10px", paddingLeft: "20px", fontSize: "15px" }}>
                     <storng>Rate:</storng> $ 4250 Per MT
