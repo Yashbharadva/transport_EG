@@ -1033,7 +1033,7 @@ class CreateNewContracts extends Component {
             >
               {close =>
 
-              (this.state.selectedArray.length > 0 && this.state.selectedArray2.length > 0
+              (this.state.selectedArray.length > 0 && (this.state.selectedArray2.length > 0 || this.state.selectedArray3.length > 0)
                 ?
 
                 <div className="modal scroll" style={{ padding: "10px", fontFamily: "Proximanova-Regular" }}>
