@@ -30,7 +30,7 @@ const Checkbox = ({ label, id, checked, onCheck, className, type, isBids }) => (
                             checked && <div className="pa ml-2 ht-10 wt-10 center bg-theme br-2" />
                         }
                     </div>
-                    <div className="label ml-5 table-text-color fs-16">{label}</div>
+                    <div className="label ml-5 fs-16">{label}</div>
                 </div>}
             </div>
         }

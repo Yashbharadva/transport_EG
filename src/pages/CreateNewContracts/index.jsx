@@ -420,7 +420,7 @@ class CreateNewContracts extends Component {
                       </div>
                       <Dropdown
                         items={temp}
-                        label="Destination Yard"
+                        label={ele.destinationYard}
                         displayKey="name"
                         selectedItem={null}
                         onSelect={this.selectBranchId}
@@ -557,7 +557,7 @@ class CreateNewContracts extends Component {
 
           </div >
 
-          {/* TABLE DHRUB */}
+          {/* TABLE SURAT */}
 
           <table style={{ boxShadow: 'rgba(136, 165, 300, 0.6) 0px 0px 5px 0px, rgba(255, 255, 255, 0.7) 0px 0px 5px 0px', width: "98.5%", marginLeft: "30px", borderSpacing: '0px', marginTop: "30px" }
           }>
@@ -591,7 +591,6 @@ class CreateNewContracts extends Component {
                   <tr key={idx}>
                     <td style={{ borderRight: "0px solid" }} className="tLeft p-5 pl-10  master-contract-font-color">
                       {ele.name}
-
                     </td>
 
                     <td style={{ paddingTop: "20px" }}>
@@ -599,8 +598,9 @@ class CreateNewContracts extends Component {
                         <th className='col-4 tLeft' key={idx}>
                           <Checkbox type="square" label={ele.check1} onCheck={() => { this.checkedFullRow(ele.id) }} checked={this.state.selectedArray.includes(ele.id)} /></th>
                       </div>
-                      <span style={{ paddingTop: "10px", paddingLeft: "20px", display: "flex", gap: "20px" }}>
+                      <span style={{ paddingTop: "10px", paddingLeft: "20px", display: "flex", gap: "20px", alignItems: "center" }}>
                         <storng>Rate:</storng> $ 4000 Per MT
+                        <span style={{ background: "green", color: "white", padding: "5px", borderRadius: "99px" }}>L1</span>
                       </span>
 
                       <div style={{ display: "flex", paddingLeft: "20px", paddingTop: "10px", gap: "20px" }}>
@@ -620,6 +620,7 @@ class CreateNewContracts extends Component {
                       </div>
                       <span style={{ paddingTop: "10px", paddingLeft: "20px", fontSize: "15px" }}>
                         <storng>Rate:</storng> $ 4300 Per MT
+                        <span style={{ background: "orange", color: "white", padding: "5px", borderRadius: "99px", marginLeft: "5px" }}>L2</span>
                       </span>
                       <div style={{ paddingLeft: "20px", paddingTop: "10px", paddingBottom: "10px" }}>
 
@@ -636,6 +637,7 @@ class CreateNewContracts extends Component {
                       </div>
                       <span style={{ paddingTop: "10px", paddingLeft: "20px", fontSize: "15px" }}>
                         <storng>Rate:</storng> $ 4250 Per MT
+                        <span style={{ background: "orange", color: "white", padding: "5px", borderRadius: "99px", marginLeft: "5px" }}>L3</span>
                       </span>
                       <div style={{ paddingLeft: "20px", paddingTop: "10px", paddingBottom: "10px" }}>
 
@@ -677,9 +679,6 @@ class CreateNewContracts extends Component {
                           </g>
                         </svg>
                         Rail Freight For Commodity : Oil</th>
-                      <th></th>
-                      <th></th>
-                      <th></th>
                     </tr>
                   </thead>
                   <tbody className="ht-40 fs-14 fBold mr-5 mt-10 curP label-color">
@@ -791,7 +790,7 @@ class CreateNewContracts extends Component {
             ))
           }
 
-          {/* FINAL TABLE */}
+          {/* TABLE VADODARA */}
 
           {
             this.state.destinationYardFull.map((ele, idx) =>
@@ -830,8 +829,9 @@ class CreateNewContracts extends Component {
                         <div>
                           <th className='col-4 tLeft' key={idx}><Checkbox type="square" label={ele.check1} onCheck={() => { this.checkedFullRow4(ele.id) }} checked={this.state.selectedArray4.includes(ele.id)} /></th>
                         </div>
-                        <span style={{ paddingTop: "10px", paddingLeft: "20px", display: "flex", gap: "20px" }}>
+                        <span style={{ paddingTop: "10px", paddingLeft: "20px", display: "flex", gap: "20px", alignItems: "center" }}>
                           <storng>Rate:</storng> $ 4500 Per MT
+                          <div style={{ border: "1px solid green", background: "green", color: "white", padding: "5px", borderRadius: "99px" }}>L1</div>
                         </span>
 
                         <div style={{ display: "flex", paddingLeft: "20px", paddingTop: "10px", gap: "20px" }}>
@@ -851,6 +851,7 @@ class CreateNewContracts extends Component {
                         </div>
                         <span style={{ paddingTop: "10px", paddingLeft: "20px", fontSize: "15px" }}>
                           <storng>Rate:</storng> $ 4300 Per MT
+                          <span style={{ background: "orange", color: "white", padding: "5px", borderRadius: "99px", marginLeft: "5px" }}>L2</span>
                         </span>
                         <div style={{ paddingLeft: "20px", paddingTop: "10px", paddingBottom: "10px" }}>
 
@@ -867,6 +868,7 @@ class CreateNewContracts extends Component {
                         </div>
                         <span style={{ paddingTop: "10px", paddingLeft: "20px", fontSize: "15px" }}>
                           <storng>Rate:</storng> $ 4250 Per MT
+                          <span style={{ background: "orange", color: "white", padding: "5px", borderRadius: "99px", marginLeft: "5px" }}>L3</span>
                         </span>
                         <div style={{ paddingLeft: "20px", paddingTop: "10px", paddingBottom: "10px" }}>
 
@@ -911,11 +913,11 @@ class CreateNewContracts extends Component {
                     </a>
                   </div>
 
-                  <div style={{ boxShadow: "0 0 27px 4px rgb(69 68 68 / 60%)", padding: "20px" }}>
-                    <div>
+                  <div style={{ boxShadow: "0 0 27px 4px rgb(69 68 68 / 40%)", padding: "20px" }}>
+                    <div onClick={Handlechange} style={{ cursor: "pointer" }}>
                       <div style={{ display: "flex", justifyContent: "space-between" }}>
                         Contract No : 23456666
-                        <span onClick={Handlechange}>{!this.state.show ? <IoIosArrowDropdown size="1.5em" color="#528aea" style={{ cursor: "pointer" }} /> : <IoIosArrowDropup size="1.5em" color="#528aea" style={{ cursor: "pointer" }} />}</span>
+                        <span>{!this.state.show ? <IoIosArrowDropdown size="1.5em" color="#528aea" style={{ cursor: "pointer" }} /> : <IoIosArrowDropup size="1.5em" color="#528aea" style={{ cursor: "pointer" }} />}</span>
                       </div>
                       <hr />
                     </div>
@@ -963,13 +965,13 @@ class CreateNewContracts extends Component {
 
                         <div style={{ display: "block", padding: "10px 10px", background: "blue", color: "white" }}>
                           <p>Total Cost : $ 35,05,000</p>
-                          <p> Cost / PTPK : $ 1430 PTPK</p>
+                          <p> Cost / PTPK : $ 1430 PTPK<span style={{ background: "green", color: "white", padding: "15px", borderRadius: "99px", marginLeft: "100px" }}>L1</span></p>
                           <p>Cost / MT : $ 4500 per MT</p>
                         </div>
 
                         <div style={{ display: "block", padding: "10px 10px", background: "blue", color: "white" }}>
                           <p>Total Cost : $ 35,05,000</p>
-                          <p> Cost / PTPK : $ 1430 PTPK</p>
+                          <p> Cost / PTPK : $ 1430 PTPK<span style={{ background: "orange", color: "white", padding: "15px", borderRadius: "99px", marginLeft: "100px" }}>L2</span></p>
                           <p>Cost / MT : $ 4500 per MT</p>
                         </div>
 
@@ -987,7 +989,14 @@ class CreateNewContracts extends Component {
                           <table style={{ boxShadow: 'rgba(136, 165, 300, 0.6) 0px 0px 5px 0px, rgba(255, 255, 255, 0.7) 0px 0px 5px 0px', width: "100%", borderSpacing: '0px', marginTop: "30px" }}>
                             <thead className="ht-40 fs-14 fBold mr-5 mt-10 curP table-bg-blue white-color">
                               <tr className="br-10">
-                                <th className='col-3 pl-10 pr-10 tLeft'>Dhrub</th>
+                                <th className='col-3 pl-10 pr-10 tLeft' style={{ display: "flex", paddingTop: "10px", gap: "10px" }}>
+                                  <svg xmlns="http://www.w3.org/2000/svg" width="15" height="18" viewBox="0 0 15 21">
+                                    <g fill="none" fill-rule="nonzero">
+                                      <path fill="#9FA8DA" d="M7.5 0C3.364 0 0 3.412 0 7.605 0 12.81 6.712 20.45 6.998 20.773a.67.67 0 0 0 1.004 0C8.288 20.45 15 12.81 15 7.605 15 3.412 11.635 0 7.5 0zm0 19.266c-2.259-2.72-6.15-8.089-6.15-11.66 0-3.44 2.76-6.236 6.15-6.236 3.39 0 6.15 2.797 6.15 6.235 0 3.572-3.89 8.94-6.15 11.661z" />
+                                      <path fill="#FFF" d="M7.5 19.266c-2.259-2.72-6.15-8.089-6.15-11.66 0-3.44 2.76-6.236 6.15-6.236 3.39 0 6.15 2.797 6.15 6.235 0 3.572-3.89 8.94-6.15 11.661z" />
+                                      <path fill="#9FA8DA" d="M7.5 3.23c-2.394 0-4.342 1.994-4.342 4.443 0 2.45 1.948 4.442 4.342 4.442 2.394 0 4.342-1.992 4.342-4.442S9.894 3.231 7.5 3.231zm0 7.108c-1.524 0-2.763-1.195-2.763-2.665S5.977 5.008 7.5 5.008c1.524 0 2.763 1.195 2.763 2.665s-1.24 2.665-2.763 2.665z" />
+                                    </g>
+                                  </svg>Surat</th>
                               </tr>
                             </thead>
                             <tbody className="ht-40 fs-14 fBold mr-5 mt-10 curP label-color">
@@ -1000,8 +1009,9 @@ class CreateNewContracts extends Component {
                                   <div>
                                     Transporter 1
                                   </div>
-                                  <span style={{ paddingTop: "10px", display: "flex", gap: "20px" }}>
+                                  <span style={{ paddingTop: "10px", display: "flex", gap: "20px", alignItems: "center" }}>
                                     <storng>Rate:</storng> $ 4500 Per MT
+                                    <span style={{ background: "green", color: "white", padding: "5px", borderRadius: "99px" }}>L1</span>
                                   </span>
 
                                   <div style={{ display: "flex", paddingTop: "10px", gap: "20px" }}>
@@ -1025,8 +1035,9 @@ class CreateNewContracts extends Component {
                                   <div>
                                     Transporter 1
                                   </div>
-                                  <span style={{ paddingTop: "10px", display: "flex", gap: "20px" }}>
+                                  <span style={{ paddingTop: "10px", display: "flex", gap: "20px", alignItems: "center" }}>
                                     <storng>Rate:</storng> $ 4500 Per MT
+                                    <span style={{ background: "green", color: "white", padding: "5px", borderRadius: "99px" }}>L1</span>
                                   </span>
 
                                   <div style={{ display: "flex", paddingTop: "10px", gap: "20px" }}>
@@ -1050,8 +1061,9 @@ class CreateNewContracts extends Component {
                                   <div>
                                     Transporter 1
                                   </div>
-                                  <span style={{ paddingTop: "10px", display: "flex", gap: "20px" }}>
+                                  <span style={{ paddingTop: "10px", display: "flex", gap: "20px", alignItems: "center" }}>
                                     <storng>Rate:</storng> $ 4500 Per MT
+                                    <span style={{ background: "green", color: "white", padding: "5px", borderRadius: "99px" }}>L1</span>
                                   </span>
 
                                   <div style={{ display: "flex", paddingTop: "10px", gap: "20px" }}>
@@ -1075,8 +1087,9 @@ class CreateNewContracts extends Component {
                                   <div>
                                     Transporter 1
                                   </div>
-                                  <span style={{ paddingTop: "10px", display: "flex", gap: "20px" }}>
+                                  <span style={{ paddingTop: "10px", display: "flex", gap: "20px", alignItems: "center" }}>
                                     <storng>Rate:</storng> $ 4500 Per MT
+                                    <span style={{ background: "green", color: "white", padding: "5px", borderRadius: "99px" }}>L1</span>
                                   </span>
 
                                   <div style={{ display: "flex", paddingTop: "10px", gap: "20px" }}>
@@ -1097,7 +1110,14 @@ class CreateNewContracts extends Component {
                           <table style={{ boxShadow: 'rgba(136, 165, 300, 0.6) 0px 0px 5px 0px, rgba(255, 255, 255, 0.7) 0px 0px 5px 0px', width: "100%", borderSpacing: '0px', marginTop: "30px" }}>
                             <thead className="ht-40 fs-14 fBold mr-5 mt-10 curP table-bg-blue white-color">
                               <tr className="br-10">
-                                <th className='col-3 pl-10 pr-10 tLeft'>Dhrub</th>
+                                <th className='col-3 pl-10 pr-10 tLeft' style={{ display: "flex", paddingTop: "10px", gap: "10px" }}>
+                                  <svg xmlns="http://www.w3.org/2000/svg" width="15" height="18" viewBox="0 0 15 21">
+                                    <g fill="none" fill-rule="nonzero">
+                                      <path fill="#9FA8DA" d="M7.5 0C3.364 0 0 3.412 0 7.605 0 12.81 6.712 20.45 6.998 20.773a.67.67 0 0 0 1.004 0C8.288 20.45 15 12.81 15 7.605 15 3.412 11.635 0 7.5 0zm0 19.266c-2.259-2.72-6.15-8.089-6.15-11.66 0-3.44 2.76-6.236 6.15-6.236 3.39 0 6.15 2.797 6.15 6.235 0 3.572-3.89 8.94-6.15 11.661z" />
+                                      <path fill="#FFF" d="M7.5 19.266c-2.259-2.72-6.15-8.089-6.15-11.66 0-3.44 2.76-6.236 6.15-6.236 3.39 0 6.15 2.797 6.15 6.235 0 3.572-3.89 8.94-6.15 11.661z" />
+                                      <path fill="#9FA8DA" d="M7.5 3.23c-2.394 0-4.342 1.994-4.342 4.443 0 2.45 1.948 4.442 4.342 4.442 2.394 0 4.342-1.992 4.342-4.442S9.894 3.231 7.5 3.231zm0 7.108c-1.524 0-2.763-1.195-2.763-2.665S5.977 5.008 7.5 5.008c1.524 0 2.763 1.195 2.763 2.665s-1.24 2.665-2.763 2.665z" />
+                                    </g>
+                                  </svg>Surat</th>
                               </tr>
                             </thead>
                             <tbody className="ht-40 fs-14 fBold mr-5 mt-10 curP label-color">
@@ -1110,8 +1130,9 @@ class CreateNewContracts extends Component {
                                   <div>
                                     Transporter 1
                                   </div>
-                                  <span style={{ paddingTop: "10px", display: "flex", gap: "20px" }}>
+                                  <span style={{ paddingTop: "10px", display: "flex", gap: "20px", alignItems: "center" }}>
                                     <storng>Rate:</storng> $ 4500 Per MT
+                                    <span style={{ background: "orange", color: "white", padding: "5px", borderRadius: "99px" }}>L2</span>
                                   </span>
 
                                   <div style={{ display: "flex", paddingTop: "10px", gap: "20px" }}>
@@ -1135,8 +1156,9 @@ class CreateNewContracts extends Component {
                                   <div>
                                     Transporter 1
                                   </div>
-                                  <span style={{ paddingTop: "10px", display: "flex", gap: "20px" }}>
+                                  <span style={{ paddingTop: "10px", display: "flex", gap: "20px", alignItems: "center" }}>
                                     <storng>Rate:</storng> $ 4500 Per MT
+                                    <span style={{ background: "green", color: "white", padding: "5px", borderRadius: "99px" }}>L1</span>
                                   </span>
 
                                   <div style={{ display: "flex", paddingTop: "10px", gap: "20px" }}>
@@ -1160,8 +1182,9 @@ class CreateNewContracts extends Component {
                                   <div>
                                     Transporter 1
                                   </div>
-                                  <span style={{ paddingTop: "10px", display: "flex", gap: "20px" }}>
+                                  <span style={{ paddingTop: "10px", display: "flex", gap: "20px", alignItems: "center" }}>
                                     <storng>Rate:</storng> $ 4500 Per MT
+                                    <span style={{ background: "green", color: "white", padding: "5px", borderRadius: "99px" }}>L1</span>
                                   </span>
 
                                   <div style={{ display: "flex", paddingTop: "10px", gap: "20px" }}>
@@ -1185,8 +1208,9 @@ class CreateNewContracts extends Component {
                                   <div>
                                     Transporter 1
                                   </div>
-                                  <span style={{ paddingTop: "10px", display: "flex", gap: "20px" }}>
+                                  <span style={{ paddingTop: "10px", display: "flex", gap: "20px", alignItems: "center" }}>
                                     <storng>Rate:</storng> $ 4500 Per MT
+                                    <span style={{ background: "green", color: "white", padding: "5px", borderRadius: "99px" }}>L1</span>
                                   </span>
 
                                   <div style={{ display: "flex", paddingTop: "10px", gap: "20px" }}>
@@ -1206,12 +1230,6 @@ class CreateNewContracts extends Component {
 
                         </div>
 
-
-
-
-
-
-
                         <div style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", width: "50%", gap: "20px" }}>
 
 
@@ -1219,7 +1237,17 @@ class CreateNewContracts extends Component {
                           <table style={{ boxShadow: 'rgba(136, 165, 300, 0.6) 0px 0px 5px 0px, rgba(255, 255, 255, 0.7) 0px 0px 5px 0px', width: "100%", borderSpacing: '0px', marginTop: "30px" }}>
                             <thead className="ht-40 fs-14 fBold mr-5 mt-10 curP table-bg-dark-red white-color">
                               <tr className="br-10">
-                                <th className='col-3 pl-10 pr-10 tLeft'>Dhrub</th>
+                                <th className='col-3 pl-10 pr-10 tLeft'><svg xmlns="http://www.w3.org/2000/svg" width="50" height="30" viewBox="0 0 42 44">
+                                  <g fill="#FFF" fill-rule="evenodd" stroke-width=".5">
+                                    <path d="M1.1 43.731a.41.41 0 0 1-.21 0 .49.49 0 0 1-.24-.66l9.26-19.54a.49.49 0 0 1 .66-.24.5.5 0 0 1 .24.67L1.6 43.491a.48.48 0 0 1-.5.24zM40.42 43.731a.48.48 0 0 1-.45-.28l-9.26-19.49a.5.5 0 0 1 .24-.67.49.49 0 0 1 .66.24l9.26 19.53a.49.49 0 0 1-.27.67.41.41 0 0 1-.18 0z" />
+                                    <path d="M32.68 27.441H8.84a.5.5 0 1 1 0-1h23.84a.5.5 0 1 1 0 1zM35.37 33.671H5.85a.51.51 0 0 1-.5-.5.5.5 0 0 1 .5-.5h29.52a.5.5 0 1 1 0 1zM38.6 39.891H2.94a.5.5 0 0 1-.5-.5.51.51 0 0 1 .5-.5H38.6a.5.5 0 1 1 0 1z" />
+                                    <path fill-rule="nonzero" d="M31.33 24.241H10.44a2.61 2.61 0 0 1-2.61-2.61V3.341a2.61 2.61 0 0 1 2.61-2.61h20.89a2.61 2.61 0 0 1 2.61 2.61v18.29a2.61 2.61 0 0 1-2.61 2.61zM10.44 1.731c-.89 0-1.61.721-1.61 1.61v18.29c0 .89.72 1.61 1.61 1.61h20.89a1.61 1.61 0 0 0 1.61-1.61V3.341a1.61 1.61 0 0 0-1.61-1.61H10.44z" />
+                                    <path d="M33.44 16.381H8.33a.5.5 0 1 1 0-1h25.11a.5.5 0 1 1 0 1z" />
+                                    <path d="M20.65 16.381a.5.5 0 0 1-.5-.5V1.231a.5.5 0 1 1 1 0v14.65a.51.51 0 0 1-.5.5z" />
+                                    <path fill-rule="nonzero" d="M29.66 21.341a2 2 0 1 1 0-4 2 2 0 0 1 0 4zm0-3.09a1.045 1.045 0 1 0 0 2.09 1.045 1.045 0 0 0 0-2.09zM11.73 21.341a2 2 0 1 1 0-4 2 2 0 0 1 0 4zm0-3.09a1 1 0 1 0 .002 2 1 1 0 0 0-.003-2z" />
+                                    <path d="M22.6 21.081h-3.66a.5.5 0 1 1 0-1h3.66a.5.5 0 1 1 0 1z" />
+                                  </g>
+                                </svg>Dhrub</th>
                               </tr>
                             </thead>
                             <tbody className="ht-40 fs-14 fBold mr-5 mt-10 curP label-color">
@@ -1241,7 +1269,17 @@ class CreateNewContracts extends Component {
                           <table style={{ boxShadow: 'rgba(136, 165, 300, 0.6) 0px 0px 5px 0px, rgba(255, 255, 255, 0.7) 0px 0px 5px 0px', width: "100%", borderSpacing: '0px', marginTop: "30px" }}>
                             <thead className="ht-40 fs-14 fBold mr-5 mt-10 curP table-bg-dark-red white-color">
                               <tr className="br-10">
-                                <th className='col-3 pl-10 pr-10 tLeft'>Dhrub</th>
+                                <th className='col-3 pl-10 pr-10 tLeft'><svg xmlns="http://www.w3.org/2000/svg" width="50" height="30" viewBox="0 0 42 44">
+                                  <g fill="#FFF" fill-rule="evenodd" stroke-width=".5">
+                                    <path d="M1.1 43.731a.41.41 0 0 1-.21 0 .49.49 0 0 1-.24-.66l9.26-19.54a.49.49 0 0 1 .66-.24.5.5 0 0 1 .24.67L1.6 43.491a.48.48 0 0 1-.5.24zM40.42 43.731a.48.48 0 0 1-.45-.28l-9.26-19.49a.5.5 0 0 1 .24-.67.49.49 0 0 1 .66.24l9.26 19.53a.49.49 0 0 1-.27.67.41.41 0 0 1-.18 0z" />
+                                    <path d="M32.68 27.441H8.84a.5.5 0 1 1 0-1h23.84a.5.5 0 1 1 0 1zM35.37 33.671H5.85a.51.51 0 0 1-.5-.5.5.5 0 0 1 .5-.5h29.52a.5.5 0 1 1 0 1zM38.6 39.891H2.94a.5.5 0 0 1-.5-.5.51.51 0 0 1 .5-.5H38.6a.5.5 0 1 1 0 1z" />
+                                    <path fill-rule="nonzero" d="M31.33 24.241H10.44a2.61 2.61 0 0 1-2.61-2.61V3.341a2.61 2.61 0 0 1 2.61-2.61h20.89a2.61 2.61 0 0 1 2.61 2.61v18.29a2.61 2.61 0 0 1-2.61 2.61zM10.44 1.731c-.89 0-1.61.721-1.61 1.61v18.29c0 .89.72 1.61 1.61 1.61h20.89a1.61 1.61 0 0 0 1.61-1.61V3.341a1.61 1.61 0 0 0-1.61-1.61H10.44z" />
+                                    <path d="M33.44 16.381H8.33a.5.5 0 1 1 0-1h25.11a.5.5 0 1 1 0 1z" />
+                                    <path d="M20.65 16.381a.5.5 0 0 1-.5-.5V1.231a.5.5 0 1 1 1 0v14.65a.51.51 0 0 1-.5.5z" />
+                                    <path fill-rule="nonzero" d="M29.66 21.341a2 2 0 1 1 0-4 2 2 0 0 1 0 4zm0-3.09a1.045 1.045 0 1 0 0 2.09 1.045 1.045 0 0 0 0-2.09zM11.73 21.341a2 2 0 1 1 0-4 2 2 0 0 1 0 4zm0-3.09a1 1 0 1 0 .002 2 1 1 0 0 0-.003-2z" />
+                                    <path d="M22.6 21.081h-3.66a.5.5 0 1 1 0-1h3.66a.5.5 0 1 1 0 1z" />
+                                  </g>
+                                </svg>Dhrub</th>
                               </tr>
                             </thead>
                             <tbody className="ht-40 fs-14 fBold mr-5 mt-10 curP label-color">
@@ -1263,9 +1301,6 @@ class CreateNewContracts extends Component {
 
                         </div>
 
-
-
-
                         <div style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", width: "50%", gap: "20px" }}>
 
 
@@ -1273,7 +1308,14 @@ class CreateNewContracts extends Component {
                           <table style={{ boxShadow: 'rgba(136, 165, 300, 0.6) 0px 0px 5px 0px, rgba(255, 255, 255, 0.7) 0px 0px 5px 0px', width: "100%", borderSpacing: '0px', marginTop: "30px" }}>
                             <thead className="ht-40 fs-14 fBold mr-5 mt-10 curP table-bg-blue white-color">
                               <tr className="br-10">
-                                <th className='col-3 pl-10 pr-10 tLeft'>Dhrub</th>
+                                <th className='col-3 pl-10 pr-10 tLeft' style={{ display: "flex", paddingTop: "10px", gap: "10px" }}>
+                                  <svg xmlns="http://www.w3.org/2000/svg" width="15" height="18" viewBox="0 0 15 21">
+                                    <g fill="none" fill-rule="nonzero">
+                                      <path fill="#9FA8DA" d="M7.5 0C3.364 0 0 3.412 0 7.605 0 12.81 6.712 20.45 6.998 20.773a.67.67 0 0 0 1.004 0C8.288 20.45 15 12.81 15 7.605 15 3.412 11.635 0 7.5 0zm0 19.266c-2.259-2.72-6.15-8.089-6.15-11.66 0-3.44 2.76-6.236 6.15-6.236 3.39 0 6.15 2.797 6.15 6.235 0 3.572-3.89 8.94-6.15 11.661z" />
+                                      <path fill="#FFF" d="M7.5 19.266c-2.259-2.72-6.15-8.089-6.15-11.66 0-3.44 2.76-6.236 6.15-6.236 3.39 0 6.15 2.797 6.15 6.235 0 3.572-3.89 8.94-6.15 11.661z" />
+                                      <path fill="#9FA8DA" d="M7.5 3.23c-2.394 0-4.342 1.994-4.342 4.443 0 2.45 1.948 4.442 4.342 4.442 2.394 0 4.342-1.992 4.342-4.442S9.894 3.231 7.5 3.231zm0 7.108c-1.524 0-2.763-1.195-2.763-2.665S5.977 5.008 7.5 5.008c1.524 0 2.763 1.195 2.763 2.665s-1.24 2.665-2.763 2.665z" />
+                                    </g>
+                                  </svg>Dhrub</th>
                               </tr>
                             </thead>
                             <tbody className="ht-40 fs-14 fBold mr-5 mt-10 curP label-color">
@@ -1286,8 +1328,9 @@ class CreateNewContracts extends Component {
                                   <div>
                                     Transporter 1
                                   </div>
-                                  <span style={{ paddingTop: "10px", display: "flex", gap: "20px" }}>
+                                  <span style={{ paddingTop: "10px", display: "flex", gap: "20px", alignItems: "center" }}>
                                     <storng>Rate:</storng> $ 4500 Per MT
+                                    <span style={{ background: "green", color: "white", padding: "5px", borderRadius: "99px" }}>L1</span>
                                   </span>
 
                                   <div style={{ display: "flex", paddingTop: "10px", gap: "20px" }}>
@@ -1311,8 +1354,9 @@ class CreateNewContracts extends Component {
                                   <div>
                                     Transporter 1
                                   </div>
-                                  <span style={{ paddingTop: "10px", display: "flex", gap: "20px" }}>
+                                  <span style={{ paddingTop: "10px", display: "flex", gap: "20px", alignItems: "center" }}>
                                     <storng>Rate:</storng> $ 4500 Per MT
+                                    <span style={{ background: "green", color: "white", padding: "5px", borderRadius: "99px" }}>L1</span>
                                   </span>
 
                                   <div style={{ display: "flex", paddingTop: "10px", gap: "20px" }}>
@@ -1336,8 +1380,9 @@ class CreateNewContracts extends Component {
                                   <div>
                                     Transporter 1
                                   </div>
-                                  <span style={{ paddingTop: "10px", display: "flex", gap: "20px" }}>
+                                  <span style={{ paddingTop: "10px", display: "flex", gap: "20px", alignItems: "center" }}>
                                     <storng>Rate:</storng> $ 4500 Per MT
+                                    <span style={{ background: "green", color: "white", padding: "5px", borderRadius: "99px" }}>L1</span>
                                   </span>
 
                                   <div style={{ display: "flex", paddingTop: "10px", gap: "20px" }}>
@@ -1359,7 +1404,14 @@ class CreateNewContracts extends Component {
                           <table style={{ boxShadow: 'rgba(136, 165, 300, 0.6) 0px 0px 5px 0px, rgba(255, 255, 255, 0.7) 0px 0px 5px 0px', width: "100%", borderSpacing: '0px', marginTop: "30px" }}>
                             <thead className="ht-40 fs-14 fBold mr-5 mt-10 curP table-bg-blue white-color">
                               <tr className="br-10">
-                                <th className='col-3 pl-10 pr-10 tLeft'>Dhrub</th>
+                                <th className='col-3 pl-10 pr-10 tLeft' style={{ display: "flex", paddingTop: "10px", gap: "10px" }}>
+                                  <svg xmlns="http://www.w3.org/2000/svg" width="15" height="18" viewBox="0 0 15 21">
+                                    <g fill="none" fill-rule="nonzero">
+                                      <path fill="#9FA8DA" d="M7.5 0C3.364 0 0 3.412 0 7.605 0 12.81 6.712 20.45 6.998 20.773a.67.67 0 0 0 1.004 0C8.288 20.45 15 12.81 15 7.605 15 3.412 11.635 0 7.5 0zm0 19.266c-2.259-2.72-6.15-8.089-6.15-11.66 0-3.44 2.76-6.236 6.15-6.236 3.39 0 6.15 2.797 6.15 6.235 0 3.572-3.89 8.94-6.15 11.661z" />
+                                      <path fill="#FFF" d="M7.5 19.266c-2.259-2.72-6.15-8.089-6.15-11.66 0-3.44 2.76-6.236 6.15-6.236 3.39 0 6.15 2.797 6.15 6.235 0 3.572-3.89 8.94-6.15 11.661z" />
+                                      <path fill="#9FA8DA" d="M7.5 3.23c-2.394 0-4.342 1.994-4.342 4.443 0 2.45 1.948 4.442 4.342 4.442 2.394 0 4.342-1.992 4.342-4.442S9.894 3.231 7.5 3.231zm0 7.108c-1.524 0-2.763-1.195-2.763-2.665S5.977 5.008 7.5 5.008c1.524 0 2.763 1.195 2.763 2.665s-1.24 2.665-2.763 2.665z" />
+                                    </g>
+                                  </svg>Dhrub</th>
                               </tr>
                             </thead>
                             <tbody className="ht-40 fs-14 fBold mr-5 mt-10 curP label-color">
@@ -1372,8 +1424,9 @@ class CreateNewContracts extends Component {
                                   <div>
                                     Transporter 1
                                   </div>
-                                  <span style={{ paddingTop: "10px", display: "flex", gap: "20px" }}>
+                                  <span style={{ paddingTop: "10px", display: "flex", gap: "20px", alignItems: "center" }}>
                                     <storng>Rate:</storng> $ 4500 Per MT
+                                    <span style={{ background: "green", color: "white", padding: "5px", borderRadius: "99px" }}>L1</span>
                                   </span>
 
                                   <div style={{ display: "flex", paddingTop: "10px", gap: "20px" }}>
@@ -1397,8 +1450,9 @@ class CreateNewContracts extends Component {
                                   <div>
                                     Transporter 1
                                   </div>
-                                  <span style={{ paddingTop: "10px", display: "flex", gap: "20px" }}>
+                                  <span style={{ paddingTop: "10px", display: "flex", gap: "20px", alignItems: "center" }}>
                                     <storng>Rate:</storng> $ 4500 Per MT
+                                    <span style={{ background: "green", color: "white", padding: "5px", borderRadius: "99px" }}>L1</span>
                                   </span>
 
                                   <div style={{ display: "flex", paddingTop: "10px", gap: "20px" }}>
@@ -1422,8 +1476,9 @@ class CreateNewContracts extends Component {
                                   <div>
                                     Transporter 1
                                   </div>
-                                  <span style={{ paddingTop: "10px", display: "flex", gap: "20px" }}>
+                                  <span style={{ paddingTop: "10px", display: "flex", gap: "20px", alignItems: "center" }}>
                                     <storng>Rate:</storng> $ 4500 Per MT
+                                    <span style={{ background: "green", color: "white", padding: "5px", borderRadius: "99px" }}>L1</span>
                                   </span>
 
                                   <div style={{ display: "flex", paddingTop: "10px", gap: "20px" }}>
@@ -1452,10 +1507,10 @@ class CreateNewContracts extends Component {
 
                   <div style={{ paddingTop: "20px" }}>
                     <div style={{ boxShadow: "0 0 27px 4px rgb(69 68 68 / 60%)", padding: "20px" }}>
-                      <div>
+                      <div onClick={alterHandleChange} style={{ cursor: "pointer" }}>
                         <div style={{ display: "flex", justifyContent: "space-between" }}>
                           Contract No : 23456666
-                          <span onClick={alterHandleChange}>{!this.state.alterShow ? <IoIosArrowDropdown size="1.5em" color="#528aea" style={{ cursor: "pointer" }} /> : <IoIosArrowDropup size="1.5em" color="#528aea" style={{ cursor: "pointer" }} />}</span>
+                          <span>{!this.state.alterShow ? <IoIosArrowDropdown size="1.5em" color="#528aea" style={{ cursor: "pointer" }} /> : <IoIosArrowDropup size="1.5em" color="#528aea" style={{ cursor: "pointer" }} />}</span>
                         </div>
                         <hr />
                       </div>
@@ -1503,13 +1558,13 @@ class CreateNewContracts extends Component {
 
                           <div style={{ display: "block", padding: "10px 10px", background: "blue", color: "white" }}>
                             <p>Total Cost : $ 35,05,000</p>
-                            <p> Cost / PTPK : $ 1430 PTPK</p>
+                            <p> Cost / PTPK : $ 1430 PTPK<span style={{ background: "green", color: "white", padding: "15px", borderRadius: "99px", marginLeft: "100px" }}>L1</span></p>
                             <p>Cost / MT : $ 4500 per MT</p>
                           </div>
 
                           <div style={{ display: "block", padding: "10px 10px", background: "blue", color: "white" }}>
                             <p>Total Cost : $ 35,05,000</p>
-                            <p> Cost / PTPK : $ 1430 PTPK</p>
+                            <p> Cost / PTPK : $ 1430 PTPK<span style={{ background: "orange", color: "white", padding: "15px", borderRadius: "99px", marginLeft: "100px" }}>L2</span></p>
                             <p>Cost / MT : $ 4500 per MT</p>
                           </div>
 
@@ -1527,7 +1582,14 @@ class CreateNewContracts extends Component {
                             <table style={{ boxShadow: 'rgba(136, 165, 300, 0.6) 0px 0px 5px 0px, rgba(255, 255, 255, 0.7) 0px 0px 5px 0px', width: "100%", borderSpacing: '0px', marginTop: "30px" }}>
                               <thead className="ht-40 fs-14 fBold mr-5 mt-10 curP table-bg-blue white-color">
                                 <tr className="br-10">
-                                  <th className='col-3 pl-10 pr-10 tLeft'>Dhrub</th>
+                                  <th className='col-3 pl-10 pr-10 tLeft' style={{ display: "flex", paddingTop: "10px", gap: "10px" }}>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="15" height="18" viewBox="0 0 15 21">
+                                      <g fill="none" fill-rule="nonzero">
+                                        <path fill="#9FA8DA" d="M7.5 0C3.364 0 0 3.412 0 7.605 0 12.81 6.712 20.45 6.998 20.773a.67.67 0 0 0 1.004 0C8.288 20.45 15 12.81 15 7.605 15 3.412 11.635 0 7.5 0zm0 19.266c-2.259-2.72-6.15-8.089-6.15-11.66 0-3.44 2.76-6.236 6.15-6.236 3.39 0 6.15 2.797 6.15 6.235 0 3.572-3.89 8.94-6.15 11.661z" />
+                                        <path fill="#FFF" d="M7.5 19.266c-2.259-2.72-6.15-8.089-6.15-11.66 0-3.44 2.76-6.236 6.15-6.236 3.39 0 6.15 2.797 6.15 6.235 0 3.572-3.89 8.94-6.15 11.661z" />
+                                        <path fill="#9FA8DA" d="M7.5 3.23c-2.394 0-4.342 1.994-4.342 4.443 0 2.45 1.948 4.442 4.342 4.442 2.394 0 4.342-1.992 4.342-4.442S9.894 3.231 7.5 3.231zm0 7.108c-1.524 0-2.763-1.195-2.763-2.665S5.977 5.008 7.5 5.008c1.524 0 2.763 1.195 2.763 2.665s-1.24 2.665-2.763 2.665z" />
+                                      </g>
+                                    </svg>Surat</th>
                                 </tr>
                               </thead>
                               <tbody className="ht-40 fs-14 fBold mr-5 mt-10 curP label-color">
@@ -1540,8 +1602,9 @@ class CreateNewContracts extends Component {
                                     <div>
                                       Transporter 1
                                     </div>
-                                    <span style={{ paddingTop: "10px", display: "flex", gap: "20px" }}>
+                                    <span style={{ paddingTop: "10px", display: "flex", gap: "20px", alignItems: "center" }}>
                                       <storng>Rate:</storng> $ 4500 Per MT
+                                      <span style={{ background: "green", color: "white", padding: "5px", borderRadius: "99px" }}>L1</span>
                                     </span>
 
                                     <div style={{ display: "flex", paddingTop: "10px", gap: "20px" }}>
@@ -1565,8 +1628,9 @@ class CreateNewContracts extends Component {
                                     <div>
                                       Transporter 1
                                     </div>
-                                    <span style={{ paddingTop: "10px", display: "flex", gap: "20px" }}>
+                                    <span style={{ paddingTop: "10px", display: "flex", gap: "20px", alignItems: "center" }}>
                                       <storng>Rate:</storng> $ 4500 Per MT
+                                      <span style={{ background: "green", color: "white", padding: "5px", borderRadius: "99px" }}>L1</span>
                                     </span>
 
                                     <div style={{ display: "flex", paddingTop: "10px", gap: "20px" }}>
@@ -1590,8 +1654,9 @@ class CreateNewContracts extends Component {
                                     <div>
                                       Transporter 1
                                     </div>
-                                    <span style={{ paddingTop: "10px", display: "flex", gap: "20px" }}>
+                                    <span style={{ paddingTop: "10px", display: "flex", gap: "20px", alignItems: "center" }}>
                                       <storng>Rate:</storng> $ 4500 Per MT
+                                      <span style={{ background: "green", color: "white", padding: "5px", borderRadius: "99px" }}>L1</span>
                                     </span>
 
                                     <div style={{ display: "flex", paddingTop: "10px", gap: "20px" }}>
@@ -1615,8 +1680,9 @@ class CreateNewContracts extends Component {
                                     <div>
                                       Transporter 1
                                     </div>
-                                    <span style={{ paddingTop: "10px", display: "flex", gap: "20px" }}>
+                                    <span style={{ paddingTop: "10px", display: "flex", gap: "20px", alignItems: "center" }}>
                                       <storng>Rate:</storng> $ 4500 Per MT
+                                      <span style={{ background: "green", color: "white", padding: "5px", borderRadius: "99px" }}>L1</span>
                                     </span>
 
                                     <div style={{ display: "flex", paddingTop: "10px", gap: "20px" }}>
@@ -1637,7 +1703,14 @@ class CreateNewContracts extends Component {
                             <table style={{ boxShadow: 'rgba(136, 165, 300, 0.6) 0px 0px 5px 0px, rgba(255, 255, 255, 0.7) 0px 0px 5px 0px', width: "100%", borderSpacing: '0px', marginTop: "30px" }}>
                               <thead className="ht-40 fs-14 fBold mr-5 mt-10 curP table-bg-blue white-color">
                                 <tr className="br-10">
-                                  <th className='col-3 pl-10 pr-10 tLeft'>Dhrub</th>
+                                  <th className='col-3 pl-10 pr-10 tLeft' style={{ display: "flex", paddingTop: "10px", gap: "10px" }}>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="15" height="18" viewBox="0 0 15 21">
+                                      <g fill="none" fill-rule="nonzero">
+                                        <path fill="#9FA8DA" d="M7.5 0C3.364 0 0 3.412 0 7.605 0 12.81 6.712 20.45 6.998 20.773a.67.67 0 0 0 1.004 0C8.288 20.45 15 12.81 15 7.605 15 3.412 11.635 0 7.5 0zm0 19.266c-2.259-2.72-6.15-8.089-6.15-11.66 0-3.44 2.76-6.236 6.15-6.236 3.39 0 6.15 2.797 6.15 6.235 0 3.572-3.89 8.94-6.15 11.661z" />
+                                        <path fill="#FFF" d="M7.5 19.266c-2.259-2.72-6.15-8.089-6.15-11.66 0-3.44 2.76-6.236 6.15-6.236 3.39 0 6.15 2.797 6.15 6.235 0 3.572-3.89 8.94-6.15 11.661z" />
+                                        <path fill="#9FA8DA" d="M7.5 3.23c-2.394 0-4.342 1.994-4.342 4.443 0 2.45 1.948 4.442 4.342 4.442 2.394 0 4.342-1.992 4.342-4.442S9.894 3.231 7.5 3.231zm0 7.108c-1.524 0-2.763-1.195-2.763-2.665S5.977 5.008 7.5 5.008c1.524 0 2.763 1.195 2.763 2.665s-1.24 2.665-2.763 2.665z" />
+                                      </g>
+                                    </svg>Surat</th>
                                 </tr>
                               </thead>
                               <tbody className="ht-40 fs-14 fBold mr-5 mt-10 curP label-color">
@@ -1650,8 +1723,9 @@ class CreateNewContracts extends Component {
                                     <div>
                                       Transporter 1
                                     </div>
-                                    <span style={{ paddingTop: "10px", display: "flex", gap: "20px" }}>
+                                    <span style={{ paddingTop: "10px", display: "flex", gap: "20px", alignItems: "center" }}>
                                       <storng>Rate:</storng> $ 4500 Per MT
+                                      <span style={{ background: "orange", color: "white", padding: "5px", borderRadius: "99px" }}>L2</span>
                                     </span>
 
                                     <div style={{ display: "flex", paddingTop: "10px", gap: "20px" }}>
@@ -1675,8 +1749,9 @@ class CreateNewContracts extends Component {
                                     <div>
                                       Transporter 1
                                     </div>
-                                    <span style={{ paddingTop: "10px", display: "flex", gap: "20px" }}>
+                                    <span style={{ paddingTop: "10px", display: "flex", gap: "20px", alignItems: "center" }}>
                                       <storng>Rate:</storng> $ 4500 Per MT
+                                      <span style={{ background: "green", color: "white", padding: "5px", borderRadius: "99px" }}>L1</span>
                                     </span>
 
                                     <div style={{ display: "flex", paddingTop: "10px", gap: "20px" }}>
@@ -1700,8 +1775,9 @@ class CreateNewContracts extends Component {
                                     <div>
                                       Transporter 1
                                     </div>
-                                    <span style={{ paddingTop: "10px", display: "flex", gap: "20px" }}>
+                                    <span style={{ paddingTop: "10px", display: "flex", gap: "20px", alignItems: "center" }}>
                                       <storng>Rate:</storng> $ 4500 Per MT
+                                      <span style={{ background: "green", color: "white", padding: "5px", borderRadius: "99px" }}>L1</span>
                                     </span>
 
                                     <div style={{ display: "flex", paddingTop: "10px", gap: "20px" }}>
@@ -1725,8 +1801,9 @@ class CreateNewContracts extends Component {
                                     <div>
                                       Transporter 1
                                     </div>
-                                    <span style={{ paddingTop: "10px", display: "flex", gap: "20px" }}>
+                                    <span style={{ paddingTop: "10px", display: "flex", gap: "20px", alignItems: "center" }}>
                                       <storng>Rate:</storng> $ 4500 Per MT
+                                      <span style={{ background: "green", color: "white", padding: "5px", borderRadius: "99px" }}>L1</span>
                                     </span>
 
                                     <div style={{ display: "flex", paddingTop: "10px", gap: "20px" }}>
@@ -1746,12 +1823,6 @@ class CreateNewContracts extends Component {
 
                           </div>
 
-
-
-
-
-
-
                           <div style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", width: "50%", gap: "20px" }}>
 
 
@@ -1759,7 +1830,17 @@ class CreateNewContracts extends Component {
                             <table style={{ boxShadow: 'rgba(136, 165, 300, 0.6) 0px 0px 5px 0px, rgba(255, 255, 255, 0.7) 0px 0px 5px 0px', width: "100%", borderSpacing: '0px', marginTop: "30px" }}>
                               <thead className="ht-40 fs-14 fBold mr-5 mt-10 curP table-bg-dark-red white-color">
                                 <tr className="br-10">
-                                  <th className='col-3 pl-10 pr-10 tLeft'>Dhrub</th>
+                                  <th className='col-3 pl-10 pr-10 tLeft'><svg xmlns="http://www.w3.org/2000/svg" width="50" height="30" viewBox="0 0 42 44">
+                                    <g fill="#FFF" fill-rule="evenodd" stroke-width=".5">
+                                      <path d="M1.1 43.731a.41.41 0 0 1-.21 0 .49.49 0 0 1-.24-.66l9.26-19.54a.49.49 0 0 1 .66-.24.5.5 0 0 1 .24.67L1.6 43.491a.48.48 0 0 1-.5.24zM40.42 43.731a.48.48 0 0 1-.45-.28l-9.26-19.49a.5.5 0 0 1 .24-.67.49.49 0 0 1 .66.24l9.26 19.53a.49.49 0 0 1-.27.67.41.41 0 0 1-.18 0z" />
+                                      <path d="M32.68 27.441H8.84a.5.5 0 1 1 0-1h23.84a.5.5 0 1 1 0 1zM35.37 33.671H5.85a.51.51 0 0 1-.5-.5.5.5 0 0 1 .5-.5h29.52a.5.5 0 1 1 0 1zM38.6 39.891H2.94a.5.5 0 0 1-.5-.5.51.51 0 0 1 .5-.5H38.6a.5.5 0 1 1 0 1z" />
+                                      <path fill-rule="nonzero" d="M31.33 24.241H10.44a2.61 2.61 0 0 1-2.61-2.61V3.341a2.61 2.61 0 0 1 2.61-2.61h20.89a2.61 2.61 0 0 1 2.61 2.61v18.29a2.61 2.61 0 0 1-2.61 2.61zM10.44 1.731c-.89 0-1.61.721-1.61 1.61v18.29c0 .89.72 1.61 1.61 1.61h20.89a1.61 1.61 0 0 0 1.61-1.61V3.341a1.61 1.61 0 0 0-1.61-1.61H10.44z" />
+                                      <path d="M33.44 16.381H8.33a.5.5 0 1 1 0-1h25.11a.5.5 0 1 1 0 1z" />
+                                      <path d="M20.65 16.381a.5.5 0 0 1-.5-.5V1.231a.5.5 0 1 1 1 0v14.65a.51.51 0 0 1-.5.5z" />
+                                      <path fill-rule="nonzero" d="M29.66 21.341a2 2 0 1 1 0-4 2 2 0 0 1 0 4zm0-3.09a1.045 1.045 0 1 0 0 2.09 1.045 1.045 0 0 0 0-2.09zM11.73 21.341a2 2 0 1 1 0-4 2 2 0 0 1 0 4zm0-3.09a1 1 0 1 0 .002 2 1 1 0 0 0-.003-2z" />
+                                      <path d="M22.6 21.081h-3.66a.5.5 0 1 1 0-1h3.66a.5.5 0 1 1 0 1z" />
+                                    </g>
+                                  </svg>Dhrub</th>
                                 </tr>
                               </thead>
                               <tbody className="ht-40 fs-14 fBold mr-5 mt-10 curP label-color">
@@ -1781,7 +1862,17 @@ class CreateNewContracts extends Component {
                             <table style={{ boxShadow: 'rgba(136, 165, 300, 0.6) 0px 0px 5px 0px, rgba(255, 255, 255, 0.7) 0px 0px 5px 0px', width: "100%", borderSpacing: '0px', marginTop: "30px" }}>
                               <thead className="ht-40 fs-14 fBold mr-5 mt-10 curP table-bg-dark-red white-color">
                                 <tr className="br-10">
-                                  <th className='col-3 pl-10 pr-10 tLeft'>Dhrub</th>
+                                  <th className='col-3 pl-10 pr-10 tLeft'><svg xmlns="http://www.w3.org/2000/svg" width="50" height="30" viewBox="0 0 42 44">
+                                    <g fill="#FFF" fill-rule="evenodd" stroke-width=".5">
+                                      <path d="M1.1 43.731a.41.41 0 0 1-.21 0 .49.49 0 0 1-.24-.66l9.26-19.54a.49.49 0 0 1 .66-.24.5.5 0 0 1 .24.67L1.6 43.491a.48.48 0 0 1-.5.24zM40.42 43.731a.48.48 0 0 1-.45-.28l-9.26-19.49a.5.5 0 0 1 .24-.67.49.49 0 0 1 .66.24l9.26 19.53a.49.49 0 0 1-.27.67.41.41 0 0 1-.18 0z" />
+                                      <path d="M32.68 27.441H8.84a.5.5 0 1 1 0-1h23.84a.5.5 0 1 1 0 1zM35.37 33.671H5.85a.51.51 0 0 1-.5-.5.5.5 0 0 1 .5-.5h29.52a.5.5 0 1 1 0 1zM38.6 39.891H2.94a.5.5 0 0 1-.5-.5.51.51 0 0 1 .5-.5H38.6a.5.5 0 1 1 0 1z" />
+                                      <path fill-rule="nonzero" d="M31.33 24.241H10.44a2.61 2.61 0 0 1-2.61-2.61V3.341a2.61 2.61 0 0 1 2.61-2.61h20.89a2.61 2.61 0 0 1 2.61 2.61v18.29a2.61 2.61 0 0 1-2.61 2.61zM10.44 1.731c-.89 0-1.61.721-1.61 1.61v18.29c0 .89.72 1.61 1.61 1.61h20.89a1.61 1.61 0 0 0 1.61-1.61V3.341a1.61 1.61 0 0 0-1.61-1.61H10.44z" />
+                                      <path d="M33.44 16.381H8.33a.5.5 0 1 1 0-1h25.11a.5.5 0 1 1 0 1z" />
+                                      <path d="M20.65 16.381a.5.5 0 0 1-.5-.5V1.231a.5.5 0 1 1 1 0v14.65a.51.51 0 0 1-.5.5z" />
+                                      <path fill-rule="nonzero" d="M29.66 21.341a2 2 0 1 1 0-4 2 2 0 0 1 0 4zm0-3.09a1.045 1.045 0 1 0 0 2.09 1.045 1.045 0 0 0 0-2.09zM11.73 21.341a2 2 0 1 1 0-4 2 2 0 0 1 0 4zm0-3.09a1 1 0 1 0 .002 2 1 1 0 0 0-.003-2z" />
+                                      <path d="M22.6 21.081h-3.66a.5.5 0 1 1 0-1h3.66a.5.5 0 1 1 0 1z" />
+                                    </g>
+                                  </svg>Dhrub</th>
                                 </tr>
                               </thead>
                               <tbody className="ht-40 fs-14 fBold mr-5 mt-10 curP label-color">
@@ -1803,9 +1894,6 @@ class CreateNewContracts extends Component {
 
                           </div>
 
-
-
-
                           <div style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", width: "50%", gap: "20px" }}>
 
 
@@ -1813,7 +1901,14 @@ class CreateNewContracts extends Component {
                             <table style={{ boxShadow: 'rgba(136, 165, 300, 0.6) 0px 0px 5px 0px, rgba(255, 255, 255, 0.7) 0px 0px 5px 0px', width: "100%", borderSpacing: '0px', marginTop: "30px" }}>
                               <thead className="ht-40 fs-14 fBold mr-5 mt-10 curP table-bg-blue white-color">
                                 <tr className="br-10">
-                                  <th className='col-3 pl-10 pr-10 tLeft'>Dhrub</th>
+                                  <th className='col-3 pl-10 pr-10 tLeft' style={{ display: "flex", paddingTop: "10px", gap: "10px" }}>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="15" height="18" viewBox="0 0 15 21">
+                                      <g fill="none" fill-rule="nonzero">
+                                        <path fill="#9FA8DA" d="M7.5 0C3.364 0 0 3.412 0 7.605 0 12.81 6.712 20.45 6.998 20.773a.67.67 0 0 0 1.004 0C8.288 20.45 15 12.81 15 7.605 15 3.412 11.635 0 7.5 0zm0 19.266c-2.259-2.72-6.15-8.089-6.15-11.66 0-3.44 2.76-6.236 6.15-6.236 3.39 0 6.15 2.797 6.15 6.235 0 3.572-3.89 8.94-6.15 11.661z" />
+                                        <path fill="#FFF" d="M7.5 19.266c-2.259-2.72-6.15-8.089-6.15-11.66 0-3.44 2.76-6.236 6.15-6.236 3.39 0 6.15 2.797 6.15 6.235 0 3.572-3.89 8.94-6.15 11.661z" />
+                                        <path fill="#9FA8DA" d="M7.5 3.23c-2.394 0-4.342 1.994-4.342 4.443 0 2.45 1.948 4.442 4.342 4.442 2.394 0 4.342-1.992 4.342-4.442S9.894 3.231 7.5 3.231zm0 7.108c-1.524 0-2.763-1.195-2.763-2.665S5.977 5.008 7.5 5.008c1.524 0 2.763 1.195 2.763 2.665s-1.24 2.665-2.763 2.665z" />
+                                      </g>
+                                    </svg>Dhrub</th>
                                 </tr>
                               </thead>
                               <tbody className="ht-40 fs-14 fBold mr-5 mt-10 curP label-color">
@@ -1826,8 +1921,9 @@ class CreateNewContracts extends Component {
                                     <div>
                                       Transporter 1
                                     </div>
-                                    <span style={{ paddingTop: "10px", display: "flex", gap: "20px" }}>
+                                    <span style={{ paddingTop: "10px", display: "flex", gap: "20px", alignItems: "center" }}>
                                       <storng>Rate:</storng> $ 4500 Per MT
+                                      <span style={{ background: "green", color: "white", padding: "5px", borderRadius: "99px" }}>L1</span>
                                     </span>
 
                                     <div style={{ display: "flex", paddingTop: "10px", gap: "20px" }}>
@@ -1851,8 +1947,9 @@ class CreateNewContracts extends Component {
                                     <div>
                                       Transporter 1
                                     </div>
-                                    <span style={{ paddingTop: "10px", display: "flex", gap: "20px" }}>
+                                    <span style={{ paddingTop: "10px", display: "flex", gap: "20px", alignItems: "center" }}>
                                       <storng>Rate:</storng> $ 4500 Per MT
+                                      <span style={{ background: "green", color: "white", padding: "5px", borderRadius: "99px" }}>L1</span>
                                     </span>
 
                                     <div style={{ display: "flex", paddingTop: "10px", gap: "20px" }}>
@@ -1876,8 +1973,9 @@ class CreateNewContracts extends Component {
                                     <div>
                                       Transporter 1
                                     </div>
-                                    <span style={{ paddingTop: "10px", display: "flex", gap: "20px" }}>
+                                    <span style={{ paddingTop: "10px", display: "flex", gap: "20px", alignItems: "center" }}>
                                       <storng>Rate:</storng> $ 4500 Per MT
+                                      <span style={{ background: "green", color: "white", padding: "5px", borderRadius: "99px" }}>L1</span>
                                     </span>
 
                                     <div style={{ display: "flex", paddingTop: "10px", gap: "20px" }}>
@@ -1899,7 +1997,14 @@ class CreateNewContracts extends Component {
                             <table style={{ boxShadow: 'rgba(136, 165, 300, 0.6) 0px 0px 5px 0px, rgba(255, 255, 255, 0.7) 0px 0px 5px 0px', width: "100%", borderSpacing: '0px', marginTop: "30px" }}>
                               <thead className="ht-40 fs-14 fBold mr-5 mt-10 curP table-bg-blue white-color">
                                 <tr className="br-10">
-                                  <th className='col-3 pl-10 pr-10 tLeft'>Dhrub</th>
+                                  <th className='col-3 pl-10 pr-10 tLeft' style={{ display: "flex", paddingTop: "10px", gap: "10px" }}>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="15" height="18" viewBox="0 0 15 21">
+                                      <g fill="none" fill-rule="nonzero">
+                                        <path fill="#9FA8DA" d="M7.5 0C3.364 0 0 3.412 0 7.605 0 12.81 6.712 20.45 6.998 20.773a.67.67 0 0 0 1.004 0C8.288 20.45 15 12.81 15 7.605 15 3.412 11.635 0 7.5 0zm0 19.266c-2.259-2.72-6.15-8.089-6.15-11.66 0-3.44 2.76-6.236 6.15-6.236 3.39 0 6.15 2.797 6.15 6.235 0 3.572-3.89 8.94-6.15 11.661z" />
+                                        <path fill="#FFF" d="M7.5 19.266c-2.259-2.72-6.15-8.089-6.15-11.66 0-3.44 2.76-6.236 6.15-6.236 3.39 0 6.15 2.797 6.15 6.235 0 3.572-3.89 8.94-6.15 11.661z" />
+                                        <path fill="#9FA8DA" d="M7.5 3.23c-2.394 0-4.342 1.994-4.342 4.443 0 2.45 1.948 4.442 4.342 4.442 2.394 0 4.342-1.992 4.342-4.442S9.894 3.231 7.5 3.231zm0 7.108c-1.524 0-2.763-1.195-2.763-2.665S5.977 5.008 7.5 5.008c1.524 0 2.763 1.195 2.763 2.665s-1.24 2.665-2.763 2.665z" />
+                                      </g>
+                                    </svg>Dhrub</th>
                                 </tr>
                               </thead>
                               <tbody className="ht-40 fs-14 fBold mr-5 mt-10 curP label-color">
@@ -1912,8 +2017,9 @@ class CreateNewContracts extends Component {
                                     <div>
                                       Transporter 1
                                     </div>
-                                    <span style={{ paddingTop: "10px", display: "flex", gap: "20px" }}>
+                                    <span style={{ paddingTop: "10px", display: "flex", gap: "20px", alignItems: "center" }}>
                                       <storng>Rate:</storng> $ 4500 Per MT
+                                      <span style={{ background: "green", color: "white", padding: "5px", borderRadius: "99px" }}>L1</span>
                                     </span>
 
                                     <div style={{ display: "flex", paddingTop: "10px", gap: "20px" }}>
@@ -1937,8 +2043,9 @@ class CreateNewContracts extends Component {
                                     <div>
                                       Transporter 1
                                     </div>
-                                    <span style={{ paddingTop: "10px", display: "flex", gap: "20px" }}>
+                                    <span style={{ paddingTop: "10px", display: "flex", gap: "20px", alignItems: "center" }}>
                                       <storng>Rate:</storng> $ 4500 Per MT
+                                      <span style={{ background: "green", color: "white", padding: "5px", borderRadius: "99px" }}>L1</span>
                                     </span>
 
                                     <div style={{ display: "flex", paddingTop: "10px", gap: "20px" }}>
@@ -1962,8 +2069,9 @@ class CreateNewContracts extends Component {
                                     <div>
                                       Transporter 1
                                     </div>
-                                    <span style={{ paddingTop: "10px", display: "flex", gap: "20px" }}>
+                                    <span style={{ paddingTop: "10px", display: "flex", gap: "20px", alignItems: "center" }}>
                                       <storng>Rate:</storng> $ 4500 Per MT
+                                      <span style={{ background: "green", color: "white", padding: "5px", borderRadius: "99px" }}>L1</span>
                                     </span>
 
                                     <div style={{ display: "flex", paddingTop: "10px", gap: "20px" }}>
@@ -2090,9 +2198,16 @@ class CreateNewContracts extends Component {
 
 
                           <table style={{ boxShadow: 'rgba(136, 165, 300, 0.6) 0px 0px 5px 0px, rgba(255, 255, 255, 0.7) 0px 0px 5px 0px', width: "100%", borderSpacing: '0px', marginTop: "30px" }}>
-                            <thead style={{ display: "flex", flexDirection: "row", justifyContent: "space-between", paddingTop: "10px" }} className="ht-40 fs-14 fBold mr-5 mt-10 curP table-bg-blue white-color">
+                            <thead className="ht-40 fs-14 fBold mr-5 mt-10 curP table-bg-blue white-color" style={{ display: "flex", justifyContent: "space-between", paddingTop: "10px" }}>
                               <tr className="br-10" style={{ alignItems: "start" }}>
-                                <th className='col-3 pl-10 pr-10 tLeft'>Dhrub</th>
+                                <th className='col-3 pl-10 pr-10 tLeft' style={{ alignItems: "center" }}>
+                                  <svg xmlns="http://www.w3.org/2000/svg" width="15" height="18" viewBox="0 0 15 21" style={{ marginRight: "10px" }}>
+                                    <g fill="none" fill-rule="nonzero">
+                                      <path fill="#9FA8DA" d="M7.5 0C3.364 0 0 3.412 0 7.605 0 12.81 6.712 20.45 6.998 20.773a.67.67 0 0 0 1.004 0C8.288 20.45 15 12.81 15 7.605 15 3.412 11.635 0 7.5 0zm0 19.266c-2.259-2.72-6.15-8.089-6.15-11.66 0-3.44 2.76-6.236 6.15-6.236 3.39 0 6.15 2.797 6.15 6.235 0 3.572-3.89 8.94-6.15 11.661z" />
+                                      <path fill="#FFF" d="M7.5 19.266c-2.259-2.72-6.15-8.089-6.15-11.66 0-3.44 2.76-6.236 6.15-6.236 3.39 0 6.15 2.797 6.15 6.235 0 3.572-3.89 8.94-6.15 11.661z" />
+                                      <path fill="#9FA8DA" d="M7.5 3.23c-2.394 0-4.342 1.994-4.342 4.443 0 2.45 1.948 4.442 4.342 4.442 2.394 0 4.342-1.992 4.342-4.442S9.894 3.231 7.5 3.231zm0 7.108c-1.524 0-2.763-1.195-2.763-2.665S5.977 5.008 7.5 5.008c1.524 0 2.763 1.195 2.763 2.665s-1.24 2.665-2.763 2.665z" />
+                                    </g>
+                                  </svg>Dhrub</th>
                               </tr>
                               <tr className="br-10" style={{ alignItems: "end" }}>
                                 <th className='col-3 pl-10 pr-10 tLeft'>COST / MT : 1200 per MT</th>
@@ -2217,8 +2332,19 @@ class CreateNewContracts extends Component {
                           <table style={{ boxShadow: 'rgba(136, 165, 300, 0.6) 0px 0px 5px 0px, rgba(255, 255, 255, 0.7) 0px 0px 5px 0px', width: "100%", borderSpacing: '0px', marginTop: "30px" }}>
                             <thead className="ht-40 fs-14 fBold mr-5 mt-10 curP table-bg-dark-red white-color">
                               <div style={{ display: "flex", flexDirection: "row", justifyContent: "space-between", paddingTop: "10px" }}>
-                                <tr className="br-10">
-                                  <th className='col-3 pl-10 pr-10 tLeft'>Rail Fright</th>
+                                <tr className="" style={{ display: "flex" }}>
+                                  <svg xmlns="http://www.w3.org/2000/svg" width="50" height="30" viewBox="0 0 42 44">
+                                    <g fill="#FFF" fill-rule="evenodd" stroke-width=".5">
+                                      <path d="M1.1 43.731a.41.41 0 0 1-.21 0 .49.49 0 0 1-.24-.66l9.26-19.54a.49.49 0 0 1 .66-.24.5.5 0 0 1 .24.67L1.6 43.491a.48.48 0 0 1-.5.24zM40.42 43.731a.48.48 0 0 1-.45-.28l-9.26-19.49a.5.5 0 0 1 .24-.67.49.49 0 0 1 .66.24l9.26 19.53a.49.49 0 0 1-.27.67.41.41 0 0 1-.18 0z" />
+                                      <path d="M32.68 27.441H8.84a.5.5 0 1 1 0-1h23.84a.5.5 0 1 1 0 1zM35.37 33.671H5.85a.51.51 0 0 1-.5-.5.5.5 0 0 1 .5-.5h29.52a.5.5 0 1 1 0 1zM38.6 39.891H2.94a.5.5 0 0 1-.5-.5.51.51 0 0 1 .5-.5H38.6a.5.5 0 1 1 0 1z" />
+                                      <path fill-rule="nonzero" d="M31.33 24.241H10.44a2.61 2.61 0 0 1-2.61-2.61V3.341a2.61 2.61 0 0 1 2.61-2.61h20.89a2.61 2.61 0 0 1 2.61 2.61v18.29a2.61 2.61 0 0 1-2.61 2.61zM10.44 1.731c-.89 0-1.61.721-1.61 1.61v18.29c0 .89.72 1.61 1.61 1.61h20.89a1.61 1.61 0 0 0 1.61-1.61V3.341a1.61 1.61 0 0 0-1.61-1.61H10.44z" />
+                                      <path d="M33.44 16.381H8.33a.5.5 0 1 1 0-1h25.11a.5.5 0 1 1 0 1z" />
+                                      <path d="M20.65 16.381a.5.5 0 0 1-.5-.5V1.231a.5.5 0 1 1 1 0v14.65a.51.51 0 0 1-.5.5z" />
+                                      <path fill-rule="nonzero" d="M29.66 21.341a2 2 0 1 1 0-4 2 2 0 0 1 0 4zm0-3.09a1.045 1.045 0 1 0 0 2.09 1.045 1.045 0 0 0 0-2.09zM11.73 21.341a2 2 0 1 1 0-4 2 2 0 0 1 0 4zm0-3.09a1 1 0 1 0 .002 2 1 1 0 0 0-.003-2z" />
+                                      <path d="M22.6 21.081h-3.66a.5.5 0 1 1 0-1h3.66a.5.5 0 1 1 0 1z" />
+                                    </g>
+                                  </svg>
+                                  <th className='pl-10 pr-10 tLeft'>Rail Fright</th>
                                 </tr>
                                 <tr className="br-10">
                                   <th className='col-3 pl-10 pr-10 tLeft'>COST / MT : $ 1200 per MT</th>
@@ -2240,7 +2366,13 @@ class CreateNewContracts extends Component {
                           <table style={{ boxShadow: 'rgba(136, 165, 300, 0.6) 0px 0px 5px 0px, rgba(255, 255, 255, 0.7) 0px 0px 5px 0px', width: "100%", borderSpacing: '0px', marginTop: "30px" }}>
                             <thead style={{ display: "flex", flexDirection: "row", justifyContent: "space-between", paddingTop: "10px" }} className="ht-40 fs-14 fBold mr-5 mt-10 curP table-bg-blue white-color">
                               <tr className="br-10" style={{ alignItems: "start" }}>
-                                <th className='col-3 pl-10 pr-10 tLeft'>Dhrub</th>
+                                <th className='col-3 pl-10 pr-10 tLeft'><svg xmlns="http://www.w3.org/2000/svg" width="15" height="18" viewBox="0 0 15 21" style={{ marginRight: "10px" }}>
+                                  <g fill="none" fill-rule="nonzero">
+                                    <path fill="#9FA8DA" d="M7.5 0C3.364 0 0 3.412 0 7.605 0 12.81 6.712 20.45 6.998 20.773a.67.67 0 0 0 1.004 0C8.288 20.45 15 12.81 15 7.605 15 3.412 11.635 0 7.5 0zm0 19.266c-2.259-2.72-6.15-8.089-6.15-11.66 0-3.44 2.76-6.236 6.15-6.236 3.39 0 6.15 2.797 6.15 6.235 0 3.572-3.89 8.94-6.15 11.661z" />
+                                    <path fill="#FFF" d="M7.5 19.266c-2.259-2.72-6.15-8.089-6.15-11.66 0-3.44 2.76-6.236 6.15-6.236 3.39 0 6.15 2.797 6.15 6.235 0 3.572-3.89 8.94-6.15 11.661z" />
+                                    <path fill="#9FA8DA" d="M7.5 3.23c-2.394 0-4.342 1.994-4.342 4.443 0 2.45 1.948 4.442 4.342 4.442 2.394 0 4.342-1.992 4.342-4.442S9.894 3.231 7.5 3.231zm0 7.108c-1.524 0-2.763-1.195-2.763-2.665S5.977 5.008 7.5 5.008c1.524 0 2.763 1.195 2.763 2.665s-1.24 2.665-2.763 2.665z" />
+                                  </g>
+                                </svg>Dhrub</th>
                               </tr>
                               <tr className="br-10" style={{ alignItems: "end" }}>
                                 <th className='col-3 pl-10 pr-10 tLeft'>COST / MT : 1200 per MT</th>
