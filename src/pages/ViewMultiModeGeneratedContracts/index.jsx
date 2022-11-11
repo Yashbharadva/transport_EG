@@ -20,8 +20,8 @@ class MultiModeGeneratedContracts extends Component {
         const temp = [{ id: 1, name: "Option1" }, { id: 2, name: "Option2" }, { id: 3, name: "Option3" }];
         return (
             <Sticky>
-                <div className="ml-25 mt-50">
-                    <div className="mt-20 curP mb-10 fBold wt-80"
+                <div className="p-15">
+                    <div className=" curP fBold pb-10 "
                         onClick={() => {
                             this.props.history.push('/seeker')
                         }
@@ -29,14 +29,14 @@ class MultiModeGeneratedContracts extends Component {
                         <Back className="fill-theme mr-5" />
                         {'Back'}
                     </div>
-                    <div className="flex flex-between mr-20">
+                    <div className="flex flex-between" style={{ justifyContent: "space-between", alignItems: "center" }}>
 
                         <div className="mt-25 borderBox bg-white">
                             <Heading text="Master Contracts" className="flex-1 fs-23" />
                         </div>
-                        <div className="fs-14 header-dark-color ml-50">
+                        <div className="fs-14 header-dark-color">
                             <button
-                                className={"bg-theme wt-250 pl-15 pr-15 mr-5 ht-40 br-5 fBold fs-14 white-color ml-15"}
+                                className={"bg-theme wt-250 ht-40 br-5 fBold fs-14 white-color"}
                                 onClick={() => {
                                     this.props.history.push('/createNewContracts')
                                 }}
@@ -45,47 +45,47 @@ class MultiModeGeneratedContracts extends Component {
                     </div>
                     <div className="mt-20"></div>
                     <Fragment>
-                        <div className="flex mt-10 flex-between mr-20">
-                            <div style={{ boxShadow: 'rgba(136, 165, 300, 0.6) 0px 0px 5px 0px, rgba(255, 255, 255, 0.7) 0px 0px 5px 0px' }} className="fs-14 header-dark-color mr-10">
+                        <div className="flex" style={{ width: "100%", justifyContent: "space-between" }}>
+                            <div style={{ boxShadow: 'rgba(136, 165, 300, 0.6) 0px 0px 5px 0px, rgba(255, 255, 255, 0.7) 0px 0px 5px 0px', width: "300px" }} className="fs-14 header-dark-color">
                                 <input placeholder={"Search Master contract No. / Route No."}
                                     type="text"
-                                    className="mr-30 wt-350 ht-40 search"
+                                    className="wt-300 ht-40 search"
                                     onChange={(e) => {
                                         console.log(e);
                                     }}
                                 />
                             </div>
-                            <div className="fs-14 header-dark-color mr-10">
+                            <div className="fs-14 header-dark-color ">
                                 <Dropdown
                                     items={temp}
                                     label="From"
                                     displayKey="name"
                                     selectedItem={null}
                                     onSelect={this.selectBranchId}
-                                    className="mb-0 wt-250 ht-30"
+                                    className="mb-0"
                                     searchEnabled={true}
                                 />
                             </div>
 
-                            <div className="fs-14 header-dark-color mr-10">
+                            <div className="fs-14 header-dark-color">
                                 <Dropdown
                                     items={temp}
                                     selectedItem={null}
                                     name="To"
                                     // onSelect={this.selectLoadType}
                                     displayKey="name"
-                                    className="mb-0 wt-250 ht-30"
+                                    className="mb-0"
                                     label="To"
                                 />
                             </div>
-                            <div className="fs-14 header-dark-color mr-10">
+                            <div className="fs-14 header-dark-color">
                                 <Dropdown
                                     items={temp}
                                     selectedItems={null}
                                     name="Origin Yard"
                                     onSelect={this.selectVendorCode}
                                     displayKey="name"
-                                    className="mb-0 wt-250 ht-30"
+                                    className="mb-0"
                                     label="Origin Yard"
                                 />
                             </div>
@@ -96,7 +96,7 @@ class MultiModeGeneratedContracts extends Component {
                                     name="Origin Yard"
                                     onSelect={this.selectVendorCode}
                                     displayKey="name"
-                                    className="mb-0 wt-250 ht-30"
+                                    className="mb-0"
                                     label="Origin Yard"
                                 />
                             </div>
@@ -113,8 +113,8 @@ class MultiModeGeneratedContracts extends Component {
                                 />
                             </div>
                         </div>
-                        <table style={{ boxShadow: 'rgba(136, 165, 300, 0.6) 0px 0px 5px 0px, rgba(255, 255, 255, 0.7) 0px 0px 5px 0px', width: "100%", marginLeft: "-10px", borderSpacing: '0px', marginTop: "30px" }}>
-                            <thead className="ht-40 fs-14 fBold mr-5 mt-10 curP table-bg-blue white-color">
+                        <table style={{ boxShadow: 'rgba(136, 165, 300, 0.6) 0px 0px 5px 0px, rgba(255, 255, 255, 0.7) 0px 0px 5px 0px', width: "100%", borderSpacing: '0px', marginTop: "40px" }}>
+                            <thead className="ht-40 fs-14 fBold curP table-bg-blue white-color">
                                 <tr className="br-10">
                                     <th className='col-5 pl-10 pr-10 tLeft'>Master Contract No.</th>
                                     <th className='col-8 tLeft'>Route No.</th>

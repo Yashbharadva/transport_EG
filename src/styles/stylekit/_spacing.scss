@@ -2,6 +2,10 @@
 Use Sass loops to generate these classes
 **/
 
+.w-auto {
+  width: auto;
+}
+
 .pr {
   position: relative;
 }
@@ -407,6 +411,10 @@ Use Sass loops to generate these classes
   margin-right: 20px;
 }
 
+.g-20 {
+  margin-left: 20px;
+}
+
 .mr-25 {
   margin-right: 25px;
 }
@@ -764,9 +772,17 @@ Use Sass loops to generate these classes
   padding-right: 30px;
 }
 
+.p-10 {
+  padding: 10px;
+}
+
 
 .p-4 {
   padding: 4px;
+}
+
+.p-15 {
+  padding: 15px;
 }
 
 .mt-245 {

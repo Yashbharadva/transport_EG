@@ -559,19 +559,24 @@ class CreateNewContracts extends Component {
 
           {/* TABLE SURAT */}
 
-          <table style={{ boxShadow: 'rgba(136, 165, 300, 0.6) 0px 0px 5px 0px, rgba(255, 255, 255, 0.7) 0px 0px 5px 0px', width: "98.5%", marginLeft: "30px", borderSpacing: '0px', marginTop: "30px" }
+          <table style={{ boxShadow: 'rgba(136, 165, 300, 0.6) 0px 0px 5px 0px, rgba(255, 255, 255, 0.7) 0px 0px 5px 0px', width: "100%", borderSpacing: '0px', marginTop: "30px" }
           }>
-            <thead className="ht-40 fs-14 fBold mr-5 mt-10 curP table-bg-blue white-color">
+            <thead className="ht-40 fs-14 fBold curP table-bg-blue white-color">
               <tr className="br-10">
 
-                <th className='col-3 pl-10 pr-10 tLeft' style={{ display: "flex", paddingTop: "10px", gap: "10px" }}>
-                  <svg xmlns="http://www.w3.org/2000/svg" width="15" height="18" viewBox="0 0 15 21">
-                    <g fill="none" fill-rule="nonzero">
-                      <path fill="#9FA8DA" d="M7.5 0C3.364 0 0 3.412 0 7.605 0 12.81 6.712 20.45 6.998 20.773a.67.67 0 0 0 1.004 0C8.288 20.45 15 12.81 15 7.605 15 3.412 11.635 0 7.5 0zm0 19.266c-2.259-2.72-6.15-8.089-6.15-11.66 0-3.44 2.76-6.236 6.15-6.236 3.39 0 6.15 2.797 6.15 6.235 0 3.572-3.89 8.94-6.15 11.661z" />
-                      <path fill="#FFF" d="M7.5 19.266c-2.259-2.72-6.15-8.089-6.15-11.66 0-3.44 2.76-6.236 6.15-6.236 3.39 0 6.15 2.797 6.15 6.235 0 3.572-3.89 8.94-6.15 11.661z" />
-                      <path fill="#9FA8DA" d="M7.5 3.23c-2.394 0-4.342 1.994-4.342 4.443 0 2.45 1.948 4.442 4.342 4.442 2.394 0 4.342-1.992 4.342-4.442S9.894 3.231 7.5 3.231zm0 7.108c-1.524 0-2.763-1.195-2.763-2.665S5.977 5.008 7.5 5.008c1.524 0 2.763 1.195 2.763 2.665s-1.24 2.665-2.763 2.665z" />
-                    </g>
-                  </svg>Surat</th>
+                <th className=''>
+                  <div style={{ display: "flex", alignItems: "center", gap: "20px" }}>
+                    <div style={{ paddingLeft: "5px" }}>
+                      <svg xmlns="http://www.w3.org/2000/svg" width="15" height="18" viewBox="0 0 15 21">
+                        <g fill="none" fill-rule="nonzero">
+                          <path fill="#9FA8DA" d="M7.5 0C3.364 0 0 3.412 0 7.605 0 12.81 6.712 20.45 6.998 20.773a.67.67 0 0 0 1.004 0C8.288 20.45 15 12.81 15 7.605 15 3.412 11.635 0 7.5 0zm0 19.266c-2.259-2.72-6.15-8.089-6.15-11.66 0-3.44 2.76-6.236 6.15-6.236 3.39 0 6.15 2.797 6.15 6.235 0 3.572-3.89 8.94-6.15 11.661z" />
+                          <path fill="#FFF" d="M7.5 19.266c-2.259-2.72-6.15-8.089-6.15-11.66 0-3.44 2.76-6.236 6.15-6.236 3.39 0 6.15 2.797 6.15 6.235 0 3.572-3.89 8.94-6.15 11.661z" />
+                          <path fill="#9FA8DA" d="M7.5 3.23c-2.394 0-4.342 1.994-4.342 4.443 0 2.45 1.948 4.442 4.342 4.442 2.394 0 4.342-1.992 4.342-4.442S9.894 3.231 7.5 3.231zm0 7.108c-1.524 0-2.763-1.195-2.763-2.665S5.977 5.008 7.5 5.008c1.524 0 2.763 1.195 2.763 2.665s-1.24 2.665-2.763 2.665z" />
+                        </g>
+                      </svg>
+                    </div>
+                    <span>Surat</span>
+                  </div></th>
 
                 <th className='col-4 tLeft'><Checkbox type="square" label="L1" checked={this.state.selectedArray.length === this.state.allData.length} onCheck={() => { this.selectAllScheduleRecords() }} /></th>
                 <th className='col-4 tLeft'><Checkbox type="square" label="L2" checked={this.state.selectedArray2.length === this.state.allData2.length} onCheck={() => { this.selectAllScheduleRecords2() }} /></th>
@@ -590,6 +595,14 @@ class CreateNewContracts extends Component {
                 return (
                   <tr key={idx}>
                     <td style={{ borderRight: "0px solid" }} className="tLeft p-5 pl-10  master-contract-font-color">
+
+                      {/* Handling agents */}
+                      {/* <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20">
+                        <g fill="blue" fill-rule="evenodd" stroke="blue" stroke-width="1.5" transform="translate(1 1)">
+                          <circle cx="8.659" cy="3.659" r="3.659" />
+                          <path fill-rule="nonzero" d="M17.624 14.954c-.086-4.063-.799-5.221-6.25-5.954 0 0-.768.728-2.557.728C7.03 9.728 6.261 9 6.261 9 .869 9.725.113 10.865.013 14.822c-.008.323-.012.502-.012.73 0 0 1.298 1.948 8.816 1.948 7.519 0 8.817-1.949 8.817-1.949 0-.097-.003-.296-.01-.597z" />
+                        </g>
+                      </svg> */}
                       {ele.name}
                     </td>
 
@@ -663,22 +676,26 @@ class CreateNewContracts extends Component {
           {
             this.state.values.map((element, index) => (
               <div>
-                <table style={{ boxShadow: 'rgba(136, 165, 300, 0.6) 0px 0px 5px 0px, rgba(255, 255, 255, 0.7) 0px 0px 5px 0px', width: "98.5%", marginLeft: "30px", borderSpacing: '0px', marginTop: "30px" }}>
+                <table style={{ boxShadow: 'rgba(136, 165, 300, 0.6) 0px 0px 5px 0px, rgba(255, 255, 255, 0.7) 0px 0px 5px 0px', width: "100%", borderSpacing: '0px', marginTop: "30px" }}>
                   <thead className="ht-40 fs-14 fBold mr-5 mt-10 curP table-bg-dark-red white-color">
                     <tr className="br-10">
-                      <th className='col-3 pl-10 pr-10 tLeft' style={{ display: "flex", paddingTop: "15px" }}>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="50" height="30" viewBox="0 0 42 44">
-                          <g fill="#FFF" fill-rule="evenodd" stroke-width=".5">
-                            <path d="M1.1 43.731a.41.41 0 0 1-.21 0 .49.49 0 0 1-.24-.66l9.26-19.54a.49.49 0 0 1 .66-.24.5.5 0 0 1 .24.67L1.6 43.491a.48.48 0 0 1-.5.24zM40.42 43.731a.48.48 0 0 1-.45-.28l-9.26-19.49a.5.5 0 0 1 .24-.67.49.49 0 0 1 .66.24l9.26 19.53a.49.49 0 0 1-.27.67.41.41 0 0 1-.18 0z" />
-                            <path d="M32.68 27.441H8.84a.5.5 0 1 1 0-1h23.84a.5.5 0 1 1 0 1zM35.37 33.671H5.85a.51.51 0 0 1-.5-.5.5.5 0 0 1 .5-.5h29.52a.5.5 0 1 1 0 1zM38.6 39.891H2.94a.5.5 0 0 1-.5-.5.51.51 0 0 1 .5-.5H38.6a.5.5 0 1 1 0 1z" />
-                            <path fill-rule="nonzero" d="M31.33 24.241H10.44a2.61 2.61 0 0 1-2.61-2.61V3.341a2.61 2.61 0 0 1 2.61-2.61h20.89a2.61 2.61 0 0 1 2.61 2.61v18.29a2.61 2.61 0 0 1-2.61 2.61zM10.44 1.731c-.89 0-1.61.721-1.61 1.61v18.29c0 .89.72 1.61 1.61 1.61h20.89a1.61 1.61 0 0 0 1.61-1.61V3.341a1.61 1.61 0 0 0-1.61-1.61H10.44z" />
-                            <path d="M33.44 16.381H8.33a.5.5 0 1 1 0-1h25.11a.5.5 0 1 1 0 1z" />
-                            <path d="M20.65 16.381a.5.5 0 0 1-.5-.5V1.231a.5.5 0 1 1 1 0v14.65a.51.51 0 0 1-.5.5z" />
-                            <path fill-rule="nonzero" d="M29.66 21.341a2 2 0 1 1 0-4 2 2 0 0 1 0 4zm0-3.09a1.045 1.045 0 1 0 0 2.09 1.045 1.045 0 0 0 0-2.09zM11.73 21.341a2 2 0 1 1 0-4 2 2 0 0 1 0 4zm0-3.09a1 1 0 1 0 .002 2 1 1 0 0 0-.003-2z" />
-                            <path d="M22.6 21.081h-3.66a.5.5 0 1 1 0-1h3.66a.5.5 0 1 1 0 1z" />
-                          </g>
-                        </svg>
-                        Rail Freight For Commodity : Oil</th>
+                      <th className=''>
+                        <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
+                          <div style={{ paddingLeft: "5px" }}>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="50" height="30" viewBox="0 0 42 44">
+                              <g fill="#FFF" fill-rule="evenodd" stroke-width=".5">
+                                <path d="M1.1 43.731a.41.41 0 0 1-.21 0 .49.49 0 0 1-.24-.66l9.26-19.54a.49.49 0 0 1 .66-.24.5.5 0 0 1 .24.67L1.6 43.491a.48.48 0 0 1-.5.24zM40.42 43.731a.48.48 0 0 1-.45-.28l-9.26-19.49a.5.5 0 0 1 .24-.67.49.49 0 0 1 .66.24l9.26 19.53a.49.49 0 0 1-.27.67.41.41 0 0 1-.18 0z" />
+                                <path d="M32.68 27.441H8.84a.5.5 0 1 1 0-1h23.84a.5.5 0 1 1 0 1zM35.37 33.671H5.85a.51.51 0 0 1-.5-.5.5.5 0 0 1 .5-.5h29.52a.5.5 0 1 1 0 1zM38.6 39.891H2.94a.5.5 0 0 1-.5-.5.51.51 0 0 1 .5-.5H38.6a.5.5 0 1 1 0 1z" />
+                                <path fill-rule="nonzero" d="M31.33 24.241H10.44a2.61 2.61 0 0 1-2.61-2.61V3.341a2.61 2.61 0 0 1 2.61-2.61h20.89a2.61 2.61 0 0 1 2.61 2.61v18.29a2.61 2.61 0 0 1-2.61 2.61zM10.44 1.731c-.89 0-1.61.721-1.61 1.61v18.29c0 .89.72 1.61 1.61 1.61h20.89a1.61 1.61 0 0 0 1.61-1.61V3.341a1.61 1.61 0 0 0-1.61-1.61H10.44z" />
+                                <path d="M33.44 16.381H8.33a.5.5 0 1 1 0-1h25.11a.5.5 0 1 1 0 1z" />
+                                <path d="M20.65 16.381a.5.5 0 0 1-.5-.5V1.231a.5.5 0 1 1 1 0v14.65a.51.51 0 0 1-.5.5z" />
+                                <path fill-rule="nonzero" d="M29.66 21.341a2 2 0 1 1 0-4 2 2 0 0 1 0 4zm0-3.09a1.045 1.045 0 1 0 0 2.09 1.045 1.045 0 0 0 0-2.09zM11.73 21.341a2 2 0 1 1 0-4 2 2 0 0 1 0 4zm0-3.09a1 1 0 1 0 .002 2 1 1 0 0 0-.003-2z" />
+                                <path d="M22.6 21.081h-3.66a.5.5 0 1 1 0-1h3.66a.5.5 0 1 1 0 1z" />
+                              </g>
+                            </svg>
+                          </div>
+                          <span>Rail Freight For Commodity : Oil</span>
+                        </div></th>
                     </tr>
                   </thead>
                   <tbody className="ht-40 fs-14 fBold mr-5 mt-10 curP label-color">
@@ -764,7 +781,7 @@ class CreateNewContracts extends Component {
                           </div>
                         </div>
 
-                        <div style={{ padding: "10px" }}>
+                        {/* <div style={{ padding: "10px" }}>
                           <div style={{ border: "1px solid black" }}>
                             <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", padding: "15px" }}>
                               Total Cost:
@@ -777,6 +794,23 @@ class CreateNewContracts extends Component {
                               $ 1470.00
                             </div>
 
+                          </div>
+                        </div> */}
+
+                        <div style={{ padding: "10px" }}>
+                          <div style={{ border: "1px solid black", display: "grid", gridTemplateColumns: "1fr 1fr", padding: "15px" }}>
+                            <div style={{ display: "flex", flexDirection: "column" }}>
+                              Total Cost:
+                              <span>
+                                230880
+                              </span>
+                            </div>
+                            <div style={{ display: "flex", flexDirection: "column", borderLeft: "1px solid black", paddingLeft: "20px" }}>
+                              Total Cost:
+                              <span>
+                                230880
+                              </span>
+                            </div>
                           </div>
                         </div>
 
@@ -794,17 +828,22 @@ class CreateNewContracts extends Component {
 
           {
             this.state.destinationYardFull.map((ele, idx) =>
-            (<table style={{ boxShadow: 'rgba(136, 165, 300, 0.6) 0px 0px 5px 0px, rgba(255, 255, 255, 0.7) 0px 0px 5px 0px', width: "98.5%", marginLeft: "30px", borderSpacing: '0px', marginTop: "30px" }}>
+            (<table style={{ boxShadow: 'rgba(136, 165, 300, 0.6) 0px 0px 5px 0px, rgba(255, 255, 255, 0.7) 0px 0px 5px 0px', width: "100%", borderSpacing: '0px', marginTop: "30px" }}>
               <thead className="ht-40 fs-14 fBold mr-5 mt-10 curP table-bg-blue white-color">
                 <tr className="br-10">
-                  <th className='col-3 pl-10 pr-10 tLeft' style={{ display: "flex", paddingTop: "10px", gap: "10px" }}>
-                    <svg xmlns="http://www.w3.org/2000/svg" width="15" height="18" viewBox="0 0 15 21">
-                      <g fill="none" fill-rule="nonzero">
-                        <path fill="#9FA8DA" d="M7.5 0C3.364 0 0 3.412 0 7.605 0 12.81 6.712 20.45 6.998 20.773a.67.67 0 0 0 1.004 0C8.288 20.45 15 12.81 15 7.605 15 3.412 11.635 0 7.5 0zm0 19.266c-2.259-2.72-6.15-8.089-6.15-11.66 0-3.44 2.76-6.236 6.15-6.236 3.39 0 6.15 2.797 6.15 6.235 0 3.572-3.89 8.94-6.15 11.661z" />
-                        <path fill="#FFF" d="M7.5 19.266c-2.259-2.72-6.15-8.089-6.15-11.66 0-3.44 2.76-6.236 6.15-6.236 3.39 0 6.15 2.797 6.15 6.235 0 3.572-3.89 8.94-6.15 11.661z" />
-                        <path fill="#9FA8DA" d="M7.5 3.23c-2.394 0-4.342 1.994-4.342 4.443 0 2.45 1.948 4.442 4.342 4.442 2.394 0 4.342-1.992 4.342-4.442S9.894 3.231 7.5 3.231zm0 7.108c-1.524 0-2.763-1.195-2.763-2.665S5.977 5.008 7.5 5.008c1.524 0 2.763 1.195 2.763 2.665s-1.24 2.665-2.763 2.665z" />
-                      </g>
-                    </svg>Vadodara</th>
+                  <th className=''>
+                    <div style={{ display: "flex", alignItems: "center", gap: "20px" }}>
+                      <div style={{ paddingLeft: "5px" }}>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="15" height="18" viewBox="0 0 15 21">
+                          <g fill="none" fill-rule="nonzero">
+                            <path fill="#9FA8DA" d="M7.5 0C3.364 0 0 3.412 0 7.605 0 12.81 6.712 20.45 6.998 20.773a.67.67 0 0 0 1.004 0C8.288 20.45 15 12.81 15 7.605 15 3.412 11.635 0 7.5 0zm0 19.266c-2.259-2.72-6.15-8.089-6.15-11.66 0-3.44 2.76-6.236 6.15-6.236 3.39 0 6.15 2.797 6.15 6.235 0 3.572-3.89 8.94-6.15 11.661z" />
+                            <path fill="#FFF" d="M7.5 19.266c-2.259-2.72-6.15-8.089-6.15-11.66 0-3.44 2.76-6.236 6.15-6.236 3.39 0 6.15 2.797 6.15 6.235 0 3.572-3.89 8.94-6.15 11.661z" />
+                            <path fill="#9FA8DA" d="M7.5 3.23c-2.394 0-4.342 1.994-4.342 4.443 0 2.45 1.948 4.442 4.342 4.442 2.394 0 4.342-1.992 4.342-4.442S9.894 3.231 7.5 3.231zm0 7.108c-1.524 0-2.763-1.195-2.763-2.665S5.977 5.008 7.5 5.008c1.524 0 2.763 1.195 2.763 2.665s-1.24 2.665-2.763 2.665z" />
+                          </g>
+                        </svg>
+                      </div>
+                      <span>Vadodara</span>
+                    </div></th>
 
                   <th className='col-4 tLeft'><Checkbox type="square" label="L1" checked={this.state.selectedArray4.length === this.state.allData4.length} onCheck={() => { this.selectAllScheduleRecords4() }} /></th>
                   <th className='col-4 tLeft'><Checkbox type="square" label="L2" checked={this.state.selectedArray5.length === this.state.allData5.length} onCheck={() => { this.selectAllScheduleRecords5() }} /></th>

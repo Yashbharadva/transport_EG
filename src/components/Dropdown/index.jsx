@@ -94,11 +94,11 @@ class Dropdown extends Component {
         return (
             <ClickOutside handleClickOutside={this.hideDropdown}>
                 <div className={"pr dropdown-container pr " + className}>
-                    <div onClick={this.showDropdown} className={classNames("flex flex-middle flex-between br-5 ht-40 theme-border-color bd-none", {
+                    <div onClick={this.showDropdown} className={classNames("flex flex-middle flex-between br-5 p-10 theme-border-color bd-none ", {
                         'border-light': !noBorder && !isError,
                         'border-error-color': isError && !noBorder
                     })}>
-                        <div className={"flex-1 curP flex flex-middle pl-10 pr-10 label-color fSemibold theme-font-color"}>
+                        <div className={"flex-1 curP flex flex-middle label-color fSemibold theme-font-color"}>
                             {!isInput ? <Fragment>
                                 {selectedItem ? selectedItem[displayKey] : label}
                             </Fragment> :
@@ -106,7 +106,7 @@ class Dropdown extends Component {
                         </div>
                         {
                             items && items.length > 0 &&
-                            <div className="mr-10">
+                            <div className="pl-80">
                                 <DropdownIcon className="ht-10" />
                             </div>
                         }
