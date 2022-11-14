@@ -105,10 +105,7 @@ class Dropdown extends Component {
                                 <input value={this.state.inputValue} className="col-1 fSemibold" onChange={this.onInputChange} onBlur={this.onInputBlur} placeholder={label} />}
                         </div>
                         {
-                            items && items.length > 0 &&
-                            <div className="pl-80">
-                                <DropdownIcon className="ht-10" />
-                            </div>
+                            items && items.length > 0 && <DropdownIcon className="ht-10" />
                         }
 
                     </div>

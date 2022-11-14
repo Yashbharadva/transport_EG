@@ -128,20 +128,19 @@ class CreateNewContracts extends Component {
     this.setState({ Values });
   }
 
-  checkedFullRow = (id) => {
-    console.log(id);
+  checkedFullRow = (id, check1) => {
     const { selectedArray } = this.state;
-    if (selectedArray.includes(id)) {
-      let schIndex = selectedArray.indexOf(id)
+    if (selectedArray.includes(id, check1)) {
+      let schIndex = selectedArray.indexOf(id, check1)
       selectedArray.splice(schIndex, 1)
       this.setState({ selectedArray: selectedArray })
     } else {
-      this.setState({ selectedArray: [...selectedArray, id] })
+      this.setState({ selectedArray: [...selectedArray, id, check1] })
     }
+    console.log(this.state.selectedArray);
   }
 
   checkedFullRow2 = (id) => {
-    console.log(id);
     const { selectedArray2 } = this.state;
     if (selectedArray2.includes(id)) {
       let schIndex = selectedArray2.indexOf(id)
@@ -153,7 +152,6 @@ class CreateNewContracts extends Component {
   }
 
   checkedFullRow3 = (id) => {
-    console.log(id);
     const { selectedArray3 } = this.state;
     if (selectedArray3.includes(id)) {
       let schIndex = selectedArray3.indexOf(id)
@@ -165,7 +163,6 @@ class CreateNewContracts extends Component {
   }
 
   checkedFullRow4 = (id) => {
-    console.log(id);
     const { selectedArray4 } = this.state;
     if (selectedArray4.includes(id)) {
       let schIndex = selectedArray4.indexOf(id)
@@ -177,7 +174,6 @@ class CreateNewContracts extends Component {
   }
 
   checkedFullRow5 = (id) => {
-    console.log(id);
     const { selectedArray5 } = this.state;
     if (selectedArray5.includes(id)) {
       let schIndex = selectedArray5.indexOf(id)
@@ -189,7 +185,6 @@ class CreateNewContracts extends Component {
   }
 
   checkedFullRow6 = (id) => {
-    console.log(id);
     const { selectedArray6 } = this.state;
     if (selectedArray6.includes(id)) {
       let schIndex = selectedArray6.indexOf(id)
@@ -313,9 +308,12 @@ class CreateNewContracts extends Component {
 
 
 
+
   render() {
 
-    console.log(this.state.selectedArray);
+    console.log(this.state);
+    console.log(this.state.selectedArray2);
+    console.log(this.state.selectedArray3);
 
     var Handlechange = e => {
       this.setState({ show: !this.state.show });
@@ -411,9 +409,9 @@ class CreateNewContracts extends Component {
                   searchEnabled={true}
                 />
               </div>
-              <div>
+              <div className="fs-14 header-dark-color mr-10">
                 {this.state.destinationYardFull.map((ele, idx) => (
-                  <div key={idx} style={{ display: "flex", paddingBottom: "15px" }}>
+                  <div key={idx} style={{ display: "flex", alignItems: "center" }}>
                     <div className="fs-14 header-dark-color mr-10" >
                       <div style={{ paddingBottom: "5px", color: "white" }} key={idx}>
                         {ele.destinationYard}
@@ -521,7 +519,7 @@ class CreateNewContracts extends Component {
                       displayKey="name"
                       selectedItem={null}
                       className="mb-0 wt-250 ht-30 wd-100"
-                      style={{ width: "120px", height: "36px", background: "white", borderRadius: "5px" }}
+                      style={{ width: "120px", height: "36px", background: "white", borderRadius: "5px", display: "flex", alignItems: "center" }}
                     />
                   </div>
                   <div className="fs-14 header-dark-color mr-10">
@@ -565,7 +563,7 @@ class CreateNewContracts extends Component {
               <tr className="br-10">
 
                 <th className=''>
-                  <div style={{ display: "flex", alignItems: "center", gap: "20px" }}>
+                  <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
                     <div style={{ paddingLeft: "5px" }}>
                       <svg xmlns="http://www.w3.org/2000/svg" width="15" height="18" viewBox="0 0 15 21">
                         <g fill="none" fill-rule="nonzero">
@@ -576,7 +574,8 @@ class CreateNewContracts extends Component {
                       </svg>
                     </div>
                     <span>Surat</span>
-                  </div></th>
+                  </div>
+                </th>
 
                 <th className='col-4 tLeft'><Checkbox type="square" label="L1" checked={this.state.selectedArray.length === this.state.allData.length} onCheck={() => { this.selectAllScheduleRecords() }} /></th>
                 <th className='col-4 tLeft'><Checkbox type="square" label="L2" checked={this.state.selectedArray2.length === this.state.allData2.length} onCheck={() => { this.selectAllScheduleRecords2() }} /></th>
@@ -595,21 +594,13 @@ class CreateNewContracts extends Component {
                 return (
                   <tr key={idx}>
                     <td style={{ borderRight: "0px solid" }} className="tLeft p-5 pl-10  master-contract-font-color">
-
-                      {/* Handling agents */}
-                      {/* <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20">
-                        <g fill="blue" fill-rule="evenodd" stroke="blue" stroke-width="1.5" transform="translate(1 1)">
-                          <circle cx="8.659" cy="3.659" r="3.659" />
-                          <path fill-rule="nonzero" d="M17.624 14.954c-.086-4.063-.799-5.221-6.25-5.954 0 0-.768.728-2.557.728C7.03 9.728 6.261 9 6.261 9 .869 9.725.113 10.865.013 14.822c-.008.323-.012.502-.012.73 0 0 1.298 1.948 8.816 1.948 7.519 0 8.817-1.949 8.817-1.949 0-.097-.003-.296-.01-.597z" />
-                        </g>
-                      </svg> */}
                       {ele.name}
                     </td>
 
                     <td style={{ paddingTop: "20px" }}>
                       <div>
                         <th className='col-4 tLeft' key={idx}>
-                          <Checkbox type="square" label={ele.check1} onCheck={() => { this.checkedFullRow(ele.id) }} checked={this.state.selectedArray.includes(ele.id)} /></th>
+                          <Checkbox type="square" label={ele.check1} onCheck={() => { this.checkedFullRow(ele, ele.id) }} checked={this.state.selectedArray.includes(ele.id)} /></th>
                       </div>
                       <span style={{ paddingTop: "10px", paddingLeft: "20px", display: "flex", gap: "20px", alignItems: "center" }}>
                         <storng>Rate:</storng> $ 4000 Per MT
@@ -627,7 +618,7 @@ class CreateNewContracts extends Component {
                       </div>
                     </td>
 
-                    <td>
+                    <td style={{ color: "rgb(164, 164, 164)" }}>
                       <div style={{ paddingBottom: "10px" }}>
                         <th className='col-4 tLeft'><Checkbox type="square" label={ele.check2} onCheck={() => { this.checkedFullRow2(ele.id) }} checked={this.state.selectedArray2.includes(ele.id)} /></th>
                       </div>
@@ -644,7 +635,7 @@ class CreateNewContracts extends Component {
                       <div></div>
                     </td>
 
-                    <td>
+                    <td style={{ color: "rgb(164, 164, 164)" }}>
                       <div style={{ paddingBottom: "10px" }}>
                         <th className='col-4 tLeft'><Checkbox type="square" label={ele.check3} onCheck={() => { this.checkedFullRow3(ele.id) }} checked={this.state.selectedArray3.includes(ele.id)} /></th>
                       </div>
@@ -695,7 +686,8 @@ class CreateNewContracts extends Component {
                             </svg>
                           </div>
                           <span>Rail Freight For Commodity : Oil</span>
-                        </div></th>
+                        </div>
+                      </th>
                     </tr>
                   </thead>
                   <tbody className="ht-40 fs-14 fBold mr-5 mt-10 curP label-color">
@@ -704,46 +696,48 @@ class CreateNewContracts extends Component {
 
                       <div style={{ width: "50%" }}>
                         <div style={{ padding: "10px" }}>
-                          <div style={{ border: "1px solid black" }}>
-                            <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr 1fr", padding: "15px" }}>
+                          <div style={{ border: "1px solid black", display: "grid", gridTemplateColumns: "1fr 1fr 1fr 1fr", padding: "15px" }}>
+                            <div style={{ display: "flex", flexDirection: "column", color: "rgb(164, 164, 164)" }}>
                               From:
-                              <span>
-                                To:
+                              <span style={{ color: "black" }}>
+                                Vadodara
                               </span>
-                              Origin Yard:
-                              <div>
-                                Destination Yard:
-                              </div>
-                              <div>
-                                Vadodara
-                              </div>
-                              <div>
-                                Surat
-                              </div>
-                              <div>
-                                Vadodara
-                              </div>
-                              <div>
-                                Adajan
-                              </div>
                             </div>
-
+                            <div style={{ display: "flex", flexDirection: "column", color: "rgb(164, 164, 164)" }}>
+                              To:
+                              <span style={{ color: "black" }}>
+                                Surat
+                              </span>
+                            </div>
+                            <div style={{ display: "flex", flexDirection: "column", color: "rgb(164, 164, 164)" }}>
+                              Origin Yard:
+                              <span style={{ color: "black" }}>
+                                Dhrub
+                              </span>
+                            </div>
+                            <div style={{ display: "flex", flexDirection: "column", color: "rgb(164, 164, 164)" }}>
+                              Destination Yard:
+                              <span style={{ color: "black" }}>
+                                Mumbai
+                              </span>
+                            </div>
                           </div>
                         </div>
 
                         <div style={{ padding: "10px" }}>
-                          <div style={{ border: "1px solid black" }}>
-                            <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", padding: "15px" }}>
+                          <div style={{ border: "1px solid black", display: "grid", gridTemplateColumns: "1fr 1fr", padding: "15px" }}>
+                            <div style={{ display: "flex", flexDirection: "column", color: "rgb(164, 164, 164)" }}>
                               Commodity:
-                              <span>
-                                Commodity Type:
-                              </span>
-                              <div>
+                              <span style={{ color: "black" }}>
                                 Oil
-                              </div>
-                              Oil
+                              </span>
                             </div>
-
+                            <div style={{ display: "flex", flexDirection: "column", color: "rgb(164, 164, 164)" }}>
+                              Commodity Type:
+                              <span style={{ color: "black" }}>
+                                Oil
+                              </span>
+                            </div>
                           </div>
                         </div>
 
@@ -754,60 +748,45 @@ class CreateNewContracts extends Component {
                       <div style={{ width: "50%" }}>
 
                         <div style={{ padding: "10px" }}>
-                          <div style={{ border: "1px solid black" }}>
-                            <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr 1fr", padding: "15px" }}>
+                          <div style={{ border: "1px solid black", display: "grid", gridTemplateColumns: "1fr 1fr 1fr 1fr", padding: "15px" }}>
+                            <div style={{ display: "flex", flexDirection: "column", color: "rgb(164, 164, 164)" }}>
                               Wagon Type:
-                              <span>
-                                Rake Type:
-                              </span>
-                              No. of Wagon:
-                              <div>
-                                Loadable Weight:
-                              </div>
-                              <div>
+                              <span style={{ color: "black" }}>
                                 BCN
-                              </div>
-                              <div>
-                                Full
-                              </div>
-                              <div>
-                                42
-                              </div>
-                              <div>
-                                55 MTper Wagon
-                              </div>
+                              </span>
                             </div>
-
+                            <div style={{ display: "flex", flexDirection: "column", color: "rgb(164, 164, 164)" }}>
+                              Rake Type:
+                              <span style={{ color: "black" }}>
+                                Full
+                              </span>
+                            </div>
+                            <div style={{ display: "flex", flexDirection: "column", color: "rgb(164, 164, 164)" }}>
+                              No of Wagons:
+                              <span style={{ color: "black" }}>
+                                42
+                              </span>
+                            </div>
+                            <div style={{ display: "flex", flexDirection: "column", color: "rgb(164, 164, 164)" }}>
+                              Loadable Weight:
+                              <span style={{ color: "black" }}>
+                                55 MT per Wagon
+                              </span>
+                            </div>
                           </div>
                         </div>
 
-                        {/* <div style={{ padding: "10px" }}>
-                          <div style={{ border: "1px solid black" }}>
-                            <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", padding: "15px" }}>
-                              Total Cost:
-                              <span>
-                                Cost / MT:
-                              </span>
-                              <div>
-                                $ 230880.00
-                              </div>
-                              $ 1470.00
-                            </div>
-
-                          </div>
-                        </div> */}
-
                         <div style={{ padding: "10px" }}>
                           <div style={{ border: "1px solid black", display: "grid", gridTemplateColumns: "1fr 1fr", padding: "15px" }}>
-                            <div style={{ display: "flex", flexDirection: "column" }}>
+                            <div style={{ display: "flex", flexDirection: "column", color: "rgb(164, 164, 164)" }}>
                               Total Cost:
-                              <span>
+                              <span style={{ color: "black" }}>
                                 230880
                               </span>
                             </div>
-                            <div style={{ display: "flex", flexDirection: "column", borderLeft: "1px solid black", paddingLeft: "20px" }}>
+                            <div style={{ display: "flex", flexDirection: "column", borderLeft: "1px solid black", paddingLeft: "20px", color: "rgb(164, 164, 164)" }}>
                               Total Cost:
-                              <span>
+                              <span style={{ color: "black" }}>
                                 230880
                               </span>
                             </div>
@@ -832,7 +811,7 @@ class CreateNewContracts extends Component {
               <thead className="ht-40 fs-14 fBold mr-5 mt-10 curP table-bg-blue white-color">
                 <tr className="br-10">
                   <th className=''>
-                    <div style={{ display: "flex", alignItems: "center", gap: "20px" }}>
+                    <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
                       <div style={{ paddingLeft: "5px" }}>
                         <svg xmlns="http://www.w3.org/2000/svg" width="15" height="18" viewBox="0 0 15 21">
                           <g fill="none" fill-rule="nonzero">
@@ -931,18 +910,21 @@ class CreateNewContracts extends Component {
           <div style={{ paddingTop: "20px", width: "100%", justifyContent: "end", display: "flex" }}>
 
             <Popup
-              trigger={this.state.selectedArray.length > 0 || this.state.selectedArray2.length > 0 || this.state.selectedArray3.length > 0 ?
-                (<button
-                  className={"bg-theme wt-250 pl-15 pr-15 mr-5 ht-40 br-5 fBold fs-14 white-color ml-15"}
-                >Preview & Generate Contract
-                </button>) : <div></div>
+              trigger={
+                // (this.state.selectedArray.length > 0 && this.state.selectedArray2.length > 0 && this.state.selectedArray3.length > 0 && this.state.selectedArray4.length > 0)
+                (this.state.selectedArray.length > 0 && this.state.selectedArray4.length > 0) || (this.state.selectedArray2.length > 0 && this.state.selectedArray3.length > 0)
+                  ?
+                  (<button
+                    className={"bg-theme wt-250 pl-15 pr-15 mr-5 ht-40 br-5 fBold fs-14 white-color ml-15"}
+                  >Preview & Generate Contract
+                  </button>) : <div></div>
               }
               modal
               contentStyle={contentStyle}
             >
               {close =>
 
-              (this.state.selectedArray.length > 0 && (this.state.selectedArray2.length > 0 || this.state.selectedArray3.length > 0)
+              ((this.state.selectedArray.length > 0 || this.state.selectedArray4.length > 0) && (this.state.selectedArray2.length > 0 || this.state.selectedArray3.length > 0)
                 ?
 
                 <div className="modal scroll" style={{ padding: "10px", fontFamily: "Proximanova-Regular" }}>
@@ -954,7 +936,7 @@ class CreateNewContracts extends Component {
 
                   <div style={{ boxShadow: "0 0 27px 4px rgb(69 68 68 / 40%)", padding: "20px" }}>
                     <div onClick={Handlechange} style={{ cursor: "pointer" }}>
-                      <div style={{ display: "flex", justifyContent: "space-between" }}>
+                      <div style={{ display: "flex", justifyContent: "space-between", fontWeight: "800", fontSize: "20px" }}>
                         Contract No : 23456666
                         <span>{!this.state.show ? <IoIosArrowDropdown size="1.5em" color="#528aea" style={{ cursor: "pointer" }} /> : <IoIosArrowDropup size="1.5em" color="#528aea" style={{ cursor: "pointer" }} />}</span>
                       </div>
@@ -964,11 +946,11 @@ class CreateNewContracts extends Component {
                     <div style={{ padding: "10px 0px", width: "50%" }}>
                       <div style={{ display: "grid", gridTemplateColumns: "repeat(5, 1fr)" }}>
 
-                        <div>Route Code:</div>
-                        <div>From:</div>
-                        <div>To:</div>
-                        <div>Origin Yard:</div>
-                        <div>Destination Yard:</div>
+                        <div style={{ fontWeight: "800" }}>Route Code:</div>
+                        <div style={{ fontWeight: "800" }}>From:</div>
+                        <div style={{ fontWeight: "800" }}>To:</div>
+                        <div style={{ fontWeight: "800" }}>Origin Yard:</div>
+                        <div style={{ fontWeight: "800" }}>Destination Yard:</div>
 
                         <span className="span">454567</span>
                         <span className="span">Mundra</span>
@@ -981,12 +963,12 @@ class CreateNewContracts extends Component {
                     <div style={{ padding: "10px 0px", width: "100%" }}>
                       <div style={{ display: "grid", gridTemplateColumns: "repeat(6, 1fr)" }}>
 
-                        <div>Rake:</div>
-                        <div>Commodity Category:</div>
-                        <div>Commodity Name:</div>
-                        <div>Type of Wagon:</div>
-                        <div>No of Wagon:</div>
-                        <div>Wagon Wt:</div>
+                        <div style={{ fontWeight: "800" }}>Rake:</div>
+                        <div style={{ fontWeight: "800" }}>Commodity Category:</div>
+                        <div style={{ fontWeight: "800" }}>Commodity Name:</div>
+                        <div style={{ fontWeight: "800" }}>Type of Wagon:</div>
+                        <div style={{ fontWeight: "800" }}>No of Wagon:</div>
+                        <div style={{ fontWeight: "800" }}>Wagon Wt:</div>
 
                         <span className="span">Full Rake</span>
                         <span className="span">Hydrogeneted and other Edible Oil</span>
@@ -1002,13 +984,13 @@ class CreateNewContracts extends Component {
 
                       <div style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gap: "20px", width: "50%" }}>
 
-                        <div style={{ display: "block", padding: "10px 10px", background: "blue", color: "white" }}>
+                        <div style={{ display: "block", padding: "10px 10px", background: "blue", color: "white", fontWeight: "700" }}>
                           <p>Total Cost : $ 35,05,000</p>
                           <p> Cost / PTPK : $ 1430 PTPK<span style={{ background: "green", color: "white", padding: "15px", borderRadius: "99px", marginLeft: "100px" }}>L1</span></p>
                           <p>Cost / MT : $ 4500 per MT</p>
                         </div>
 
-                        <div style={{ display: "block", padding: "10px 10px", background: "blue", color: "white" }}>
+                        <div style={{ display: "block", padding: "10px 10px", background: "blue", color: "white", fontWeight: "700" }}>
                           <p>Total Cost : $ 35,05,000</p>
                           <p> Cost / PTPK : $ 1430 PTPK<span style={{ background: "orange", color: "white", padding: "15px", borderRadius: "99px", marginLeft: "100px" }}>L2</span></p>
                           <p>Cost / MT : $ 4500 per MT</p>
@@ -1020,615 +1002,28 @@ class CreateNewContracts extends Component {
                       {/* HIDE AND SHOW PART DROPDOWN */}
 
 
-                      {this.state.show && <div>
-                        <div style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", width: "50%", gap: "20px" }}>
-
-
-
-                          <table style={{ boxShadow: 'rgba(136, 165, 300, 0.6) 0px 0px 5px 0px, rgba(255, 255, 255, 0.7) 0px 0px 5px 0px', width: "100%", borderSpacing: '0px', marginTop: "30px" }}>
-                            <thead className="ht-40 fs-14 fBold mr-5 mt-10 curP table-bg-blue white-color">
-                              <tr className="br-10">
-                                <th className='col-3 pl-10 pr-10 tLeft' style={{ display: "flex", paddingTop: "10px", gap: "10px" }}>
-                                  <svg xmlns="http://www.w3.org/2000/svg" width="15" height="18" viewBox="0 0 15 21">
-                                    <g fill="none" fill-rule="nonzero">
-                                      <path fill="#9FA8DA" d="M7.5 0C3.364 0 0 3.412 0 7.605 0 12.81 6.712 20.45 6.998 20.773a.67.67 0 0 0 1.004 0C8.288 20.45 15 12.81 15 7.605 15 3.412 11.635 0 7.5 0zm0 19.266c-2.259-2.72-6.15-8.089-6.15-11.66 0-3.44 2.76-6.236 6.15-6.236 3.39 0 6.15 2.797 6.15 6.235 0 3.572-3.89 8.94-6.15 11.661z" />
-                                      <path fill="#FFF" d="M7.5 19.266c-2.259-2.72-6.15-8.089-6.15-11.66 0-3.44 2.76-6.236 6.15-6.236 3.39 0 6.15 2.797 6.15 6.235 0 3.572-3.89 8.94-6.15 11.661z" />
-                                      <path fill="#9FA8DA" d="M7.5 3.23c-2.394 0-4.342 1.994-4.342 4.443 0 2.45 1.948 4.442 4.342 4.442 2.394 0 4.342-1.992 4.342-4.442S9.894 3.231 7.5 3.231zm0 7.108c-1.524 0-2.763-1.195-2.763-2.665S5.977 5.008 7.5 5.008c1.524 0 2.763 1.195 2.763 2.665s-1.24 2.665-2.763 2.665z" />
-                                    </g>
-                                  </svg>Surat</th>
-                              </tr>
-                            </thead>
-                            <tbody className="ht-40 fs-14 fBold mr-5 mt-10 curP label-color">
-                              {/* {(vehicleSchedulerDetails || []).map((details, index) => {
-                                    return ( */}
-                              {/* FIRST TABLE */}
-
-                              <tr>
-                                <td style={{ borderRight: "0px solid", paddingTop: "10px" }} className="tLeft p-5 pl-10">
-                                  <div>
-                                    Transporter 1
-                                  </div>
-                                  <span style={{ paddingTop: "10px", display: "flex", gap: "20px", alignItems: "center" }}>
-                                    <storng>Rate:</storng> $ 4500 Per MT
-                                    <span style={{ background: "green", color: "white", padding: "5px", borderRadius: "99px" }}>L1</span>
-                                  </span>
-
-                                  <div style={{ display: "flex", paddingTop: "10px", gap: "20px" }}>
-                                    <div style={{ fontSize: "12px", fontWeight: "800" }}>
-                                      SAP Contract No:
-                                      <div style={{ fontWeight: "normal", paddingTop: "8px", paddingBottom: "10px" }}>454567</div>
-                                    </div>
-                                    <div style={{ fontSize: "12px", fontWeight: "800" }}> Contract Tenure:
-                                      <div style={{ fontWeight: "normal", paddingTop: "8px" }}>26 Mar 2022 To 26 Sep 2022</div>
-                                    </div>
-                                  </div>
-                                </td>
-                              </tr>
-
-                              <hr />
-
-                              {/* SECOND TABLE */}
-
-                              <tr>
-                                <td style={{ borderRight: "0px solid", paddingTop: "10px" }} className="tLeft p-5 pl-10">
-                                  <div>
-                                    Transporter 1
-                                  </div>
-                                  <span style={{ paddingTop: "10px", display: "flex", gap: "20px", alignItems: "center" }}>
-                                    <storng>Rate:</storng> $ 4500 Per MT
-                                    <span style={{ background: "green", color: "white", padding: "5px", borderRadius: "99px" }}>L1</span>
-                                  </span>
-
-                                  <div style={{ display: "flex", paddingTop: "10px", gap: "20px" }}>
-                                    <div style={{ fontSize: "12px", fontWeight: "800" }}>
-                                      SAP Contract No:
-                                      <div style={{ fontWeight: "normal", paddingTop: "8px", paddingBottom: "10px" }}>454567</div>
-                                    </div>
-                                    <div style={{ fontSize: "12px", fontWeight: "800" }}> Contract Tenure:
-                                      <div style={{ fontWeight: "normal", paddingTop: "8px" }}>26 Mar 2022 To 26 Sep 2022</div>
-                                    </div>
-                                  </div>
-                                </td>
-                              </tr>
-
-                              <hr />
-
-                              {/* THIRD TABLE */}
-
-                              <tr>
-                                <td style={{ borderRight: "0px solid", paddingTop: "10px" }} className="tLeft p-5 pl-10">
-                                  <div>
-                                    Transporter 1
-                                  </div>
-                                  <span style={{ paddingTop: "10px", display: "flex", gap: "20px", alignItems: "center" }}>
-                                    <storng>Rate:</storng> $ 4500 Per MT
-                                    <span style={{ background: "green", color: "white", padding: "5px", borderRadius: "99px" }}>L1</span>
-                                  </span>
-
-                                  <div style={{ display: "flex", paddingTop: "10px", gap: "20px" }}>
-                                    <div style={{ fontSize: "12px", fontWeight: "800" }}>
-                                      SAP Contract No:
-                                      <div style={{ fontWeight: "normal", paddingTop: "8px", paddingBottom: "10px" }}>454567</div>
-                                    </div>
-                                    <div style={{ fontSize: "12px", fontWeight: "800" }}> Contract Tenure:
-                                      <div style={{ fontWeight: "normal", paddingTop: "8px" }}>26 Mar 2022 To 26 Sep 2022</div>
-                                    </div>
-                                  </div>
-                                </td>
-                              </tr>
-
-                              <hr />
-
-                              {/* FOURTH TABLE  */}
-
-                              <tr>
-                                <td style={{ borderRight: "0px solid", paddingTop: "10px" }} className="tLeft p-5 pl-10">
-                                  <div>
-                                    Transporter 1
-                                  </div>
-                                  <span style={{ paddingTop: "10px", display: "flex", gap: "20px", alignItems: "center" }}>
-                                    <storng>Rate:</storng> $ 4500 Per MT
-                                    <span style={{ background: "green", color: "white", padding: "5px", borderRadius: "99px" }}>L1</span>
-                                  </span>
-
-                                  <div style={{ display: "flex", paddingTop: "10px", gap: "20px" }}>
-                                    <div style={{ fontSize: "12px", fontWeight: "800" }}>
-                                      SAP Contract No:
-                                      <div style={{ fontWeight: "normal", paddingTop: "8px", paddingBottom: "10px" }}>454567</div>
-                                    </div>
-                                    <div style={{ fontSize: "12px", fontWeight: "800" }}> Contract Tenure:
-                                      <div style={{ fontWeight: "normal", paddingTop: "8px" }}>26 Mar 2022 To 26 Sep 2022</div>
-                                    </div>
-                                  </div>
-                                </td>
-                              </tr>
-
-                            </tbody>
-                          </table>
-
-                          <table style={{ boxShadow: 'rgba(136, 165, 300, 0.6) 0px 0px 5px 0px, rgba(255, 255, 255, 0.7) 0px 0px 5px 0px', width: "100%", borderSpacing: '0px', marginTop: "30px" }}>
-                            <thead className="ht-40 fs-14 fBold mr-5 mt-10 curP table-bg-blue white-color">
-                              <tr className="br-10">
-                                <th className='col-3 pl-10 pr-10 tLeft' style={{ display: "flex", paddingTop: "10px", gap: "10px" }}>
-                                  <svg xmlns="http://www.w3.org/2000/svg" width="15" height="18" viewBox="0 0 15 21">
-                                    <g fill="none" fill-rule="nonzero">
-                                      <path fill="#9FA8DA" d="M7.5 0C3.364 0 0 3.412 0 7.605 0 12.81 6.712 20.45 6.998 20.773a.67.67 0 0 0 1.004 0C8.288 20.45 15 12.81 15 7.605 15 3.412 11.635 0 7.5 0zm0 19.266c-2.259-2.72-6.15-8.089-6.15-11.66 0-3.44 2.76-6.236 6.15-6.236 3.39 0 6.15 2.797 6.15 6.235 0 3.572-3.89 8.94-6.15 11.661z" />
-                                      <path fill="#FFF" d="M7.5 19.266c-2.259-2.72-6.15-8.089-6.15-11.66 0-3.44 2.76-6.236 6.15-6.236 3.39 0 6.15 2.797 6.15 6.235 0 3.572-3.89 8.94-6.15 11.661z" />
-                                      <path fill="#9FA8DA" d="M7.5 3.23c-2.394 0-4.342 1.994-4.342 4.443 0 2.45 1.948 4.442 4.342 4.442 2.394 0 4.342-1.992 4.342-4.442S9.894 3.231 7.5 3.231zm0 7.108c-1.524 0-2.763-1.195-2.763-2.665S5.977 5.008 7.5 5.008c1.524 0 2.763 1.195 2.763 2.665s-1.24 2.665-2.763 2.665z" />
-                                    </g>
-                                  </svg>Surat</th>
-                              </tr>
-                            </thead>
-                            <tbody className="ht-40 fs-14 fBold mr-5 mt-10 curP label-color">
-                              {/* {(vehicleSchedulerDetails || []).map((details, index) => {
-                                    return ( */}
-                              {/* FIRST TABLE */}
-
-                              <tr>
-                                <td style={{ borderRight: "0px solid", paddingTop: "10px" }} className="tLeft p-5 pl-10">
-                                  <div>
-                                    Transporter 1
-                                  </div>
-                                  <span style={{ paddingTop: "10px", display: "flex", gap: "20px", alignItems: "center" }}>
-                                    <storng>Rate:</storng> $ 4500 Per MT
-                                    <span style={{ background: "orange", color: "white", padding: "5px", borderRadius: "99px" }}>L2</span>
-                                  </span>
-
-                                  <div style={{ display: "flex", paddingTop: "10px", gap: "20px" }}>
-                                    <div style={{ fontSize: "12px", fontWeight: "800" }}>
-                                      SAP Contract No:
-                                      <div style={{ fontWeight: "normal", paddingTop: "8px", paddingBottom: "10px" }}>454567</div>
-                                    </div>
-                                    <div style={{ fontSize: "12px", fontWeight: "800" }}> Contract Tenure:
-                                      <div style={{ fontWeight: "normal", paddingTop: "8px" }}>26 Mar 2022 To 26 Sep 2022</div>
-                                    </div>
-                                  </div>
-                                </td>
-                              </tr>
-
-                              <hr />
-
-                              {/* SECOND TABLE */}
-
-                              <tr>
-                                <td style={{ borderRight: "0px solid", paddingTop: "10px" }} className="tLeft p-5 pl-10">
-                                  <div>
-                                    Transporter 1
-                                  </div>
-                                  <span style={{ paddingTop: "10px", display: "flex", gap: "20px", alignItems: "center" }}>
-                                    <storng>Rate:</storng> $ 4500 Per MT
-                                    <span style={{ background: "green", color: "white", padding: "5px", borderRadius: "99px" }}>L1</span>
-                                  </span>
-
-                                  <div style={{ display: "flex", paddingTop: "10px", gap: "20px" }}>
-                                    <div style={{ fontSize: "12px", fontWeight: "800" }}>
-                                      SAP Contract No:
-                                      <div style={{ fontWeight: "normal", paddingTop: "8px", paddingBottom: "10px" }}>454567</div>
-                                    </div>
-                                    <div style={{ fontSize: "12px", fontWeight: "800" }}> Contract Tenure:
-                                      <div style={{ fontWeight: "normal", paddingTop: "8px" }}>26 Mar 2022 To 26 Sep 2022</div>
-                                    </div>
-                                  </div>
-                                </td>
-                              </tr>
-
-                              <hr />
-
-                              {/* THIRD TABLE */}
-
-                              <tr>
-                                <td style={{ borderRight: "0px solid", paddingTop: "10px" }} className="tLeft p-5 pl-10">
-                                  <div>
-                                    Transporter 1
-                                  </div>
-                                  <span style={{ paddingTop: "10px", display: "flex", gap: "20px", alignItems: "center" }}>
-                                    <storng>Rate:</storng> $ 4500 Per MT
-                                    <span style={{ background: "green", color: "white", padding: "5px", borderRadius: "99px" }}>L1</span>
-                                  </span>
-
-                                  <div style={{ display: "flex", paddingTop: "10px", gap: "20px" }}>
-                                    <div style={{ fontSize: "12px", fontWeight: "800" }}>
-                                      SAP Contract No:
-                                      <div style={{ fontWeight: "normal", paddingTop: "8px", paddingBottom: "10px" }}>454567</div>
-                                    </div>
-                                    <div style={{ fontSize: "12px", fontWeight: "800" }}> Contract Tenure:
-                                      <div style={{ fontWeight: "normal", paddingTop: "8px" }}>26 Mar 2022 To 26 Sep 2022</div>
-                                    </div>
-                                  </div>
-                                </td>
-                              </tr>
-
-                              <hr />
-
-                              {/* FOURTH TABLE  */}
-
-                              <tr>
-                                <td style={{ borderRight: "0px solid", paddingTop: "10px" }} className="tLeft p-5 pl-10">
-                                  <div>
-                                    Transporter 1
-                                  </div>
-                                  <span style={{ paddingTop: "10px", display: "flex", gap: "20px", alignItems: "center" }}>
-                                    <storng>Rate:</storng> $ 4500 Per MT
-                                    <span style={{ background: "green", color: "white", padding: "5px", borderRadius: "99px" }}>L1</span>
-                                  </span>
-
-                                  <div style={{ display: "flex", paddingTop: "10px", gap: "20px" }}>
-                                    <div style={{ fontSize: "12px", fontWeight: "800" }}>
-                                      SAP Contract No:
-                                      <div style={{ fontWeight: "normal", paddingTop: "8px", paddingBottom: "10px" }}>454567</div>
-                                    </div>
-                                    <div style={{ fontSize: "12px", fontWeight: "800" }}> Contract Tenure:
-                                      <div style={{ fontWeight: "normal", paddingTop: "8px" }}>26 Mar 2022 To 26 Sep 2022</div>
-                                    </div>
-                                  </div>
-                                </td>
-                              </tr>
-
-                            </tbody>
-                          </table>
-
-                        </div>
-
-                        <div style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", width: "50%", gap: "20px" }}>
-
-
-
-                          <table style={{ boxShadow: 'rgba(136, 165, 300, 0.6) 0px 0px 5px 0px, rgba(255, 255, 255, 0.7) 0px 0px 5px 0px', width: "100%", borderSpacing: '0px', marginTop: "30px" }}>
-                            <thead className="ht-40 fs-14 fBold mr-5 mt-10 curP table-bg-dark-red white-color">
-                              <tr className="br-10">
-                                <th className='col-3 pl-10 pr-10 tLeft'><svg xmlns="http://www.w3.org/2000/svg" width="50" height="30" viewBox="0 0 42 44">
-                                  <g fill="#FFF" fill-rule="evenodd" stroke-width=".5">
-                                    <path d="M1.1 43.731a.41.41 0 0 1-.21 0 .49.49 0 0 1-.24-.66l9.26-19.54a.49.49 0 0 1 .66-.24.5.5 0 0 1 .24.67L1.6 43.491a.48.48 0 0 1-.5.24zM40.42 43.731a.48.48 0 0 1-.45-.28l-9.26-19.49a.5.5 0 0 1 .24-.67.49.49 0 0 1 .66.24l9.26 19.53a.49.49 0 0 1-.27.67.41.41 0 0 1-.18 0z" />
-                                    <path d="M32.68 27.441H8.84a.5.5 0 1 1 0-1h23.84a.5.5 0 1 1 0 1zM35.37 33.671H5.85a.51.51 0 0 1-.5-.5.5.5 0 0 1 .5-.5h29.52a.5.5 0 1 1 0 1zM38.6 39.891H2.94a.5.5 0 0 1-.5-.5.51.51 0 0 1 .5-.5H38.6a.5.5 0 1 1 0 1z" />
-                                    <path fill-rule="nonzero" d="M31.33 24.241H10.44a2.61 2.61 0 0 1-2.61-2.61V3.341a2.61 2.61 0 0 1 2.61-2.61h20.89a2.61 2.61 0 0 1 2.61 2.61v18.29a2.61 2.61 0 0 1-2.61 2.61zM10.44 1.731c-.89 0-1.61.721-1.61 1.61v18.29c0 .89.72 1.61 1.61 1.61h20.89a1.61 1.61 0 0 0 1.61-1.61V3.341a1.61 1.61 0 0 0-1.61-1.61H10.44z" />
-                                    <path d="M33.44 16.381H8.33a.5.5 0 1 1 0-1h25.11a.5.5 0 1 1 0 1z" />
-                                    <path d="M20.65 16.381a.5.5 0 0 1-.5-.5V1.231a.5.5 0 1 1 1 0v14.65a.51.51 0 0 1-.5.5z" />
-                                    <path fill-rule="nonzero" d="M29.66 21.341a2 2 0 1 1 0-4 2 2 0 0 1 0 4zm0-3.09a1.045 1.045 0 1 0 0 2.09 1.045 1.045 0 0 0 0-2.09zM11.73 21.341a2 2 0 1 1 0-4 2 2 0 0 1 0 4zm0-3.09a1 1 0 1 0 .002 2 1 1 0 0 0-.003-2z" />
-                                    <path d="M22.6 21.081h-3.66a.5.5 0 1 1 0-1h3.66a.5.5 0 1 1 0 1z" />
-                                  </g>
-                                </svg>Dhrub</th>
-                              </tr>
-                            </thead>
-                            <tbody className="ht-40 fs-14 fBold mr-5 mt-10 curP label-color">
-                              {/* {(vehicleSchedulerDetails || []).map((details, index) => {
-                                    return ( */}
-                              {/* FIRST TABLE */}
-
-                              <tr>
-                                <td style={{ borderRight: "0px solid", paddingTop: "10px" }} className="tLeft p-5 pl-10 ">
-                                  <div>
-                                    Transporter 1
-                                  </div>
-                                </td>
-                              </tr>
-
-                            </tbody>
-                          </table>
-
-                          <table style={{ boxShadow: 'rgba(136, 165, 300, 0.6) 0px 0px 5px 0px, rgba(255, 255, 255, 0.7) 0px 0px 5px 0px', width: "100%", borderSpacing: '0px', marginTop: "30px" }}>
-                            <thead className="ht-40 fs-14 fBold mr-5 mt-10 curP table-bg-dark-red white-color">
-                              <tr className="br-10">
-                                <th className='col-3 pl-10 pr-10 tLeft'><svg xmlns="http://www.w3.org/2000/svg" width="50" height="30" viewBox="0 0 42 44">
-                                  <g fill="#FFF" fill-rule="evenodd" stroke-width=".5">
-                                    <path d="M1.1 43.731a.41.41 0 0 1-.21 0 .49.49 0 0 1-.24-.66l9.26-19.54a.49.49 0 0 1 .66-.24.5.5 0 0 1 .24.67L1.6 43.491a.48.48 0 0 1-.5.24zM40.42 43.731a.48.48 0 0 1-.45-.28l-9.26-19.49a.5.5 0 0 1 .24-.67.49.49 0 0 1 .66.24l9.26 19.53a.49.49 0 0 1-.27.67.41.41 0 0 1-.18 0z" />
-                                    <path d="M32.68 27.441H8.84a.5.5 0 1 1 0-1h23.84a.5.5 0 1 1 0 1zM35.37 33.671H5.85a.51.51 0 0 1-.5-.5.5.5 0 0 1 .5-.5h29.52a.5.5 0 1 1 0 1zM38.6 39.891H2.94a.5.5 0 0 1-.5-.5.51.51 0 0 1 .5-.5H38.6a.5.5 0 1 1 0 1z" />
-                                    <path fill-rule="nonzero" d="M31.33 24.241H10.44a2.61 2.61 0 0 1-2.61-2.61V3.341a2.61 2.61 0 0 1 2.61-2.61h20.89a2.61 2.61 0 0 1 2.61 2.61v18.29a2.61 2.61 0 0 1-2.61 2.61zM10.44 1.731c-.89 0-1.61.721-1.61 1.61v18.29c0 .89.72 1.61 1.61 1.61h20.89a1.61 1.61 0 0 0 1.61-1.61V3.341a1.61 1.61 0 0 0-1.61-1.61H10.44z" />
-                                    <path d="M33.44 16.381H8.33a.5.5 0 1 1 0-1h25.11a.5.5 0 1 1 0 1z" />
-                                    <path d="M20.65 16.381a.5.5 0 0 1-.5-.5V1.231a.5.5 0 1 1 1 0v14.65a.51.51 0 0 1-.5.5z" />
-                                    <path fill-rule="nonzero" d="M29.66 21.341a2 2 0 1 1 0-4 2 2 0 0 1 0 4zm0-3.09a1.045 1.045 0 1 0 0 2.09 1.045 1.045 0 0 0 0-2.09zM11.73 21.341a2 2 0 1 1 0-4 2 2 0 0 1 0 4zm0-3.09a1 1 0 1 0 .002 2 1 1 0 0 0-.003-2z" />
-                                    <path d="M22.6 21.081h-3.66a.5.5 0 1 1 0-1h3.66a.5.5 0 1 1 0 1z" />
-                                  </g>
-                                </svg>Dhrub</th>
-                              </tr>
-                            </thead>
-                            <tbody className="ht-40 fs-14 fBold mr-5 mt-10 curP label-color">
-                              {/* {(vehicleSchedulerDetails || []).map((details, index) => {
-                                    return ( */}
-                              {/* FIRST TABLE */}
-
-                              <tr>
-                                <td style={{ borderRight: "0px solid", paddingTop: "10px" }} className="tLeft p-5 pl-10 ">
-                                  <div>
-                                    Transporter 1
-                                  </div>
-                                </td>
-                              </tr>
-
-
-                            </tbody>
-                          </table>
-
-                        </div>
-
-                        <div style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", width: "50%", gap: "20px" }}>
-
-
-
-                          <table style={{ boxShadow: 'rgba(136, 165, 300, 0.6) 0px 0px 5px 0px, rgba(255, 255, 255, 0.7) 0px 0px 5px 0px', width: "100%", borderSpacing: '0px', marginTop: "30px" }}>
-                            <thead className="ht-40 fs-14 fBold mr-5 mt-10 curP table-bg-blue white-color">
-                              <tr className="br-10">
-                                <th className='col-3 pl-10 pr-10 tLeft' style={{ display: "flex", paddingTop: "10px", gap: "10px" }}>
-                                  <svg xmlns="http://www.w3.org/2000/svg" width="15" height="18" viewBox="0 0 15 21">
-                                    <g fill="none" fill-rule="nonzero">
-                                      <path fill="#9FA8DA" d="M7.5 0C3.364 0 0 3.412 0 7.605 0 12.81 6.712 20.45 6.998 20.773a.67.67 0 0 0 1.004 0C8.288 20.45 15 12.81 15 7.605 15 3.412 11.635 0 7.5 0zm0 19.266c-2.259-2.72-6.15-8.089-6.15-11.66 0-3.44 2.76-6.236 6.15-6.236 3.39 0 6.15 2.797 6.15 6.235 0 3.572-3.89 8.94-6.15 11.661z" />
-                                      <path fill="#FFF" d="M7.5 19.266c-2.259-2.72-6.15-8.089-6.15-11.66 0-3.44 2.76-6.236 6.15-6.236 3.39 0 6.15 2.797 6.15 6.235 0 3.572-3.89 8.94-6.15 11.661z" />
-                                      <path fill="#9FA8DA" d="M7.5 3.23c-2.394 0-4.342 1.994-4.342 4.443 0 2.45 1.948 4.442 4.342 4.442 2.394 0 4.342-1.992 4.342-4.442S9.894 3.231 7.5 3.231zm0 7.108c-1.524 0-2.763-1.195-2.763-2.665S5.977 5.008 7.5 5.008c1.524 0 2.763 1.195 2.763 2.665s-1.24 2.665-2.763 2.665z" />
-                                    </g>
-                                  </svg>Dhrub</th>
-                              </tr>
-                            </thead>
-                            <tbody className="ht-40 fs-14 fBold mr-5 mt-10 curP label-color">
-                              {/* {(vehicleSchedulerDetails || []).map((details, index) => {
-                                    return ( */}
-                              {/* FIRST TABLE */}
-
-                              <tr>
-                                <td style={{ borderRight: "0px solid", paddingTop: "10px" }} className="tLeft p-5 pl-10">
-                                  <div>
-                                    Transporter 1
-                                  </div>
-                                  <span style={{ paddingTop: "10px", display: "flex", gap: "20px", alignItems: "center" }}>
-                                    <storng>Rate:</storng> $ 4500 Per MT
-                                    <span style={{ background: "green", color: "white", padding: "5px", borderRadius: "99px" }}>L1</span>
-                                  </span>
-
-                                  <div style={{ display: "flex", paddingTop: "10px", gap: "20px" }}>
-                                    <div style={{ fontSize: "12px", fontWeight: "800" }}>
-                                      SAP Contract No:
-                                      <div style={{ fontWeight: "normal", paddingTop: "8px", paddingBottom: "10px" }}>454567</div>
-                                    </div>
-                                    <div style={{ fontSize: "12px", fontWeight: "800" }}> Contract Tenure:
-                                      <div style={{ fontWeight: "normal", paddingTop: "8px" }}>26 Mar 2022 To 26 Sep 2022</div>
-                                    </div>
-                                  </div>
-                                </td>
-                              </tr>
-
-                              <hr />
-
-                              {/* SECOND TABLE */}
-
-                              <tr>
-                                <td style={{ borderRight: "0px solid", paddingTop: "10px" }} className="tLeft p-5 pl-10">
-                                  <div>
-                                    Transporter 1
-                                  </div>
-                                  <span style={{ paddingTop: "10px", display: "flex", gap: "20px", alignItems: "center" }}>
-                                    <storng>Rate:</storng> $ 4500 Per MT
-                                    <span style={{ background: "green", color: "white", padding: "5px", borderRadius: "99px" }}>L1</span>
-                                  </span>
-
-                                  <div style={{ display: "flex", paddingTop: "10px", gap: "20px" }}>
-                                    <div style={{ fontSize: "12px", fontWeight: "800" }}>
-                                      SAP Contract No:
-                                      <div style={{ fontWeight: "normal", paddingTop: "8px", paddingBottom: "10px" }}>454567</div>
-                                    </div>
-                                    <div style={{ fontSize: "12px", fontWeight: "800" }}> Contract Tenure:
-                                      <div style={{ fontWeight: "normal", paddingTop: "8px" }}>26 Mar 2022 To 26 Sep 2022</div>
-                                    </div>
-                                  </div>
-                                </td>
-                              </tr>
-
-                              <hr />
-
-                              {/* THIRD TABLE */}
-
-                              <tr>
-                                <td style={{ borderRight: "0px solid", paddingTop: "10px" }} className="tLeft p-5 pl-10">
-                                  <div>
-                                    Transporter 1
-                                  </div>
-                                  <span style={{ paddingTop: "10px", display: "flex", gap: "20px", alignItems: "center" }}>
-                                    <storng>Rate:</storng> $ 4500 Per MT
-                                    <span style={{ background: "green", color: "white", padding: "5px", borderRadius: "99px" }}>L1</span>
-                                  </span>
-
-                                  <div style={{ display: "flex", paddingTop: "10px", gap: "20px" }}>
-                                    <div style={{ fontSize: "12px", fontWeight: "800" }}>
-                                      SAP Contract No:
-                                      <div style={{ fontWeight: "normal", paddingTop: "8px", paddingBottom: "10px" }}>454567</div>
-                                    </div>
-                                    <div style={{ fontSize: "12px", fontWeight: "800" }}> Contract Tenure:
-                                      <div style={{ fontWeight: "normal", paddingTop: "8px" }}>26 Mar 2022 To 26 Sep 2022</div>
-                                    </div>
-                                  </div>
-                                </td>
-                              </tr>
-
-
-                            </tbody>
-                          </table>
-
-                          <table style={{ boxShadow: 'rgba(136, 165, 300, 0.6) 0px 0px 5px 0px, rgba(255, 255, 255, 0.7) 0px 0px 5px 0px', width: "100%", borderSpacing: '0px', marginTop: "30px" }}>
-                            <thead className="ht-40 fs-14 fBold mr-5 mt-10 curP table-bg-blue white-color">
-                              <tr className="br-10">
-                                <th className='col-3 pl-10 pr-10 tLeft' style={{ display: "flex", paddingTop: "10px", gap: "10px" }}>
-                                  <svg xmlns="http://www.w3.org/2000/svg" width="15" height="18" viewBox="0 0 15 21">
-                                    <g fill="none" fill-rule="nonzero">
-                                      <path fill="#9FA8DA" d="M7.5 0C3.364 0 0 3.412 0 7.605 0 12.81 6.712 20.45 6.998 20.773a.67.67 0 0 0 1.004 0C8.288 20.45 15 12.81 15 7.605 15 3.412 11.635 0 7.5 0zm0 19.266c-2.259-2.72-6.15-8.089-6.15-11.66 0-3.44 2.76-6.236 6.15-6.236 3.39 0 6.15 2.797 6.15 6.235 0 3.572-3.89 8.94-6.15 11.661z" />
-                                      <path fill="#FFF" d="M7.5 19.266c-2.259-2.72-6.15-8.089-6.15-11.66 0-3.44 2.76-6.236 6.15-6.236 3.39 0 6.15 2.797 6.15 6.235 0 3.572-3.89 8.94-6.15 11.661z" />
-                                      <path fill="#9FA8DA" d="M7.5 3.23c-2.394 0-4.342 1.994-4.342 4.443 0 2.45 1.948 4.442 4.342 4.442 2.394 0 4.342-1.992 4.342-4.442S9.894 3.231 7.5 3.231zm0 7.108c-1.524 0-2.763-1.195-2.763-2.665S5.977 5.008 7.5 5.008c1.524 0 2.763 1.195 2.763 2.665s-1.24 2.665-2.763 2.665z" />
-                                    </g>
-                                  </svg>Dhrub</th>
-                              </tr>
-                            </thead>
-                            <tbody className="ht-40 fs-14 fBold mr-5 mt-10 curP label-color">
-                              {/* {(vehicleSchedulerDetails || []).map((details, index) => {
-                                    return ( */}
-                              {/* FIRST TABLE */}
-
-                              <tr>
-                                <td style={{ borderRight: "0px solid", paddingTop: "10px" }} className="tLeft p-5 pl-10">
-                                  <div>
-                                    Transporter 1
-                                  </div>
-                                  <span style={{ paddingTop: "10px", display: "flex", gap: "20px", alignItems: "center" }}>
-                                    <storng>Rate:</storng> $ 4500 Per MT
-                                    <span style={{ background: "green", color: "white", padding: "5px", borderRadius: "99px" }}>L1</span>
-                                  </span>
-
-                                  <div style={{ display: "flex", paddingTop: "10px", gap: "20px" }}>
-                                    <div style={{ fontSize: "12px", fontWeight: "800" }}>
-                                      SAP Contract No:
-                                      <div style={{ fontWeight: "normal", paddingTop: "8px", paddingBottom: "10px" }}>454567</div>
-                                    </div>
-                                    <div style={{ fontSize: "12px", fontWeight: "800" }}> Contract Tenure:
-                                      <div style={{ fontWeight: "normal", paddingTop: "8px" }}>26 Mar 2022 To 26 Sep 2022</div>
-                                    </div>
-                                  </div>
-                                </td>
-                              </tr>
-
-                              <hr />
-
-                              {/* SECOND TABLE */}
-
-                              <tr>
-                                <td style={{ borderRight: "0px solid", paddingTop: "10px" }} className="tLeft p-5 pl-10">
-                                  <div>
-                                    Transporter 1
-                                  </div>
-                                  <span style={{ paddingTop: "10px", display: "flex", gap: "20px", alignItems: "center" }}>
-                                    <storng>Rate:</storng> $ 4500 Per MT
-                                    <span style={{ background: "green", color: "white", padding: "5px", borderRadius: "99px" }}>L1</span>
-                                  </span>
-
-                                  <div style={{ display: "flex", paddingTop: "10px", gap: "20px" }}>
-                                    <div style={{ fontSize: "12px", fontWeight: "800" }}>
-                                      SAP Contract No:
-                                      <div style={{ fontWeight: "normal", paddingTop: "8px", paddingBottom: "10px" }}>454567</div>
-                                    </div>
-                                    <div style={{ fontSize: "12px", fontWeight: "800" }}> Contract Tenure:
-                                      <div style={{ fontWeight: "normal", paddingTop: "8px" }}>26 Mar 2022 To 26 Sep 2022</div>
-                                    </div>
-                                  </div>
-                                </td>
-                              </tr>
-
-                              <hr />
-
-                              {/* THIRD TABLE */}
-
-                              <tr>
-                                <td style={{ borderRight: "0px solid", paddingTop: "10px" }} className="tLeft p-5 pl-10">
-                                  <div>
-                                    Transporter 1
-                                  </div>
-                                  <span style={{ paddingTop: "10px", display: "flex", gap: "20px", alignItems: "center" }}>
-                                    <storng>Rate:</storng> $ 4500 Per MT
-                                    <span style={{ background: "green", color: "white", padding: "5px", borderRadius: "99px" }}>L1</span>
-                                  </span>
-
-                                  <div style={{ display: "flex", paddingTop: "10px", gap: "20px" }}>
-                                    <div style={{ fontSize: "12px", fontWeight: "800" }}>
-                                      SAP Contract No:
-                                      <div style={{ fontWeight: "normal", paddingTop: "8px", paddingBottom: "10px" }}>454567</div>
-                                    </div>
-                                    <div style={{ fontSize: "12px", fontWeight: "800" }}> Contract Tenure:
-                                      <div style={{ fontWeight: "normal", paddingTop: "8px" }}>26 Mar 2022 To 26 Sep 2022</div>
-                                    </div>
-                                  </div>
-                                </td>
-                              </tr>
-
-
-                            </tbody>
-                          </table>
-
-                        </div>
-
-                      </div>}
-
-
-                    </div>
-                  </div>
-
-                  <div style={{ paddingTop: "20px" }}>
-                    <div style={{ boxShadow: "0 0 27px 4px rgb(69 68 68 / 60%)", padding: "20px" }}>
-                      <div onClick={alterHandleChange} style={{ cursor: "pointer" }}>
-                        <div style={{ display: "flex", justifyContent: "space-between" }}>
-                          Contract No : 23456666
-                          <span>{!this.state.alterShow ? <IoIosArrowDropdown size="1.5em" color="#528aea" style={{ cursor: "pointer" }} /> : <IoIosArrowDropup size="1.5em" color="#528aea" style={{ cursor: "pointer" }} />}</span>
-                        </div>
-                        <hr />
-                      </div>
-
-                      <div style={{ padding: "10px 0px", width: "50%" }}>
-                        <div style={{ display: "grid", gridTemplateColumns: "repeat(5, 1fr)" }}>
-
-                          <div>Route Code:</div>
-                          <div>From:</div>
-                          <div>To:</div>
-                          <div>Origin Yard:</div>
-                          <div>Destination Yard:</div>
-
-                          <span className="span">454567</span>
-                          <span className="span">Mundra</span>
-                          <span className="span">Lucknow</span>
-                          <span className="span">Dhrub</span>
-                          <span className="span">Surat</span>
-                        </div>
-                      </div>
-
-                      <div style={{ padding: "10px 0px", width: "100%" }}>
-                        <div style={{ display: "grid", gridTemplateColumns: "repeat(6, 1fr)" }}>
-
-                          <div>Rake:</div>
-                          <div>Commodity Category:</div>
-                          <div>Commodity Name:</div>
-                          <div>Type of Wagon:</div>
-                          <div>No of Wagon:</div>
-                          <div>Wagon Wt:</div>
-
-                          <span className="span">Full Rake</span>
-                          <span className="span">Hydrogeneted and other Edible Oil</span>
-                          <span className="span">All Refined and Non Refined Edible Oils</span>
-                          <span className="span">BCN</span>
-                          <span className="span">42</span>
-                          <span className="span">55 MT</span>
-                        </div>
-                      </div>
-
-                      <div style={{ padding: "20px 0" }}>
-
-
-                        <div style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gap: "20px", width: "50%" }}>
-
-                          <div style={{ display: "block", padding: "10px 10px", background: "blue", color: "white" }}>
-                            <p>Total Cost : $ 35,05,000</p>
-                            <p> Cost / PTPK : $ 1430 PTPK<span style={{ background: "green", color: "white", padding: "15px", borderRadius: "99px", marginLeft: "100px" }}>L1</span></p>
-                            <p>Cost / MT : $ 4500 per MT</p>
-                          </div>
-
-                          <div style={{ display: "block", padding: "10px 10px", background: "blue", color: "white" }}>
-                            <p>Total Cost : $ 35,05,000</p>
-                            <p> Cost / PTPK : $ 1430 PTPK<span style={{ background: "orange", color: "white", padding: "15px", borderRadius: "99px", marginLeft: "100px" }}>L2</span></p>
-                            <p>Cost / MT : $ 4500 per MT</p>
-                          </div>
-
-                        </div>
-
-
-                        {/* HIDE AND SHOW PART DROPDOWN */}
-
-
-                        {this.state.alterShow && <div>
+                      {this.state.show &&
+                        <div>
                           <div style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", width: "50%", gap: "20px" }}>
-
-
 
                             <table style={{ boxShadow: 'rgba(136, 165, 300, 0.6) 0px 0px 5px 0px, rgba(255, 255, 255, 0.7) 0px 0px 5px 0px', width: "100%", borderSpacing: '0px', marginTop: "30px" }}>
                               <thead className="ht-40 fs-14 fBold mr-5 mt-10 curP table-bg-blue white-color">
                                 <tr className="br-10">
-                                  <th className='col-3 pl-10 pr-10 tLeft' style={{ display: "flex", paddingTop: "10px", gap: "10px" }}>
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="15" height="18" viewBox="0 0 15 21">
-                                      <g fill="none" fill-rule="nonzero">
-                                        <path fill="#9FA8DA" d="M7.5 0C3.364 0 0 3.412 0 7.605 0 12.81 6.712 20.45 6.998 20.773a.67.67 0 0 0 1.004 0C8.288 20.45 15 12.81 15 7.605 15 3.412 11.635 0 7.5 0zm0 19.266c-2.259-2.72-6.15-8.089-6.15-11.66 0-3.44 2.76-6.236 6.15-6.236 3.39 0 6.15 2.797 6.15 6.235 0 3.572-3.89 8.94-6.15 11.661z" />
-                                        <path fill="#FFF" d="M7.5 19.266c-2.259-2.72-6.15-8.089-6.15-11.66 0-3.44 2.76-6.236 6.15-6.236 3.39 0 6.15 2.797 6.15 6.235 0 3.572-3.89 8.94-6.15 11.661z" />
-                                        <path fill="#9FA8DA" d="M7.5 3.23c-2.394 0-4.342 1.994-4.342 4.443 0 2.45 1.948 4.442 4.342 4.442 2.394 0 4.342-1.992 4.342-4.442S9.894 3.231 7.5 3.231zm0 7.108c-1.524 0-2.763-1.195-2.763-2.665S5.977 5.008 7.5 5.008c1.524 0 2.763 1.195 2.763 2.665s-1.24 2.665-2.763 2.665z" />
-                                      </g>
-                                    </svg>Surat</th>
+                                  <th className=''>
+                                    <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
+                                      <div style={{ paddingLeft: "5px" }}>
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="15" height="18" viewBox="0 0 15 21">
+                                          <g fill="none" fill-rule="nonzero">
+                                            <path fill="#9FA8DA" d="M7.5 0C3.364 0 0 3.412 0 7.605 0 12.81 6.712 20.45 6.998 20.773a.67.67 0 0 0 1.004 0C8.288 20.45 15 12.81 15 7.605 15 3.412 11.635 0 7.5 0zm0 19.266c-2.259-2.72-6.15-8.089-6.15-11.66 0-3.44 2.76-6.236 6.15-6.236 3.39 0 6.15 2.797 6.15 6.235 0 3.572-3.89 8.94-6.15 11.661z" />
+                                            <path fill="#FFF" d="M7.5 19.266c-2.259-2.72-6.15-8.089-6.15-11.66 0-3.44 2.76-6.236 6.15-6.236 3.39 0 6.15 2.797 6.15 6.235 0 3.572-3.89 8.94-6.15 11.661z" />
+                                            <path fill="#9FA8DA" d="M7.5 3.23c-2.394 0-4.342 1.994-4.342 4.443 0 2.45 1.948 4.442 4.342 4.442 2.394 0 4.342-1.992 4.342-4.442S9.894 3.231 7.5 3.231zm0 7.108c-1.524 0-2.763-1.195-2.763-2.665S5.977 5.008 7.5 5.008c1.524 0 2.763 1.195 2.763 2.665s-1.24 2.665-2.763 2.665z" />
+                                          </g>
+                                        </svg>
+                                      </div>
+                                      <span>Surat</span>
+                                    </div>
+                                  </th>
+                                  <th>$ 8200</th>
                                 </tr>
                               </thead>
                               <tbody className="ht-40 fs-14 fBold mr-5 mt-10 curP label-color">
@@ -1742,14 +1137,21 @@ class CreateNewContracts extends Component {
                             <table style={{ boxShadow: 'rgba(136, 165, 300, 0.6) 0px 0px 5px 0px, rgba(255, 255, 255, 0.7) 0px 0px 5px 0px', width: "100%", borderSpacing: '0px', marginTop: "30px" }}>
                               <thead className="ht-40 fs-14 fBold mr-5 mt-10 curP table-bg-blue white-color">
                                 <tr className="br-10">
-                                  <th className='col-3 pl-10 pr-10 tLeft' style={{ display: "flex", paddingTop: "10px", gap: "10px" }}>
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="15" height="18" viewBox="0 0 15 21">
-                                      <g fill="none" fill-rule="nonzero">
-                                        <path fill="#9FA8DA" d="M7.5 0C3.364 0 0 3.412 0 7.605 0 12.81 6.712 20.45 6.998 20.773a.67.67 0 0 0 1.004 0C8.288 20.45 15 12.81 15 7.605 15 3.412 11.635 0 7.5 0zm0 19.266c-2.259-2.72-6.15-8.089-6.15-11.66 0-3.44 2.76-6.236 6.15-6.236 3.39 0 6.15 2.797 6.15 6.235 0 3.572-3.89 8.94-6.15 11.661z" />
-                                        <path fill="#FFF" d="M7.5 19.266c-2.259-2.72-6.15-8.089-6.15-11.66 0-3.44 2.76-6.236 6.15-6.236 3.39 0 6.15 2.797 6.15 6.235 0 3.572-3.89 8.94-6.15 11.661z" />
-                                        <path fill="#9FA8DA" d="M7.5 3.23c-2.394 0-4.342 1.994-4.342 4.443 0 2.45 1.948 4.442 4.342 4.442 2.394 0 4.342-1.992 4.342-4.442S9.894 3.231 7.5 3.231zm0 7.108c-1.524 0-2.763-1.195-2.763-2.665S5.977 5.008 7.5 5.008c1.524 0 2.763 1.195 2.763 2.665s-1.24 2.665-2.763 2.665z" />
-                                      </g>
-                                    </svg>Surat</th>
+                                  <th className=''>
+                                    <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
+                                      <div style={{ paddingLeft: "5px" }}>
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="15" height="18" viewBox="0 0 15 21">
+                                          <g fill="none" fill-rule="nonzero">
+                                            <path fill="#9FA8DA" d="M7.5 0C3.364 0 0 3.412 0 7.605 0 12.81 6.712 20.45 6.998 20.773a.67.67 0 0 0 1.004 0C8.288 20.45 15 12.81 15 7.605 15 3.412 11.635 0 7.5 0zm0 19.266c-2.259-2.72-6.15-8.089-6.15-11.66 0-3.44 2.76-6.236 6.15-6.236 3.39 0 6.15 2.797 6.15 6.235 0 3.572-3.89 8.94-6.15 11.661z" />
+                                            <path fill="#FFF" d="M7.5 19.266c-2.259-2.72-6.15-8.089-6.15-11.66 0-3.44 2.76-6.236 6.15-6.236 3.39 0 6.15 2.797 6.15 6.235 0 3.572-3.89 8.94-6.15 11.661z" />
+                                            <path fill="#9FA8DA" d="M7.5 3.23c-2.394 0-4.342 1.994-4.342 4.443 0 2.45 1.948 4.442 4.342 4.442 2.394 0 4.342-1.992 4.342-4.442S9.894 3.231 7.5 3.231zm0 7.108c-1.524 0-2.763-1.195-2.763-2.665S5.977 5.008 7.5 5.008c1.524 0 2.763 1.195 2.763 2.665s-1.24 2.665-2.763 2.665z" />
+                                          </g>
+                                        </svg>
+                                      </div>
+                                      <span>Surat</span>
+                                    </div>
+                                  </th>
+                                  <th>$ 7600</th>
                                 </tr>
                               </thead>
                               <tbody className="ht-40 fs-14 fBold mr-5 mt-10 curP label-color">
@@ -1864,22 +1266,29 @@ class CreateNewContracts extends Component {
 
                           <div style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", width: "50%", gap: "20px" }}>
 
-
-
                             <table style={{ boxShadow: 'rgba(136, 165, 300, 0.6) 0px 0px 5px 0px, rgba(255, 255, 255, 0.7) 0px 0px 5px 0px', width: "100%", borderSpacing: '0px', marginTop: "30px" }}>
                               <thead className="ht-40 fs-14 fBold mr-5 mt-10 curP table-bg-dark-red white-color">
                                 <tr className="br-10">
-                                  <th className='col-3 pl-10 pr-10 tLeft'><svg xmlns="http://www.w3.org/2000/svg" width="50" height="30" viewBox="0 0 42 44">
-                                    <g fill="#FFF" fill-rule="evenodd" stroke-width=".5">
-                                      <path d="M1.1 43.731a.41.41 0 0 1-.21 0 .49.49 0 0 1-.24-.66l9.26-19.54a.49.49 0 0 1 .66-.24.5.5 0 0 1 .24.67L1.6 43.491a.48.48 0 0 1-.5.24zM40.42 43.731a.48.48 0 0 1-.45-.28l-9.26-19.49a.5.5 0 0 1 .24-.67.49.49 0 0 1 .66.24l9.26 19.53a.49.49 0 0 1-.27.67.41.41 0 0 1-.18 0z" />
-                                      <path d="M32.68 27.441H8.84a.5.5 0 1 1 0-1h23.84a.5.5 0 1 1 0 1zM35.37 33.671H5.85a.51.51 0 0 1-.5-.5.5.5 0 0 1 .5-.5h29.52a.5.5 0 1 1 0 1zM38.6 39.891H2.94a.5.5 0 0 1-.5-.5.51.51 0 0 1 .5-.5H38.6a.5.5 0 1 1 0 1z" />
-                                      <path fill-rule="nonzero" d="M31.33 24.241H10.44a2.61 2.61 0 0 1-2.61-2.61V3.341a2.61 2.61 0 0 1 2.61-2.61h20.89a2.61 2.61 0 0 1 2.61 2.61v18.29a2.61 2.61 0 0 1-2.61 2.61zM10.44 1.731c-.89 0-1.61.721-1.61 1.61v18.29c0 .89.72 1.61 1.61 1.61h20.89a1.61 1.61 0 0 0 1.61-1.61V3.341a1.61 1.61 0 0 0-1.61-1.61H10.44z" />
-                                      <path d="M33.44 16.381H8.33a.5.5 0 1 1 0-1h25.11a.5.5 0 1 1 0 1z" />
-                                      <path d="M20.65 16.381a.5.5 0 0 1-.5-.5V1.231a.5.5 0 1 1 1 0v14.65a.51.51 0 0 1-.5.5z" />
-                                      <path fill-rule="nonzero" d="M29.66 21.341a2 2 0 1 1 0-4 2 2 0 0 1 0 4zm0-3.09a1.045 1.045 0 1 0 0 2.09 1.045 1.045 0 0 0 0-2.09zM11.73 21.341a2 2 0 1 1 0-4 2 2 0 0 1 0 4zm0-3.09a1 1 0 1 0 .002 2 1 1 0 0 0-.003-2z" />
-                                      <path d="M22.6 21.081h-3.66a.5.5 0 1 1 0-1h3.66a.5.5 0 1 1 0 1z" />
-                                    </g>
-                                  </svg>Dhrub</th>
+                                  <th className=''>
+                                    <div style={{ display: "flex", alignItems: "center", gap: "0px" }}>
+                                      <div style={{ paddingLeft: "0px" }}>
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="50" height="30" viewBox="0 0 42 44">
+                                          <g fill="#FFF" fill-rule="evenodd" stroke-width=".5">
+                                            <path d="M1.1 43.731a.41.41 0 0 1-.21 0 .49.49 0 0 1-.24-.66l9.26-19.54a.49.49 0 0 1 .66-.24.5.5 0 0 1 .24.67L1.6 43.491a.48.48 0 0 1-.5.24zM40.42 43.731a.48.48 0 0 1-.45-.28l-9.26-19.49a.5.5 0 0 1 .24-.67.49.49 0 0 1 .66.24l9.26 19.53a.49.49 0 0 1-.27.67.41.41 0 0 1-.18 0z" />
+                                            <path d="M32.68 27.441H8.84a.5.5 0 1 1 0-1h23.84a.5.5 0 1 1 0 1zM35.37 33.671H5.85a.51.51 0 0 1-.5-.5.5.5 0 0 1 .5-.5h29.52a.5.5 0 1 1 0 1zM38.6 39.891H2.94a.5.5 0 0 1-.5-.5.51.51 0 0 1 .5-.5H38.6a.5.5 0 1 1 0 1z" />
+                                            <path fill-rule="nonzero" d="M31.33 24.241H10.44a2.61 2.61 0 0 1-2.61-2.61V3.341a2.61 2.61 0 0 1 2.61-2.61h20.89a2.61 2.61 0 0 1 2.61 2.61v18.29a2.61 2.61 0 0 1-2.61 2.61zM10.44 1.731c-.89 0-1.61.721-1.61 1.61v18.29c0 .89.72 1.61 1.61 1.61h20.89a1.61 1.61 0 0 0 1.61-1.61V3.341a1.61 1.61 0 0 0-1.61-1.61H10.44z" />
+                                            <path d="M33.44 16.381H8.33a.5.5 0 1 1 0-1h25.11a.5.5 0 1 1 0 1z" />
+                                            <path d="M20.65 16.381a.5.5 0 0 1-.5-.5V1.231a.5.5 0 1 1 1 0v14.65a.51.51 0 0 1-.5.5z" />
+                                            <path fill-rule="nonzero" d="M29.66 21.341a2 2 0 1 1 0-4 2 2 0 0 1 0 4zm0-3.09a1.045 1.045 0 1 0 0 2.09 1.045 1.045 0 0 0 0-2.09zM11.73 21.341a2 2 0 1 1 0-4 2 2 0 0 1 0 4zm0-3.09a1 1 0 1 0 .002 2 1 1 0 0 0-.003-2z" />
+                                            <path d="M22.6 21.081h-3.66a.5.5 0 1 1 0-1h3.66a.5.5 0 1 1 0 1z" />
+                                          </g>
+                                        </svg>
+                                      </div>
+                                      <span>Rail Fright</span>
+                                    </div>
+                                  </th>
+                                  <th>$ 24,00,000</th>
+
                                 </tr>
                               </thead>
                               <tbody className="ht-40 fs-14 fBold mr-5 mt-10 curP label-color">
@@ -1890,7 +1299,7 @@ class CreateNewContracts extends Component {
                                 <tr>
                                   <td style={{ borderRight: "0px solid", paddingTop: "10px" }} className="tLeft p-5 pl-10 ">
                                     <div>
-                                      Transporter 1
+                                      Cost / MT : $2500 per MT
                                     </div>
                                   </td>
                                 </tr>
@@ -1901,17 +1310,25 @@ class CreateNewContracts extends Component {
                             <table style={{ boxShadow: 'rgba(136, 165, 300, 0.6) 0px 0px 5px 0px, rgba(255, 255, 255, 0.7) 0px 0px 5px 0px', width: "100%", borderSpacing: '0px', marginTop: "30px" }}>
                               <thead className="ht-40 fs-14 fBold mr-5 mt-10 curP table-bg-dark-red white-color">
                                 <tr className="br-10">
-                                  <th className='col-3 pl-10 pr-10 tLeft'><svg xmlns="http://www.w3.org/2000/svg" width="50" height="30" viewBox="0 0 42 44">
-                                    <g fill="#FFF" fill-rule="evenodd" stroke-width=".5">
-                                      <path d="M1.1 43.731a.41.41 0 0 1-.21 0 .49.49 0 0 1-.24-.66l9.26-19.54a.49.49 0 0 1 .66-.24.5.5 0 0 1 .24.67L1.6 43.491a.48.48 0 0 1-.5.24zM40.42 43.731a.48.48 0 0 1-.45-.28l-9.26-19.49a.5.5 0 0 1 .24-.67.49.49 0 0 1 .66.24l9.26 19.53a.49.49 0 0 1-.27.67.41.41 0 0 1-.18 0z" />
-                                      <path d="M32.68 27.441H8.84a.5.5 0 1 1 0-1h23.84a.5.5 0 1 1 0 1zM35.37 33.671H5.85a.51.51 0 0 1-.5-.5.5.5 0 0 1 .5-.5h29.52a.5.5 0 1 1 0 1zM38.6 39.891H2.94a.5.5 0 0 1-.5-.5.51.51 0 0 1 .5-.5H38.6a.5.5 0 1 1 0 1z" />
-                                      <path fill-rule="nonzero" d="M31.33 24.241H10.44a2.61 2.61 0 0 1-2.61-2.61V3.341a2.61 2.61 0 0 1 2.61-2.61h20.89a2.61 2.61 0 0 1 2.61 2.61v18.29a2.61 2.61 0 0 1-2.61 2.61zM10.44 1.731c-.89 0-1.61.721-1.61 1.61v18.29c0 .89.72 1.61 1.61 1.61h20.89a1.61 1.61 0 0 0 1.61-1.61V3.341a1.61 1.61 0 0 0-1.61-1.61H10.44z" />
-                                      <path d="M33.44 16.381H8.33a.5.5 0 1 1 0-1h25.11a.5.5 0 1 1 0 1z" />
-                                      <path d="M20.65 16.381a.5.5 0 0 1-.5-.5V1.231a.5.5 0 1 1 1 0v14.65a.51.51 0 0 1-.5.5z" />
-                                      <path fill-rule="nonzero" d="M29.66 21.341a2 2 0 1 1 0-4 2 2 0 0 1 0 4zm0-3.09a1.045 1.045 0 1 0 0 2.09 1.045 1.045 0 0 0 0-2.09zM11.73 21.341a2 2 0 1 1 0-4 2 2 0 0 1 0 4zm0-3.09a1 1 0 1 0 .002 2 1 1 0 0 0-.003-2z" />
-                                      <path d="M22.6 21.081h-3.66a.5.5 0 1 1 0-1h3.66a.5.5 0 1 1 0 1z" />
-                                    </g>
-                                  </svg>Dhrub</th>
+                                  <th className=''>
+                                    <div style={{ display: "flex", alignItems: "center", gap: "0px" }}>
+                                      <div style={{ paddingLeft: "0px" }}>
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="50" height="30" viewBox="0 0 42 44">
+                                          <g fill="#FFF" fill-rule="evenodd" stroke-width=".5">
+                                            <path d="M1.1 43.731a.41.41 0 0 1-.21 0 .49.49 0 0 1-.24-.66l9.26-19.54a.49.49 0 0 1 .66-.24.5.5 0 0 1 .24.67L1.6 43.491a.48.48 0 0 1-.5.24zM40.42 43.731a.48.48 0 0 1-.45-.28l-9.26-19.49a.5.5 0 0 1 .24-.67.49.49 0 0 1 .66.24l9.26 19.53a.49.49 0 0 1-.27.67.41.41 0 0 1-.18 0z" />
+                                            <path d="M32.68 27.441H8.84a.5.5 0 1 1 0-1h23.84a.5.5 0 1 1 0 1zM35.37 33.671H5.85a.51.51 0 0 1-.5-.5.5.5 0 0 1 .5-.5h29.52a.5.5 0 1 1 0 1zM38.6 39.891H2.94a.5.5 0 0 1-.5-.5.51.51 0 0 1 .5-.5H38.6a.5.5 0 1 1 0 1z" />
+                                            <path fill-rule="nonzero" d="M31.33 24.241H10.44a2.61 2.61 0 0 1-2.61-2.61V3.341a2.61 2.61 0 0 1 2.61-2.61h20.89a2.61 2.61 0 0 1 2.61 2.61v18.29a2.61 2.61 0 0 1-2.61 2.61zM10.44 1.731c-.89 0-1.61.721-1.61 1.61v18.29c0 .89.72 1.61 1.61 1.61h20.89a1.61 1.61 0 0 0 1.61-1.61V3.341a1.61 1.61 0 0 0-1.61-1.61H10.44z" />
+                                            <path d="M33.44 16.381H8.33a.5.5 0 1 1 0-1h25.11a.5.5 0 1 1 0 1z" />
+                                            <path d="M20.65 16.381a.5.5 0 0 1-.5-.5V1.231a.5.5 0 1 1 1 0v14.65a.51.51 0 0 1-.5.5z" />
+                                            <path fill-rule="nonzero" d="M29.66 21.341a2 2 0 1 1 0-4 2 2 0 0 1 0 4zm0-3.09a1.045 1.045 0 1 0 0 2.09 1.045 1.045 0 0 0 0-2.09zM11.73 21.341a2 2 0 1 1 0-4 2 2 0 0 1 0 4zm0-3.09a1 1 0 1 0 .002 2 1 1 0 0 0-.003-2z" />
+                                            <path d="M22.6 21.081h-3.66a.5.5 0 1 1 0-1h3.66a.5.5 0 1 1 0 1z" />
+                                          </g>
+                                        </svg>
+                                      </div>
+                                      <span>Rail Fright</span>
+                                    </div>
+                                  </th>
+                                  <th>$ 24,00,000</th>
                                 </tr>
                               </thead>
                               <tbody className="ht-40 fs-14 fBold mr-5 mt-10 curP label-color">
@@ -1922,7 +1339,7 @@ class CreateNewContracts extends Component {
                                 <tr>
                                   <td style={{ borderRight: "0px solid", paddingTop: "10px" }} className="tLeft p-5 pl-10 ">
                                     <div>
-                                      Transporter 1
+                                      Cost / MT : $2500 per MT
                                     </div>
                                   </td>
                                 </tr>
@@ -1935,19 +1352,24 @@ class CreateNewContracts extends Component {
 
                           <div style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", width: "50%", gap: "20px" }}>
 
-
-
                             <table style={{ boxShadow: 'rgba(136, 165, 300, 0.6) 0px 0px 5px 0px, rgba(255, 255, 255, 0.7) 0px 0px 5px 0px', width: "100%", borderSpacing: '0px', marginTop: "30px" }}>
                               <thead className="ht-40 fs-14 fBold mr-5 mt-10 curP table-bg-blue white-color">
                                 <tr className="br-10">
-                                  <th className='col-3 pl-10 pr-10 tLeft' style={{ display: "flex", paddingTop: "10px", gap: "10px" }}>
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="15" height="18" viewBox="0 0 15 21">
-                                      <g fill="none" fill-rule="nonzero">
-                                        <path fill="#9FA8DA" d="M7.5 0C3.364 0 0 3.412 0 7.605 0 12.81 6.712 20.45 6.998 20.773a.67.67 0 0 0 1.004 0C8.288 20.45 15 12.81 15 7.605 15 3.412 11.635 0 7.5 0zm0 19.266c-2.259-2.72-6.15-8.089-6.15-11.66 0-3.44 2.76-6.236 6.15-6.236 3.39 0 6.15 2.797 6.15 6.235 0 3.572-3.89 8.94-6.15 11.661z" />
-                                        <path fill="#FFF" d="M7.5 19.266c-2.259-2.72-6.15-8.089-6.15-11.66 0-3.44 2.76-6.236 6.15-6.236 3.39 0 6.15 2.797 6.15 6.235 0 3.572-3.89 8.94-6.15 11.661z" />
-                                        <path fill="#9FA8DA" d="M7.5 3.23c-2.394 0-4.342 1.994-4.342 4.443 0 2.45 1.948 4.442 4.342 4.442 2.394 0 4.342-1.992 4.342-4.442S9.894 3.231 7.5 3.231zm0 7.108c-1.524 0-2.763-1.195-2.763-2.665S5.977 5.008 7.5 5.008c1.524 0 2.763 1.195 2.763 2.665s-1.24 2.665-2.763 2.665z" />
-                                      </g>
-                                    </svg>Dhrub</th>
+                                  <th className=''>
+                                    <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
+                                      <div style={{ paddingLeft: "5px" }}>
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="15" height="18" viewBox="0 0 15 21">
+                                          <g fill="none" fill-rule="nonzero">
+                                            <path fill="#9FA8DA" d="M7.5 0C3.364 0 0 3.412 0 7.605 0 12.81 6.712 20.45 6.998 20.773a.67.67 0 0 0 1.004 0C8.288 20.45 15 12.81 15 7.605 15 3.412 11.635 0 7.5 0zm0 19.266c-2.259-2.72-6.15-8.089-6.15-11.66 0-3.44 2.76-6.236 6.15-6.236 3.39 0 6.15 2.797 6.15 6.235 0 3.572-3.89 8.94-6.15 11.661z" />
+                                            <path fill="#FFF" d="M7.5 19.266c-2.259-2.72-6.15-8.089-6.15-11.66 0-3.44 2.76-6.236 6.15-6.236 3.39 0 6.15 2.797 6.15 6.235 0 3.572-3.89 8.94-6.15 11.661z" />
+                                            <path fill="#9FA8DA" d="M7.5 3.23c-2.394 0-4.342 1.994-4.342 4.443 0 2.45 1.948 4.442 4.342 4.442 2.394 0 4.342-1.992 4.342-4.442S9.894 3.231 7.5 3.231zm0 7.108c-1.524 0-2.763-1.195-2.763-2.665S5.977 5.008 7.5 5.008c1.524 0 2.763 1.195 2.763 2.665s-1.24 2.665-2.763 2.665z" />
+                                          </g>
+                                        </svg>
+                                      </div>
+                                      <span>Vadodara</span>
+                                    </div>
+                                  </th>
+                                  <th>$ 12,000</th>
                                 </tr>
                               </thead>
                               <tbody className="ht-40 fs-14 fBold mr-5 mt-10 curP label-color">
@@ -2025,6 +1447,533 @@ class CreateNewContracts extends Component {
                                       <div style={{ fontSize: "12px", fontWeight: "800" }}> Contract Tenure:
                                         <div style={{ fontWeight: "normal", paddingTop: "8px" }}>26 Mar 2022 To 26 Sep 2022</div>
                                       </div>
+                                    </div>
+                                  </td>
+                                </tr>
+
+                                <hr />
+
+                              </tbody>
+                            </table>
+
+                            <table style={{ boxShadow: 'rgba(136, 165, 300, 0.6) 0px 0px 5px 0px, rgba(255, 255, 255, 0.7) 0px 0px 5px 0px', width: "100%", borderSpacing: '0px', marginTop: "30px" }}>
+                              <thead className="ht-40 fs-14 fBold mr-5 mt-10 curP table-bg-blue white-color">
+                                <tr className="br-10">
+                                  <th className=''>
+                                    <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
+                                      <div style={{ paddingLeft: "5px" }}>
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="15" height="18" viewBox="0 0 15 21">
+                                          <g fill="none" fill-rule="nonzero">
+                                            <path fill="#9FA8DA" d="M7.5 0C3.364 0 0 3.412 0 7.605 0 12.81 6.712 20.45 6.998 20.773a.67.67 0 0 0 1.004 0C8.288 20.45 15 12.81 15 7.605 15 3.412 11.635 0 7.5 0zm0 19.266c-2.259-2.72-6.15-8.089-6.15-11.66 0-3.44 2.76-6.236 6.15-6.236 3.39 0 6.15 2.797 6.15 6.235 0 3.572-3.89 8.94-6.15 11.661z" />
+                                            <path fill="#FFF" d="M7.5 19.266c-2.259-2.72-6.15-8.089-6.15-11.66 0-3.44 2.76-6.236 6.15-6.236 3.39 0 6.15 2.797 6.15 6.235 0 3.572-3.89 8.94-6.15 11.661z" />
+                                            <path fill="#9FA8DA" d="M7.5 3.23c-2.394 0-4.342 1.994-4.342 4.443 0 2.45 1.948 4.442 4.342 4.442 2.394 0 4.342-1.992 4.342-4.442S9.894 3.231 7.5 3.231zm0 7.108c-1.524 0-2.763-1.195-2.763-2.665S5.977 5.008 7.5 5.008c1.524 0 2.763 1.195 2.763 2.665s-1.24 2.665-2.763 2.665z" />
+                                          </g>
+                                        </svg>
+                                      </div>
+                                      <span>Vadodara</span>
+                                    </div>
+                                  </th>
+                                  <th>$ 9000</th>
+                                </tr>
+                              </thead>
+                              <tbody className="ht-40 fs-14 fBold mr-5 mt-10 curP label-color">
+                                {/* {(vehicleSchedulerDetails || []).map((details, index) => {
+                                    return ( */}
+                                {/* FIRST TABLE */}
+
+                                <tr>
+                                  <td style={{ borderRight: "0px solid", paddingTop: "10px" }} className="tLeft p-5 pl-10">
+                                    <div>
+                                      Transporter 1
+                                    </div>
+                                    <span style={{ paddingTop: "10px", display: "flex", gap: "20px", alignItems: "center" }}>
+                                      <storng>Rate:</storng> $ 4500 Per MT
+                                      <span style={{ background: "orange", color: "white", padding: "5px", borderRadius: "99px" }}>L2</span>
+                                    </span>
+
+                                    <div style={{ display: "flex", paddingTop: "10px", gap: "20px" }}>
+                                      <div style={{ fontSize: "12px", fontWeight: "800" }}>
+                                        SAP Contract No:
+                                        <div style={{ fontWeight: "normal", paddingTop: "8px", paddingBottom: "10px" }}>454567</div>
+                                      </div>
+                                      <div style={{ fontSize: "12px", fontWeight: "800" }}> Contract Tenure:
+                                        <div style={{ fontWeight: "normal", paddingTop: "8px" }}>26 Mar 2022 To 26 Sep 2022</div>
+                                      </div>
+                                    </div>
+                                  </td>
+                                </tr>
+
+                                <hr />
+
+                                {/* SECOND TABLE */}
+
+                                <tr>
+                                  <td style={{ borderRight: "0px solid", paddingTop: "10px" }} className="tLeft p-5 pl-10">
+                                    <div>
+                                      Transporter 1
+                                    </div>
+                                    <span style={{ paddingTop: "10px", display: "flex", gap: "20px", alignItems: "center" }}>
+                                      <storng>Rate:</storng> $ 4500 Per MT
+                                      <span style={{ background: "green", color: "white", padding: "5px", borderRadius: "99px" }}>L1</span>
+                                    </span>
+
+                                    <div style={{ display: "flex", paddingTop: "10px", gap: "20px" }}>
+                                      <div style={{ fontSize: "12px", fontWeight: "800" }}>
+                                        SAP Contract No:
+                                        <div style={{ fontWeight: "normal", paddingTop: "8px", paddingBottom: "10px" }}>454567</div>
+                                      </div>
+                                      <div style={{ fontSize: "12px", fontWeight: "800" }}> Contract Tenure:
+                                        <div style={{ fontWeight: "normal", paddingTop: "8px" }}>26 Mar 2022 To 26 Sep 2022</div>
+                                      </div>
+                                    </div>
+                                  </td>
+                                </tr>
+
+                                <hr />
+
+                                {/* THIRD TABLE */}
+
+                                <tr>
+                                  <td style={{ borderRight: "0px solid", paddingTop: "10px" }} className="tLeft p-5 pl-10">
+                                    <div>
+                                      Transporter 1
+                                    </div>
+                                    <span style={{ paddingTop: "10px", display: "flex", gap: "20px", alignItems: "center" }}>
+                                      <storng>Rate:</storng> $ 4500 Per MT
+                                      <span style={{ background: "green", color: "white", padding: "5px", borderRadius: "99px" }}>L1</span>
+                                    </span>
+
+                                    <div style={{ display: "flex", paddingTop: "10px", gap: "20px" }}>
+                                      <div style={{ fontSize: "12px", fontWeight: "800" }}>
+                                        SAP Contract No:
+                                        <div style={{ fontWeight: "normal", paddingTop: "8px", paddingBottom: "10px" }}>454567</div>
+                                      </div>
+                                      <div style={{ fontSize: "12px", fontWeight: "800" }}> Contract Tenure:
+                                        <div style={{ fontWeight: "normal", paddingTop: "8px" }}>26 Mar 2022 To 26 Sep 2022</div>
+                                      </div>
+                                    </div>
+                                  </td>
+                                </tr>
+
+                                <hr />
+
+                              </tbody>
+                            </table>
+
+                          </div>
+
+                        </div>}
+
+
+                    </div>
+                  </div>
+
+                  <div style={{ paddingTop: "20px" }}>
+                    <div style={{ boxShadow: "0 0 27px 4px rgb(69 68 68 / 60%)", padding: "20px" }}>
+                      <div onClick={alterHandleChange} style={{ cursor: "pointer" }}>
+                        <div style={{ display: "flex", justifyContent: "space-between", fontWeight: "800", fontSize: "20px" }}>
+                          Contract No : 23456666
+                          <span>{!this.state.alterShow ? <IoIosArrowDropdown size="1.5em" color="#528aea" style={{ cursor: "pointer" }} /> : <IoIosArrowDropup size="1.5em" color="#528aea" style={{ cursor: "pointer" }} />}</span>
+                        </div>
+                        <hr />
+                      </div>
+
+                      <div style={{ padding: "10px 0px", width: "50%" }}>
+                        <div style={{ display: "grid", gridTemplateColumns: "repeat(5, 1fr)" }}>
+
+                          <div style={{ fontWeight: "800" }}>Route Code:</div>
+                          <div style={{ fontWeight: "800" }}>From:</div>
+                          <div style={{ fontWeight: "800" }}>To:</div>
+                          <div style={{ fontWeight: "800" }}>Origin Yard:</div>
+                          <div style={{ fontWeight: "800" }}>Destination Yard:</div>
+
+                          <span className="span">454567</span>
+                          <span className="span">Mundra</span>
+                          <span className="span">Lucknow</span>
+                          <span className="span">Dhrub</span>
+                          <span className="span">Surat</span>
+                        </div>
+                      </div>
+
+                      <div style={{ padding: "10px 0px", width: "100%" }}>
+                        <div style={{ display: "grid", gridTemplateColumns: "repeat(6, 1fr)" }}>
+
+                          <div style={{ fontWeight: "800" }}>Rake:</div>
+                          <div style={{ fontWeight: "800" }}>Commodity Category:</div>
+                          <div style={{ fontWeight: "800" }}>Commodity Name:</div>
+                          <div style={{ fontWeight: "800" }}>Type of Wagon:</div>
+                          <div style={{ fontWeight: "800" }}>No of Wagon:</div>
+                          <div style={{ fontWeight: "800" }}>Wagon Wt:</div>
+
+                          <span className="span">Full Rake</span>
+                          <span className="span">Hydrogeneted and other Edible Oil</span>
+                          <span className="span">All Refined and Non Refined Edible Oils</span>
+                          <span className="span">BCN</span>
+                          <span className="span">42</span>
+                          <span className="span">55 MT</span>
+                        </div>
+                      </div>
+
+                      <div style={{ padding: "20px 0" }}>
+
+
+                        <div style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gap: "20px", width: "50%" }}>
+
+                          <div style={{ display: "block", padding: "10px 10px", background: "blue", color: "white", fontWeight: "700" }}>
+                            <p>Total Cost : $ 35,05,000</p>
+                            <p> Cost / PTPK : $ 1430 PTPK<span style={{ background: "green", color: "white", padding: "15px", borderRadius: "99px", marginLeft: "100px" }}>L1</span></p>
+                            <p>Cost / MT : $ 4500 per MT</p>
+                          </div>
+
+                          <div style={{ display: "block", padding: "10px 10px", background: "blue", color: "white", fontWeight: "700" }}>
+                            <p>Total Cost : $ 35,05,000</p>
+                            <p> Cost / PTPK : $ 1430 PTPK<span style={{ background: "orange", color: "white", padding: "15px", borderRadius: "99px", marginLeft: "100px" }}>L2</span></p>
+                            <p>Cost / MT : $ 4500 per MT</p>
+                          </div>
+
+                        </div>
+
+
+                        {/* HIDE AND SHOW PART DROPDOWN */}
+
+
+                        {this.state.alterShow && <div>
+                          <div style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", width: "50%", gap: "20px" }}>
+
+                            <table style={{ boxShadow: 'rgba(136, 165, 300, 0.6) 0px 0px 5px 0px, rgba(255, 255, 255, 0.7) 0px 0px 5px 0px', width: "100%", borderSpacing: '0px', marginTop: "30px" }}>
+                              <thead className="ht-40 fs-14 fBold mr-5 mt-10 curP table-bg-blue white-color">
+                                <tr className="br-10">
+                                  <th className=''>
+                                    <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
+                                      <div style={{ paddingLeft: "5px" }}>
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="15" height="18" viewBox="0 0 15 21">
+                                          <g fill="none" fill-rule="nonzero">
+                                            <path fill="#9FA8DA" d="M7.5 0C3.364 0 0 3.412 0 7.605 0 12.81 6.712 20.45 6.998 20.773a.67.67 0 0 0 1.004 0C8.288 20.45 15 12.81 15 7.605 15 3.412 11.635 0 7.5 0zm0 19.266c-2.259-2.72-6.15-8.089-6.15-11.66 0-3.44 2.76-6.236 6.15-6.236 3.39 0 6.15 2.797 6.15 6.235 0 3.572-3.89 8.94-6.15 11.661z" />
+                                            <path fill="#FFF" d="M7.5 19.266c-2.259-2.72-6.15-8.089-6.15-11.66 0-3.44 2.76-6.236 6.15-6.236 3.39 0 6.15 2.797 6.15 6.235 0 3.572-3.89 8.94-6.15 11.661z" />
+                                            <path fill="#9FA8DA" d="M7.5 3.23c-2.394 0-4.342 1.994-4.342 4.443 0 2.45 1.948 4.442 4.342 4.442 2.394 0 4.342-1.992 4.342-4.442S9.894 3.231 7.5 3.231zm0 7.108c-1.524 0-2.763-1.195-2.763-2.665S5.977 5.008 7.5 5.008c1.524 0 2.763 1.195 2.763 2.665s-1.24 2.665-2.763 2.665z" />
+                                          </g>
+                                        </svg>
+                                      </div>
+                                      <span>Surat</span>
+                                    </div>
+                                  </th>
+                                  <th>$ 8200</th>
+                                </tr>
+                              </thead>
+                              <tbody className="ht-40 fs-14 fBold mr-5 mt-10 curP label-color">
+                                {/* {(vehicleSchedulerDetails || []).map((details, index) => {
+                                    return ( */}
+                                {/* FIRST TABLE */}
+
+                                <tr>
+                                  <td style={{ borderRight: "0px solid", paddingTop: "10px" }} className="tLeft p-5 pl-10">
+                                    <div>
+                                      Transporter 1
+                                    </div>
+                                    <span style={{ paddingTop: "10px", display: "flex", gap: "20px", alignItems: "center" }}>
+                                      <storng>Rate:</storng> $ 4500 Per MT
+                                      <span style={{ background: "green", color: "white", padding: "5px", borderRadius: "99px" }}>L1</span>
+                                    </span>
+
+                                    <div style={{ display: "flex", paddingTop: "10px", gap: "20px" }}>
+                                      <div style={{ fontSize: "12px", fontWeight: "800" }}>
+                                        SAP Contract No:
+                                        <div style={{ fontWeight: "normal", paddingTop: "8px", paddingBottom: "10px" }}>454567</div>
+                                      </div>
+                                      <div style={{ fontSize: "12px", fontWeight: "800" }}> Contract Tenure:
+                                        <div style={{ fontWeight: "normal", paddingTop: "8px" }}>26 Mar 2022 To 26 Sep 2022</div>
+                                      </div>
+                                    </div>
+                                  </td>
+                                </tr>
+
+                                <hr />
+
+                                {/* SECOND TABLE */}
+
+                                <tr>
+                                  <td style={{ borderRight: "0px solid", paddingTop: "10px" }} className="tLeft p-5 pl-10">
+                                    <div>
+                                      Transporter 1
+                                    </div>
+                                    <span style={{ paddingTop: "10px", display: "flex", gap: "20px", alignItems: "center" }}>
+                                      <storng>Rate:</storng> $ 4500 Per MT
+                                      <span style={{ background: "green", color: "white", padding: "5px", borderRadius: "99px" }}>L1</span>
+                                    </span>
+
+                                    <div style={{ display: "flex", paddingTop: "10px", gap: "20px" }}>
+                                      <div style={{ fontSize: "12px", fontWeight: "800" }}>
+                                        SAP Contract No:
+                                        <div style={{ fontWeight: "normal", paddingTop: "8px", paddingBottom: "10px" }}>454567</div>
+                                      </div>
+                                      <div style={{ fontSize: "12px", fontWeight: "800" }}> Contract Tenure:
+                                        <div style={{ fontWeight: "normal", paddingTop: "8px" }}>26 Mar 2022 To 26 Sep 2022</div>
+                                      </div>
+                                    </div>
+                                  </td>
+                                </tr>
+
+                                <hr />
+
+                                {/* THIRD TABLE */}
+
+                                <tr>
+                                  <td style={{ borderRight: "0px solid", paddingTop: "10px" }} className="tLeft p-5 pl-10">
+                                    <div>
+                                      Transporter 1
+                                    </div>
+                                    <span style={{ paddingTop: "10px", display: "flex", gap: "20px", alignItems: "center" }}>
+                                      <storng>Rate:</storng> $ 4500 Per MT
+                                      <span style={{ background: "green", color: "white", padding: "5px", borderRadius: "99px" }}>L1</span>
+                                    </span>
+
+                                    <div style={{ display: "flex", paddingTop: "10px", gap: "20px" }}>
+                                      <div style={{ fontSize: "12px", fontWeight: "800" }}>
+                                        SAP Contract No:
+                                        <div style={{ fontWeight: "normal", paddingTop: "8px", paddingBottom: "10px" }}>454567</div>
+                                      </div>
+                                      <div style={{ fontSize: "12px", fontWeight: "800" }}> Contract Tenure:
+                                        <div style={{ fontWeight: "normal", paddingTop: "8px" }}>26 Mar 2022 To 26 Sep 2022</div>
+                                      </div>
+                                    </div>
+                                  </td>
+                                </tr>
+
+                                <hr />
+
+                                {/* FOURTH TABLE  */}
+
+                                <tr>
+                                  <td style={{ borderRight: "0px solid", paddingTop: "10px" }} className="tLeft p-5 pl-10">
+                                    <div>
+                                      Transporter 1
+                                    </div>
+                                    <span style={{ paddingTop: "10px", display: "flex", gap: "20px", alignItems: "center" }}>
+                                      <storng>Rate:</storng> $ 4500 Per MT
+                                      <span style={{ background: "green", color: "white", padding: "5px", borderRadius: "99px" }}>L1</span>
+                                    </span>
+
+                                    <div style={{ display: "flex", paddingTop: "10px", gap: "20px" }}>
+                                      <div style={{ fontSize: "12px", fontWeight: "800" }}>
+                                        SAP Contract No:
+                                        <div style={{ fontWeight: "normal", paddingTop: "8px", paddingBottom: "10px" }}>454567</div>
+                                      </div>
+                                      <div style={{ fontSize: "12px", fontWeight: "800" }}> Contract Tenure:
+                                        <div style={{ fontWeight: "normal", paddingTop: "8px" }}>26 Mar 2022 To 26 Sep 2022</div>
+                                      </div>
+                                    </div>
+                                  </td>
+                                </tr>
+
+                              </tbody>
+                            </table>
+
+                            <table style={{ boxShadow: 'rgba(136, 165, 300, 0.6) 0px 0px 5px 0px, rgba(255, 255, 255, 0.7) 0px 0px 5px 0px', width: "100%", borderSpacing: '0px', marginTop: "30px" }}>
+                              <thead className="ht-40 fs-14 fBold mr-5 mt-10 curP table-bg-blue white-color">
+                                <tr className="br-10">
+                                  <th className=''>
+                                    <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
+                                      <div style={{ paddingLeft: "5px" }}>
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="15" height="18" viewBox="0 0 15 21">
+                                          <g fill="none" fill-rule="nonzero">
+                                            <path fill="#9FA8DA" d="M7.5 0C3.364 0 0 3.412 0 7.605 0 12.81 6.712 20.45 6.998 20.773a.67.67 0 0 0 1.004 0C8.288 20.45 15 12.81 15 7.605 15 3.412 11.635 0 7.5 0zm0 19.266c-2.259-2.72-6.15-8.089-6.15-11.66 0-3.44 2.76-6.236 6.15-6.236 3.39 0 6.15 2.797 6.15 6.235 0 3.572-3.89 8.94-6.15 11.661z" />
+                                            <path fill="#FFF" d="M7.5 19.266c-2.259-2.72-6.15-8.089-6.15-11.66 0-3.44 2.76-6.236 6.15-6.236 3.39 0 6.15 2.797 6.15 6.235 0 3.572-3.89 8.94-6.15 11.661z" />
+                                            <path fill="#9FA8DA" d="M7.5 3.23c-2.394 0-4.342 1.994-4.342 4.443 0 2.45 1.948 4.442 4.342 4.442 2.394 0 4.342-1.992 4.342-4.442S9.894 3.231 7.5 3.231zm0 7.108c-1.524 0-2.763-1.195-2.763-2.665S5.977 5.008 7.5 5.008c1.524 0 2.763 1.195 2.763 2.665s-1.24 2.665-2.763 2.665z" />
+                                          </g>
+                                        </svg>
+                                      </div>
+                                      <span>Surat</span>
+                                    </div>
+                                  </th>
+                                  <th>$ 7600</th>
+                                </tr>
+                              </thead>
+                              <tbody className="ht-40 fs-14 fBold mr-5 mt-10 curP label-color">
+                                {/* {(vehicleSchedulerDetails || []).map((details, index) => {
+                                    return ( */}
+                                {/* FIRST TABLE */}
+
+                                <tr>
+                                  <td style={{ borderRight: "0px solid", paddingTop: "10px" }} className="tLeft p-5 pl-10">
+                                    <div>
+                                      Transporter 1
+                                    </div>
+                                    <span style={{ paddingTop: "10px", display: "flex", gap: "20px", alignItems: "center" }}>
+                                      <storng>Rate:</storng> $ 4500 Per MT
+                                      <span style={{ background: "orange", color: "white", padding: "5px", borderRadius: "99px" }}>L2</span>
+                                    </span>
+
+                                    <div style={{ display: "flex", paddingTop: "10px", gap: "20px" }}>
+                                      <div style={{ fontSize: "12px", fontWeight: "800" }}>
+                                        SAP Contract No:
+                                        <div style={{ fontWeight: "normal", paddingTop: "8px", paddingBottom: "10px" }}>454567</div>
+                                      </div>
+                                      <div style={{ fontSize: "12px", fontWeight: "800" }}> Contract Tenure:
+                                        <div style={{ fontWeight: "normal", paddingTop: "8px" }}>26 Mar 2022 To 26 Sep 2022</div>
+                                      </div>
+                                    </div>
+                                  </td>
+                                </tr>
+
+                                <hr />
+
+                                {/* SECOND TABLE */}
+
+                                <tr>
+                                  <td style={{ borderRight: "0px solid", paddingTop: "10px" }} className="tLeft p-5 pl-10">
+                                    <div>
+                                      Transporter 1
+                                    </div>
+                                    <span style={{ paddingTop: "10px", display: "flex", gap: "20px", alignItems: "center" }}>
+                                      <storng>Rate:</storng> $ 4500 Per MT
+                                      <span style={{ background: "green", color: "white", padding: "5px", borderRadius: "99px" }}>L1</span>
+                                    </span>
+
+                                    <div style={{ display: "flex", paddingTop: "10px", gap: "20px" }}>
+                                      <div style={{ fontSize: "12px", fontWeight: "800" }}>
+                                        SAP Contract No:
+                                        <div style={{ fontWeight: "normal", paddingTop: "8px", paddingBottom: "10px" }}>454567</div>
+                                      </div>
+                                      <div style={{ fontSize: "12px", fontWeight: "800" }}> Contract Tenure:
+                                        <div style={{ fontWeight: "normal", paddingTop: "8px" }}>26 Mar 2022 To 26 Sep 2022</div>
+                                      </div>
+                                    </div>
+                                  </td>
+                                </tr>
+
+                                <hr />
+
+                                {/* THIRD TABLE */}
+
+                                <tr>
+                                  <td style={{ borderRight: "0px solid", paddingTop: "10px" }} className="tLeft p-5 pl-10">
+                                    <div>
+                                      Transporter 1
+                                    </div>
+                                    <span style={{ paddingTop: "10px", display: "flex", gap: "20px", alignItems: "center" }}>
+                                      <storng>Rate:</storng> $ 4500 Per MT
+                                      <span style={{ background: "green", color: "white", padding: "5px", borderRadius: "99px" }}>L1</span>
+                                    </span>
+
+                                    <div style={{ display: "flex", paddingTop: "10px", gap: "20px" }}>
+                                      <div style={{ fontSize: "12px", fontWeight: "800" }}>
+                                        SAP Contract No:
+                                        <div style={{ fontWeight: "normal", paddingTop: "8px", paddingBottom: "10px" }}>454567</div>
+                                      </div>
+                                      <div style={{ fontSize: "12px", fontWeight: "800" }}> Contract Tenure:
+                                        <div style={{ fontWeight: "normal", paddingTop: "8px" }}>26 Mar 2022 To 26 Sep 2022</div>
+                                      </div>
+                                    </div>
+                                  </td>
+                                </tr>
+
+                                <hr />
+
+                                {/* FOURTH TABLE  */}
+
+                                <tr>
+                                  <td style={{ borderRight: "0px solid", paddingTop: "10px" }} className="tLeft p-5 pl-10">
+                                    <div>
+                                      Transporter 1
+                                    </div>
+                                    <span style={{ paddingTop: "10px", display: "flex", gap: "20px", alignItems: "center" }}>
+                                      <storng>Rate:</storng> $ 4500 Per MT
+                                      <span style={{ background: "green", color: "white", padding: "5px", borderRadius: "99px" }}>L1</span>
+                                    </span>
+
+                                    <div style={{ display: "flex", paddingTop: "10px", gap: "20px" }}>
+                                      <div style={{ fontSize: "12px", fontWeight: "800" }}>
+                                        SAP Contract No:
+                                        <div style={{ fontWeight: "normal", paddingTop: "8px", paddingBottom: "10px" }}>454567</div>
+                                      </div>
+                                      <div style={{ fontSize: "12px", fontWeight: "800" }}> Contract Tenure:
+                                        <div style={{ fontWeight: "normal", paddingTop: "8px" }}>26 Mar 2022 To 26 Sep 2022</div>
+                                      </div>
+                                    </div>
+                                  </td>
+                                </tr>
+
+                              </tbody>
+                            </table>
+
+                          </div>
+
+                          <div style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", width: "50%", gap: "20px" }}>
+
+                            <table style={{ boxShadow: 'rgba(136, 165, 300, 0.6) 0px 0px 5px 0px, rgba(255, 255, 255, 0.7) 0px 0px 5px 0px', width: "100%", borderSpacing: '0px', marginTop: "30px" }}>
+                              <thead className="ht-40 fs-14 fBold mr-5 mt-10 curP table-bg-dark-red white-color">
+                                <tr className="br-10">
+                                  <th className=''>
+                                    <div style={{ display: "flex", alignItems: "center", gap: "0px" }}>
+                                      <div style={{ paddingLeft: "0px" }}>
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="50" height="30" viewBox="0 0 42 44">
+                                          <g fill="#FFF" fill-rule="evenodd" stroke-width=".5">
+                                            <path d="M1.1 43.731a.41.41 0 0 1-.21 0 .49.49 0 0 1-.24-.66l9.26-19.54a.49.49 0 0 1 .66-.24.5.5 0 0 1 .24.67L1.6 43.491a.48.48 0 0 1-.5.24zM40.42 43.731a.48.48 0 0 1-.45-.28l-9.26-19.49a.5.5 0 0 1 .24-.67.49.49 0 0 1 .66.24l9.26 19.53a.49.49 0 0 1-.27.67.41.41 0 0 1-.18 0z" />
+                                            <path d="M32.68 27.441H8.84a.5.5 0 1 1 0-1h23.84a.5.5 0 1 1 0 1zM35.37 33.671H5.85a.51.51 0 0 1-.5-.5.5.5 0 0 1 .5-.5h29.52a.5.5 0 1 1 0 1zM38.6 39.891H2.94a.5.5 0 0 1-.5-.5.51.51 0 0 1 .5-.5H38.6a.5.5 0 1 1 0 1z" />
+                                            <path fill-rule="nonzero" d="M31.33 24.241H10.44a2.61 2.61 0 0 1-2.61-2.61V3.341a2.61 2.61 0 0 1 2.61-2.61h20.89a2.61 2.61 0 0 1 2.61 2.61v18.29a2.61 2.61 0 0 1-2.61 2.61zM10.44 1.731c-.89 0-1.61.721-1.61 1.61v18.29c0 .89.72 1.61 1.61 1.61h20.89a1.61 1.61 0 0 0 1.61-1.61V3.341a1.61 1.61 0 0 0-1.61-1.61H10.44z" />
+                                            <path d="M33.44 16.381H8.33a.5.5 0 1 1 0-1h25.11a.5.5 0 1 1 0 1z" />
+                                            <path d="M20.65 16.381a.5.5 0 0 1-.5-.5V1.231a.5.5 0 1 1 1 0v14.65a.51.51 0 0 1-.5.5z" />
+                                            <path fill-rule="nonzero" d="M29.66 21.341a2 2 0 1 1 0-4 2 2 0 0 1 0 4zm0-3.09a1.045 1.045 0 1 0 0 2.09 1.045 1.045 0 0 0 0-2.09zM11.73 21.341a2 2 0 1 1 0-4 2 2 0 0 1 0 4zm0-3.09a1 1 0 1 0 .002 2 1 1 0 0 0-.003-2z" />
+                                            <path d="M22.6 21.081h-3.66a.5.5 0 1 1 0-1h3.66a.5.5 0 1 1 0 1z" />
+                                          </g>
+                                        </svg>
+                                      </div>
+                                      <span>Rail Fright</span>
+                                    </div>
+                                  </th>
+                                  <th>$ 24,00,000</th>
+
+                                </tr>
+                              </thead>
+                              <tbody className="ht-40 fs-14 fBold mr-5 mt-10 curP label-color">
+                                {/* {(vehicleSchedulerDetails || []).map((details, index) => {
+                                    return ( */}
+                                {/* FIRST TABLE */}
+
+                                <tr>
+                                  <td style={{ borderRight: "0px solid", paddingTop: "10px" }} className="tLeft p-5 pl-10 ">
+                                    <div>
+                                      Cost / MT : $2500 per MT
+                                    </div>
+                                  </td>
+                                </tr>
+
+                              </tbody>
+                            </table>
+
+                            <table style={{ boxShadow: 'rgba(136, 165, 300, 0.6) 0px 0px 5px 0px, rgba(255, 255, 255, 0.7) 0px 0px 5px 0px', width: "100%", borderSpacing: '0px', marginTop: "30px" }}>
+                              <thead className="ht-40 fs-14 fBold mr-5 mt-10 curP table-bg-dark-red white-color">
+                                <tr className="br-10">
+                                  <th className=''>
+                                    <div style={{ display: "flex", alignItems: "center", gap: "0px" }}>
+                                      <div style={{ paddingLeft: "0px" }}>
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="50" height="30" viewBox="0 0 42 44">
+                                          <g fill="#FFF" fill-rule="evenodd" stroke-width=".5">
+                                            <path d="M1.1 43.731a.41.41 0 0 1-.21 0 .49.49 0 0 1-.24-.66l9.26-19.54a.49.49 0 0 1 .66-.24.5.5 0 0 1 .24.67L1.6 43.491a.48.48 0 0 1-.5.24zM40.42 43.731a.48.48 0 0 1-.45-.28l-9.26-19.49a.5.5 0 0 1 .24-.67.49.49 0 0 1 .66.24l9.26 19.53a.49.49 0 0 1-.27.67.41.41 0 0 1-.18 0z" />
+                                            <path d="M32.68 27.441H8.84a.5.5 0 1 1 0-1h23.84a.5.5 0 1 1 0 1zM35.37 33.671H5.85a.51.51 0 0 1-.5-.5.5.5 0 0 1 .5-.5h29.52a.5.5 0 1 1 0 1zM38.6 39.891H2.94a.5.5 0 0 1-.5-.5.51.51 0 0 1 .5-.5H38.6a.5.5 0 1 1 0 1z" />
+                                            <path fill-rule="nonzero" d="M31.33 24.241H10.44a2.61 2.61 0 0 1-2.61-2.61V3.341a2.61 2.61 0 0 1 2.61-2.61h20.89a2.61 2.61 0 0 1 2.61 2.61v18.29a2.61 2.61 0 0 1-2.61 2.61zM10.44 1.731c-.89 0-1.61.721-1.61 1.61v18.29c0 .89.72 1.61 1.61 1.61h20.89a1.61 1.61 0 0 0 1.61-1.61V3.341a1.61 1.61 0 0 0-1.61-1.61H10.44z" />
+                                            <path d="M33.44 16.381H8.33a.5.5 0 1 1 0-1h25.11a.5.5 0 1 1 0 1z" />
+                                            <path d="M20.65 16.381a.5.5 0 0 1-.5-.5V1.231a.5.5 0 1 1 1 0v14.65a.51.51 0 0 1-.5.5z" />
+                                            <path fill-rule="nonzero" d="M29.66 21.341a2 2 0 1 1 0-4 2 2 0 0 1 0 4zm0-3.09a1.045 1.045 0 1 0 0 2.09 1.045 1.045 0 0 0 0-2.09zM11.73 21.341a2 2 0 1 1 0-4 2 2 0 0 1 0 4zm0-3.09a1 1 0 1 0 .002 2 1 1 0 0 0-.003-2z" />
+                                            <path d="M22.6 21.081h-3.66a.5.5 0 1 1 0-1h3.66a.5.5 0 1 1 0 1z" />
+                                          </g>
+                                        </svg>
+                                      </div>
+                                      <span>Rail Fright</span>
+                                    </div>
+                                  </th>
+                                  <th>$ 24,00,000</th>
+                                </tr>
+                              </thead>
+                              <tbody className="ht-40 fs-14 fBold mr-5 mt-10 curP label-color">
+                                {/* {(vehicleSchedulerDetails || []).map((details, index) => {
+                                    return ( */}
+                                {/* FIRST TABLE */}
+
+                                <tr>
+                                  <td style={{ borderRight: "0px solid", paddingTop: "10px" }} className="tLeft p-5 pl-10 ">
+                                    <div>
+                                      Cost / MT : $2500 per MT
                                     </div>
                                   </td>
                                 </tr>
@@ -2033,17 +1982,28 @@ class CreateNewContracts extends Component {
                               </tbody>
                             </table>
 
+                          </div>
+
+                          <div style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", width: "50%", gap: "20px" }}>
+
                             <table style={{ boxShadow: 'rgba(136, 165, 300, 0.6) 0px 0px 5px 0px, rgba(255, 255, 255, 0.7) 0px 0px 5px 0px', width: "100%", borderSpacing: '0px', marginTop: "30px" }}>
                               <thead className="ht-40 fs-14 fBold mr-5 mt-10 curP table-bg-blue white-color">
                                 <tr className="br-10">
-                                  <th className='col-3 pl-10 pr-10 tLeft' style={{ display: "flex", paddingTop: "10px", gap: "10px" }}>
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="15" height="18" viewBox="0 0 15 21">
-                                      <g fill="none" fill-rule="nonzero">
-                                        <path fill="#9FA8DA" d="M7.5 0C3.364 0 0 3.412 0 7.605 0 12.81 6.712 20.45 6.998 20.773a.67.67 0 0 0 1.004 0C8.288 20.45 15 12.81 15 7.605 15 3.412 11.635 0 7.5 0zm0 19.266c-2.259-2.72-6.15-8.089-6.15-11.66 0-3.44 2.76-6.236 6.15-6.236 3.39 0 6.15 2.797 6.15 6.235 0 3.572-3.89 8.94-6.15 11.661z" />
-                                        <path fill="#FFF" d="M7.5 19.266c-2.259-2.72-6.15-8.089-6.15-11.66 0-3.44 2.76-6.236 6.15-6.236 3.39 0 6.15 2.797 6.15 6.235 0 3.572-3.89 8.94-6.15 11.661z" />
-                                        <path fill="#9FA8DA" d="M7.5 3.23c-2.394 0-4.342 1.994-4.342 4.443 0 2.45 1.948 4.442 4.342 4.442 2.394 0 4.342-1.992 4.342-4.442S9.894 3.231 7.5 3.231zm0 7.108c-1.524 0-2.763-1.195-2.763-2.665S5.977 5.008 7.5 5.008c1.524 0 2.763 1.195 2.763 2.665s-1.24 2.665-2.763 2.665z" />
-                                      </g>
-                                    </svg>Dhrub</th>
+                                  <th className=''>
+                                    <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
+                                      <div style={{ paddingLeft: "5px" }}>
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="15" height="18" viewBox="0 0 15 21">
+                                          <g fill="none" fill-rule="nonzero">
+                                            <path fill="#9FA8DA" d="M7.5 0C3.364 0 0 3.412 0 7.605 0 12.81 6.712 20.45 6.998 20.773a.67.67 0 0 0 1.004 0C8.288 20.45 15 12.81 15 7.605 15 3.412 11.635 0 7.5 0zm0 19.266c-2.259-2.72-6.15-8.089-6.15-11.66 0-3.44 2.76-6.236 6.15-6.236 3.39 0 6.15 2.797 6.15 6.235 0 3.572-3.89 8.94-6.15 11.661z" />
+                                            <path fill="#FFF" d="M7.5 19.266c-2.259-2.72-6.15-8.089-6.15-11.66 0-3.44 2.76-6.236 6.15-6.236 3.39 0 6.15 2.797 6.15 6.235 0 3.572-3.89 8.94-6.15 11.661z" />
+                                            <path fill="#9FA8DA" d="M7.5 3.23c-2.394 0-4.342 1.994-4.342 4.443 0 2.45 1.948 4.442 4.342 4.442 2.394 0 4.342-1.992 4.342-4.442S9.894 3.231 7.5 3.231zm0 7.108c-1.524 0-2.763-1.195-2.763-2.665S5.977 5.008 7.5 5.008c1.524 0 2.763 1.195 2.763 2.665s-1.24 2.665-2.763 2.665z" />
+                                          </g>
+                                        </svg>
+                                      </div>
+                                      <span>Vadodara</span>
+                                    </div>
+                                  </th>
+                                  <th>$ 12,000</th>
                                 </tr>
                               </thead>
                               <tbody className="ht-40 fs-14 fBold mr-5 mt-10 curP label-color">
@@ -2125,6 +2085,111 @@ class CreateNewContracts extends Component {
                                   </td>
                                 </tr>
 
+                                <hr />
+
+                              </tbody>
+                            </table>
+
+                            <table style={{ boxShadow: 'rgba(136, 165, 300, 0.6) 0px 0px 5px 0px, rgba(255, 255, 255, 0.7) 0px 0px 5px 0px', width: "100%", borderSpacing: '0px', marginTop: "30px" }}>
+                              <thead className="ht-40 fs-14 fBold mr-5 mt-10 curP table-bg-blue white-color">
+                                <tr className="br-10">
+                                  <th className=''>
+                                    <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
+                                      <div style={{ paddingLeft: "5px" }}>
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="15" height="18" viewBox="0 0 15 21">
+                                          <g fill="none" fill-rule="nonzero">
+                                            <path fill="#9FA8DA" d="M7.5 0C3.364 0 0 3.412 0 7.605 0 12.81 6.712 20.45 6.998 20.773a.67.67 0 0 0 1.004 0C8.288 20.45 15 12.81 15 7.605 15 3.412 11.635 0 7.5 0zm0 19.266c-2.259-2.72-6.15-8.089-6.15-11.66 0-3.44 2.76-6.236 6.15-6.236 3.39 0 6.15 2.797 6.15 6.235 0 3.572-3.89 8.94-6.15 11.661z" />
+                                            <path fill="#FFF" d="M7.5 19.266c-2.259-2.72-6.15-8.089-6.15-11.66 0-3.44 2.76-6.236 6.15-6.236 3.39 0 6.15 2.797 6.15 6.235 0 3.572-3.89 8.94-6.15 11.661z" />
+                                            <path fill="#9FA8DA" d="M7.5 3.23c-2.394 0-4.342 1.994-4.342 4.443 0 2.45 1.948 4.442 4.342 4.442 2.394 0 4.342-1.992 4.342-4.442S9.894 3.231 7.5 3.231zm0 7.108c-1.524 0-2.763-1.195-2.763-2.665S5.977 5.008 7.5 5.008c1.524 0 2.763 1.195 2.763 2.665s-1.24 2.665-2.763 2.665z" />
+                                          </g>
+                                        </svg>
+                                      </div>
+                                      <span>Vadodara</span>
+                                    </div>
+                                  </th>
+                                  <th>$ 9000</th>
+                                </tr>
+                              </thead>
+                              <tbody className="ht-40 fs-14 fBold mr-5 mt-10 curP label-color">
+                                {/* {(vehicleSchedulerDetails || []).map((details, index) => {
+                                    return ( */}
+                                {/* FIRST TABLE */}
+
+                                <tr>
+                                  <td style={{ borderRight: "0px solid", paddingTop: "10px" }} className="tLeft p-5 pl-10">
+                                    <div>
+                                      Transporter 1
+                                    </div>
+                                    <span style={{ paddingTop: "10px", display: "flex", gap: "20px", alignItems: "center" }}>
+                                      <storng>Rate:</storng> $ 4500 Per MT
+                                      <span style={{ background: "orange", color: "white", padding: "5px", borderRadius: "99px" }}>L2</span>
+                                    </span>
+
+                                    <div style={{ display: "flex", paddingTop: "10px", gap: "20px" }}>
+                                      <div style={{ fontSize: "12px", fontWeight: "800" }}>
+                                        SAP Contract No:
+                                        <div style={{ fontWeight: "normal", paddingTop: "8px", paddingBottom: "10px" }}>454567</div>
+                                      </div>
+                                      <div style={{ fontSize: "12px", fontWeight: "800" }}> Contract Tenure:
+                                        <div style={{ fontWeight: "normal", paddingTop: "8px" }}>26 Mar 2022 To 26 Sep 2022</div>
+                                      </div>
+                                    </div>
+                                  </td>
+                                </tr>
+
+                                <hr />
+
+                                {/* SECOND TABLE */}
+
+                                <tr>
+                                  <td style={{ borderRight: "0px solid", paddingTop: "10px" }} className="tLeft p-5 pl-10">
+                                    <div>
+                                      Transporter 1
+                                    </div>
+                                    <span style={{ paddingTop: "10px", display: "flex", gap: "20px", alignItems: "center" }}>
+                                      <storng>Rate:</storng> $ 4500 Per MT
+                                      <span style={{ background: "green", color: "white", padding: "5px", borderRadius: "99px" }}>L1</span>
+                                    </span>
+
+                                    <div style={{ display: "flex", paddingTop: "10px", gap: "20px" }}>
+                                      <div style={{ fontSize: "12px", fontWeight: "800" }}>
+                                        SAP Contract No:
+                                        <div style={{ fontWeight: "normal", paddingTop: "8px", paddingBottom: "10px" }}>454567</div>
+                                      </div>
+                                      <div style={{ fontSize: "12px", fontWeight: "800" }}> Contract Tenure:
+                                        <div style={{ fontWeight: "normal", paddingTop: "8px" }}>26 Mar 2022 To 26 Sep 2022</div>
+                                      </div>
+                                    </div>
+                                  </td>
+                                </tr>
+
+                                <hr />
+
+                                {/* THIRD TABLE */}
+
+                                <tr>
+                                  <td style={{ borderRight: "0px solid", paddingTop: "10px" }} className="tLeft p-5 pl-10">
+                                    <div>
+                                      Transporter 1
+                                    </div>
+                                    <span style={{ paddingTop: "10px", display: "flex", gap: "20px", alignItems: "center" }}>
+                                      <storng>Rate:</storng> $ 4500 Per MT
+                                      <span style={{ background: "green", color: "white", padding: "5px", borderRadius: "99px" }}>L1</span>
+                                    </span>
+
+                                    <div style={{ display: "flex", paddingTop: "10px", gap: "20px" }}>
+                                      <div style={{ fontSize: "12px", fontWeight: "800" }}>
+                                        SAP Contract No:
+                                        <div style={{ fontWeight: "normal", paddingTop: "8px", paddingBottom: "10px" }}>454567</div>
+                                      </div>
+                                      <div style={{ fontSize: "12px", fontWeight: "800" }}> Contract Tenure:
+                                        <div style={{ fontWeight: "normal", paddingTop: "8px" }}>26 Mar 2022 To 26 Sep 2022</div>
+                                      </div>
+                                    </div>
+                                  </td>
+                                </tr>
+
+                                <hr />
 
                               </tbody>
                             </table>
@@ -2173,7 +2238,7 @@ class CreateNewContracts extends Component {
 
                   <div style={{ boxShadow: "0 0 27px 4px rgb(69 68 68 / 60%)", padding: "20px" }}>
                     <div>
-                      <div style={{ display: "flex", justifyContent: "space-between" }}>
+                      <div style={{ display: "flex", justifyContent: "space-between", fontWeight: "800", fontSize: "20px" }}>
                         Contract No : 23456666
                       </div>
                       <hr />
@@ -2182,11 +2247,11 @@ class CreateNewContracts extends Component {
                     <div style={{ padding: "10px 0px", width: "50%" }}>
                       <div style={{ display: "grid", gridTemplateColumns: "repeat(5, 1fr)" }}>
 
-                        <div>Route Code:</div>
-                        <div>From:</div>
-                        <div>To:</div>
-                        <div>Origin Yard:</div>
-                        <div>Destination Yard:</div>
+                        <div style={{ fontWeight: "800" }}>Route Code:</div>
+                        <div style={{ fontWeight: "800" }}>From:</div>
+                        <div style={{ fontWeight: "800" }}>To:</div>
+                        <div style={{ fontWeight: "800" }}>Origin Yard:</div>
+                        <div style={{ fontWeight: "800" }}>Destination Yard:</div>
 
                         <span className="span">454567</span>
                         <span className="span">Mundra</span>
@@ -2199,12 +2264,12 @@ class CreateNewContracts extends Component {
                     <div style={{ padding: "10px 0px", width: "100%" }}>
                       <div style={{ display: "grid", gridTemplateColumns: "repeat(6, 1fr)" }}>
 
-                        <div>Rake:</div>
-                        <div>Commodity Category:</div>
-                        <div>Commodity Name:</div>
-                        <div>Type of Wagon:</div>
-                        <div>No of Wagon:</div>
-                        <div>Wagon Wt:</div>
+                        <div style={{ fontWeight: "800" }}>Rake:</div>
+                        <div style={{ fontWeight: "800" }}>Commodity Category:</div>
+                        <div style={{ fontWeight: "800" }}>Commodity Name:</div>
+                        <div style={{ fontWeight: "800" }}>Type of Wagon:</div>
+                        <div style={{ fontWeight: "800" }}>No of Wagon:</div>
+                        <div style={{ fontWeight: "800" }}>Wagon Wt:</div>
 
                         <span className="span">Full Rake</span>
                         <span className="span">Hydrogeneted and other Edible Oil</span>
@@ -2220,10 +2285,10 @@ class CreateNewContracts extends Component {
 
                       <div style={{ display: "grid", gridTemplateColumns: "repeat(1, 1fr)", gap: "20px", width: "100%" }}>
 
-                        <div style={{ display: "flex", flexDirection: "row", padding: "10px 10px", background: "blue", color: "white", gap: "25%", justifyContent: "space-between" }}>
-                          <p style={{ alignItems: "start" }}>Total Cost : $ 35,05,000</p>
-                          <p style={{ alignItems: "center" }}>Total Cost : $ 35,05,000</p>
-                          <p style={{ alignItems: "end" }}>Total Cost : $ 35,05,000</p>
+                        <div style={{ display: "flex", flexDirection: "row", padding: "0px 10px", background: "blue", color: "white", gap: "25%", justifyContent: "space-between" }}>
+                          <p style={{ alignItems: "start", fontWeight: "800", fontSize: "18px" }}>Cost / PTPK : $ 5 PTPK</p>
+                          <p style={{ alignItems: "center", fontWeight: "800", fontSize: "18px" }}>Cost / MT : $ 4300 per MT</p>
+                          <p style={{ alignItems: "end", fontWeight: "800", fontSize: "18px" }}>Total Cost : $ 30,00,000</p>
                         </div>
 
                       </div>
@@ -2234,19 +2299,23 @@ class CreateNewContracts extends Component {
 
                         <div style={{ width: "100%", gap: "20px" }}>
 
-
-
                           <table style={{ boxShadow: 'rgba(136, 165, 300, 0.6) 0px 0px 5px 0px, rgba(255, 255, 255, 0.7) 0px 0px 5px 0px', width: "100%", borderSpacing: '0px', marginTop: "30px" }}>
-                            <thead className="ht-40 fs-14 fBold mr-5 mt-10 curP table-bg-blue white-color" style={{ display: "flex", justifyContent: "space-between", paddingTop: "10px" }}>
+                            <thead className="ht-40 fs-14 fBold curP table-bg-blue white-color" style={{ display: "flex", justifyContent: "space-between", paddingTop: "10px" }}>
                               <tr className="br-10" style={{ alignItems: "start" }}>
-                                <th className='col-3 pl-10 pr-10 tLeft' style={{ alignItems: "center" }}>
-                                  <svg xmlns="http://www.w3.org/2000/svg" width="15" height="18" viewBox="0 0 15 21" style={{ marginRight: "10px" }}>
-                                    <g fill="none" fill-rule="nonzero">
-                                      <path fill="#9FA8DA" d="M7.5 0C3.364 0 0 3.412 0 7.605 0 12.81 6.712 20.45 6.998 20.773a.67.67 0 0 0 1.004 0C8.288 20.45 15 12.81 15 7.605 15 3.412 11.635 0 7.5 0zm0 19.266c-2.259-2.72-6.15-8.089-6.15-11.66 0-3.44 2.76-6.236 6.15-6.236 3.39 0 6.15 2.797 6.15 6.235 0 3.572-3.89 8.94-6.15 11.661z" />
-                                      <path fill="#FFF" d="M7.5 19.266c-2.259-2.72-6.15-8.089-6.15-11.66 0-3.44 2.76-6.236 6.15-6.236 3.39 0 6.15 2.797 6.15 6.235 0 3.572-3.89 8.94-6.15 11.661z" />
-                                      <path fill="#9FA8DA" d="M7.5 3.23c-2.394 0-4.342 1.994-4.342 4.443 0 2.45 1.948 4.442 4.342 4.442 2.394 0 4.342-1.992 4.342-4.442S9.894 3.231 7.5 3.231zm0 7.108c-1.524 0-2.763-1.195-2.763-2.665S5.977 5.008 7.5 5.008c1.524 0 2.763 1.195 2.763 2.665s-1.24 2.665-2.763 2.665z" />
-                                    </g>
-                                  </svg>Dhrub</th>
+                                <th className=''>
+                                  <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
+                                    <div style={{ paddingLeft: "5px" }}>
+                                      <svg xmlns="http://www.w3.org/2000/svg" width="15" height="18" viewBox="0 0 15 21">
+                                        <g fill="none" fill-rule="nonzero">
+                                          <path fill="#9FA8DA" d="M7.5 0C3.364 0 0 3.412 0 7.605 0 12.81 6.712 20.45 6.998 20.773a.67.67 0 0 0 1.004 0C8.288 20.45 15 12.81 15 7.605 15 3.412 11.635 0 7.5 0zm0 19.266c-2.259-2.72-6.15-8.089-6.15-11.66 0-3.44 2.76-6.236 6.15-6.236 3.39 0 6.15 2.797 6.15 6.235 0 3.572-3.89 8.94-6.15 11.661z" />
+                                          <path fill="#FFF" d="M7.5 19.266c-2.259-2.72-6.15-8.089-6.15-11.66 0-3.44 2.76-6.236 6.15-6.236 3.39 0 6.15 2.797 6.15 6.235 0 3.572-3.89 8.94-6.15 11.661z" />
+                                          <path fill="#9FA8DA" d="M7.5 3.23c-2.394 0-4.342 1.994-4.342 4.443 0 2.45 1.948 4.442 4.342 4.442 2.394 0 4.342-1.992 4.342-4.442S9.894 3.231 7.5 3.231zm0 7.108c-1.524 0-2.763-1.195-2.763-2.665S5.977 5.008 7.5 5.008c1.524 0 2.763 1.195 2.763 2.665s-1.24 2.665-2.763 2.665z" />
+                                        </g>
+                                      </svg>
+                                    </div>
+                                    <span>Surat</span>
+                                  </div>
+                                </th>
                               </tr>
                               <tr className="br-10" style={{ alignItems: "end" }}>
                                 <th className='col-3 pl-10 pr-10 tLeft'>COST / MT : 1200 per MT</th>
@@ -2256,28 +2325,28 @@ class CreateNewContracts extends Component {
                               </tr>
                             </thead>
 
-                            <tbody className="ht-40 fs-14 fBold mr-5 mt-10 curP label-color">
+                            <tbody className="ht-40 fs-14 fBold curP label-color">
                               {/* {(vehicleSchedulerDetails || []).map((details, index) => {
                                     return ( */}
                               {/* FIRST TABLE */}
 
                               <tr>
-                                <td style={{ borderRight: "0px solid", paddingTop: "10px", display: "flex", flexDirection: "row", justifyContent: "space-between" }} className="tLeft p-5 pl-10 pr-10">
+                                <td style={{ borderRight: "0px solid", paddingTop: "10px", display: "flex", flexDirection: "row", justifyContent: "space-between", alignItems: "center" }} className="tLeft p-5 pl-10 pr-10">
                                   <div>
                                     Transporter 1
                                   </div>
-                                  {/* <div> */}
-                                  <div style={{ fontSize: "12px", fontWeight: "800" }}>
-                                    SAP Contract No:
-                                    <div style={{ fontWeight: "normal", paddingTop: "8px", paddingBottom: "10px" }}>454567</div>
+                                  <div style={{ display: "flex", gap: "25px" }}>
+                                    <div style={{ fontSize: "12px", fontWeight: "800" }}>
+                                      SAP Contract No:
+                                      <div style={{ fontWeight: "normal", paddingTop: "8px", paddingBottom: "10px" }}>454567</div>
+                                    </div>
+                                    <div style={{ fontSize: "12px", fontWeight: "800" }}> Contract Tenure:
+                                      <div style={{ fontWeight: "normal", paddingTop: "8px" }}>26 Mar 2022 To 26 Sep 2022</div>
+                                    </div>
                                   </div>
-                                  <div style={{ fontSize: "12px", fontWeight: "800" }}> Contract Tenure:
-                                    <div style={{ fontWeight: "normal", paddingTop: "8px" }}>26 Mar 2022 To 26 Sep 2022</div>
-                                  </div>
-                                  {/* </div> */}
 
                                   <div>
-                                    Rate: $ 200perMT
+                                    Rate: $ 200 per MT
                                   </div>
                                 </td>
                               </tr>
@@ -2287,22 +2356,22 @@ class CreateNewContracts extends Component {
                               {/* SECOND TABLE */}
 
                               <tr>
-                                <td style={{ borderRight: "0px solid", paddingTop: "10px", display: "flex", flexDirection: "row", justifyContent: "space-between" }} className="tLeft p-5 pl-10 pr-10">
+                                <td style={{ borderRight: "0px solid", paddingTop: "10px", display: "flex", flexDirection: "row", justifyContent: "space-between", alignItems: "center" }} className="tLeft p-5 pl-10 pr-10">
                                   <div>
                                     Transporter 1
                                   </div>
-                                  {/* <div> */}
-                                  <div style={{ fontSize: "12px", fontWeight: "800" }}>
-                                    SAP Contract No:
-                                    <div style={{ fontWeight: "normal", paddingTop: "8px", paddingBottom: "10px" }}>454567</div>
+                                  <div style={{ display: "flex", gap: "25px" }}>
+                                    <div style={{ fontSize: "12px", fontWeight: "800" }}>
+                                      SAP Contract No:
+                                      <div style={{ fontWeight: "normal", paddingTop: "8px", paddingBottom: "10px" }}>454567</div>
+                                    </div>
+                                    <div style={{ fontSize: "12px", fontWeight: "800" }}> Contract Tenure:
+                                      <div style={{ fontWeight: "normal", paddingTop: "8px" }}>26 Mar 2022 To 26 Sep 2022</div>
+                                    </div>
                                   </div>
-                                  <div style={{ fontSize: "12px", fontWeight: "800" }}> Contract Tenure:
-                                    <div style={{ fontWeight: "normal", paddingTop: "8px" }}>26 Mar 2022 To 26 Sep 2022</div>
-                                  </div>
-                                  {/* </div> */}
 
                                   <div>
-                                    Rate: $ 200perMT
+                                    Rate: $ 200 per MT
                                   </div>
                                 </td>
                               </tr>
@@ -2312,22 +2381,22 @@ class CreateNewContracts extends Component {
                               {/* THIRD TABLE */}
 
                               <tr>
-                                <td style={{ borderRight: "0px solid", paddingTop: "10px", display: "flex", flexDirection: "row", justifyContent: "space-between" }} className="tLeft p-5 pl-10 pr-10">
+                                <td style={{ borderRight: "0px solid", paddingTop: "10px", display: "flex", flexDirection: "row", justifyContent: "space-between", alignItems: "center" }} className="tLeft p-5 pl-10 pr-10">
                                   <div>
                                     Transporter 1
                                   </div>
-                                  {/* <div> */}
-                                  <div style={{ fontSize: "12px", fontWeight: "800" }}>
-                                    SAP Contract No:
-                                    <div style={{ fontWeight: "normal", paddingTop: "8px", paddingBottom: "10px" }}>454567</div>
+                                  <div style={{ display: "flex", gap: "25px" }}>
+                                    <div style={{ fontSize: "12px", fontWeight: "800" }}>
+                                      SAP Contract No:
+                                      <div style={{ fontWeight: "normal", paddingTop: "8px", paddingBottom: "10px" }}>454567</div>
+                                    </div>
+                                    <div style={{ fontSize: "12px", fontWeight: "800" }}> Contract Tenure:
+                                      <div style={{ fontWeight: "normal", paddingTop: "8px" }}>26 Mar 2022 To 26 Sep 2022</div>
+                                    </div>
                                   </div>
-                                  <div style={{ fontSize: "12px", fontWeight: "800" }}> Contract Tenure:
-                                    <div style={{ fontWeight: "normal", paddingTop: "8px" }}>26 Mar 2022 To 26 Sep 2022</div>
-                                  </div>
-                                  {/* </div> */}
 
                                   <div>
-                                    Rate: $ 200perMT
+                                    Rate: $ 200 per MT
                                   </div>
                                 </td>
                               </tr>
@@ -2337,22 +2406,22 @@ class CreateNewContracts extends Component {
                               {/* FOURTH TABLE  */}
 
                               <tr>
-                                <td style={{ borderRight: "0px solid", paddingTop: "10px", display: "flex", flexDirection: "row", justifyContent: "space-between" }} className="tLeft p-5 pl-10 pr-10">
+                                <td style={{ borderRight: "0px solid", paddingTop: "10px", display: "flex", flexDirection: "row", justifyContent: "space-between", alignItems: "center" }} className="tLeft p-5 pl-10 pr-10">
                                   <div>
                                     Transporter 1
                                   </div>
-                                  {/* <div> */}
-                                  <div style={{ fontSize: "12px", fontWeight: "800" }}>
-                                    SAP Contract No:
-                                    <div style={{ fontWeight: "normal", paddingTop: "8px", paddingBottom: "10px" }}>454567</div>
+                                  <div style={{ display: "flex", gap: "25px" }}>
+                                    <div style={{ fontSize: "12px", fontWeight: "800" }}>
+                                      SAP Contract No:
+                                      <div style={{ fontWeight: "normal", paddingTop: "8px", paddingBottom: "10px" }}>454567</div>
+                                    </div>
+                                    <div style={{ fontSize: "12px", fontWeight: "800" }}> Contract Tenure:
+                                      <div style={{ fontWeight: "normal", paddingTop: "8px" }}>26 Mar 2022 To 26 Sep 2022</div>
+                                    </div>
                                   </div>
-                                  <div style={{ fontSize: "12px", fontWeight: "800" }}> Contract Tenure:
-                                    <div style={{ fontWeight: "normal", paddingTop: "8px" }}>26 Mar 2022 To 26 Sep 2022</div>
-                                  </div>
-                                  {/* </div> */}
 
                                   <div>
-                                    Rate: $ 200perMT
+                                    Rate: $ 200 per MT
                                   </div>
                                 </td>
                               </tr>
@@ -2362,11 +2431,7 @@ class CreateNewContracts extends Component {
 
                         </div>
 
-
-
                         <div style={{ width: "100%", gap: "20px" }}>
-
-
 
                           <table style={{ boxShadow: 'rgba(136, 165, 300, 0.6) 0px 0px 5px 0px, rgba(255, 255, 255, 0.7) 0px 0px 5px 0px', width: "100%", borderSpacing: '0px', marginTop: "30px" }}>
                             <thead className="ht-40 fs-14 fBold mr-5 mt-10 curP table-bg-dark-red white-color">
@@ -2395,7 +2460,6 @@ class CreateNewContracts extends Component {
                             </thead>
                           </table>
 
-
                         </div>
 
                         <div style={{ width: "100%", gap: "20px" }}>
@@ -2403,15 +2467,22 @@ class CreateNewContracts extends Component {
 
 
                           <table style={{ boxShadow: 'rgba(136, 165, 300, 0.6) 0px 0px 5px 0px, rgba(255, 255, 255, 0.7) 0px 0px 5px 0px', width: "100%", borderSpacing: '0px', marginTop: "30px" }}>
-                            <thead style={{ display: "flex", flexDirection: "row", justifyContent: "space-between", paddingTop: "10px" }} className="ht-40 fs-14 fBold mr-5 mt-10 curP table-bg-blue white-color">
+                            <thead className="ht-40 fs-14 fBold curP table-bg-blue white-color" style={{ display: "flex", justifyContent: "space-between", paddingTop: "10px" }}>
                               <tr className="br-10" style={{ alignItems: "start" }}>
-                                <th className='col-3 pl-10 pr-10 tLeft'><svg xmlns="http://www.w3.org/2000/svg" width="15" height="18" viewBox="0 0 15 21" style={{ marginRight: "10px" }}>
-                                  <g fill="none" fill-rule="nonzero">
-                                    <path fill="#9FA8DA" d="M7.5 0C3.364 0 0 3.412 0 7.605 0 12.81 6.712 20.45 6.998 20.773a.67.67 0 0 0 1.004 0C8.288 20.45 15 12.81 15 7.605 15 3.412 11.635 0 7.5 0zm0 19.266c-2.259-2.72-6.15-8.089-6.15-11.66 0-3.44 2.76-6.236 6.15-6.236 3.39 0 6.15 2.797 6.15 6.235 0 3.572-3.89 8.94-6.15 11.661z" />
-                                    <path fill="#FFF" d="M7.5 19.266c-2.259-2.72-6.15-8.089-6.15-11.66 0-3.44 2.76-6.236 6.15-6.236 3.39 0 6.15 2.797 6.15 6.235 0 3.572-3.89 8.94-6.15 11.661z" />
-                                    <path fill="#9FA8DA" d="M7.5 3.23c-2.394 0-4.342 1.994-4.342 4.443 0 2.45 1.948 4.442 4.342 4.442 2.394 0 4.342-1.992 4.342-4.442S9.894 3.231 7.5 3.231zm0 7.108c-1.524 0-2.763-1.195-2.763-2.665S5.977 5.008 7.5 5.008c1.524 0 2.763 1.195 2.763 2.665s-1.24 2.665-2.763 2.665z" />
-                                  </g>
-                                </svg>Dhrub</th>
+                                <th className=''>
+                                  <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
+                                    <div style={{ paddingLeft: "5px" }}>
+                                      <svg xmlns="http://www.w3.org/2000/svg" width="15" height="18" viewBox="0 0 15 21">
+                                        <g fill="none" fill-rule="nonzero">
+                                          <path fill="#9FA8DA" d="M7.5 0C3.364 0 0 3.412 0 7.605 0 12.81 6.712 20.45 6.998 20.773a.67.67 0 0 0 1.004 0C8.288 20.45 15 12.81 15 7.605 15 3.412 11.635 0 7.5 0zm0 19.266c-2.259-2.72-6.15-8.089-6.15-11.66 0-3.44 2.76-6.236 6.15-6.236 3.39 0 6.15 2.797 6.15 6.235 0 3.572-3.89 8.94-6.15 11.661z" />
+                                          <path fill="#FFF" d="M7.5 19.266c-2.259-2.72-6.15-8.089-6.15-11.66 0-3.44 2.76-6.236 6.15-6.236 3.39 0 6.15 2.797 6.15 6.235 0 3.572-3.89 8.94-6.15 11.661z" />
+                                          <path fill="#9FA8DA" d="M7.5 3.23c-2.394 0-4.342 1.994-4.342 4.443 0 2.45 1.948 4.442 4.342 4.442 2.394 0 4.342-1.992 4.342-4.442S9.894 3.231 7.5 3.231zm0 7.108c-1.524 0-2.763-1.195-2.763-2.665S5.977 5.008 7.5 5.008c1.524 0 2.763 1.195 2.763 2.665s-1.24 2.665-2.763 2.665z" />
+                                        </g>
+                                      </svg>
+                                    </div>
+                                    <span>Vadodara</span>
+                                  </div>
+                                </th>
                               </tr>
                               <tr className="br-10" style={{ alignItems: "end" }}>
                                 <th className='col-3 pl-10 pr-10 tLeft'>COST / MT : 1200 per MT</th>
@@ -2421,28 +2492,28 @@ class CreateNewContracts extends Component {
                               </tr>
                             </thead>
 
-                            <tbody className="ht-40 fs-14 fBold mr-5 mt-10 curP label-color">
+                            <tbody className="ht-40 fs-14 fBold curP label-color">
                               {/* {(vehicleSchedulerDetails || []).map((details, index) => {
-          return ( */}
+                                    return ( */}
                               {/* FIRST TABLE */}
 
                               <tr>
-                                <td style={{ borderRight: "0px solid", paddingTop: "10px", display: "flex", flexDirection: "row", justifyContent: "space-between" }} className="tLeft p-5 pl-10 pr-10">
+                                <td style={{ borderRight: "0px solid", paddingTop: "10px", display: "flex", flexDirection: "row", justifyContent: "space-between", alignItems: "center" }} className="tLeft p-5 pl-10 pr-10">
                                   <div>
                                     Transporter 1
                                   </div>
-                                  {/* <div> */}
-                                  <div style={{ fontSize: "12px", fontWeight: "800" }}>
-                                    SAP Contract No:
-                                    <div style={{ fontWeight: "normal", paddingTop: "8px", paddingBottom: "10px" }}>454567</div>
+                                  <div style={{ display: "flex", gap: "25px" }}>
+                                    <div style={{ fontSize: "12px", fontWeight: "800" }}>
+                                      SAP Contract No:
+                                      <div style={{ fontWeight: "normal", paddingTop: "8px", paddingBottom: "10px" }}>454567</div>
+                                    </div>
+                                    <div style={{ fontSize: "12px", fontWeight: "800" }}> Contract Tenure:
+                                      <div style={{ fontWeight: "normal", paddingTop: "8px" }}>26 Mar 2022 To 26 Sep 2022</div>
+                                    </div>
                                   </div>
-                                  <div style={{ fontSize: "12px", fontWeight: "800" }}> Contract Tenure:
-                                    <div style={{ fontWeight: "normal", paddingTop: "8px" }}>26 Mar 2022 To 26 Sep 2022</div>
-                                  </div>
-                                  {/* </div> */}
 
                                   <div>
-                                    Rate: $ 200perMT
+                                    Rate: $ 200 per MT
                                   </div>
                                 </td>
                               </tr>
@@ -2452,22 +2523,22 @@ class CreateNewContracts extends Component {
                               {/* SECOND TABLE */}
 
                               <tr>
-                                <td style={{ borderRight: "0px solid", paddingTop: "10px", display: "flex", flexDirection: "row", justifyContent: "space-between" }} className="tLeft p-5 pl-10 pr-10">
+                                <td style={{ borderRight: "0px solid", paddingTop: "10px", display: "flex", flexDirection: "row", justifyContent: "space-between", alignItems: "center" }} className="tLeft p-5 pl-10 pr-10">
                                   <div>
                                     Transporter 1
                                   </div>
-                                  {/* <div> */}
-                                  <div style={{ fontSize: "12px", fontWeight: "800" }}>
-                                    SAP Contract No:
-                                    <div style={{ fontWeight: "normal", paddingTop: "8px", paddingBottom: "10px" }}>454567</div>
+                                  <div style={{ display: "flex", gap: "25px" }}>
+                                    <div style={{ fontSize: "12px", fontWeight: "800" }}>
+                                      SAP Contract No:
+                                      <div style={{ fontWeight: "normal", paddingTop: "8px", paddingBottom: "10px" }}>454567</div>
+                                    </div>
+                                    <div style={{ fontSize: "12px", fontWeight: "800" }}> Contract Tenure:
+                                      <div style={{ fontWeight: "normal", paddingTop: "8px" }}>26 Mar 2022 To 26 Sep 2022</div>
+                                    </div>
                                   </div>
-                                  <div style={{ fontSize: "12px", fontWeight: "800" }}> Contract Tenure:
-                                    <div style={{ fontWeight: "normal", paddingTop: "8px" }}>26 Mar 2022 To 26 Sep 2022</div>
-                                  </div>
-                                  {/* </div> */}
 
                                   <div>
-                                    Rate: $ 200perMT
+                                    Rate: $ 200 per MT
                                   </div>
                                 </td>
                               </tr>
@@ -2477,60 +2548,31 @@ class CreateNewContracts extends Component {
                               {/* THIRD TABLE */}
 
                               <tr>
-                                <td style={{ borderRight: "0px solid", paddingTop: "10px", display: "flex", flexDirection: "row", justifyContent: "space-between" }} className="tLeft p-5 pl-10 pr-10">
+                                <td style={{ borderRight: "0px solid", paddingTop: "10px", display: "flex", flexDirection: "row", justifyContent: "space-between", alignItems: "center" }} className="tLeft p-5 pl-10 pr-10">
                                   <div>
                                     Transporter 1
                                   </div>
-                                  {/* <div> */}
-                                  <div style={{ fontSize: "12px", fontWeight: "800" }}>
-                                    SAP Contract No:
-                                    <div style={{ fontWeight: "normal", paddingTop: "8px", paddingBottom: "10px" }}>454567</div>
+                                  <div style={{ display: "flex", gap: "25px" }}>
+                                    <div style={{ fontSize: "12px", fontWeight: "800" }}>
+                                      SAP Contract No:
+                                      <div style={{ fontWeight: "normal", paddingTop: "8px", paddingBottom: "10px" }}>454567</div>
+                                    </div>
+                                    <div style={{ fontSize: "12px", fontWeight: "800" }}> Contract Tenure:
+                                      <div style={{ fontWeight: "normal", paddingTop: "8px" }}>26 Mar 2022 To 26 Sep 2022</div>
+                                    </div>
                                   </div>
-                                  <div style={{ fontSize: "12px", fontWeight: "800" }}> Contract Tenure:
-                                    <div style={{ fontWeight: "normal", paddingTop: "8px" }}>26 Mar 2022 To 26 Sep 2022</div>
-                                  </div>
-                                  {/* </div> */}
 
                                   <div>
-                                    Rate: $ 200perMT
+                                    Rate: $ 200 per MT
                                   </div>
                                 </td>
                               </tr>
 
-                              <hr />
-
-                              {/* FOURTH TABLE  */}
-
-                              <tr>
-                                <td style={{ borderRight: "0px solid", paddingTop: "10px", display: "flex", flexDirection: "row", justifyContent: "space-between" }} className="tLeft p-5 pl-10 pr-10">
-                                  <div>
-                                    Transporter 1
-                                  </div>
-                                  {/* <div> */}
-                                  <div style={{ fontSize: "12px", fontWeight: "800" }}>
-                                    SAP Contract No:
-                                    <div style={{ fontWeight: "normal", paddingTop: "8px", paddingBottom: "10px" }}>454567</div>
-                                  </div>
-                                  <div style={{ fontSize: "12px", fontWeight: "800" }}> Contract Tenure:
-                                    <div style={{ fontWeight: "normal", paddingTop: "8px" }}>26 Mar 2022 To 26 Sep 2022</div>
-                                  </div>
-                                  {/* </div> */}
-
-                                  <div>
-                                    Rate: $ 200perMT
-                                  </div>
-                                </td>
-                              </tr>
 
                             </tbody>
                           </table>
 
                         </div>
-
-
-
-
-
 
                       </div>
 

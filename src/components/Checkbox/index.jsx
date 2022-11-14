@@ -1,6 +1,8 @@
 import React, { Fragment } from 'react';
 import uuid from 'uuid';
 import { isAdaniWilmar } from 'Utils/';
+
+
 const Checkbox = ({ label, id, checked, onCheck, className, type, isBids }) => (
     <Fragment>
         {type !== 'square' && <div onClick={onCheck} className={"checkbox flex flex-middle curP " + className} id={id || uuid()}>
