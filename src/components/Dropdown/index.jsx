@@ -10,6 +10,7 @@ class Dropdown extends Component {
     constructor(props) {
         super(props);
         this.state = {
+            dropdown: "",
             isDropdownShown: false,
             searchText: "",
             inputValue: props.selectedItem && props.selectedItem[props.displayKey] || ''
@@ -73,6 +74,15 @@ class Dropdown extends Component {
             }, name)
         }
     }
+
+    onCLickDrop = (item) => {
+        console.log(item);
+        this.onSelect(item)
+        this.setState({ dropdown: item })
+    }
+
+
+
     render() {
         const {
             label,
@@ -91,6 +101,7 @@ class Dropdown extends Component {
             isPositionChange
         } = this.props;
 
+
         return (
             <ClickOutside handleClickOutside={this.hideDropdown}>
                 <div className={"pr dropdown-container pr " + className}>
@@ -100,13 +111,13 @@ class Dropdown extends Component {
                     })}>
                         <div className={"flex-1 curP flex flex-middle label-color fSemibold theme-font-color"}>
                             {!isInput ? <Fragment>
-                                {selectedItem ? selectedItem[displayKey] : label}
+                                {/* {selectedItem ? selectedItem[displayKey] : this.state.dropdown} */}
+                                {this.state.dropdown ? this.state.dropdown : label}
                             </Fragment> :
-                                <input value={this.state.inputValue} className="col-1 fSemibold" onChange={this.onInputChange} onBlur={this.onInputBlur} placeholder={label} />}
+                                <input value={this.state.inputValue} className="col-1 fSemibold" onChange={this.onInputChange} onBlur={this.onInputBlur} placeholder={label} />
+                            }
                         </div>
-                        {
-                            items && items.length > 0 && <DropdownIcon className="ht-10" />
-                        }
+                        {items && items.length > 0 && <DropdownIcon className="ht-10" />}
 
                     </div>
                     {selectedItem && canClear && <CloseIcon className="ht-10 curP pa t-15 r-25" onClick={this.onClear} />}
@@ -139,9 +150,9 @@ class Dropdown extends Component {
                                     return (
                                         <div
                                             key={index}
-                                            name={item.name}
+                                            label={item}
                                             className={"flex flex-middle pl-16 fs-16 label-color bg-hover-theme pb-5 pt-8"}
-                                            onClick={this.onSelect.bind(this, item)}
+                                            onClick={() => { this.onCLickDrop(item.label) }}
                                         >
                                             {item[displayKey]}
                                         </div>

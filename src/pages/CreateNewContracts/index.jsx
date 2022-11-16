@@ -13,7 +13,6 @@ import Input from "Components/FormInput/index";
 class CreateNewContracts extends Component {
   constructor(props) {
     super(props);
-
     this.state = {
       selectedArray: [],
       selectedArray2: [],
@@ -25,10 +24,11 @@ class CreateNewContracts extends Component {
       destinationYardFull: [{
         destinationYard: "Destination Yard"
       }],
+      DATARAIL: [],
       values: [
         {
           rake: "Rake",
-          ommodityCategory: "Commodity Category",
+          commodityCategory: "Commodity Category",
           commodityName: "Commodity Name",
           typeWagon: "Type of Wagon",
           numberWagonn: "No. of Wagon",
@@ -114,6 +114,8 @@ class CreateNewContracts extends Component {
     Values[i][e.target.name] = e.target.value;
     this.setState({ values });
   }
+
+
 
 
   addFields() {
@@ -341,13 +343,33 @@ class CreateNewContracts extends Component {
     this.setState({ selectedArray6: selectedSchedulesCopy });
   }
 
+
+  selectBranchId = (item) => {
+    const { item1 } = this.state
+    console.log(item);
+    const { DATARAIL } = this.state
+    let fetch = [...DATARAIL]
+    console.log(fetch);
+
+    const val = (fetch.length !== item1.length);
+    console.log(val);
+
+    if (val) {
+      (item || []).map((obj) => {
+        console.log(obj);
+        if (!fetch.find((abc) => abc === obj)) {
+          fetch.push(obj);
+        }
+      })
+    } else {
+      fetch = [];
+    }
+    this.setState({ DATARAIL: fetch })
+    console.log("------->>>>>>", item);
+  }
+
   render() {
-    console.log(this.state.selectedArray);
-    console.log(this.state.selectedArray2);
-    console.log(this.state.selectedArray3);
-    console.log(this.state.selectedArray4);
-    console.log(this.state.selectedArray5);
-    console.log(this.state.selectedArray6);
+
 
     var Handlechange = e => {
       this.setState({ show: !this.state.show });
@@ -360,7 +382,23 @@ class CreateNewContracts extends Component {
       overflowY: "scroll"
     }
 
-    const temp = [{ id: 1, name: "Option1" }, { id: 2, name: "Option2" }, { id: 3, name: "Option3" }];
+    const temp = [{ id: 1, label: "123456" }, { id: 2, label: "123457" }, { id: 3, label: "123458" }, { id: 4, label: "123459" }, { id: 5, label: "123460" }];
+
+    const From = [{ id: 1, label: "Surat" }, { id: 2, label: "Bharuch" }, { id: 3, label: "Vadodara" }, { id: 4, label: "Anand" }, { id: 5, label: "Ahmedabad" }];
+
+    const To = [{ id: 1, label: "Surat" }, { id: 2, label: "Bharuch" }, { id: 3, label: "Vadodara" }, { id: 4, label: "Anand" }, { id: 5, label: "Ahmedabad" }];
+
+    const origin_yard = [{ id: 1, label: "Teeka" }, { id: 2, label: "Silva" }, { id: 3, label: "Namor" }, { id: 4, label: "Waild" }, { id: 5, label: "Anna" }];
+
+    const destination_yard = [{ id: 1, label: "Sunar" }, { id: 2, label: "Aqua" }, { id: 3, label: "Dilon" }, { id: 4, label: "Max" }, { id: 5, label: "Vidar" }];
+
+    const Rake = [{ id: 1, label: "Empty" }, { id: 2, label: "Half" }, { id: 3, label: "Full" }];
+
+    const Commodity_cat = [{ id: 1, label: "Fual" }, { id: 2, label: "Oil" }, { id: 3, label: "Sugar" }, { id: 4, label: "Salt" }, { id: 5, label: "Milk" }];
+
+    const Commodity_name = [{ id: 1, label: "Refined" }, { id: 2, label: "Non-Refined" }, { id: 3, label: "All Refined" }, { id: 4, label: "All Non-Refined" }, { id: 5, label: "All Refined and Non-Refined" }];
+
+    const Wagon_type = [{ id: 1, label: "Open Wagon" }, { id: 2, label: "Covered-Wagon" }, { id: 3, label: "Tank Wagon" }, { id: 4, label: "Flat Wagon" }, { id: 5, label: "Brake van" }];
 
     return (
 
@@ -388,8 +426,7 @@ class CreateNewContracts extends Component {
                 <Dropdown
                   items={temp}
                   label="Route Code"
-                  displayKey="name"
-                  selectedItem={null}
+                  displayKey="label"
                   onSelect={this.selectBranchId}
                   className="mb-0 wt-250 ht-30"
                   searchEnabled={true}
@@ -400,10 +437,9 @@ class CreateNewContracts extends Component {
                   From
                 </div>
                 <Dropdown
-                  items={temp}
+                  items={From}
                   label="From"
-                  displayKey="name"
-                  selectedItem={null}
+                  displayKey="label"
                   onSelect={this.selectBranchId}
                   className="mb-0 wt-250 ht-30"
                   searchEnabled={true}
@@ -414,9 +450,9 @@ class CreateNewContracts extends Component {
                   To
                 </div>
                 <Dropdown
-                  items={temp}
+                  items={To}
                   label="To"
-                  displayKey="name"
+                  displayKey="label"
                   selectedItem={null}
                   onSelect={this.selectBranchId}
                   className="mb-0 wt-250 ht-30"
@@ -428,9 +464,9 @@ class CreateNewContracts extends Component {
                   Origin Yard
                 </div>
                 <Dropdown
-                  items={temp}
+                  items={origin_yard}
                   label="Origin Yard"
-                  displayKey="name"
+                  displayKey="label"
                   selectedItem={null}
                   onSelect={this.selectBranchId}
                   className="mb-0 wt-250 ht-30"
@@ -445,9 +481,9 @@ class CreateNewContracts extends Component {
                         {ele.destinationYard}
                       </div>
                       <Dropdown
-                        items={temp}
+                        items={destination_yard}
                         label={ele.destinationYard}
-                        displayKey="name"
+                        displayKey="label"
                         selectedItem={null}
                         onSelect={this.selectBranchId}
                         className="mb-0 wt-250 ht-30"
@@ -486,10 +522,9 @@ class CreateNewContracts extends Component {
                     {element.rake}
                   </div>
                   <Dropdown
-                    items={temp}
-                    label=" Full Rake"
-                    displayKey="name"
-                    selectedItem={null}
+                    items={Rake}
+                    label="Full Rake"
+                    displayKey="label"
                     onSelect={this.selectBranchId}
                     className="mb-0 wt-250 ht-30"
                     searchEnabled={true}
@@ -500,12 +535,12 @@ class CreateNewContracts extends Component {
                     {element.commodityName}
                   </div>
                   <Dropdown
-                    items={temp}
+                    items={Commodity_cat}
                     label="Commodity Category"
-                    displayKey="name"
+                    displayKey="label"
                     selectedItem={null}
                     onSelect={this.selectBranchId}
-                    className="mb-0 wt-250 ht-30 wd-500"
+                    className="mb-0 wt-250 ht-30 wd-350"
                     searchEnabled={true}
                   />
                 </div>
@@ -514,12 +549,12 @@ class CreateNewContracts extends Component {
                     {element.commodityName}
                   </div>
                   <Dropdown
-                    items={temp}
+                    items={Commodity_name}
                     label="Commodity Name"
-                    displayKey="name"
+                    displayKey="label"
                     selectedItem={null}
                     onSelect={this.selectBranchId}
-                    className="mb-0 wt-250 ht-30 wd-500"
+                    className="mb-0 wt-250 ht-30 wd-350"
                     searchEnabled={true}
                   />
                 </div>
@@ -528,12 +563,12 @@ class CreateNewContracts extends Component {
                     {element.typeWagon}
                   </div>
                   <Dropdown
-                    items={temp}
+                    items={Wagon_type}
                     label="BCN"
-                    displayKey="name"
+                    displayKey="label"
                     selectedItem={null}
                     onSelect={this.selectBranchId}
-                    className="mb-0 wt-250 ht-30 wd-100"
+                    className="mb-0 wd-200 ht-30"
                     searchEnabled={true}
                   />
                 </div>
@@ -543,7 +578,7 @@ class CreateNewContracts extends Component {
                   </div>
                   <Input
                     label="55"
-                    displayKey="name"
+                    displayKey="label"
                     selectedItem={null}
                     className="mb-0 wt-250 ht-30 wd-100"
                     style={{ width: "120px", height: "36px", background: "white", borderRadius: "5px", display: "flex", alignItems: "center" }}
@@ -555,7 +590,7 @@ class CreateNewContracts extends Component {
                   </div>
                   <Input
                     label="55"
-                    displayKey="name"
+                    displayKey="label"
                     selectedItem={null}
                     className="mb-0 wt-250 ht-30 wd-100"
                     style={{ width: "120px", height: "36px", background: "white", borderRadius: "5px" }}
@@ -563,16 +598,16 @@ class CreateNewContracts extends Component {
                 </div>
                 {
                   index ?
-                    <div className="fs-14 header-dark-color mr-10 cursor-pointer">
+                    <div className="fs-14 header-dark-color cursor-pointer">
                       <br></br>
                       <br></br>
-                      <AiOutlineCloseCircle style={{ width: "25px", height: "25px", color: "white", cursor: "pointer" }} onClick={() => this.removeFields(index)} />
+                      <AiOutlineCloseCircle style={{ width: "25px", height: "25px", color: "black", cursor: "pointer" }} onClick={() => this.removeFields(index)} />
                     </div>
                     :
-                    <div className="fs-14 header-dark-color mr-10 cursor-pointer">
+                    <div className="fs-14 header-dark-color cursor-pointer">
                       <br></br>
                       <br></br>
-                      <AiOutlinePlusCircle style={{ width: "25px", height: "25px", color: "white", cursor: "pointer" }} onClick={() => this.addFields()} />
+                      <AiOutlinePlusCircle style={{ width: "25px", height: "25px", color: "Black", cursor: "pointer" }} onClick={() => this.addFields()} />
                     </div>
                 }
               </div>
@@ -720,6 +755,7 @@ class CreateNewContracts extends Component {
           {/* TABLE OIL */}
 
           {this.state.values.map((element, index) => (
+            // console.log(this.state.values);
             <div>
               <table style={{ boxShadow: 'rgba(136, 165, 300, 0.6) 0px 0px 5px 0px, rgba(255, 255, 255, 0.7) 0px 0px 5px 0px', width: "100%", borderSpacing: '0px', marginTop: "30px" }}>
                 <thead className="ht-40 fs-14 fBold mr-5 mt-10 curP table-bg-dark-red white-color">
@@ -751,16 +787,16 @@ class CreateNewContracts extends Component {
                     <div style={{ width: "50%" }}>
                       <div style={{ padding: "10px" }}>
                         <div style={{ border: "1px solid black", display: "grid", gridTemplateColumns: "1fr 1fr 1fr 1fr", padding: "15px" }}>
-                          <div style={{ display: "flex", flexDirection: "column", color: "rgb(164, 164, 164)" }}>
+                          <div label style={{ display: "flex", flexDirection: "column", color: "rgb(164, 164, 164)" }}>
                             From:
                             <span style={{ color: "black" }}>
-                              Vadodara
+                              {this.props.dropdown}jhgk
                             </span>
                           </div>
                           <div style={{ display: "flex", flexDirection: "column", color: "rgb(164, 164, 164)" }}>
                             To:
                             <span style={{ color: "black" }}>
-                              Surat
+                              dkfjhl
                             </span>
                           </div>
                           <div style={{ display: "flex", flexDirection: "column", color: "rgb(164, 164, 164)" }}>
@@ -854,7 +890,9 @@ class CreateNewContracts extends Component {
                 </tbody>
               </table>
             </div>
-          ))}
+          )
+          )
+          }
 
           {/* TABLE VADODARA */}
 
@@ -1053,9 +1091,9 @@ class CreateNewContracts extends Component {
 
                       {this.state.show &&
                         <div>
-                          <div style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", width: "50%", gap: "20px" }}>
+                          <div style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", width: "50%", gap: "20px", height: "auto" }}>
 
-                            <table style={{ boxShadow: 'rgba(136, 165, 300, 0.6) 0px 0px 5px 0px, rgba(255, 255, 255, 0.7) 0px 0px 5px 0px', width: "100%", borderSpacing: '0px', marginTop: "30px" }}>
+                            <table style={{ boxShadow: 'rgba(136, 165, 300, 0.6) 0px 0px 5px 0px, rgba(255, 255, 255, 0.7) 0px 0px 5px 0px', width: "100%", borderSpacing: '0px', marginTop: "30px", height: "10px" }}>
                               <thead className="ht-40 fs-14 fBold curP table-bg-blue white-color" style={{ display: "flex", alignItems: "center", justifyContent: "space-between", paddingRight: "10px" }}>
                                 <tr className="br-10">
                                   <th className=''>
@@ -1082,7 +1120,7 @@ class CreateNewContracts extends Component {
                                 {this.state.selectedArray.map((ele) => {
                                   return (
                                     <tr>
-                                      <td style={{ borderRight: "0px solid", paddingTop: "10px" }} className="tLeft p-5 pl-10">
+                                      <td style={{ borderRight: "0px solid", paddingTop: "10px", borderBottom: "1px solid black" }} className="tLeft p-5 pl-10">
                                         <div>
                                           {ele.check1}
                                         </div>
@@ -1109,7 +1147,7 @@ class CreateNewContracts extends Component {
                               </tbody>
                             </table>
 
-                            <table style={{ boxShadow: 'rgba(136, 165, 300, 0.6) 0px 0px 5px 0px, rgba(255, 255, 255, 0.7) 0px 0px 5px 0px', width: "100%", borderSpacing: '0px', marginTop: "30px" }}>
+                            <table style={{ boxShadow: 'rgba(136, 165, 300, 0.6) 0px 0px 5px 0px, rgba(255, 255, 255, 0.7) 0px 0px 5px 0px', width: "100%", borderSpacing: '0px', marginTop: "30px", height: "10px" }}>
                               <thead className="ht-40 fs-14 fBold curP table-bg-blue white-color" style={{ display: "flex", alignItems: "center", justifyContent: "space-between", paddingRight: "10px" }}>
                                 <tr className="br-10">
                                   <th className=''>
@@ -1135,7 +1173,7 @@ class CreateNewContracts extends Component {
                                 {this.state.selectedArray2.map((ele) => {
                                   return (
                                     <tr>
-                                      <td style={{ borderRight: "0px solid", paddingTop: "10px" }} className="tLeft p-5 pl-10">
+                                      <td style={{ borderRight: "0px solid", paddingTop: "10px", borderBottom: "1px solid black" }} className="tLeft p-5 pl-10">
                                         <div>
                                           {ele.check2}
                                         </div>
@@ -1160,7 +1198,7 @@ class CreateNewContracts extends Component {
                                 {this.state.selectedArray3.map((ele) => {
                                   return (
                                     <tr>
-                                      <td style={{ borderRight: "0px solid", paddingTop: "10px" }} className="tLeft p-5 pl-10">
+                                      <td style={{ borderRight: "0px solid", paddingTop: "10px", borderBottom: "1px solid black" }} className="tLeft p-5 pl-10">
                                         <div>
                                           {ele.check3}
                                         </div>
@@ -1277,7 +1315,7 @@ class CreateNewContracts extends Component {
 
                           <div style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", width: "50%", gap: "20px" }}>
 
-                            <table style={{ boxShadow: 'rgba(136, 165, 300, 0.6) 0px 0px 5px 0px, rgba(255, 255, 255, 0.7) 0px 0px 5px 0px', width: "100%", borderSpacing: '0px', marginTop: "30px" }}>
+                            <table style={{ boxShadow: 'rgba(136, 165, 300, 0.6) 0px 0px 5px 0px, rgba(255, 255, 255, 0.7) 0px 0px 5px 0px', width: "100%", borderSpacing: '0px', marginTop: "30px", height: "10px" }}>
                               <thead className="ht-40 fs-14 fBold curP table-bg-blue white-color" style={{ display: "flex", alignItems: "center", justifyContent: "space-between", paddingRight: "10px" }}>
                                 <tr className="br-10">
                                   <th className=''>
@@ -1302,7 +1340,7 @@ class CreateNewContracts extends Component {
                                 {this.state.selectedArray4.map((ele) => {
                                   return (
                                     <tr>
-                                      <td style={{ borderRight: "0px solid", paddingTop: "10px" }} className="tLeft p-5 pl-10">
+                                      <td style={{ borderRight: "0px solid", paddingTop: "10px", borderBottom: "1px solid black" }} className="tLeft p-5 pl-10">
                                         <div>
                                           {ele.check1}
                                         </div>
@@ -1328,7 +1366,7 @@ class CreateNewContracts extends Component {
                               </tbody>
                             </table>
 
-                            <table style={{ boxShadow: 'rgba(136, 165, 300, 0.6) 0px 0px 5px 0px, rgba(255, 255, 255, 0.7) 0px 0px 5px 0px', width: "100%", borderSpacing: '0px', marginTop: "30px" }}>
+                            <table style={{ boxShadow: 'rgba(136, 165, 300, 0.6) 0px 0px 5px 0px, rgba(255, 255, 255, 0.7) 0px 0px 5px 0px', width: "100%", borderSpacing: '0px', marginTop: "30px", height: "10px" }}>
                               <thead className="ht-40 fs-14 fBold curP table-bg-blue white-color" style={{ display: "flex", alignItems: "center", justifyContent: "space-between", paddingRight: "10px" }}>
                                 <tr className="br-10">
                                   <th className=''>
@@ -1352,7 +1390,7 @@ class CreateNewContracts extends Component {
                                 {this.state.selectedArray5.map((ele) => {
                                   return (
                                     <tr>
-                                      <td style={{ borderRight: "0px solid", paddingTop: "10px" }} className="tLeft p-5 pl-10">
+                                      <td style={{ borderRight: "0px solid", paddingTop: "10px", borderBottom: "1px solid black" }} className="tLeft p-5 pl-10">
                                         <div>
                                           {ele.check2}
                                         </div>
@@ -1377,7 +1415,7 @@ class CreateNewContracts extends Component {
                                 {this.state.selectedArray6.map((ele) => {
                                   return (
                                     <tr>
-                                      <td style={{ borderRight: "0px solid", paddingTop: "10px" }} className="tLeft p-5 pl-10">
+                                      <td style={{ borderRight: "0px solid", paddingTop: "10px", borderBottom: "1px solid black" }} className="tLeft p-5 pl-10">
                                         <div>
                                           {ele.check3}
                                         </div>
@@ -1535,7 +1573,7 @@ class CreateNewContracts extends Component {
                                 console.log(ele.Contract_No);
                                 return (
                                   <tr>
-                                    <td style={{ borderRight: "0px solid", paddingTop: "10px", display: "flex", flexDirection: "row", alignItems: "center" }} className="tLeft p-5 pl-10 pr-10">
+                                    <td style={{ borderRight: "0px solid", paddingTop: "10px", display: "flex", flexDirection: "row", alignItems: "center", borderBottom: "1px solid black" }} className="tLeft p-5 pl-10 pr-10">
                                       <div style={{ width: "40%" }}>
                                         {ele.check1}
                                       </div>
@@ -1553,7 +1591,6 @@ class CreateNewContracts extends Component {
                                         Rate: $ {ele.Rate} per MT
                                       </div>
                                     </td>
-                                    <hr />
                                   </tr>
                                 )
                               })}
@@ -1627,7 +1664,7 @@ class CreateNewContracts extends Component {
                               {this.state.selectedArray4.map((ele) => {
                                 return (
                                   <tr>
-                                    <td style={{ borderRight: "0px solid", paddingTop: "10px", display: "flex", flexDirection: "row", alignItems: "center" }} className="tLeft p-5 pl-10 pr-10">
+                                    <td style={{ borderRight: "0px solid", paddingTop: "10px", display: "flex", flexDirection: "row", alignItems: "center", borderBottom: "1px solid black" }} className="tLeft p-5 pl-10 pr-10">
                                       <div style={{ width: "40%" }}>
                                         {ele.check1}
                                       </div>
@@ -1645,7 +1682,6 @@ class CreateNewContracts extends Component {
                                         Rate: $ {ele.Rate} per MT
                                       </div>
                                     </td>
-                                    <hr />
                                   </tr>
                                 )
                               })}

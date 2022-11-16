@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "@react-pdf/renderer": "^1.6.7",
+    "antd": "^4.24.2",
     "classnames": "^2.2.6",
     "compression": "^1.7.3",
     "cors": "^2.8.5",

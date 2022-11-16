@@ -72,7 +72,7 @@ class MultiModeGeneratedContracts extends Component {
                                     items={temp}
                                     selectedItem={null}
                                     name="To"
-                                    // onSelect={this.selectLoadType}
+                                    onSelect={this.selectLoadType}
                                     displayKey="name"
                                     className="mb-0"
                                     label="To"
