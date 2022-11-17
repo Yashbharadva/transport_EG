@@ -42,10 +42,12 @@ class Dropdown extends Component {
 
     onSelect = (item, e) => {
         if (e) { e.stopPropagation() }
-        const { onSelect, name } = this.props;
-        onSelect(item, name);
+        this.props.drop(item.label)
+        console.log(this.props);
+        console.log("click", item);
         this.hideDropdown();
     }
+
     onChange = (e) => {
         this.setState({
             [e.target.name]: e.target.value
@@ -112,7 +114,8 @@ class Dropdown extends Component {
                         <div className={"flex-1 curP flex flex-middle label-color fSemibold theme-font-color"}>
                             {!isInput ? <Fragment>
                                 {/* {selectedItem ? selectedItem[displayKey] : this.state.dropdown} */}
-                                {this.state.dropdown ? this.state.dropdown : label}
+                                {/* {this.state.dropdown ? this.state.dropdown : label} */}
+                                {selectedItem ? selectedItem[displayKey] : label}
                             </Fragment> :
                                 <input value={this.state.inputValue} className="col-1 fSemibold" onChange={this.onInputChange} onBlur={this.onInputBlur} placeholder={label} />
                             }
@@ -150,9 +153,9 @@ class Dropdown extends Component {
                                     return (
                                         <div
                                             key={index}
-                                            label={item}
+                                            label={item.label}
                                             className={"flex flex-middle pl-16 fs-16 label-color bg-hover-theme pb-5 pt-8"}
-                                            onClick={() => { this.onCLickDrop(item.label) }}
+                                            onClick={this.onSelect.bind(this, item)}
                                         >
                                             {item[displayKey]}
                                         </div>
