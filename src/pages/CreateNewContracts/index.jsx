@@ -22,22 +22,11 @@ class CreateNewContracts extends Component {
       selectedArray4: [],
       selectedArray5: [],
       selectedArray6: [],
-      drop: "",
-      drop1: "",
-      drop2: "",
-      drop3: "",
-      drop4: "",
-      drop5: "",
-      drop6: "",
-      drop7: "",
-      drop8: "",
-      drop9: "",
-      drop10: "",
       allSelected: true,
       destinationYardFull: [{
         destinationYard: "Destination Yard"
       }],
-      DATARAIL: [{ drop: "", drop1: "" }],
+      DATARAIL: [],
       values: [
         {
           rake: "Rake",
@@ -118,12 +107,20 @@ class CreateNewContracts extends Component {
         { id: 45, name: "Surveyors", check1: "Surveyor 1", check2: "Surveyor 2", check3: "Surveyor 3", Rate: 200, Contract_No: 454568, date: "26 Mar 2022 To 26 Sep 2022" },
         { id: 46, name: "Handling Agents", check1: "Handling Agents 1", check2: "Handling Agents 2", check3: "Handling Agents 3", Rate: 210, Contract_No: 454569, date: "26 Mar 2022 To 26 Sep 2022" },
         { id: 47, name: "Security", check1: "Security 1", check2: "Security 2", check3: "Security 3", Rate: 300, Contract_No: 454570, date: "26 Mar 2022 To 26 Sep 2022" }
-      ]
+      ],
+      routeCode: [],
+      from: [],
+      to: [],
+      originYard: [],
+      destination_Yard: [],
+      rakeOf: [],
+      commodity_cato: [],
+      commodity_N: [],
+      WagonType: [],
     };
 
     this.handleInputChange = this.handleInputChange.bind(this);
     this.handleInput2Change = this.handleInput2Change.bind(this);
-
   }
 
   handleChange(i, e) {
@@ -131,7 +128,6 @@ class CreateNewContracts extends Component {
     Values[i][e.target.name] = e.target.value;
     this.setState({ values });
   }
-
 
 
 
@@ -192,63 +188,63 @@ class CreateNewContracts extends Component {
 
   checkedFullRow2 = (ele) => {
     const { selectedArray2 } = this.state;
-    const temp2 = [...selectedArray2]
-    if (temp2.find(obj => obj.id === ele.id)) {
+    const temp = [...selectedArray2]
+    if (temp.find(obj => obj.id === ele.id)) {
       //Already checked, need to uncheck
-      temp2.splice(temp2.findIndex(obj => obj.id === ele.id), 1)
-      this.setState({ selectedArray2: temp2 })
+      temp.splice(temp.findIndex(obj => obj.id === ele.id), 1)
+      this.setState({ selectedArray2: temp })
     } else {
       //Not checked, need to check
-      temp2.push(ele)
-      this.setState({ selectedArray2: temp2 })
+      temp.push(ele)
+      this.setState({ selectedArray2: temp })
     }
   }
 
   checkedFullRow3 = (ele) => {
     const { selectedArray3 } = this.state;
-    const temp3 = [...selectedArray3]
-    if (temp3.find(obj => obj.id === ele.id)) {
-      temp3.splice(temp3.findIndex(obj => obj.id === ele.id), 1)
-      this.setState({ selectedArray3: temp3 })
+    const temp = [...selectedArray3]
+    if (temp.find(obj => obj.id === ele.id)) {
+      temp.splice(temp.findIndex(obj => obj.id === ele.id), 1)
+      this.setState({ selectedArray3: temp })
     } else {
-      temp3.push(ele)
-      this.setState({ selectedArray3: temp3 })
+      temp.push(ele)
+      this.setState({ selectedArray3: temp })
     }
   }
 
   checkedFullRow4 = (ele) => {
     const { selectedArray4 } = this.state;
-    const temp4 = [...selectedArray4]
-    if (temp4.find(obj => obj.id === ele.id)) {
-      temp4.splice(temp4.findIndex(obj => obj.id === ele.id), 1)
-      this.setState({ selectedArray4: temp4 })
+    const temp = [...selectedArray4]
+    if (temp.find(obj => obj.id === ele.id)) {
+      temp.splice(temp.findIndex(obj => obj.id === ele.id), 1)
+      this.setState({ selectedArray4: temp })
     } else {
-      temp4.push(ele)
-      this.setState({ selectedArray4: temp4 })
+      temp.push(ele)
+      this.setState({ selectedArray4: temp })
     }
   }
 
   checkedFullRow5 = (ele) => {
     const { selectedArray5 } = this.state;
-    const temp5 = [...selectedArray5]
-    if (temp5.find(obj => obj.id === ele.id)) {
-      temp5.splice(temp5.findIndex(obj => obj.id === ele.id), 1)
-      this.setState({ selectedArray5: temp5 })
+    const temp = [...selectedArray5]
+    if (temp.find(obj => obj.id === ele.id)) {
+      temp.splice(temp.findIndex(obj => obj.id === ele.id), 1)
+      this.setState({ selectedArray5: temp })
     } else {
-      temp5.push(ele)
-      this.setState({ selectedArray5: temp5 })
+      temp.push(ele)
+      this.setState({ selectedArray5: temp })
     }
   }
 
   checkedFullRow6 = (ele) => {
     const { selectedArray6 } = this.state;
-    const temp6 = [...selectedArray6]
-    if (temp6.find(obj => obj.id === ele.id)) {
-      temp6.splice(temp6.findIndex(obj => obj.id === ele.id), 1)
-      this.setState({ selectedArray6: temp6 })
+    const temp = [...selectedArray6]
+    if (temp.find(obj => obj.id === ele.id)) {
+      temp.splice(temp.findIndex(obj => obj.id === ele.id), 1)
+      this.setState({ selectedArray6: temp })
     } else {
-      temp6.push(ele)
-      this.setState({ selectedArray6: temp6 })
+      temp.push(ele)
+      this.setState({ selectedArray6: temp })
     }
   }
 
@@ -346,7 +342,6 @@ class CreateNewContracts extends Component {
   selectAllScheduleRecords6 = () => {
     const { allData6 } = this.state;
     const { selectedArray6 } = this.state
-    console.log(selectedArray6);
     let selectedSchedulesCopy = [...selectedArray6]
     const value = (selectedSchedulesCopy.length !== allData6.length);
 
@@ -362,32 +357,59 @@ class CreateNewContracts extends Component {
     this.setState({ selectedArray6: selectedSchedulesCopy });
   }
 
-  handleClose = () => {
-    close();
-    window.location.reload(false);
+  selectRouteCode = (item) => {
+    this.setState({
+      routeCode: item
+    })
   }
 
+  selectFrom = (item) => {
+    this.setState({
+      from: item
+    })
+  }
 
-  // selectBranchId = (item, label) => {
-  //   console.log(item,label);
-  //   const { onSelect } = this.state;
-  //   const { DATARAIL } = this.state;
-  //   let fetch = [...DATARAIL]
-  //   const val = (fetch.length !== onSelect);
-  //   if (val) {
-  //     (onSelect || []).map((obj) => {
-  //       if (!fetch.find(ab => ab === obj)) {
-  //         fetch.push(obj);
-  //       }
-  //     })
-  //   } else {
-  //     fetch = [];
-  //   }
-  //   this.setState({ DATARAIL: fetch });
-  //   console.log(DATARAIL);
-  // }
+  selectTo = (item) => {
+    this.setState({
+      to: item
+    })
+  }
 
+  selectOriginYard = (item) => {
+    this.setState({
+      originYard: item
+    })
+  }
 
+  selectDestinationYard = (item) => {
+    this.setState({
+      destination_Yard: item
+    })
+  }
+
+  selectRake = (item) => {
+    this.setState({
+      rakeOf: item
+    })
+  }
+
+  selectCommodityCat = (item) => {
+    this.setState({
+      commodity_cato: item
+    })
+  }
+
+  selectCommodityName = (item) => {
+    this.setState({
+      commodity_N: item
+    })
+  }
+
+  selectWagonType = (item) => {
+    this.setState({
+      WagonType: item
+    })
+  }
 
   handleInputChange(event) {
     this.setState({ wagon: event.target.value })
@@ -397,7 +419,6 @@ class CreateNewContracts extends Component {
     this.setState({ wagonWt: event.target.value })
   }
 
-
   render() {
 
 
@@ -406,7 +427,7 @@ class CreateNewContracts extends Component {
     }
 
     const contentStyle = {
-      width: "80%",
+      width: "auto",
       height: "auto",
       maxHeight: "80%",
       overflowY: "scroll"
@@ -455,14 +476,12 @@ class CreateNewContracts extends Component {
                 </div>
                 <Dropdown
                   items={temp}
-                  label={this.state.drop ? this.state.drop : "Route code"}
+                  label="Route Code"
                   displayKey="label"
-                  onSelect={this.selectBranchId}
+                  onSelect={this.selectRouteCode}
                   className="mb-0 wt-250 ht-30"
                   searchEnabled={true}
-                  drop={(value) => this.setState({ drop: value })}
                 />
-
               </div>
               <div className="fs-14 header-dark-color mr-10">
                 <div style={{ paddingBottom: "5px", color: "white" }}>
@@ -470,12 +489,11 @@ class CreateNewContracts extends Component {
                 </div>
                 <Dropdown
                   items={From}
-                  label={this.state.drop1 ? this.state.drop1 : "From"}
+                  label="From"
                   displayKey="label"
-                  onSelect={this.selectBranchId}
+                  onSelect={this.selectFrom}
                   className="mb-0 wt-250 ht-30"
                   searchEnabled={true}
-                  drop={(value) => this.setState({ drop1: value })}
                 />
               </div>
               <div className="fs-14 header-dark-color mr-10">
@@ -484,13 +502,12 @@ class CreateNewContracts extends Component {
                 </div>
                 <Dropdown
                   items={To}
-                  label={this.state.drop2 ? this.state.drop2 : "To"}
+                  label="To"
                   displayKey="label"
                   selectedItem={null}
-                  onSelect={this.selectBranchId}
+                  onSelect={this.selectTo}
                   className="mb-0 wt-250 ht-30"
                   searchEnabled={true}
-                  drop={(value) => this.setState({ drop2: value })}
                 />
               </div>
               <div className="fs-14 header-dark-color mr-10">
@@ -499,13 +516,12 @@ class CreateNewContracts extends Component {
                 </div>
                 <Dropdown
                   items={origin_yard}
-                  label={this.state.drop3 ? this.state.drop3 : "Origin Yard"}
+                  label="Origin Yard"
                   displayKey="label"
                   selectedItem={null}
-                  onSelect={this.selectBranchId}
+                  onSelect={this.selectOriginYard}
                   className="mb-0 wt-250 ht-30"
                   searchEnabled={true}
-                  drop={(value) => this.setState({ drop3: value })}
                 />
               </div>
               <div className="fs-14 header-dark-color mr-10">
@@ -517,13 +533,12 @@ class CreateNewContracts extends Component {
                       </div>
                       <Dropdown
                         items={destination_yard}
-                        label={this.state.drop4 ? this.state.drop4 : ele.destinationYard}
+                        label={ele.destinationYard}
                         displayKey="label"
                         selectedItem={null}
-                        onSelect={this.selectBranchId}
+                        onSelect={this.selectDestinationYard}
                         className="mb-0 wt-250 ht-30"
                         searchEnabled={true}
-                        drop={(value) => this.setState({ drop4: value })}
                       />
                     </div>
                     <div>
@@ -559,12 +574,11 @@ class CreateNewContracts extends Component {
                   </div>
                   <Dropdown
                     items={Rake}
-                    label={this.state.drop5 ? this.state.drop5 : "Rake"}
+                    label="Full Rake"
                     displayKey="label"
-                    onSelect={this.selectBranchId}
+                    onSelect={this.selectRake}
                     className="mb-0 wt-250 ht-30"
                     searchEnabled={true}
-                    drop={(value) => this.setState({ drop5: value })}
                   />
                 </div>
                 <div className="fs-14 header-dark-color mr-10">
@@ -573,13 +587,12 @@ class CreateNewContracts extends Component {
                   </div>
                   <Dropdown
                     items={Commodity_cat}
-                    label={this.state.drop6 ? this.state.drop6 : "Commodity Category"}
+                    label="Commodity Category"
                     displayKey="label"
                     selectedItem={null}
-                    onSelect={this.selectBranchId}
+                    onSelect={this.selectCommodityCat}
                     className="mb-0 wt-250 ht-30 wd-350"
                     searchEnabled={true}
-                    drop={(value) => this.setState({ drop6: value })}
                   />
                 </div>
                 <div className="fs-14 header-dark-color mr-10">
@@ -588,13 +601,12 @@ class CreateNewContracts extends Component {
                   </div>
                   <Dropdown
                     items={Commodity_name}
-                    label={this.state.drop7 ? this.state.drop7 : "Commodity Name"}
+                    label="Commodity Name"
                     displayKey="label"
                     selectedItem={null}
-                    onSelect={this.selectBranchId}
+                    onSelect={this.selectCommodityName}
                     className="mb-0 wt-250 ht-30 wd-350"
                     searchEnabled={true}
-                    drop={(value) => this.setState({ drop7: value })}
                   />
                 </div>
                 <div className="fs-14 header-dark-color mr-10">
@@ -603,13 +615,12 @@ class CreateNewContracts extends Component {
                   </div>
                   <Dropdown
                     items={Wagon_type}
-                    label={this.state.drop8 ? this.state.drop8 : "BCN"}
+                    label="BCN"
                     displayKey="label"
                     selectedItem={null}
-                    onSelect={this.selectBranchId}
+                    onSelect={this.selectWagonType}
                     className="mb-0 wd-200 ht-30"
                     searchEnabled={true}
-                    drop={(value) => this.setState({ drop8: value })}
                   />
                 </div>
                 <div className="fs-14 header-dark-color mr-10">
@@ -674,7 +685,9 @@ class CreateNewContracts extends Component {
                         </g>
                       </svg>
                     </div>
-                    <span>{this.state.drop1}</span>
+                    <span>
+                      {this.state.from}
+                    </span>
                   </div>
                 </th>
 
@@ -687,7 +700,6 @@ class CreateNewContracts extends Component {
 
             <tbody className="ht-40 fs-14 fBold mr-5 mt-10 curP label-color">
               {this.state.allData.map((ele, idx) => {
-                console.log(ele);
                 return (
                   <tr key={idx}>
                     <td style={{ borderRight: "0px solid" }} className="tLeft p-5 pl-10  master-contract-font-color">
@@ -716,8 +728,7 @@ class CreateNewContracts extends Component {
 
                     <td style={{ color: "rgb(164, 164, 164)" }}>
                       <div style={{ paddingBottom: "10px" }}>
-                        <th className='col-4 tLeft'>
-                          <Checkbox type="square" label={ele.check2} onCheck={() => { this.checkedFullRow2(ele) }} checked={this.state.selectedArray2.find(obj => obj.id === ele.id)} /></th>
+                        <th className='col-4 tLeft'><Checkbox type="square" label={ele.check2} onCheck={() => { this.checkedFullRow2(ele) }} checked={this.state.selectedArray2.find(obj => obj.id === ele.id)} /></th>
                       </div>
                       <span style={{ paddingTop: "10px", paddingLeft: "20px", fontSize: "15px" }}>
                         <storng>Rate:</storng> $ 4300 Per MT
@@ -797,6 +808,7 @@ class CreateNewContracts extends Component {
           {/* TABLE OIL */}
 
           {this.state.values.map((element, index) => (
+            // console.log(this.state.values);
             <div>
               <table style={{ boxShadow: 'rgba(136, 165, 300, 0.6) 0px 0px 5px 0px, rgba(255, 255, 255, 0.7) 0px 0px 5px 0px', width: "100%", borderSpacing: '0px', marginTop: "30px" }}>
                 <thead className="ht-40 fs-14 fBold mr-5 mt-10 curP table-bg-dark-red white-color">
@@ -822,113 +834,112 @@ class CreateNewContracts extends Component {
                   </tr>
                 </thead>
                 <tbody className="ht-40 fs-14 fBold mr-5 mt-10 curP label-color">
-                  {this.state.DATARAIL.map((ele) => (
-                    <div style={{ display: "flex", flexDirection: "row", justifyContent: "space-between", width: "100%" }}>
 
-                      <div style={{ width: "50%" }}>
-                        <div style={{ padding: "10px" }}>
-                          <div style={{ border: "1px solid black", display: "grid", gridTemplateColumns: "1fr 1fr 1fr 1fr", padding: "15px" }}>
-                            <div label style={{ display: "flex", flexDirection: "column", color: "rgb(164, 164, 164)" }}>
-                              From:
-                              <span style={{ color: "black" }}>
-                                {this.state.drop1}
-                              </span>
-                            </div>
-                            <div style={{ display: "flex", flexDirection: "column", color: "rgb(164, 164, 164)" }}>
-                              To:
-                              <span style={{ color: "black" }}>
-                                {this.state.drop2}
-                              </span>
-                            </div>
-                            <div style={{ display: "flex", flexDirection: "column", color: "rgb(164, 164, 164)" }}>
-                              Origin Yard:
-                              <span style={{ color: "black" }}>
-                                {this.state.drop3}
-                              </span>
-                            </div>
-                            <div style={{ display: "flex", flexDirection: "column", color: "rgb(164, 164, 164)" }}>
-                              Destination Yard:
-                              <span style={{ color: "black" }}>
-                                {this.state.drop4}
-                              </span>
-                            </div>
+                  <div style={{ display: "flex", flexDirection: "row", justifyContent: "space-between", width: "100%" }}>
+
+                    <div style={{ width: "50%" }}>
+                      <div style={{ padding: "10px" }}>
+                        <div style={{ border: "1px solid black", display: "grid", gridTemplateColumns: "1fr 1fr 1fr 1fr", padding: "15px" }}>
+                          <div label style={{ display: "flex", flexDirection: "column", color: "rgb(164, 164, 164)" }}>
+                            From:
+                            <span style={{ color: "black" }}>
+                              {this.state.from}
+                            </span>
+                          </div>
+                          <div style={{ display: "flex", flexDirection: "column", color: "rgb(164, 164, 164)" }}>
+                            To:
+                            <span style={{ color: "black" }}>
+                              {this.state.to}
+                            </span>
+                          </div>
+                          <div style={{ display: "flex", flexDirection: "column", color: "rgb(164, 164, 164)" }}>
+                            Origin Yard:
+                            <span style={{ color: "black" }}>
+                              {this.state.originYard}
+                            </span>
+                          </div>
+                          <div style={{ display: "flex", flexDirection: "column", color: "rgb(164, 164, 164)" }}>
+                            Destination Yard:
+                            <span style={{ color: "black" }}>
+                              {this.state.destination_Yard}
+                            </span>
                           </div>
                         </div>
-
-                        <div style={{ padding: "10px" }}>
-                          <div style={{ border: "1px solid black", display: "grid", gridTemplateColumns: "1fr 1fr", padding: "15px" }}>
-                            <div style={{ display: "flex", flexDirection: "column", color: "rgb(164, 164, 164)" }}>
-                              Commodity:
-                              <span style={{ color: "black" }}>
-                                {this.state.drop6}
-                              </span>
-                            </div>
-                            <div style={{ display: "flex", flexDirection: "column", color: "rgb(164, 164, 164)" }}>
-                              Commodity Type:
-                              <span style={{ color: "black" }}>
-                                {this.state.drop7}
-                              </span>
-                            </div>
-                          </div>
-                        </div>
-
                       </div>
 
-                      {/* Half Component */}
-
-                      <div style={{ width: "50%" }}>
-
-                        <div style={{ padding: "10px" }}>
-                          <div style={{ border: "1px solid black", display: "grid", gridTemplateColumns: "1fr 1fr 1fr 1fr", padding: "15px" }}>
-                            <div style={{ display: "flex", flexDirection: "column", color: "rgb(164, 164, 164)" }}>
-                              Wagon Type:
-                              <span style={{ color: "black" }}>
-                                {this.state.drop8}
-                              </span>
-                            </div>
-                            <div style={{ display: "flex", flexDirection: "column", color: "rgb(164, 164, 164)" }}>
-                              Rake Type:
-                              <span style={{ color: "black" }}>
-                                {this.state.drop5}
-                              </span>
-                            </div>
-                            <div style={{ display: "flex", flexDirection: "column", color: "rgb(164, 164, 164)" }}>
-                              No of Wagons:
-                              <span style={{ color: "black" }}>
-                                {this.state.wagon}
-                              </span>
-                            </div>
-                            <div style={{ display: "flex", flexDirection: "column", color: "rgb(164, 164, 164)" }}>
-                              Loadable Weight:
-                              <span style={{ color: "black" }}>
-                                {this.state.wagonWt} per MT Wagon
-                              </span>
-                            </div>
+                      <div style={{ padding: "10px" }}>
+                        <div style={{ border: "1px solid black", display: "grid", gridTemplateColumns: "1fr 1fr", padding: "15px" }}>
+                          <div style={{ display: "flex", flexDirection: "column", color: "rgb(164, 164, 164)" }}>
+                            Commodity:
+                            <span style={{ color: "black" }}>
+                              {this.state.commodity_cato}
+                            </span>
+                          </div>
+                          <div style={{ display: "flex", flexDirection: "column", color: "rgb(164, 164, 164)" }}>
+                            Commodity Type:
+                            <span style={{ color: "black" }}>
+                              {this.state.commodity_N}
+                            </span>
                           </div>
                         </div>
-
-                        <div style={{ padding: "10px" }}>
-                          <div style={{ border: "1px solid black", display: "grid", gridTemplateColumns: "1fr 1fr", padding: "15px" }}>
-                            <div style={{ display: "flex", flexDirection: "column", color: "rgb(164, 164, 164)" }}>
-                              Total Cost:
-                              <span style={{ color: "black" }}>
-                                230880
-                              </span>
-                            </div>
-                            <div style={{ display: "flex", flexDirection: "column", borderLeft: "1px solid black", paddingLeft: "20px", color: "rgb(164, 164, 164)" }}>
-                              Cost / MT:
-                              <span style={{ color: "black" }}>
-                                230880
-                              </span>
-                            </div>
-                          </div>
-                        </div>
-
-
                       </div>
 
                     </div>
-                  ))}
+
+                    {/* Half Component */}
+
+                    <div style={{ width: "50%" }}>
+
+                      <div style={{ padding: "10px" }}>
+                        <div style={{ border: "1px solid black", display: "grid", gridTemplateColumns: "1fr 1fr 1fr 1fr", padding: "15px" }}>
+                          <div style={{ display: "flex", flexDirection: "column", color: "rgb(164, 164, 164)" }}>
+                            Wagon Type:
+                            <span style={{ color: "black" }}>
+                              {this.state.WagonType}
+                            </span>
+                          </div>
+                          <div style={{ display: "flex", flexDirection: "column", color: "rgb(164, 164, 164)" }}>
+                            Rake Type:
+                            <span style={{ color: "black" }}>
+                              {this.state.rakeOf}
+                            </span>
+                          </div>
+                          <div style={{ display: "flex", flexDirection: "column", color: "rgb(164, 164, 164)" }}>
+                            No of Wagons:
+                            <span style={{ color: "black" }}>
+                              {this.state.wagon}
+                            </span>
+                          </div>
+                          <div style={{ display: "flex", flexDirection: "column", color: "rgb(164, 164, 164)" }}>
+                            Loadable Weight:
+                            <span style={{ color: "black" }}>
+                              {this.state.wagonWt} per MT Wagon
+                            </span>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div style={{ padding: "10px" }}>
+                        <div style={{ border: "1px solid black", display: "grid", gridTemplateColumns: "1fr 1fr", padding: "15px" }}>
+                          <div style={{ display: "flex", flexDirection: "column", color: "rgb(164, 164, 164)" }}>
+                            Total Cost:
+                            <span style={{ color: "black" }}>
+                              230880
+                            </span>
+                          </div>
+                          <div style={{ display: "flex", flexDirection: "column", borderLeft: "1px solid black", paddingLeft: "20px", color: "rgb(164, 164, 164)" }}>
+                            Total Cost:
+                            <span style={{ color: "black" }}>
+                              230880
+                            </span>
+                          </div>
+                        </div>
+                      </div>
+
+
+                    </div>
+
+                  </div>
                 </tbody>
               </table>
             </div>
@@ -953,7 +964,7 @@ class CreateNewContracts extends Component {
                         </g>
                       </svg>
                     </div>
-                    <span>{this.state.drop2}</span>
+                    <span>{this.state.to}</span>
                   </div></th>
 
                 <th className='col-4 tLeft'><Checkbox type="square" label="L1" checked={this.state.selectedArray4.length === this.state.allData4.length} onCheck={() => { this.selectAllScheduleRecords4() }} /></th>
@@ -1058,7 +1069,7 @@ class CreateNewContracts extends Component {
 
                 <div className="modal scroll" style={{ padding: "10px", fontFamily: "Proximanova-Regular" }}>
                   <div style={{ padding: "10px 5px", display: "flex", justifyContent: "end", transform: "translate(10px, -20px)" }}>
-                    <a className="chcek-close-button" onClick={this.handleClose} style={{ border: "5px solid black", padding: "1px 5px", borderRadius: "999px", fontSize: "20px", color: "black" }}>
+                    <a className="chcek-close-button" onClick={close} style={{ border: "5px solid black", padding: "1px 5px", borderRadius: "999px", fontSize: "20px", color: "black" }}>
                       &times;
                     </a>
                   </div>
@@ -1081,11 +1092,11 @@ class CreateNewContracts extends Component {
                         <div style={{ fontWeight: "800" }}>Origin Yard:</div>
                         <div style={{ fontWeight: "800" }}>Destination Yard:</div>
 
-                        <span className="span">{this.state.drop}</span>
-                        <span className="span">{this.state.drop1}</span>
-                        <span className="span">{this.state.drop2}</span>
-                        <span className="span">{this.state.drop3}</span>
-                        <span className="span">{this.state.drop4}</span>
+                        <span className="span">{this.state.routeCode}</span>
+                        <span className="span">{this.state.from}</span>
+                        <span className="span">{this.state.to}</span>
+                        <span className="span">{this.state.originYard}</span>
+                        <span className="span">{this.state.destination_Yard}</span>
                       </div>
                     </div>
 
@@ -1099,10 +1110,10 @@ class CreateNewContracts extends Component {
                         <div style={{ fontWeight: "800" }}>No of Wagon:</div>
                         <div style={{ fontWeight: "800" }}>Wagon Wt:</div>
 
-                        <span className="span">{this.state.drop5}</span>
-                        <span className="span">{this.state.drop6}</span>
-                        <span className="span">{this.state.drop7}</span>
-                        <span className="span">{this.state.drop8}</span>
+                        <span className="span">{this.state.rakeOf}</span>
+                        <span className="span">{this.state.commodity_cato}</span>
+                        <span className="span">{this.state.commodity_N}</span>
+                        <span className="span">{this.state.WagonType}</span>
                         <span className="span">{this.state.wagon}</span>
                         <span className="span">{this.state.wagonWt} per MT Wagon</span>
                       </div>
@@ -1149,7 +1160,7 @@ class CreateNewContracts extends Component {
                                           </g>
                                         </svg>
                                       </div>
-                                      <span>{this.state.drop1}</span>
+                                      <span>Surat</span>
                                     </div>
                                   </th>
                                   {/* <th>$ 8200</th> */}
@@ -1203,7 +1214,7 @@ class CreateNewContracts extends Component {
                                           </g>
                                         </svg>
                                       </div>
-                                      <span>{this.state.drop1}</span>
+                                      <span>Surat</span>
                                     </div>
                                   </th>
                                   {/* <th>$ 8200</th> */}
@@ -1371,7 +1382,7 @@ class CreateNewContracts extends Component {
                                           </g>
                                         </svg>
                                       </div>
-                                      <span>{this.state.drop2}</span>
+                                      <span>Vadodara</span>
                                     </div>
                                   </th>
                                   {/* <th>$ 8200</th> */}
@@ -1422,7 +1433,7 @@ class CreateNewContracts extends Component {
                                           </g>
                                         </svg>
                                       </div>
-                                      <span>{this.state.drop2}</span>
+                                      <span>Vadodara</span>
                                     </div>
                                   </th>
                                 </tr>
@@ -1492,8 +1503,8 @@ class CreateNewContracts extends Component {
                     <button
                       className={"bg-theme wt-250 pl-15 pr-15 mr-5 ht-40 br-5 fBold fs-14 white-color ml-15"}
                       onClick={() => {
+                        console.log("modal closed");
                         close();
-                        window.location.reload(false);
                       }}
                     >Cancel
                     </button>
@@ -1516,7 +1527,7 @@ class CreateNewContracts extends Component {
                 :
                 <div className="modal scroll" style={{ padding: "10px", fontFamily: "Proximanova-Regular" }}>
                   <div style={{ padding: "10px 5px", display: "flex", justifyContent: "end", transform: "translate(10px, -20px)" }}>
-                    <a className="chcek-close-button" onClick={this.handleClose} style={{ border: "5px solid black", padding: "1px 5px", borderRadius: "999px", fontSize: "20px", color: "black" }}>
+                    <a className="chcek-close-button" onClick={close} style={{ border: "5px solid black", padding: "1px 5px", borderRadius: "999px", fontSize: "20px", color: "black" }}>
                       &times;
                     </a>
                   </div>
@@ -1538,11 +1549,11 @@ class CreateNewContracts extends Component {
                         <div style={{ fontWeight: "800" }}>Origin Yard:</div>
                         <div style={{ fontWeight: "800" }}>Destination Yard:</div>
 
-                        <span className="span">{this.state.drop}</span>
-                        <span className="span">{this.state.drop1}</span>
-                        <span className="span">{this.state.drop2}</span>
-                        <span className="span">{this.state.drop3}</span>
-                        <span className="span">{this.state.drop4}</span>
+                        <span className="span">454567</span>
+                        <span className="span">Mundra</span>
+                        <span className="span">Lucknow</span>
+                        <span className="span">Dhrub</span>
+                        <span className="span">Surat</span>
                       </div>
                     </div>
 
@@ -1556,12 +1567,12 @@ class CreateNewContracts extends Component {
                         <div style={{ fontWeight: "800" }}>No of Wagon:</div>
                         <div style={{ fontWeight: "800" }}>Wagon Wt:</div>
 
-                        <span className="span">{this.state.drop5}</span>
-                        <span className="span">{this.state.drop6}</span>
-                        <span className="span">{this.state.drop7}</span>
-                        <span className="span">{this.state.drop8}</span>
-                        <span className="span">{this.state.wagon}</span>
-                        <span className="span">{this.state.wagonWt}</span>
+                        <span className="span">Full Rake</span>
+                        <span className="span">Hydrogeneted and other Edible Oil</span>
+                        <span className="span">All Refined and Non Refined Edible Oils</span>
+                        <span className="span">BCN</span>
+                        <span className="span">42</span>
+                        <span className="span">55 MT</span>
                       </div>
                     </div>
 
@@ -1598,7 +1609,7 @@ class CreateNewContracts extends Component {
                                         </g>
                                       </svg>
                                     </div>
-                                    <span>{this.state.drop1}</span>
+                                    <span>Surat</span>
                                   </div>
                                 </th>
                               </tr>
@@ -1612,7 +1623,7 @@ class CreateNewContracts extends Component {
 
                             <tbody className="ht-40 fs-14 fBold mr-5 mt-10 curP label-color">
                               {this.state.selectedArray.map((ele) => {
-                                console.log(ele);
+                                console.log(ele.Contract_No);
                                 return (
                                   <tr>
                                     <td style={{ borderRight: "0px solid", paddingTop: "10px", display: "flex", flexDirection: "row", alignItems: "center", borderBottom: "1px solid black" }} className="tLeft p-5 pl-10 pr-10">
@@ -1690,7 +1701,7 @@ class CreateNewContracts extends Component {
                                         </g>
                                       </svg>
                                     </div>
-                                    <span>{this.state.drop2}</span>
+                                    <span>Vadodara</span>
                                   </div>
                                 </th>
                               </tr>
@@ -1744,8 +1755,8 @@ class CreateNewContracts extends Component {
                     <button
                       className={"bg-theme wt-250 pl-15 pr-15 mr-5 ht-40 br-5 fBold fs-14 white-color ml-15"}
                       onClick={() => {
+                        console.log("modal closed");
                         close();
-                        window.location.reload(false);
                       }}
                     >Cancel
                     </button>
@@ -1759,11 +1770,19 @@ class CreateNewContracts extends Component {
                       contentStyle={{ padding: "0px", border: "none" }}
                     >
                     </Popup>
+
+
                   </div>
+
+
                 </div>
               )}
             </Popup>
+
+
           </div>
+
+
         </div >
       </Sticky >
     )
