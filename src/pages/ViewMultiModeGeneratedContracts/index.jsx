@@ -47,7 +47,8 @@ class MultiModeGeneratedContracts extends Component {
                     <Fragment>
                         <div className="flex" style={{ width: "100%", justifyContent: "space-between" }}>
                             <div style={{ boxShadow: 'rgba(136, 165, 300, 0.6) 0px 0px 5px 0px, rgba(255, 255, 255, 0.7) 0px 0px 5px 0px', width: "300px" }} className="fs-14 header-dark-color">
-                                <input placeholder={"Search Master contract No. / Route No."}
+                                <input
+                                    placeholder={"Search Master contract No. / Route No."}
                                     type="text"
                                     className="wt-300 ht-40 search"
                                     onChange={(e) => {
@@ -62,7 +63,7 @@ class MultiModeGeneratedContracts extends Component {
                                     displayKey="name"
                                     selectedItem={null}
                                     onSelect={this.selectBranchId}
-                                    className="mb-0"
+                                    className="mb-0 wt-300"
                                     searchEnabled={true}
                                 />
                             </div>
@@ -74,8 +75,9 @@ class MultiModeGeneratedContracts extends Component {
                                     name="To"
                                     onSelect={this.selectLoadType}
                                     displayKey="name"
-                                    className="mb-0"
+                                    className="mb-0 wt-300"
                                     label="To"
+                                    searchEnabled={true}
                                 />
                             </div>
                             <div className="fs-14 header-dark-color">
@@ -85,8 +87,9 @@ class MultiModeGeneratedContracts extends Component {
                                     name="Origin Yard"
                                     onSelect={this.selectVendorCode}
                                     displayKey="name"
-                                    className="mb-0"
+                                    className="mb-0 wt-300"
                                     label="Origin Yard"
+                                    searchEnabled={true}
                                 />
                             </div>
                             <div className="fs-14 header-dark-color mr-10">
@@ -96,8 +99,9 @@ class MultiModeGeneratedContracts extends Component {
                                     name="Origin Yard"
                                     onSelect={this.selectVendorCode}
                                     displayKey="name"
-                                    className="mb-0"
+                                    className="mb-0 wt-300"
                                     label="Origin Yard"
+                                    searchEnabled={true}
                                 />
                             </div>
                             <div className="flex-between theme-font-color">

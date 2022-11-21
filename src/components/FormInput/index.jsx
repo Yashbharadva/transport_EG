@@ -19,6 +19,7 @@ class Input extends Component {
             required,
             onKeyPress,
             noTransition,
+            label,
             readOnly, ...otherProps } = this.props;
         return (
             // <div className={"input-container " + (containerClassName || "")}>
@@ -27,7 +28,9 @@ class Input extends Component {
                     "input-focussed": !noTransition && ((value && value.length > 0) || this.state.focussed || (value && value != '') || value === 0),
                     "no-transition": noTransition
                 })}>{placeholder} {required ? "*" : ""}</label>
-                <input type={type || "text"}
+                <input
+                    placeholder={placeholder}
+                    type={type || "text"}
                     value={value}
                     onChange={onChange}
                     onClick={(e) => { e.stopPropagation() }}
@@ -35,6 +38,7 @@ class Input extends Component {
                     onBlur={() => { this.setState({ focussed: false }) }}
                     onKeyUp={(e) => onKeyPress && onKeyPress(e)}
                     name={name || ""}
+                    label={label}
                     className="pb-5 fs-16 fSemibold"
                     {...otherProps}
                 />

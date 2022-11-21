@@ -48,7 +48,6 @@ class Dropdown extends Component {
         onSelect(item);
         console.log(item, "<<----");
         this.setState({ dropdown: item })
-        // console.log(this.onSelect(item));
         this.hideDropdown();
     }
     onChange = (e) => {

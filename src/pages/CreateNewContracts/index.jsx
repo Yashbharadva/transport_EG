@@ -29,6 +29,7 @@ class CreateNewContracts extends Component {
       DATARAIL: [],
       values: [
         {
+          id: 1,
           rake: "Rake",
           commodityCategory: "Commodity Category",
           commodityName: "Commodity Name",
@@ -73,10 +74,10 @@ class CreateNewContracts extends Component {
         }
       ],
       allData: [
-        { id: 44, name: "Transporters", check1: "Transporter 1", check2: "Transporter 2", check3: "Transporter 3", Rate: 4500, Contract_No: 454567, date: "26 Mar 2022 To 26 Sep 2022" },
-        { id: 45, name: "Surveyors", check1: "Surveyor 1", check2: "Surveyor 2", check3: "Surveyor 3", Rate: 200, Contract_No: 454568, date: "26 Mar 2022 To 26 Sep 2022" },
-        { id: 46, name: "Handling Agents", check1: "Handling Agents 1", check2: "Handling Agents 2", check3: "Handling Agents 3", Rate: 210, Contract_No: 454569, date: "26 Mar 2022 To 26 Sep 2022" },
-        { id: 47, name: "Security", check1: "Security 1", check2: "Security 2", check3: "Security 3", Rate: 300, Contract_No: 454570, date: "26 Mar 2022 To 26 Sep 2022" }
+        { id: 44, name: "Transporters", check1: "Transporter 1", check2: "Transporter 2", check3: "Transporter 3", Rate: 4500, Rate2: 4000, Rate3: 300, Contract_No: 454567, date: "26 Mar 2022 To 26 Sep 2022" },
+        { id: 45, name: "Surveyors", check1: "Surveyor 1", check2: "Surveyor 2", check3: "Surveyor 3", Rate: 200, Rate2: 3000, Rate3: 200, Contract_No: 454568, date: "26 Mar 2022 To 26 Sep 2022" },
+        { id: 46, name: "Handling Agents", check1: "Handling Agents 1", check2: "Handling Agents 2", check3: "Handling Agents 3", Rate: 210, Rate2: 2000, Rate3: 150, Contract_No: 454569, date: "26 Mar 2022 To 26 Sep 2022" },
+        { id: 47, name: "Security", check1: "Security 1", check2: "Security 2", check3: "Security 3", Rate: 300, Rate2: 1000, Rate3: 100, Contract_No: 454570, date: "26 Mar 2022 To 26 Sep 2022" }
       ],
       allData2: [
         { id: 44, name: "Transporters", check1: "Transporter 1", check2: "Transporter 2", check3: "Transporter 3", Rate: 4500, Contract_No: 454567, date: "26 Mar 2022 To 26 Sep 2022" },
@@ -424,17 +425,27 @@ class CreateNewContracts extends Component {
     window.location.reload(false);
   }
 
+
+
   render() {
+    console.log(this.state.selectedArray);
+    console.log(this.state.selectedArray2);
+    console.log(this.state.selectedArray3);
+    console.log(this.state.selectedArray4);
+    console.log(this.state.selectedArray5);
+    console.log(this.state.selectedArray6);
     var Handlechange = e => {
       this.setState({ show: !this.state.show });
     }
 
     const contentStyle = {
-      width: "auto",
+      width: "90%",
       height: "auto",
       maxHeight: "80%",
       overflowY: "scroll"
     }
+
+    let total = parseInt(this.state.selectedArray.map((a) => a.Rate) + this.state.selectedArray.map((a) => a.Rate2) + this.state.selectedArray.map((a) => a.Rate3));
 
     const temp = [{ id: 1, label: "123456" }, { id: 2, label: "123457" }, { id: 3, label: "123458" }, { id: 4, label: "123459" }, { id: 5, label: "123460" }];
 
@@ -557,7 +568,8 @@ class CreateNewContracts extends Component {
                             <br></br>
                             <br></br>
                             <AiOutlinePlusCircle style={{ width: "25px", height: "25px", color: "white", cursor: "pointer" }} onClick={() => this.addDestinationYard()} />
-                          </div>}
+                          </div>
+                      }
                     </div>
                   </div>
                 ))}
@@ -571,7 +583,7 @@ class CreateNewContracts extends Component {
             {/* ADD FULL ROW ON PLUS BUTTON */}
 
             {this.state.values.map((element, index) => (
-              <div className="input-fields" key={index}>
+              <div className="input-fields" key={element.id}>
                 <div className="fs-14 header-dark-color mr-10">
                   <div style={{ paddingBottom: "5px", color: "white" }}>
                     {element.rake}
@@ -631,7 +643,7 @@ class CreateNewContracts extends Component {
                   <div style={{ paddingBottom: "5px", color: "white" }}>
                     {element.numberWagonn}
                   </div>
-                  <input
+                  <Input
                     type="number"
                     value={this.state.wagon}
                     onChange={this.handleInputChange}
@@ -643,7 +655,7 @@ class CreateNewContracts extends Component {
                   <div style={{ paddingBottom: "5px", color: "white" }}>
                     {element.weightWagon}
                   </div>
-                  <input
+                  <Input
                     type="number"
                     value={this.state.wagonWt}
                     onChange={this.handleInput2Change}
@@ -704,28 +716,31 @@ class CreateNewContracts extends Component {
 
             <tbody className="ht-40 fs-14 fBold mr-5 mt-10 curP label-color">
               {this.state.allData.map((ele, idx) => {
+                // console.log(this.state.allData);
                 return (
                   <tr key={idx}>
+
                     <td style={{ borderRight: "0px solid" }} className="tLeft p-5 pl-10  master-contract-font-color">
                       {ele.name}
                     </td>
+
                     <td style={{ paddingTop: "20px" }}>
                       <div>
                         <th className='col-4 tLeft' key={idx}>
                           <Checkbox type="square" label={ele.check1} onCheck={() => { this.checkedFullRow(ele) }} checked={this.state.selectedArray.find(obj => obj.id === ele.id)} /></th>
                       </div>
                       <span style={{ paddingTop: "10px", paddingLeft: "20px", display: "flex", gap: "20px", alignItems: "center" }}>
-                        <storng>Rate:</storng> $ 4000 Per MT
+                        <storng>Rate:</storng> $ {ele.Rate} Per MT
                         <span style={{ background: "green", color: "white", padding: "5px", borderRadius: "99px" }}>L1</span>
                       </span>
 
                       <div style={{ display: "flex", paddingLeft: "20px", paddingTop: "10px", gap: "20px" }}>
                         <div style={{ fontSize: "12px", fontWeight: "800" }}>
                           SAP Contract No:
-                          <div style={{ fontWeight: "normal", paddingTop: "8px", paddingBottom: "10px" }}>454567</div>
+                          <div style={{ fontWeight: "normal", paddingTop: "8px", paddingBottom: "10px" }}>{ele.Contract_No}</div>
                         </div>
                         <div style={{ fontSize: "12px", fontWeight: "800" }}> Contract Tenure:
-                          <div style={{ fontWeight: "normal", paddingTop: "8px" }}>26 Mar 2022 To 26 Sep 2022</div>
+                          <div style={{ fontWeight: "normal", paddingTop: "8px" }}>{ele.date}</div>
                         </div>
                       </div>
                     </td>
@@ -735,7 +750,7 @@ class CreateNewContracts extends Component {
                         <th className='col-4 tLeft'><Checkbox type="square" label={ele.check2} onCheck={() => { this.checkedFullRow2(ele) }} checked={this.state.selectedArray2.find(obj => obj.id === ele.id)} /></th>
                       </div>
                       <span style={{ paddingTop: "10px", paddingLeft: "20px", fontSize: "15px" }}>
-                        <storng>Rate:</storng> $ 4300 Per MT
+                        <storng>Rate:</storng> $ {ele.Rate2} Per MT
                         <span style={{ background: "orange", color: "white", padding: "5px", borderRadius: "99px", marginLeft: "5px" }}>L2</span>
                       </span>
                       <div style={{ paddingLeft: "20px", paddingTop: "10px", paddingBottom: "10px" }}>
@@ -752,7 +767,7 @@ class CreateNewContracts extends Component {
                         <th className='col-4 tLeft'><Checkbox type="square" label={ele.check3} onCheck={() => { this.checkedFullRow3(ele) }} checked={this.state.selectedArray3.find(obj => obj.id === ele.id)} /></th>
                       </div>
                       <span style={{ paddingTop: "10px", paddingLeft: "20px", fontSize: "15px" }}>
-                        <storng>Rate:</storng> $ 4250 Per MT
+                        <storng>Rate:</storng> $ {ele.Rate3} Per MT
                         <span style={{ background: "orange", color: "white", padding: "5px", borderRadius: "99px", marginLeft: "5px" }}>L3</span>
                       </span>
                       <div style={{ paddingLeft: "20px", paddingTop: "10px", paddingBottom: "10px" }}>
@@ -764,12 +779,12 @@ class CreateNewContracts extends Component {
                       <div></div>
                     </td>
 
-
                   </tr>
                 )
               })}
 
             </tbody>
+
           </table >
 
 
@@ -778,7 +793,7 @@ class CreateNewContracts extends Component {
           {this.state.values.map((element, index) => (
             // console.log(this.state.values);
             <div>
-              <table style={{ boxShadow: 'rgba(136, 165, 300, 0.6) 0px 0px 5px 0px, rgba(255, 255, 255, 0.7) 0px 0px 5px 0px', width: "100%", borderSpacing: '0px', marginTop: "30px" }}>
+              <table style={{ boxShadow: 'rgba(136, 165, 300, 0.6) 0px 0px 5px 0px, rgba(255, 255, 255, 0.7) 0px 0px 5px 0px', width: "100%", borderSpacing: '0px', marginTop: "30px" }} key={index}>
                 <thead className="ht-40 fs-14 fBold mr-5 mt-10 curP table-bg-dark-red white-color">
                   <tr className="br-10">
                     <th className=''>
@@ -796,15 +811,14 @@ class CreateNewContracts extends Component {
                             </g>
                           </svg>
                         </div>
-                        <span>Rail Freight For Commodity : Oil</span>
+                        <span>Rail Freight For Commodity : {this.state.commodity_cato}</span>
                       </div>
                     </th>
                   </tr>
                 </thead>
                 <tbody className="ht-40 fs-14 fBold mr-5 mt-10 curP label-color">
 
-                  <div style={{ display: "flex", flexDirection: "row", justifyContent: "space-between", width: "100%" }}>
-
+                  <div style={{ display: "flex", flexDirection: "row", justifyContent: "space-between", width: "100%" }} key={element.id}>
                     <div style={{ width: "50%" }}>
                       <div style={{ padding: "10px" }}>
                         <div style={{ border: "1px solid black", display: "grid", gridTemplateColumns: "1fr 1fr 1fr 1fr", padding: "15px" }}>
@@ -834,7 +848,6 @@ class CreateNewContracts extends Component {
                           </div>
                         </div>
                       </div>
-
                       <div style={{ padding: "10px" }}>
                         <div style={{ border: "1px solid black", display: "grid", gridTemplateColumns: "1fr 1fr", padding: "15px" }}>
                           <div style={{ display: "flex", flexDirection: "column", color: "rgb(164, 164, 164)" }}>
@@ -903,10 +916,7 @@ class CreateNewContracts extends Component {
                           </div>
                         </div>
                       </div>
-
-
                     </div>
-
                   </div>
                 </tbody>
               </table>
@@ -942,33 +952,30 @@ class CreateNewContracts extends Component {
 
 
             <tbody className="ht-40 fs-14 fBold mr-5 mt-10 curP label-color">
-              {/* {(vehicleSchedulerDetails || []).map((details, index) => {
-                                    return ( */}
               {/* FIRST TABLE */}
 
               {this.state.allData.map((ele, idx) => {
+                // console.log(ele.Rate);
                 return (
                   <tr key={idx}>
                     <td style={{ borderRight: "0px solid" }} className="tLeft p-5 pl-10  master-contract-font-color">
                       {ele.name}
                     </td>
-
                     <td style={{ paddingTop: "20px" }}>
                       <div>
                         <th className='col-4 tLeft' key={idx}><Checkbox type="square" label={ele.check1} onCheck={() => { this.checkedFullRow4(ele) }} checked={this.state.selectedArray4.find(obj => obj.id === ele.id)} /></th>
                       </div>
                       <span style={{ paddingTop: "10px", paddingLeft: "20px", display: "flex", gap: "20px", alignItems: "center" }}>
-                        <storng>Rate:</storng> $ 4500 Per MT
+                        <storng>Rate:</storng> $ {ele.Rate} Per MT
                         <div style={{ border: "1px solid green", background: "green", color: "white", padding: "5px", borderRadius: "99px" }}>L1</div>
                       </span>
-
                       <div style={{ display: "flex", paddingLeft: "20px", paddingTop: "10px", gap: "20px" }}>
                         <div style={{ fontSize: "12px", fontWeight: "800" }}>
                           SAP Contract No:
-                          <div style={{ fontWeight: "normal", paddingTop: "8px", paddingBottom: "10px" }}>454567</div>
+                          <div style={{ fontWeight: "normal", paddingTop: "8px", paddingBottom: "10px" }}>{ele.Contract_No}</div>
                         </div>
                         <div style={{ fontSize: "12px", fontWeight: "800" }}> Contract Tenure:
-                          <div style={{ fontWeight: "normal", paddingTop: "8px" }}>26 Mar 2022 To 26 Sep 2022</div>
+                          <div style={{ fontWeight: "normal", paddingTop: "8px" }}>{ele.date}</div>
                         </div>
                       </div>
                     </td>
@@ -978,11 +985,10 @@ class CreateNewContracts extends Component {
                         <th className='col-4 tLeft'><Checkbox type="square" label={ele.check2} onCheck={() => { this.checkedFullRow5(ele) }} checked={this.state.selectedArray5.find(obj => obj.id === ele.id)} /></th>
                       </div>
                       <span style={{ paddingTop: "10px", paddingLeft: "20px", fontSize: "15px" }}>
-                        <storng>Rate:</storng> $ 4300 Per MT
+                        <storng>Rate:</storng> $ {ele.Rate2} Per MT
                         <span style={{ background: "orange", color: "white", padding: "5px", borderRadius: "99px", marginLeft: "5px" }}>L2</span>
                       </span>
                       <div style={{ paddingLeft: "20px", paddingTop: "10px", paddingBottom: "10px" }}>
-
                         <button style={{ padding: "5px 10px", background: "#528aea", color: "white", borderRadius: "5px" }}>
                           send LOI
                         </button>
@@ -995,11 +1001,10 @@ class CreateNewContracts extends Component {
                         <th className='col-4 tLeft'><Checkbox type="square" label={ele.check3} onCheck={() => { this.checkedFullRow6(ele) }} checked={this.state.selectedArray6.find(obj => obj.id === ele.id)} /></th>
                       </div>
                       <span style={{ paddingTop: "10px", paddingLeft: "20px", fontSize: "15px" }}>
-                        <storng>Rate:</storng> $ 4250 Per MT
+                        <storng>Rate:</storng> $ {ele.Rate3} Per MT
                         <span style={{ background: "orange", color: "white", padding: "5px", borderRadius: "99px", marginLeft: "5px" }}>L3</span>
                       </span>
                       <div style={{ paddingLeft: "20px", paddingTop: "10px", paddingBottom: "10px" }}>
-
                         <button style={{ padding: "5px 10px", background: "#528aea", color: "white", borderRadius: "5px" }}>
                           send LOI
                         </button>
@@ -1010,8 +1015,6 @@ class CreateNewContracts extends Component {
                   </tr>
                 )
               })}
-
-
             </tbody>
           </table>))}
 
@@ -1132,12 +1135,13 @@ class CreateNewContracts extends Component {
                                   </th>
                                   {/* <th>$ 8200</th> */}
                                 </tr>
-                                <tr> $ 8200</tr>
+                                <tr>$ 8200</tr>
                               </thead>
                               <tbody style={{ padding: "10px" }} className="ht-40 fs-14 fBold mr-5 mt-10 curP label-color">
 
 
                                 {this.state.selectedArray.map((ele) => {
+                                  console.log(ele.Rate);
                                   return (
                                     <tr>
                                       <td style={{ borderRight: "0px solid", paddingTop: "10px", borderBottom: "1px solid black" }} className="tLeft p-5 pl-10">
@@ -1159,7 +1163,6 @@ class CreateNewContracts extends Component {
                                           </div>
                                         </div>
                                       </td>
-                                      {/* <hr /> */}
                                     </tr>
                                   )
                                 })}
@@ -1184,13 +1187,13 @@ class CreateNewContracts extends Component {
                                       <span>{this.state.from}</span>
                                     </div>
                                   </th>
-                                  {/* <th>$ 8200</th> */}
                                 </tr>
-                                <tr> $ 8200</tr>
+                                <tr>$ 8200</tr>
                               </thead>
                               <tbody style={{ padding: "10px" }} className="ht-40 fs-14 fBold mr-5 mt-10 curP label-color">
 
                                 {this.state.selectedArray2.map((ele) => {
+                                  console.log(ele.Rate2);
                                   return (
                                     <tr>
                                       <td style={{ borderRight: "0px solid", paddingTop: "10px", borderBottom: "1px solid black" }} className="tLeft p-5 pl-10">
@@ -1198,7 +1201,7 @@ class CreateNewContracts extends Component {
                                           {ele.check2}
                                         </div>
                                         <span style={{ paddingTop: "10px", display: "flex", gap: "20px", alignItems: "center" }}>
-                                          <storng>Rate:</storng> $ {ele.Rate} Per MT
+                                          <storng>Rate:</storng> $ {ele.Rate2} Per MT
                                           <span style={{ background: "orange", color: "white", padding: "5px", borderRadius: "99px" }}>L2</span>
                                         </span>
 
@@ -1216,6 +1219,7 @@ class CreateNewContracts extends Component {
                                 })}
 
                                 {this.state.selectedArray3.map((ele) => {
+                                  console.log(ele.Rate3);
                                   return (
                                     <tr>
                                       <td style={{ borderRight: "0px solid", paddingTop: "10px", borderBottom: "1px solid black" }} className="tLeft p-5 pl-10">
@@ -1223,7 +1227,7 @@ class CreateNewContracts extends Component {
                                           {ele.check3}
                                         </div>
                                         <span style={{ paddingTop: "10px", display: "flex", gap: "20px", alignItems: "center" }}>
-                                          <storng>Rate:</storng> $ {ele.Rate} Per MT
+                                          <storng>Rate:</storng> $ {ele.Rate3} Per MT
                                           <span style={{ background: "orange", color: "white", padding: "5px", borderRadius: "99px" }}>L3</span>
                                         </span>
 
@@ -1358,6 +1362,7 @@ class CreateNewContracts extends Component {
                               </thead>
                               <tbody style={{ padding: "10px" }} className="ht-40 fs-14 fBold mr-5 mt-10 curP label-color">
                                 {this.state.selectedArray4.map((ele) => {
+                                  console.log(ele.Rate);
                                   return (
                                     <tr>
                                       <td style={{ borderRight: "0px solid", paddingTop: "10px", borderBottom: "1px solid black" }} className="tLeft p-5 pl-10">
@@ -1408,6 +1413,7 @@ class CreateNewContracts extends Component {
                               </thead>
                               <tbody style={{ padding: "10px" }} className="ht-40 fs-14 fBold mr-5 mt-10 curP label-color">
                                 {this.state.selectedArray5.map((ele) => {
+                                  console.log(ele.Rate2);
                                   return (
                                     <tr>
                                       <td style={{ borderRight: "0px solid", paddingTop: "10px", borderBottom: "1px solid black" }} className="tLeft p-5 pl-10">
@@ -1415,7 +1421,7 @@ class CreateNewContracts extends Component {
                                           {ele.check2}
                                         </div>
                                         <span style={{ paddingTop: "10px", display: "flex", gap: "20px", alignItems: "center" }}>
-                                          <storng>Rate:</storng> $ {ele.Rate} Per MT
+                                          <storng>Rate:</storng> $ {ele.Rate2} Per MT
                                           <span style={{ background: "green", color: "white", padding: "5px", borderRadius: "99px" }}>L1</span>
                                         </span>
 
@@ -1433,6 +1439,7 @@ class CreateNewContracts extends Component {
                                   )
                                 })}
                                 {this.state.selectedArray6.map((ele) => {
+                                  console.log(ele.Rate3);
                                   return (
                                     <tr>
                                       <td style={{ borderRight: "0px solid", paddingTop: "10px", borderBottom: "1px solid black" }} className="tLeft p-5 pl-10">
@@ -1440,7 +1447,7 @@ class CreateNewContracts extends Component {
                                           {ele.check3}
                                         </div>
                                         <span style={{ paddingTop: "10px", display: "flex", gap: "20px", alignItems: "center" }}>
-                                          <storng>Rate:</storng> $ {ele.Rate} Per MT
+                                          <storng>Rate:</storng> $ {ele.Rate3} Per MT
                                           <span style={{ background: "green", color: "white", padding: "5px", borderRadius: "99px" }}>L1</span>
                                         </span>
 
@@ -1577,13 +1584,13 @@ class CreateNewContracts extends Component {
                                 <th className='col-3 pl-10 pr-10 tLeft'>COST / MT : 1200 per MT</th>
                               </tr>
                               <tr className="br-10" style={{ alignItems: "end" }}>
-                                <th className='col-3 pl-10 pr-10 tLeft'>Total Cose : $ 30,00,000</th>
+                                <th className='col-3 pl-10 pr-10 tLeft'>Total Cose : $ 456</th>
                               </tr>
                             </thead>
 
                             <tbody className="ht-40 fs-14 fBold mr-5 mt-10 curP label-color">
                               {this.state.selectedArray.map((ele) => {
-                                console.log(ele.Contract_No);
+                                console.log(ele.Rate);
                                 return (
                                   <tr>
                                     <td style={{ borderRight: "0px solid", paddingTop: "10px", display: "flex", flexDirection: "row", alignItems: "center", borderBottom: "1px solid black" }} className="tLeft p-5 pl-10 pr-10">
@@ -1669,12 +1676,13 @@ class CreateNewContracts extends Component {
                                 <th className='col-3 pl-10 pr-10 tLeft'>COST / MT : 1200 per MT</th>
                               </tr>
                               <tr className="br-10" style={{ alignItems: "end" }}>
-                                <th className='col-3 pl-10 pr-10 tLeft'>Total Cose : $ 30,00,000</th>
+                                <th className='col-3 pl-10 pr-10 tLeft'>Total Cost : $ 56465</th>
                               </tr>
                             </thead>
 
                             <tbody className="ht-40 fs-14 fBold mr-5 mt-10 curP label-color">
                               {this.state.selectedArray4.map((ele) => {
+                                console.log(ele.Rate);
                                 return (
                                   <tr>
                                     <td style={{ borderRight: "0px solid", paddingTop: "10px", display: "flex", flexDirection: "row", alignItems: "center", borderBottom: "1px solid black" }} className="tLeft p-5 pl-10 pr-10">
