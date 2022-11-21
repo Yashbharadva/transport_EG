@@ -419,9 +419,12 @@ class CreateNewContracts extends Component {
     this.setState({ wagonWt: event.target.value })
   }
 
+  handleRefresh = () => {
+    close();
+    window.location.reload(false);
+  }
+
   render() {
-
-
     var Handlechange = e => {
       this.setState({ show: !this.state.show });
     }
@@ -542,18 +545,19 @@ class CreateNewContracts extends Component {
                       />
                     </div>
                     <div>
-                      {idx ?
-                        <div className="fs-14 header-dark-color mr-10 cursor-pointer">
-                          <br></br>
-                          <br></br>
-                          <AiOutlineCloseCircle style={{ width: "25px", height: "25px", color: "white", cursor: "pointer" }} onClick={() => this.removeDestionationYard(idx)} />
-                        </div>
-                        :
-                        <div className="fs-14 header-dark-color mr-10 cursor-pointer">
-                          <br></br>
-                          <br></br>
-                          <AiOutlinePlusCircle style={{ width: "25px", height: "25px", color: "white", cursor: "pointer" }} onClick={() => this.addDestinationYard()} />
-                        </div>}
+                      {
+                        idx ?
+                          <div className="fs-14 header-dark-color mr-10 cursor-pointer">
+                            <br></br>
+                            <br></br>
+                            <AiOutlineCloseCircle style={{ width: "25px", height: "25px", color: "white", cursor: "pointer" }} onClick={() => this.removeDestionationYard(idx)} />
+                          </div>
+                          :
+                          <div className="fs-14 header-dark-color mr-10 cursor-pointer">
+                            <br></br>
+                            <br></br>
+                            <AiOutlinePlusCircle style={{ width: "25px", height: "25px", color: "white", cursor: "pointer" }} onClick={() => this.addDestinationYard()} />
+                          </div>}
                     </div>
                   </div>
                 ))}
@@ -765,42 +769,6 @@ class CreateNewContracts extends Component {
                 )
               })}
 
-              {/* {this.state.OriginData.map((ele) => {
-                console.log(ele.allName);
-                return (
-                  <tr>
-                    <td className="tLeft p-5 pl-10 master-contract-font-color">
-                      {ele.allName.map((ele) => ele.name1)}
-                    </td>
-
-                    <td style={{ paddingTop: "20px" }}>
-                      <div>
-                        <th className='col-4 tLeft'>
-                          <Checkbox type="square" label={ele.L1.map((cc) => cc.name1)} onCheck={() => { this.checkedFullRow(ele, ele.id) }} checked={this.state.selectedArray.includes(ele.id)} /></th>
-                      </div>
-                      <span style={{ paddingTop: "10px", paddingLeft: "20px", display: "flex", gap: "20px", alignItems: "center" }}>
-                        <storng>Rate:</storng> $ 4000 Per MT
-                        <span style={{ background: "green", color: "white", padding: "5px", borderRadius: "99px" }}>L1</span>
-                      </span>
-
-                      <div style={{ display: "flex", paddingLeft: "20px", paddingTop: "10px", gap: "20px" }}>
-                        <div style={{ fontSize: "12px", fontWeight: "800" }}>
-                          SAP Contract No:
-                          <div style={{ fontWeight: "normal", paddingTop: "8px", paddingBottom: "10px" }}>454567</div>
-                        </div>
-                        <div style={{ fontSize: "12px", fontWeight: "800" }}> Contract Tenure:
-                          <div style={{ fontWeight: "normal", paddingTop: "8px" }}>26 Mar 2022 To 26 Sep 2022</div>
-                        </div>
-                      </div>
-                    </td>
-
-
-                  </tr>
-                )
-              })} */}
-
-
-
             </tbody>
           </table >
 
@@ -944,8 +912,7 @@ class CreateNewContracts extends Component {
               </table>
             </div>
           )
-          )
-          }
+          )}
 
           {/* TABLE VADODARA */}
 
@@ -1069,7 +1036,7 @@ class CreateNewContracts extends Component {
 
                 <div className="modal scroll" style={{ padding: "10px", fontFamily: "Proximanova-Regular" }}>
                   <div style={{ padding: "10px 5px", display: "flex", justifyContent: "end", transform: "translate(10px, -20px)" }}>
-                    <a className="chcek-close-button" onClick={close} style={{ border: "5px solid black", padding: "1px 5px", borderRadius: "999px", fontSize: "20px", color: "black" }}>
+                    <a className="chcek-close-button" onClick={this.handleRefresh} style={{ border: "5px solid black", padding: "1px 5px", borderRadius: "999px", fontSize: "20px", color: "black" }}>
                       &times;
                     </a>
                   </div>
@@ -1160,7 +1127,7 @@ class CreateNewContracts extends Component {
                                           </g>
                                         </svg>
                                       </div>
-                                      <span>Surat</span>
+                                      <span>{this.state.from}</span>
                                     </div>
                                   </th>
                                   {/* <th>$ 8200</th> */}
@@ -1214,7 +1181,7 @@ class CreateNewContracts extends Component {
                                           </g>
                                         </svg>
                                       </div>
-                                      <span>Surat</span>
+                                      <span>{this.state.from}</span>
                                     </div>
                                   </th>
                                   {/* <th>$ 8200</th> */}
@@ -1382,7 +1349,7 @@ class CreateNewContracts extends Component {
                                           </g>
                                         </svg>
                                       </div>
-                                      <span>Vadodara</span>
+                                      <span>{this.state.to}</span>
                                     </div>
                                   </th>
                                   {/* <th>$ 8200</th> */}
@@ -1433,7 +1400,7 @@ class CreateNewContracts extends Component {
                                           </g>
                                         </svg>
                                       </div>
-                                      <span>Vadodara</span>
+                                      <span>{this.state.to}</span>
                                     </div>
                                   </th>
                                 </tr>
@@ -1502,10 +1469,7 @@ class CreateNewContracts extends Component {
                   <div className="actions" style={{ display: "flex", justifyContent: "end", paddingTop: "20px" }}>
                     <button
                       className={"bg-theme wt-250 pl-15 pr-15 mr-5 ht-40 br-5 fBold fs-14 white-color ml-15"}
-                      onClick={() => {
-                        console.log("modal closed");
-                        close();
-                      }}
+                      onClick={this.handleRefresh}
                     >Cancel
                     </button>
                     <Popup
@@ -1518,16 +1482,12 @@ class CreateNewContracts extends Component {
                       contentStyle={{ padding: "0px", border: "none" }}
                     >
                     </Popup>
-
-
                   </div>
-
-
                 </div>
                 :
                 <div className="modal scroll" style={{ padding: "10px", fontFamily: "Proximanova-Regular" }}>
                   <div style={{ padding: "10px 5px", display: "flex", justifyContent: "end", transform: "translate(10px, -20px)" }}>
-                    <a className="chcek-close-button" onClick={close} style={{ border: "5px solid black", padding: "1px 5px", borderRadius: "999px", fontSize: "20px", color: "black" }}>
+                    <a className="chcek-close-button" onClick={this.handleRefresh} style={{ border: "5px solid black", padding: "1px 5px", borderRadius: "999px", fontSize: "20px", color: "black" }}>
                       &times;
                     </a>
                   </div>
@@ -1549,11 +1509,11 @@ class CreateNewContracts extends Component {
                         <div style={{ fontWeight: "800" }}>Origin Yard:</div>
                         <div style={{ fontWeight: "800" }}>Destination Yard:</div>
 
-                        <span className="span">454567</span>
-                        <span className="span">Mundra</span>
-                        <span className="span">Lucknow</span>
-                        <span className="span">Dhrub</span>
-                        <span className="span">Surat</span>
+                        <span className="span">{this.state.routeCode}</span>
+                        <span className="span">{this.state.from}</span>
+                        <span className="span">{this.state.to}</span>
+                        <span className="span">{this.state.originYard}</span>
+                        <span className="span">{this.state.destination_Yard}</span>
                       </div>
                     </div>
 
@@ -1567,12 +1527,12 @@ class CreateNewContracts extends Component {
                         <div style={{ fontWeight: "800" }}>No of Wagon:</div>
                         <div style={{ fontWeight: "800" }}>Wagon Wt:</div>
 
-                        <span className="span">Full Rake</span>
-                        <span className="span">Hydrogeneted and other Edible Oil</span>
-                        <span className="span">All Refined and Non Refined Edible Oils</span>
-                        <span className="span">BCN</span>
-                        <span className="span">42</span>
-                        <span className="span">55 MT</span>
+                        <span className="span">{this.state.rakeOf}</span>
+                        <span className="span">{this.state.commodity_cato}</span>
+                        <span className="span">{this.state.commodity_N}</span>
+                        <span className="span">{this.state.WagonType}</span>
+                        <span className="span">{this.state.wagon}</span>
+                        <span className="span">{this.state.wagonWt} per MT Wagon</span>
                       </div>
                     </div>
 
@@ -1609,7 +1569,7 @@ class CreateNewContracts extends Component {
                                         </g>
                                       </svg>
                                     </div>
-                                    <span>Surat</span>
+                                    <span>{this.state.from}</span>
                                   </div>
                                 </th>
                               </tr>
@@ -1701,7 +1661,7 @@ class CreateNewContracts extends Component {
                                         </g>
                                       </svg>
                                     </div>
-                                    <span>Vadodara</span>
+                                    <span>{this.state.to}</span>
                                   </div>
                                 </th>
                               </tr>
@@ -1749,15 +1709,10 @@ class CreateNewContracts extends Component {
                     </div>
                   </div>
 
-
-
                   <div className="actions" style={{ display: "flex", justifyContent: "end", paddingTop: "20px" }}>
                     <button
                       className={"bg-theme wt-250 pl-15 pr-15 mr-5 ht-40 br-5 fBold fs-14 white-color ml-15"}
-                      onClick={() => {
-                        console.log("modal closed");
-                        close();
-                      }}
+                      onClick={this.handleRefresh}
                     >Cancel
                     </button>
                     <Popup
@@ -1781,7 +1736,6 @@ class CreateNewContracts extends Component {
 
 
           </div>
-
 
         </div >
       </Sticky >
