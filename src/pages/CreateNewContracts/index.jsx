@@ -5,7 +5,7 @@ import { ReactComponent as Back } from 'Icons/back.svg'
 import Checkbox from "Components/Checkbox/index";
 import Popup from 'reactjs-popup';
 import 'reactjs-popup/dist/index.css';
-import { AiOutlineCloseCircle, AiOutlinePlusCircle } from "react-icons/ai";
+import { AiOutlineCloseCircle, AiOutlinePlusCircle, AiOutlinePlus } from "react-icons/ai";
 import { IoIosArrowDropdown, IoIosArrowDropup } from "react-icons/io";
 import Input from "Components/FormInput/index";
 
@@ -24,6 +24,7 @@ class CreateNewContracts extends Component {
       selectedArray6: [],
       allSelected: true,
       destinationYardFull: [{
+        toDestination: "To",
         destinationYard: "Destination Yard"
       }],
       DATARAIL: [],
@@ -77,37 +78,43 @@ class CreateNewContracts extends Component {
         { id: 44, name: "Transporters", check1: "Transporter 1", check2: "Transporter 2", check3: "Transporter 3", Rate: 4500, Rate2: 4000, Rate3: 300, Contract_No: 454567, date: "26 Mar 2022 To 26 Sep 2022" },
         { id: 45, name: "Surveyors", check1: "Surveyor 1", check2: "Surveyor 2", check3: "Surveyor 3", Rate: 200, Rate2: 3000, Rate3: 200, Contract_No: 454568, date: "26 Mar 2022 To 26 Sep 2022" },
         { id: 46, name: "Handling Agents", check1: "Handling Agents 1", check2: "Handling Agents 2", check3: "Handling Agents 3", Rate: 210, Rate2: 2000, Rate3: 150, Contract_No: 454569, date: "26 Mar 2022 To 26 Sep 2022" },
-        { id: 47, name: "Security", check1: "Security 1", check2: "Security 2", check3: "Security 3", Rate: 300, Rate2: 1000, Rate3: 100, Contract_No: 454570, date: "26 Mar 2022 To 26 Sep 2022" }
+        { id: 47, name: "Lashers", check1: "Lashers 1", check2: "Lashers 2", check3: "Lashers 3", Rate: 280, Rate2: 290, Rate3: 300, Contract_No: 454569, date: "26 Mar 2022 To 26 Sep 2022" },
+        { id: 48, name: "Security", check1: "Security 1", check2: "Security 2", check3: "Security 3", Rate: 300, Rate2: 1000, Rate3: 100, Contract_No: 454570, date: "26 Mar 2022 To 26 Sep 2022" }
       ],
       allData2: [
         { id: 44, name: "Transporters", check1: "Transporter 1", check2: "Transporter 2", check3: "Transporter 3", Rate: 4500, Contract_No: 454567, date: "26 Mar 2022 To 26 Sep 2022" },
         { id: 45, name: "Surveyors", check1: "Surveyor 1", check2: "Surveyor 2", check3: "Surveyor 3", Rate: 200, Contract_No: 454568, date: "26 Mar 2022 To 26 Sep 2022" },
         { id: 46, name: "Handling Agents", check1: "Handling Agents 1", check2: "Handling Agents 2", check3: "Handling Agents 3", Rate: 210, Contract_No: 454569, date: "26 Mar 2022 To 26 Sep 2022" },
-        { id: 47, name: "Security", check1: "Security 1", check2: "Security 2", check3: "Security 3", Rate: 300, Contract_No: 454570, date: "26 Mar 2022 To 26 Sep 2022" }
+        { id: 47, name: "Lashers", check1: "Lashers 1", check2: "Lashers 2", check3: "Lashers 3", Rate: 280, Rate2: 290, Rate3: 300, Contract_No: 454569, date: "26 Mar 2022 To 26 Sep 2022" },
+        { id: 48, name: "Security", check1: "Security 1", check2: "Security 2", check3: "Security 3", Rate: 300, Contract_No: 454570, date: "26 Mar 2022 To 26 Sep 2022" }
       ],
       allData3: [
         { id: 44, name: "Transporters", check1: "Transporter 1", check2: "Transporter 2", check3: "Transporter 3", Rate: 4500, Contract_No: 454567, date: "26 Mar 2022 To 26 Sep 2022" },
         { id: 45, name: "Surveyors", check1: "Surveyor 1", check2: "Surveyor 2", check3: "Surveyor 3", Rate: 200, Contract_No: 454568, date: "26 Mar 2022 To 26 Sep 2022" },
         { id: 46, name: "Handling Agents", check1: "Handling Agents 1", check2: "Handling Agents 2", check3: "Handling Agents 3", Rate: 210, Contract_No: 454569, date: "26 Mar 2022 To 26 Sep 2022" },
-        { id: 47, name: "Security", check1: "Security 1", check2: "Security 2", check3: "Security 3", Rate: 300, Contract_No: 454570, date: "26 Mar 2022 To 26 Sep 2022" }
+        { id: 47, name: "Lashers", check1: "Lashers 1", check2: "Lashers 2", check3: "Lashers 3", Rate: 280, Rate2: 290, Rate3: 300, Contract_No: 454569, date: "26 Mar 2022 To 26 Sep 2022" },
+        { id: 48, name: "Security", check1: "Security 1", check2: "Security 2", check3: "Security 3", Rate: 300, Contract_No: 454570, date: "26 Mar 2022 To 26 Sep 2022" }
       ],
       allData4: [
         { id: 44, name: "Transporters", check1: "Transporter 1", check2: "Transporter 2", check3: "Transporter 3", Rate: 4500, Contract_No: 454567, date: "26 Mar 2022 To 26 Sep 2022" },
         { id: 45, name: "Surveyors", check1: "Surveyor 1", check2: "Surveyor 2", check3: "Surveyor 3", Rate: 200, Contract_No: 454568, date: "26 Mar 2022 To 26 Sep 2022" },
         { id: 46, name: "Handling Agents", check1: "Handling Agents 1", check2: "Handling Agents 2", check3: "Handling Agents 3", Rate: 210, Contract_No: 454569, date: "26 Mar 2022 To 26 Sep 2022" },
-        { id: 47, name: "Security", check1: "Security 1", check2: "Security 2", check3: "Security 3", Rate: 300, Contract_No: 454570, date: "26 Mar 2022 To 26 Sep 2022" }
+        { id: 47, name: "Lashers", check1: "Lashers 1", check2: "Lashers 2", check3: "Lashers 3", Rate: 280, Rate2: 290, Rate3: 300, Contract_No: 454569, date: "26 Mar 2022 To 26 Sep 2022" },
+        { id: 48, name: "Security", check1: "Security 1", check2: "Security 2", check3: "Security 3", Rate: 300, Contract_No: 454570, date: "26 Mar 2022 To 26 Sep 2022" }
       ],
       allData5: [
         { id: 44, name: "Transporters", check1: "Transporter 1", check2: "Transporter 2", check3: "Transporter 3", Rate: 4500, Contract_No: 454567, date: "26 Mar 2022 To 26 Sep 2022" },
         { id: 45, name: "Surveyors", check1: "Surveyor 1", check2: "Surveyor 2", check3: "Surveyor 3", Rate: 200, Contract_No: 454568, date: "26 Mar 2022 To 26 Sep 2022" },
         { id: 46, name: "Handling Agents", check1: "Handling Agents 1", check2: "Handling Agents 2", check3: "Handling Agents 3", Rate: 210, Contract_No: 454569, date: "26 Mar 2022 To 26 Sep 2022" },
-        { id: 47, name: "Security", check1: "Security 1", check2: "Security 2", check3: "Security 3", Rate: 300, Contract_No: 454570, date: "26 Mar 2022 To 26 Sep 2022" }
+        { id: 47, name: "Lashers", check1: "Lashers 1", check2: "Lashers 2", check3: "Lashers 3", Rate: 280, Rate2: 290, Rate3: 300, Contract_No: 454569, date: "26 Mar 2022 To 26 Sep 2022" },
+        { id: 48, name: "Security", check1: "Security 1", check2: "Security 2", check3: "Security 3", Rate: 300, Contract_No: 454570, date: "26 Mar 2022 To 26 Sep 2022" }
       ],
       allData6: [
         { id: 44, name: "Transporters", check1: "Transporter 1", check2: "Transporter 2", check3: "Transporter 3", Rate: 4500, Contract_No: 454567, date: "26 Mar 2022 To 26 Sep 2022" },
         { id: 45, name: "Surveyors", check1: "Surveyor 1", check2: "Surveyor 2", check3: "Surveyor 3", Rate: 200, Contract_No: 454568, date: "26 Mar 2022 To 26 Sep 2022" },
         { id: 46, name: "Handling Agents", check1: "Handling Agents 1", check2: "Handling Agents 2", check3: "Handling Agents 3", Rate: 210, Contract_No: 454569, date: "26 Mar 2022 To 26 Sep 2022" },
-        { id: 47, name: "Security", check1: "Security 1", check2: "Security 2", check3: "Security 3", Rate: 300, Contract_No: 454570, date: "26 Mar 2022 To 26 Sep 2022" }
+        { id: 47, name: "Lashers", check1: "Lashers 1", check2: "Lashers 2", check3: "Lashers 3", Rate: 280, Rate2: 290, Rate3: 300, Contract_No: 454569, date: "26 Mar 2022 To 26 Sep 2022" },
+        { id: 48, name: "Security", check1: "Security 1", check2: "Security 2", check3: "Security 3", Rate: 300, Contract_No: 454570, date: "26 Mar 2022 To 26 Sep 2022" }
       ],
       routeCode: [],
       from: [],
@@ -131,8 +138,6 @@ class CreateNewContracts extends Component {
   }
 
 
-
-
   addFields() {
     this.setState(({
       values: [...this.state.values, {
@@ -148,8 +153,9 @@ class CreateNewContracts extends Component {
 
   addDestinationYard() {
     this.setState(({
-      destinationYardFull: [...this.state.destinationYardFull, {
-        destinationYard: "Destination Yard"
+      destinationYardFull: [...this.state.destinationYardFull,  {
+        destinationYard: "Destination Yard",
+        toDestination: "To"
       }]
     }))
   }
@@ -177,11 +183,9 @@ class CreateNewContracts extends Component {
     const { selectedArray } = this.state;
     const temp = [...selectedArray]
     if (temp.find(obj => obj.id === ele.id)) {
-      //Already checked, need to uncheck
       temp.splice(temp.findIndex(obj => obj.id === ele.id), 1)
       this.setState({ selectedArray: temp })
     } else {
-      //Not checked, need to check
       temp.push(ele)
       this.setState({ selectedArray: temp })
     }
@@ -191,11 +195,9 @@ class CreateNewContracts extends Component {
     const { selectedArray2 } = this.state;
     const temp = [...selectedArray2]
     if (temp.find(obj => obj.id === ele.id)) {
-      //Already checked, need to uncheck
       temp.splice(temp.findIndex(obj => obj.id === ele.id), 1)
       this.setState({ selectedArray2: temp })
     } else {
-      //Not checked, need to check
       temp.push(ele)
       this.setState({ selectedArray2: temp })
     }
@@ -428,12 +430,6 @@ class CreateNewContracts extends Component {
 
 
   render() {
-    console.log(this.state.selectedArray);
-    console.log(this.state.selectedArray2);
-    console.log(this.state.selectedArray3);
-    console.log(this.state.selectedArray4);
-    console.log(this.state.selectedArray5);
-    console.log(this.state.selectedArray6);
     var Handlechange = e => {
       this.setState({ show: !this.state.show });
     }
@@ -485,7 +481,7 @@ class CreateNewContracts extends Component {
 
             <div className="input-fields">
               <div className="fs-14 header-dark-color mr-10">
-                <div style={{ paddingBottom: "5px", color: "white" }}>
+                <div style={{ paddingBottom: "5px", color: "black", fontWeight: "700" }}>
                   Route Code
                 </div>
                 <Dropdown
@@ -497,8 +493,9 @@ class CreateNewContracts extends Component {
                   searchEnabled={true}
                 />
               </div>
+              <hr width="1" size="100" />
               <div className="fs-14 header-dark-color mr-10">
-                <div style={{ paddingBottom: "5px", color: "white" }}>
+                <div style={{ paddingBottom: "5px", color: "black", fontWeight: "700" }}>
                   From
                 </div>
                 <Dropdown
@@ -511,21 +508,7 @@ class CreateNewContracts extends Component {
                 />
               </div>
               <div className="fs-14 header-dark-color mr-10">
-                <div style={{ paddingBottom: "5px", color: "white" }}>
-                  To
-                </div>
-                <Dropdown
-                  items={To}
-                  label="To"
-                  displayKey="label"
-                  selectedItem={null}
-                  onSelect={this.selectTo}
-                  className="mb-0 wt-250 ht-30"
-                  searchEnabled={true}
-                />
-              </div>
-              <div className="fs-14 header-dark-color mr-10">
-                <div style={{ paddingBottom: "5px", color: "white" }}>
+                <div style={{ paddingBottom: "5px", color: "black", fontWeight: "700" }}>
                   Origin Yard
                 </div>
                 <Dropdown
@@ -538,11 +521,26 @@ class CreateNewContracts extends Component {
                   searchEnabled={true}
                 />
               </div>
+              <hr width="1" size="100" />
               <div className="fs-14 header-dark-color mr-10">
                 {this.state.destinationYardFull.map((ele, idx) => (
                   <div key={idx} style={{ display: "flex", alignItems: "center" }}>
-                    <div className="fs-14 header-dark-color mr-10" >
-                      <div style={{ paddingBottom: "5px", color: "white" }} key={idx}>
+                    <div className="fs-14 header-dark-color mr-10">
+                      <div style={{ paddingBottom: "5px", color: "black", fontWeight: "700" }} key={idx}>
+                        {ele.toDestination}
+                      </div>
+                      <Dropdown
+                        items={To}
+                        label={ele.toDestination}
+                        displayKey="label"
+                        selectedItem={null}
+                        onSelect={this.selectTo}
+                        className="mb-0 wt-250 ht-30"
+                        searchEnabled={true}
+                      />
+                    </div>
+                    <div className="fs-14 header-dark-color mr-10">
+                      <div style={{ paddingBottom: "5px", color: "black", fontWeight: "700" }} key={idx}>
                         {ele.destinationYard}
                       </div>
                       <Dropdown
@@ -555,133 +553,53 @@ class CreateNewContracts extends Component {
                         searchEnabled={true}
                       />
                     </div>
+
                     <div>
                       {
                         idx ?
-                          <div className="fs-14 header-dark-color mr-10 cursor-pointer">
+                          <div className="fs-14 header-dark-color mr-10 cursor-pointer" style={{ display: "flex", alignItems: "center", paddingTop: "25px", gap: "5px" }}>
                             <br></br>
                             <br></br>
-                            <AiOutlineCloseCircle style={{ width: "25px", height: "25px", color: "white", cursor: "pointer" }} onClick={() => this.removeDestionationYard(idx)} />
+                            <div onClick={() => this.addDestinationYard()} style={{ display: "flex", alignItems: "center", gap: "5px", border: "1px solid #528aea", padding: "10px", borderRadius: "5px", color: "#528aea", cursor: "pointer" }}>
+                              <div>
+                                <AiOutlinePlus />
+                              </div>
+                              <div>DESTINATION</div>
+                            </div>
+                            <AiOutlineCloseCircle style={{ width: "25px", height: "25px", color: "#528aea", cursor: "pointer" }} onClick={() => this.removeDestionationYard(idx)} />
                           </div>
                           :
-                          <div className="fs-14 header-dark-color mr-10 cursor-pointer">
+                          <div className="fs-14 header-dark-color cursor-pointer">
                             <br></br>
                             <br></br>
-                            <AiOutlinePlusCircle style={{ width: "25px", height: "25px", color: "white", cursor: "pointer" }} onClick={() => this.addDestinationYard()} />
+                            <div onClick={() => this.addDestinationYard()} style={{ display: "flex", alignItems: "center", gap: "5px", border: "1px solid #528aea", padding: "10px", borderRadius: "5px", color: "#528aea", cursor: "pointer" }}>
+                              <div>
+                                <AiOutlinePlus />
+                              </div>
+                              <div>DESTINATION</div>
+                            </div>
                           </div>
                       }
                     </div>
                   </div>
                 ))}
               </div>
-              <button
+              {/* <button
                 className={"bg-theme wt-250 pl-15 pr-15 mr-5 ht-40 br-5 fBold fs-14 white-color ml-15 mt-20 bg-blue"}
-              >Search</button>
+              >Search</button> */}
             </div>
+
+            <hr width="98%" />
 
 
             {/* ADD FULL ROW ON PLUS BUTTON */}
 
-            {this.state.values.map((element, index) => (
-              <div className="input-fields" key={element.id}>
-                <div className="fs-14 header-dark-color mr-10">
-                  <div style={{ paddingBottom: "5px", color: "white" }}>
-                    {element.rake}
-                  </div>
-                  <Dropdown
-                    items={Rake}
-                    label="Full Rake"
-                    displayKey="label"
-                    onSelect={this.selectRake}
-                    className="mb-0 wt-250 ht-30"
-                    searchEnabled={true}
-                  />
-                </div>
-                <div className="fs-14 header-dark-color mr-10">
-                  <div style={{ paddingBottom: "5px", color: "white" }}>
-                    {element.commodityCategory}
-                  </div>
-                  <Dropdown
-                    items={Commodity_cat}
-                    label="Commodity Category"
-                    displayKey="label"
-                    selectedItem={null}
-                    onSelect={this.selectCommodityCat}
-                    className="mb-0 wt-250 ht-30 wd-350"
-                    searchEnabled={true}
-                  />
-                </div>
-                <div className="fs-14 header-dark-color mr-10">
-                  <div style={{ paddingBottom: "5px", color: "white" }}>
-                    {element.commodityName}
-                  </div>
-                  <Dropdown
-                    items={Commodity_name}
-                    label="Commodity Name"
-                    displayKey="label"
-                    selectedItem={null}
-                    onSelect={this.selectCommodityName}
-                    className="mb-0 wt-250 ht-30 wd-350"
-                    searchEnabled={true}
-                  />
-                </div>
-                <div className="fs-14 header-dark-color mr-10">
-                  <div style={{ paddingBottom: "5px", color: "white" }}>
-                    {element.typeWagon}
-                  </div>
-                  <Dropdown
-                    items={Wagon_type}
-                    label="BCN"
-                    displayKey="label"
-                    selectedItem={null}
-                    onSelect={this.selectWagonType}
-                    className="mb-0 wd-200 ht-30"
-                    searchEnabled={true}
-                  />
-                </div>
-                <div className="fs-14 header-dark-color mr-10">
-                  <div style={{ paddingBottom: "5px", color: "white" }}>
-                    {element.numberWagonn}
-                  </div>
-                  <Input
-                    type="number"
-                    value={this.state.wagon}
-                    onChange={this.handleInputChange}
-                    className="mb-0 wt-250 ht-30 wd-100"
-                    style={{ width: "120px", height: "36px", background: "white", borderRadius: "5px", display: "flex", alignItems: "center" }}
-                  />
-                </div>
-                <div className="fs-14 header-dark-color mr-10">
-                  <div style={{ paddingBottom: "5px", color: "white" }}>
-                    {element.weightWagon}
-                  </div>
-                  <Input
-                    type="number"
-                    value={this.state.wagonWt}
-                    onChange={this.handleInput2Change}
-                    className="mb-0 wt-250 ht-30 wd-100"
-                    style={{ width: "120px", height: "36px", background: "white", borderRadius: "5px" }}
-                  />
-                </div>
-                {
-                  index ?
-                    <div className="fs-14 header-dark-color cursor-pointer">
-                      <br></br>
-                      <br></br>
-                      <AiOutlineCloseCircle style={{ width: "25px", height: "25px", color: "white", cursor: "pointer" }} onClick={() => this.removeFields(index)} />
-                    </div>
-                    :
-                    <div className="fs-14 header-dark-color cursor-pointer">
-                      <br></br>
-                      <br></br>
-                      <AiOutlinePlusCircle style={{ width: "25px", height: "25px", color: "white", cursor: "pointer" }} onClick={() => this.addFields()} />
-                    </div>
-                }
-              </div>
-            ))
-            }
+            <div style={{ display: "flex", justifyContent: "end", padding: "5px 35px 15px 0px", cursor: "pointer" }}>
+              <div  style={{ display: "flex", justifyContent: "center", paddingRight: "20px", border: "1px solid #528aea", width: "400px", alignItems: "center", padding: "8px 20px", backgroundColor: "#528aea", fontWeight: "700", color: "white", borderRadius: "5px" }}>Search Route</div>
+            </div>
 
-          </div >
+
+          </div>
 
           {/* TABLE SURAT */}
 
@@ -702,7 +620,7 @@ class CreateNewContracts extends Component {
                       </svg>
                     </div>
                     <span>
-                      {this.state.from}
+                    {this.state.originYard}
                     </span>
                   </div>
                 </th>
@@ -716,15 +634,14 @@ class CreateNewContracts extends Component {
 
             <tbody className="ht-40 fs-14 fBold mr-5 mt-10 curP label-color">
               {this.state.allData.map((ele, idx) => {
-                // console.log(this.state.allData);
                 return (
-                  <tr key={idx}>
+                  <tr key={idx} >
 
-                    <td style={{ borderRight: "0px solid" }} className="tLeft p-5 pl-10  master-contract-font-color">
+                    <td className="tLeft p-5 pl-10  master-contract-font-color last-chil      v dddd" style={{ borderBottom: "1px solid black" }}>
                       {ele.name}
                     </td>
 
-                    <td style={{ paddingTop: "20px" }}>
+                    <td style={{ paddingTop: "20px", borderBottom: "1px solid black" }}>
                       <div>
                         <th className='col-4 tLeft' key={idx}>
                           <Checkbox type="square" label={ele.check1} onCheck={() => { this.checkedFullRow(ele) }} checked={this.state.selectedArray.find(obj => obj.id === ele.id)} /></th>
@@ -745,7 +662,7 @@ class CreateNewContracts extends Component {
                       </div>
                     </td>
 
-                    <td style={{ color: "rgb(164, 164, 164)" }}>
+                    <td style={{ color: "rgb(164, 164, 164)", borderBottom: "1px solid black" }}>
                       <div style={{ paddingBottom: "10px" }}>
                         <th className='col-4 tLeft'><Checkbox type="square" label={ele.check2} onCheck={() => { this.checkedFullRow2(ele) }} checked={this.state.selectedArray2.find(obj => obj.id === ele.id)} /></th>
                       </div>
@@ -762,7 +679,7 @@ class CreateNewContracts extends Component {
                       <div></div>
                     </td>
 
-                    <td style={{ color: "rgb(164, 164, 164)" }}>
+                    <td style={{ color: "rgb(164, 164, 164)", borderBottom: "1px solid black" }}>
                       <div style={{ paddingBottom: "10px" }}>
                         <th className='col-4 tLeft'><Checkbox type="square" label={ele.check3} onCheck={() => { this.checkedFullRow3(ele) }} checked={this.state.selectedArray3.find(obj => obj.id === ele.id)} /></th>
                       </div>
@@ -790,8 +707,7 @@ class CreateNewContracts extends Component {
 
           {/* TABLE OIL */}
 
-          {this.state.values.map((element, index) => (
-            // console.log(this.state.values);
+          {/* {this.state.values.map((element, index) => (
             <div>
               <table style={{ boxShadow: 'rgba(136, 165, 300, 0.6) 0px 0px 5px 0px, rgba(255, 255, 255, 0.7) 0px 0px 5px 0px', width: "100%", borderSpacing: '0px', marginTop: "30px" }} key={index}>
                 <thead className="ht-40 fs-14 fBold mr-5 mt-10 curP table-bg-dark-red white-color">
@@ -867,7 +783,6 @@ class CreateNewContracts extends Component {
 
                     </div>
 
-                    {/* Half Component */}
 
                     <div style={{ width: "50%" }}>
 
@@ -922,7 +837,7 @@ class CreateNewContracts extends Component {
               </table>
             </div>
           )
-          )}
+          )} */}
 
           {/* TABLE VADODARA */}
 
@@ -954,8 +869,7 @@ class CreateNewContracts extends Component {
             <tbody className="ht-40 fs-14 fBold mr-5 mt-10 curP label-color">
               {/* FIRST TABLE */}
 
-              {this.state.allData.map((ele, idx) => {
-                // console.log(ele.Rate);
+              {this.state.allData.filter((e,i) => i!=0).map((ele, idx) => {
                 return (
                   <tr key={idx}>
                     <td style={{ borderRight: "0px solid" }} className="tLeft p-5 pl-10  master-contract-font-color">
@@ -1018,8 +932,31 @@ class CreateNewContracts extends Component {
             </tbody>
           </table>))}
 
-          <div style={{ paddingTop: "20px", width: "100%", justifyContent: "end", display: "flex" }}>
 
+          <div style={{ display: "flex", alignItems: "center", justifyContent: "end" }}>
+
+          <div style={{ paddingTop: "20px",  justifyContent: "end" }}>
+            <Popup
+              trigger={
+                ((this.state.selectedArray.length > 0 && this.state.selectedArray4.length > 0) || (this.state.selectedArray2.length > 0 && this.state.selectedArray3.length > 0)) || (this.state.selectedArray.length > 0 && this.state.selectedArray3.length > 0)
+                  ?
+                  (<button style={{ border: "1px solid #528aea", color: "#528aea" }}
+                    className={" wt-250 pl-15 pr-15 mr-5 ht-40 br-5 fBold fs-14 ml-15"}
+                    >Check Cost Estimation
+                  </button>) : <div></div>
+              }
+              modal
+              contentStyle={contentStyle}
+            >
+              {close =>
+                  <>
+                    Check the Max
+                  </>
+              }
+            </Popup>
+          </div>
+
+          <div style={{ paddingTop: "20px", justifyContent: "end" }}>
             <Popup
               trigger={
                 // (this.state.selectedArray.length > 0 && this.state.selectedArray2.length > 0 && this.state.selectedArray3.length > 0 && this.state.selectedArray4.length > 0)
@@ -1027,7 +964,7 @@ class CreateNewContracts extends Component {
                   ?
                   (<button
                     className={"bg-theme wt-250 pl-15 pr-15 mr-5 ht-40 br-5 fBold fs-14 white-color ml-15"}
-                  >Preview & Generate Contract
+                    >Preview & Generate Contract
                   </button>) : <div></div>
               }
               modal
@@ -1741,7 +1678,7 @@ class CreateNewContracts extends Component {
                 </div>
               )}
             </Popup>
-
+          </div>
 
           </div>
 
