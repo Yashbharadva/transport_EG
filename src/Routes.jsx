@@ -7,6 +7,7 @@ import Signin from "Pages/Signin";
 import MultiModeContracts from "Pages/MultiModeContracts";
 import ViewGeneratedContracts from "Pages/ViewMultiModeGeneratedContracts";
 import CreateNewContracts from "Pages/CreateNewContracts/index";
+import SingleCostEstimation from "Pages/singleCostEstimation/index";
 
 export default class Routes extends Component {
   render() {
@@ -18,6 +19,7 @@ export default class Routes extends Component {
           <Route exact path="/multiModeContracts" component={MultiModeContracts} />
           <Route exact path="/viewGeneratedContracts" component={ViewGeneratedContracts} />
           <Route exact path="/createNewContracts" component={CreateNewContracts} />
+          <Route exact path="/singleCostEstimation" component={SingleCostEstimation} />
         </Switch> 
       </App>
     )

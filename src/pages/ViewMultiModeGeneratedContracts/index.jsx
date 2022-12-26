@@ -42,6 +42,7 @@ class MultiModeGeneratedContracts extends Component {
                             <button
                                 className={"bg-theme wt-250 ht-40 br-5 fBold fs-14 white-color"}
                                 onClick={() => {
+                                    console.log(this.props.history);
                                     this.props.history.push('/createNewContracts')
                                 }}
                             >+ Create New Contract</button>
