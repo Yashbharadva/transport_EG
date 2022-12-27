@@ -12,7 +12,7 @@ import Input from "Components/FormInput/index";
 
 class CreateNewContracts extends Component {
   constructor(props) {
-   
+
     super(props);
     this.state = {
       wagon: "",
@@ -433,9 +433,14 @@ class CreateNewContracts extends Component {
     console.log("kbhjkljbsdjklfshkdjlfhlkjs");
   }
 
+  sendState = () => {
+    this.setState({ data: this.state.selectedArray })
+  }
+
 
 
   render() {
+    console.log(this.state.selectedArray);
     var Handlechange = e => {
       this.setState({ show: !this.state.show });
     }
@@ -715,140 +720,6 @@ class CreateNewContracts extends Component {
           </table >
 
 
-          {/* TABLE OIL */}
-
-          {/* {this.state.values.map((element, index) => (
-            <div>
-              <table style={{ boxShadow: 'rgba(136, 165, 300, 0.6) 0px 0px 5px 0px, rgba(255, 255, 255, 0.7) 0px 0px 5px 0px', width: "100%", borderSpacing: '0px', marginTop: "30px" }} key={index}>
-                <thead className="ht-40 fs-14 fBold mr-5 mt-10 curP table-bg-dark-red white-color">
-                  <tr className="br-10">
-                    <th className=''>
-                      <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
-                        <div style={{ paddingLeft: "5px" }}>
-                          <svg xmlns="http://www.w3.org/2000/svg" width="50" height="30" viewBox="0 0 42 44">
-                            <g fill="#FFF" fill-rule="evenodd" stroke-width=".5">
-                              <path d="M1.1 43.731a.41.41 0 0 1-.21 0 .49.49 0 0 1-.24-.66l9.26-19.54a.49.49 0 0 1 .66-.24.5.5 0 0 1 .24.67L1.6 43.491a.48.48 0 0 1-.5.24zM40.42 43.731a.48.48 0 0 1-.45-.28l-9.26-19.49a.5.5 0 0 1 .24-.67.49.49 0 0 1 .66.24l9.26 19.53a.49.49 0 0 1-.27.67.41.41 0 0 1-.18 0z" />
-                              <path d="M32.68 27.441H8.84a.5.5 0 1 1 0-1h23.84a.5.5 0 1 1 0 1zM35.37 33.671H5.85a.51.51 0 0 1-.5-.5.5.5 0 0 1 .5-.5h29.52a.5.5 0 1 1 0 1zM38.6 39.891H2.94a.5.5 0 0 1-.5-.5.51.51 0 0 1 .5-.5H38.6a.5.5 0 1 1 0 1z" />
-                              <path fill-rule="nonzero" d="M31.33 24.241H10.44a2.61 2.61 0 0 1-2.61-2.61V3.341a2.61 2.61 0 0 1 2.61-2.61h20.89a2.61 2.61 0 0 1 2.61 2.61v18.29a2.61 2.61 0 0 1-2.61 2.61zM10.44 1.731c-.89 0-1.61.721-1.61 1.61v18.29c0 .89.72 1.61 1.61 1.61h20.89a1.61 1.61 0 0 0 1.61-1.61V3.341a1.61 1.61 0 0 0-1.61-1.61H10.44z" />
-                              <path d="M33.44 16.381H8.33a.5.5 0 1 1 0-1h25.11a.5.5 0 1 1 0 1z" />
-                              <path d="M20.65 16.381a.5.5 0 0 1-.5-.5V1.231a.5.5 0 1 1 1 0v14.65a.51.51 0 0 1-.5.5z" />
-                              <path fill-rule="nonzero" d="M29.66 21.341a2 2 0 1 1 0-4 2 2 0 0 1 0 4zm0-3.09a1.045 1.045 0 1 0 0 2.09 1.045 1.045 0 0 0 0-2.09zM11.73 21.341a2 2 0 1 1 0-4 2 2 0 0 1 0 4zm0-3.09a1 1 0 1 0 .002 2 1 1 0 0 0-.003-2z" />
-                              <path d="M22.6 21.081h-3.66a.5.5 0 1 1 0-1h3.66a.5.5 0 1 1 0 1z" />
-                            </g>
-                          </svg>
-                        </div>
-                        <span>Rail Freight For Commodity : {this.state.commodity_cato}</span>
-                      </div>
-                    </th>
-                  </tr>
-                </thead>
-                <tbody className="ht-40 fs-14 fBold mr-5 mt-10 curP label-color">
-
-                  <div style={{ display: "flex", flexDirection: "row", justifyContent: "space-between", width: "100%" }} key={element.id}>
-                    <div style={{ width: "50%" }}>
-                      <div style={{ padding: "10px" }}>
-                        <div style={{ border: "1px solid black", display: "grid", gridTemplateColumns: "1fr 1fr 1fr 1fr", padding: "15px" }}>
-                          <div label style={{ display: "flex", flexDirection: "column", color: "rgb(164, 164, 164)" }}>
-                            From:
-                            <span style={{ color: "black" }}>
-                              {this.state.from}
-                            </span>
-                          </div>
-                          <div style={{ display: "flex", flexDirection: "column", color: "rgb(164, 164, 164)" }}>
-                            To:
-                            <span style={{ color: "black" }}>
-                              {this.state.to}
-                            </span>
-                          </div>
-                          <div style={{ display: "flex", flexDirection: "column", color: "rgb(164, 164, 164)" }}>
-                            Origin Yard:
-                            <span style={{ color: "black" }}>
-                              {this.state.originYard}
-                            </span>
-                          </div>
-                          <div style={{ display: "flex", flexDirection: "column", color: "rgb(164, 164, 164)" }}>
-                            Destination Yard:
-                            <span style={{ color: "black" }}>
-                              {this.state.destination_Yard}
-                            </span>
-                          </div>
-                        </div>
-                      </div>
-                      <div style={{ padding: "10px" }}>
-                        <div style={{ border: "1px solid black", display: "grid", gridTemplateColumns: "1fr 1fr", padding: "15px" }}>
-                          <div style={{ display: "flex", flexDirection: "column", color: "rgb(164, 164, 164)" }}>
-                            Commodity:
-                            <span style={{ color: "black" }}>
-                              {this.state.commodity_cato}
-                            </span>
-                          </div>
-                          <div style={{ display: "flex", flexDirection: "column", color: "rgb(164, 164, 164)" }}>
-                            Commodity Type:
-                            <span style={{ color: "black" }}>
-                              {this.state.commodity_N}
-                            </span>
-                          </div>
-                        </div>
-                      </div>
-
-                    </div>
-
-
-                    <div style={{ width: "50%" }}>
-
-                      <div style={{ padding: "10px" }}>
-                        <div style={{ border: "1px solid black", display: "grid", gridTemplateColumns: "1fr 1fr 1fr 1fr", padding: "15px" }}>
-                          <div style={{ display: "flex", flexDirection: "column", color: "rgb(164, 164, 164)" }}>
-                            Wagon Type:
-                            <span style={{ color: "black" }}>
-                              {this.state.WagonType}
-                            </span>
-                          </div>
-                          <div style={{ display: "flex", flexDirection: "column", color: "rgb(164, 164, 164)" }}>
-                            Rake Type:
-                            <span style={{ color: "black" }}>
-                              {this.state.rakeOf}
-                            </span>
-                          </div>
-                          <div style={{ display: "flex", flexDirection: "column", color: "rgb(164, 164, 164)" }}>
-                            No of Wagons:
-                            <span style={{ color: "black" }}>
-                              {this.state.wagon}
-                            </span>
-                          </div>
-                          <div style={{ display: "flex", flexDirection: "column", color: "rgb(164, 164, 164)" }}>
-                            Loadable Weight:
-                            <span style={{ color: "black" }}>
-                              {this.state.wagonWt} per MT Wagon
-                            </span>
-                          </div>
-                        </div>
-                      </div>
-
-                      <div style={{ padding: "10px" }}>
-                        <div style={{ border: "1px solid black", display: "grid", gridTemplateColumns: "1fr 1fr", padding: "15px" }}>
-                          <div style={{ display: "flex", flexDirection: "column", color: "rgb(164, 164, 164)" }}>
-                            Total Cost:
-                            <span style={{ color: "black" }}>
-                              230880
-                            </span>
-                          </div>
-                          <div style={{ display: "flex", flexDirection: "column", borderLeft: "1px solid black", paddingLeft: "20px", color: "rgb(164, 164, 164)" }}>
-                            Total Cost:
-                            <span style={{ color: "black" }}>
-                              230880
-                            </span>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </tbody>
-              </table>
-            </div>
-          )
-          )} */}
-
           {/* TABLE VADODARA */}
 
           {this.state.destinationYardFull.map((ele, idx) =>
@@ -965,7 +836,7 @@ class CreateNewContracts extends Component {
                         <AiOutlineCloseCircle size="2em" onClick={this.handleRefresh} />
                       </div>
 
-                      <div style={{ background: "white", padding: "20px", height: "500px", overflowY: "scroll" }}>
+                      <div style={{ background: "white", padding: "20px 20px 0px 20px", height: "500px", overflowY: "scroll" }}>
                         <div>
                           <div style={{ display: "flex", justifyContent: "space-between", fontWeight: "800", fontSize: "20px" }}>
                             Enter Commodity & Rake Details
@@ -1086,16 +957,14 @@ class CreateNewContracts extends Component {
                                               <br></br>
                                               <br></br>
                                               <AiOutlineCloseCircle style={{ width: "25px", height: "25px", color: "#528aea", cursor: "pointer" }} onClick={() => this.removeFields(index)} />
-                                              {/* <AiOutlinePlusCircle style={{ width: "25px", height: "25px", color: "#528aea", cursor: "pointer" }} onClick={() => this.addFields()} /> */}
-                                              
+
                                             </div>
                                             :
                                             <div className="fs-14 header-dark-color cursor-pointer">
                                               <br></br>
                                               <br></br>
-                                              {/* <AiOutlineCloseCircle style={{ width: "25px", height: "25px", color: "#528aea", cursor: "pointer" }} onClick={() => this.removeFields(index)} /> */}
                                               <AiOutlinePlusCircle style={{ width: "25px", height: "25px", color: "#528aea", cursor: "pointer" }} onClick={() => this.addFields()} />
-                                              
+
                                             </div>
                                         }
                                       </div>
@@ -1107,30 +976,24 @@ class CreateNewContracts extends Component {
                               </tbody>
 
                             </table>
-                            <div className="actions" style={{ justifyContent: "end", padding: "20px", display: "flex" }}>
+                          </div>
+                        </div>
+                      </div>
+                            <div className="actions" style={{ display: "flex", justifyContent: "end", paddingTop: "20px", width: "100%", position: "sticky", bottom: "0", background: "white", paddingBottom: "15px", paddingRight: "20px" }}>
                               <button
                                 style={{ border: "1px solid #528aea", color: "#528aea" }}
                                 className={"wt-250 pl-15 pr-15 mr-5 ht-40 br-5 fBold fs-14 ml-15"}
                                 onClick={this.handleRefresh}
                               >Cancel
                               </button>
-                              <button 
-                              onClick={() => {this.props.history.push('/singleCostEstimation')}}
-                                  className={"bg-theme wt-250 pl-15 pr-15 mr-5 ht-40 br-5 fBold fs-14 white-color ml-15"}
-                                >Check Cost Estimationnnnnnnn
-                                </button>
-                             
+                              <button
+                                data={this.sendState}
+                                onClick={() => { this.props.history.push('/singleCostEstimation') }}
+                                className={"bg-theme wt-250 pl-15 pr-15 mr-5 ht-40 br-5 fBold fs-14 white-color ml-15"}
+                              >Check Cost Estimationnnnnnnn
+                              </button>
+
                             </div>
-                          </div>
-                        </div>
-
-
-
-                      </div>
-
-
-
-
                     </div>
                   </>
                 }
@@ -1155,13 +1018,11 @@ class CreateNewContracts extends Component {
                 ((this.state.selectedArray.length > 0 || this.state.selectedArray4.length > 0 || this.state.selectedArray2.length > 0 || this.state.selectedArray3.length > 0) && ((this.state.selectedArray2.length > 0 || this.state.selectedArray3.length > 0) || (this.state.selectedArray5.length > 0 || this.state.selectedArray6.length > 0)) ?
 
                   <div className="modal scroll" style={{ padding: "10px", fontFamily: "Proximanova-Regular" }}>
-                    <div style={{ padding: "10px 5px", display: "flex", justifyContent: "end", transform: "translate(10px, -20px)" }}>
-                      <a className="chcek-close-button" onClick={this.handleRefresh} style={{ border: "5px solid black", padding: "1px 5px", borderRadius: "999px", fontSize: "20px", color: "black" }}>
-                        &times;
-                      </a>
+                    <div style={{ padding: "10px 5px", display: "flex", justifyContent: "end", transform: "translate(5px, 5px)", color: "white", cursor: "pointer" }}>
+                      <AiOutlineCloseCircle size="2em" onClick={this.handleRefresh} />
                     </div>
 
-                    <div style={{ boxShadow: "0 0 27px 4px rgb(69 68 68 / 40%)", padding: "20px" }}>
+                    <div style={{ boxShadow: "0 0 27px 4px rgb(69 68 68 / 40%)", padding: "20px", background: "white", height: "500px", overflowY: "scroll" }}>
                       <div onClick={Handlechange} style={{ cursor: "pointer" }}>
                         <div style={{ display: "flex", justifyContent: "space-between", fontWeight: "800", fontSize: "20px" }}>
                           Contract No : 23456666
@@ -1609,14 +1470,12 @@ class CreateNewContracts extends Component {
                     </div>
                   </div>
                   :
-                  <div className="modal scroll" style={{ padding: "10px", fontFamily: "Proximanova-Regular" }}>
-                    <div style={{ padding: "10px 5px", display: "flex", justifyContent: "end", transform: "translate(10px, -20px)" }}>
-                      <a className="chcek-close-button" onClick={this.handleRefresh} style={{ border: "5px solid black", padding: "1px 5px", borderRadius: "999px", fontSize: "20px", color: "black" }}>
-                        &times;
-                      </a>
+                  <div className="modal scroll" style={{ padding: "10px", fontFamily: "Proximanova-Regular", width: "100%" }}>
+                    <div style={{ padding: "10px 5px", display: "flex", justifyContent: "end", transform: "translate(5px, 5px)", color: "white", cursor: "pointer" }}>
+                      <AiOutlineCloseCircle size="2em" onClick={this.handleRefresh} />
                     </div>
 
-                    <div style={{ boxShadow: "0 0 27px 4px rgb(69 68 68 / 60%)", padding: "20px" }}>
+                    <div style={{ boxShadow: "0 0 27px 4px rgb(69 68 68 / 60%)", padding: "20px 20px 0px 20px", background: "white", height: "700px", overflowY: "scroll", width: "100%" }}>
                       <div>
                         <div style={{ display: "flex", justifyContent: "space-between", fontWeight: "800", fontSize: "20px" }}>
                           Contract No : 23456666
@@ -1641,37 +1500,8 @@ class CreateNewContracts extends Component {
                         </div>
                       </div>
 
-                      {/* <div style={{ padding: "10px 0px", width: "100%" }}>
-                      <div style={{ display: "grid", gridTemplateColumns: "repeat(6, 1fr)" }}>
-
-                        <div style={{ fontWeight: "800" }}>Rake:</div>
-                        <div style={{ fontWeight: "800" }}>Commodity Category:</div>
-                        <div style={{ fontWeight: "800" }}>Commodity Name:</div>
-                        <div style={{ fontWeight: "800" }}>Type of Wagon:</div>
-                        <div style={{ fontWeight: "800" }}>No of Wagon:</div>
-                        <div style={{ fontWeight: "800" }}>Wagon Wt:</div>
-
-                        <span className="span">{this.state.rakeOf}</span>
-                        <span className="span">{this.state.commodity_cato}</span>
-                        <span className="span">{this.state.commodity_N}</span>
-                        <span className="span">{this.state.WagonType}</span>
-                        <span className="span">{this.state.wagon}</span>
-                        <span className="span">{this.state.wagonWt} per MT Wagon</span>
-                      </div>
-                    </div> */}
-
                       <div style={{ padding: "20px 0" }}>
 
-
-                        {/* <div style={{ display: "grid", gridTemplateColumns: "repeat(1, 1fr)", gap: "20px", width: "100%" }}>
-
-                        <div style={{ display: "flex", flexDirection: "row", padding: "0px 10px", background: "blue", color: "white", gap: "25%", justifyContent: "space-between" }}>
-                          <p style={{ alignItems: "start", fontWeight: "800", fontSize: "18px" }}>Cost / PTPK : $ 5 PTPK</p>
-                          <p style={{ alignItems: "center", fontWeight: "800", fontSize: "18px" }}>Cost / MT : $ 4300 per MT</p>
-                          <p style={{ alignItems: "end", fontWeight: "800", fontSize: "18px" }}>Total Cost : $ 30,00,000</p>
-                        </div>
-
-                      </div> */}
                         {/* HIDE AND SHOW PART DROPDOWN */}
 
 
@@ -1697,12 +1527,6 @@ class CreateNewContracts extends Component {
                                     </div>
                                   </th>
                                 </tr>
-                                {/* <tr className="br-10" style={{ alignItems: "end" }}>
-                                <th className='col-3 pl-10 pr-10 tLeft'>COST / MT : 1200 per MT</th>
-                              </tr>
-                              <tr className="br-10" style={{ alignItems: "end" }}>
-                                <th className='col-3 pl-10 pr-10 tLeft'>Total Cose : $ 456</th>
-                              </tr> */}
                               </thead>
 
                               <tbody className="ht-40 fs-14 fBold mr-5 mt-10 curP label-color">
@@ -1735,40 +1559,7 @@ class CreateNewContracts extends Component {
 
                           </div>
 
-                          {/* <div style={{ width: "100%", gap: "20px" }}>
-
-                          <table style={{ boxShadow: 'rgba(136, 165, 300, 0.6) 0px 0px 5px 0px, rgba(255, 255, 255, 0.7) 0px 0px 5px 0px', width: "100%", borderSpacing: '0px', marginTop: "30px" }}>
-                            <thead className="ht-40 fs-14 fBold mr-5 mt-10 curP table-bg-dark-red white-color">
-                              <div style={{ display: "flex", flexDirection: "row", justifyContent: "space-between", paddingTop: "10px" }}>
-                                <tr className="" style={{ display: "flex" }}>
-                                  <svg xmlns="http://www.w3.org/2000/svg" width="50" height="30" viewBox="0 0 42 44">
-                                    <g fill="#FFF" fill-rule="evenodd" stroke-width=".5">
-                                      <path d="M1.1 43.731a.41.41 0 0 1-.21 0 .49.49 0 0 1-.24-.66l9.26-19.54a.49.49 0 0 1 .66-.24.5.5 0 0 1 .24.67L1.6 43.491a.48.48 0 0 1-.5.24zM40.42 43.731a.48.48 0 0 1-.45-.28l-9.26-19.49a.5.5 0 0 1 .24-.67.49.49 0 0 1 .66.24l9.26 19.53a.49.49 0 0 1-.27.67.41.41 0 0 1-.18 0z" />
-                                      <path d="M32.68 27.441H8.84a.5.5 0 1 1 0-1h23.84a.5.5 0 1 1 0 1zM35.37 33.671H5.85a.51.51 0 0 1-.5-.5.5.5 0 0 1 .5-.5h29.52a.5.5 0 1 1 0 1zM38.6 39.891H2.94a.5.5 0 0 1-.5-.5.51.51 0 0 1 .5-.5H38.6a.5.5 0 1 1 0 1z" />
-                                      <path fill-rule="nonzero" d="M31.33 24.241H10.44a2.61 2.61 0 0 1-2.61-2.61V3.341a2.61 2.61 0 0 1 2.61-2.61h20.89a2.61 2.61 0 0 1 2.61 2.61v18.29a2.61 2.61 0 0 1-2.61 2.61zM10.44 1.731c-.89 0-1.61.721-1.61 1.61v18.29c0 .89.72 1.61 1.61 1.61h20.89a1.61 1.61 0 0 0 1.61-1.61V3.341a1.61 1.61 0 0 0-1.61-1.61H10.44z" />
-                                      <path d="M33.44 16.381H8.33a.5.5 0 1 1 0-1h25.11a.5.5 0 1 1 0 1z" />
-                                      <path d="M20.65 16.381a.5.5 0 0 1-.5-.5V1.231a.5.5 0 1 1 1 0v14.65a.51.51 0 0 1-.5.5z" />
-                                      <path fill-rule="nonzero" d="M29.66 21.341a2 2 0 1 1 0-4 2 2 0 0 1 0 4zm0-3.09a1.045 1.045 0 1 0 0 2.09 1.045 1.045 0 0 0 0-2.09zM11.73 21.341a2 2 0 1 1 0-4 2 2 0 0 1 0 4zm0-3.09a1 1 0 1 0 .002 2 1 1 0 0 0-.003-2z" />
-                                      <path d="M22.6 21.081h-3.66a.5.5 0 1 1 0-1h3.66a.5.5 0 1 1 0 1z" />
-                                    </g>
-                                  </svg>
-                                  <th className='pl-10 pr-10 tLeft'>Rail Fright</th>
-                                </tr>
-                                <tr className="br-10">
-                                  <th className='col-3 pl-10 pr-10 tLeft'>COST / MT : $ 1200 per MT</th>
-                                </tr>
-                                <tr className="br-10">
-                                  <th className='col-3 pl-10 pr-10 tLeft'>Total Cost : $ 30,00,00</th>
-                                </tr>
-                              </div>
-                            </thead>
-                          </table>
-
-                        </div> */}
-
                           <div style={{ width: "100%", gap: "20px" }}>
-
-
 
                             <table style={{ boxShadow: 'rgba(136, 165, 300, 0.6) 0px 0px 5px 0px, rgba(255, 255, 255, 0.7) 0px 0px 5px 0px', width: "100%", borderSpacing: '0px', marginTop: "30px" }}>
                               <thead className="ht-40 fs-14 fBold curP table-bg-blue white-color" style={{ display: "flex", justifyContent: "space-between", paddingTop: "10px" }}>
@@ -1788,12 +1579,6 @@ class CreateNewContracts extends Component {
                                     </div>
                                   </th>
                                 </tr>
-                                {/* <tr className="br-10" style={{ alignItems: "end" }}>
-                                <th className='col-3 pl-10 pr-10 tLeft'>COST / MT : 1200 per MT</th>
-                              </tr>
-                              <tr className="br-10" style={{ alignItems: "end" }}>
-                                <th className='col-3 pl-10 pr-10 tLeft'>Total Cost : $ 56465</th>
-                              </tr> */}
                               </thead>
 
                               <tbody className="ht-40 fs-14 fBold mr-5 mt-10 curP label-color">
@@ -1826,34 +1611,30 @@ class CreateNewContracts extends Component {
                             </table>
 
                           </div>
-
                         </div>
 
+                      </div>
 
+
+                      <div className="actions" style={{ display: "flex", justifyContent: "end", paddingTop: "20px", width: "100%", position: "sticky", bottom: "0", background: "white", paddingBottom: "15px"  }}>
+                        <button
+                          style={{ border: "1px solid #528aea", color: "#528aea" }}
+                          className={"wt-250 pl-15 pr-15 mr-5 ht-40 br-5 fBold fs-14 ml-15"}
+                          onClick={this.handleRefresh}
+                        >Cancel
+                        </button>
+                        <Popup
+                          trigger={<button
+                            className={"bg-theme wt-250 pl-15 pr-15 mr-5 ht-40 br-5 fBold fs-14 white-color ml-15"}
+                          >Generate Contract
+                          </button>}
+                          position="top center"
+                          closeOnDocumentClick
+                          contentStyle={{ padding: "0px", border: "none" }}
+                        >
+                        </Popup>
                       </div>
                     </div>
-
-                    <div className="actions" style={{ display: "flex", justifyContent: "end", paddingTop: "20px" }}>
-                      <button
-                        style={{ border: "1px solid #528aea", color: "#528aea" }}
-                        className={"wt-250 pl-15 pr-15 mr-5 ht-40 br-5 fBold fs-14 ml-15"}
-                        onClick={this.handleRefresh}
-                      >Cancel
-                      </button>
-                      <Popup
-                        trigger={<button
-                          className={"bg-theme wt-250 pl-15 pr-15 mr-5 ht-40 br-5 fBold fs-14 white-color ml-15"}
-                        >Generate Contract
-                        </button>}
-                        position="top center"
-                        closeOnDocumentClick
-                        contentStyle={{ padding: "0px", border: "none" }}
-                      >
-                      </Popup>
-
-
-                    </div>
-
 
                   </div>
                 )}

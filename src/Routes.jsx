@@ -8,6 +8,7 @@ import MultiModeContracts from "Pages/MultiModeContracts";
 import ViewGeneratedContracts from "Pages/ViewMultiModeGeneratedContracts";
 import CreateNewContracts from "Pages/CreateNewContracts/index";
 import SingleCostEstimation from "Pages/singleCostEstimation/index";
+import DbCostEstimation from "Pages/dbCostEstimation/index";
 
 export default class Routes extends Component {
   render() {
@@ -20,6 +21,7 @@ export default class Routes extends Component {
           <Route exact path="/viewGeneratedContracts" component={ViewGeneratedContracts} />
           <Route exact path="/createNewContracts" component={CreateNewContracts} />
           <Route exact path="/singleCostEstimation" component={SingleCostEstimation} />
+          <Route exact path="/dbCostEstimation" component={DbCostEstimation} />
         </Switch> 
       </App>
     )
